@@ -1,7 +1,8 @@
-import React from 'react'
+import {useState} from 'react'
 import AppLink from './AppLink';
 
 const Header = () => {
+  const [isConnected, setIsConnected] = useState<boolean>(false);
   const mail = "romain.fouillaron@gmx.fr";
   const points = "6";
 
@@ -17,7 +18,7 @@ const Header = () => {
           <p>|</p>
           <p>{points} points</p>
           <p>|</p>
-          <AppLink>Déconnexion</AppLink>
+          {isConnected ? <AppLink href="/">Déconnexion</AppLink> : <AppLink href="/">Connexion</AppLink>}
         </div>
         <nav id="operationNav">operationNav</nav>
       </div>
