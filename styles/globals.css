@@ -1,0 +1,68 @@
+/*GLOBALS*/
+:root {
+    --title-font-size: 64px;
+    --desktop-font-size: 24px;
+    --laptop-font-size: 20px;
+    --font-color-1: #000000;
+}
+
+* {
+    font-size: var(--desktop-font-size);
+    color: var(--font-color-1);
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #c6c6c6 0%, #eeeeee 80%);
+    background: -webkit-linear-gradient(135deg, #c6c6c6 0%, #eeeeee 80%);
+    background: -moz-linear-gradient(135deg, #c6c6c6 0%, #eeeeee 80%);
+    margin: 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+header,
+footer {
+    flex-shrink: 0;
+}
+
+main {
+    flex-grow: 1;
+}
+
+h1 {
+    font-size: var(--title-font-size);
+    line-height: 0px;
+    text-align: center;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+::-webkit-scrollbar {
+    width: 1.6vw;
+    max-width: 16px;
+}
+
+::-moz-scrollbar {
+    width: 1.6vw;
+    max-width: 16px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 0.8vw;
+}
+
+::-moz-scrollbar-thumb {
+    border-radius: 0.8vw;
+}
+
+/*IMPORT CSS (DESKTOP FIRST)*/
+@import url('desktop.css');
+@import url('tablet.css') screen and (max-width: 768px);
+@import url('mobile.css') screen and (max-width: 340px);

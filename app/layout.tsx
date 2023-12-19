@@ -1,11 +1,11 @@
-import './globals.css'
+import '../styles/globals.css'
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { PropsWithChildren } from 'react'
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import type { Metadata } from 'next';
+import { Amiri_Quran } from 'next/font/google';
+const amiri = Amiri_Quran({weight: "400", subsets: ['latin']});
 
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Guilder',
@@ -15,7 +15,9 @@ export const metadata: Metadata = {
 export default function RootLayout(props: PropsWithChildren) {
   return (
     <html lang="fr">
-      <body className={inter.className}>
+      <head>
+      </head>
+      <body className={amiri.className}>
         <Header />
         <main>
           {props.children}

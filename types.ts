@@ -3,7 +3,7 @@ export type Guild = string;
 export type UserName = string;
 export type UserMail = string;
 export type UserPassword = string;
-export type UserPhone = number;
+export type UserPhone = number | undefined;
 export type UserCounter = number
 
 export type User = {
@@ -14,6 +14,10 @@ export type User = {
     counter: UserCounter,
     guild: Guild
 };
+export type UserContext = {
+    user: User | null;
+    updateUser: () => void;
+}
 
 export type OperationPoint = number;
 

@@ -1,7 +1,7 @@
-import {useEffect, useState} from 'react'
-import { UserMail, UserPassword } from '@/types'
+import {useEffect, useState} from 'react';
+import { UserMail, UserPassword } from '@/types';
 
-const loginForm = () => {
+const LoginForm = () => {
     const [mail, setmail] = useState<UserMail>("");
     const [password, setPassword] = useState<UserPassword>("");
     const [errMessage, setErrMessage] = useState<string>("");
@@ -20,9 +20,9 @@ const loginForm = () => {
         <label htmlFor="inputPassword"> Votre mot de passe :</label>
         <input type="password" name="password" id="inputPassword" value={password} onChange={(event) => setPassword(event.target.value)} required/>
         {errMessage && <p>{errMessage}</p>}
-        <button type="submit"></button>
+        <button type="submit">Se Connecter</button>
     </form>
   )
 }
 
-export default loginForm;
+export default LoginForm;

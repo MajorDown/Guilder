@@ -1,0 +1,61 @@
+/**********HEADER********************************/
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+#headerNav {
+    display: flex;
+    flex-direction: column;
+}
+
+#userOptions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#operationNav {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+/**********CONNEXION*************************/
+#formSelector {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 10px;
+}
+
+#connexionSection form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+}
+
+#connexionSection input {
+    width: 200px;
+}
+
+/********************************************/
+/***********BP-996***************************/
+@media screen and (max-width: 996px) {
+
+    p,
+    label,
+    input,
+    button,
+    a {
+        font-size: var(--laptop-font-size);
+    }
+
+    h1 {
+        font-size: var(--title-dont-size);
+    }
+}
