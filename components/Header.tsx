@@ -21,7 +21,7 @@ const Header = () => {
           <p>|</p>
           <p>{points} points</p>
           <p>|</p>
-          {isConnected ? <AppLink href="/">Déconnexion</AppLink> : <AppLink href="/">Connexion</AppLink>}
+          {isConnected ? <AppLink href="/connexion">Déconnexion</AppLink> : <AppLink href="/connexion">Connexion</AppLink>}
         </div>
         <nav id="operationNav">
           <AppLink href="/">Déclarer une opération</AppLink>

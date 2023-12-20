@@ -1,7 +1,8 @@
 import '../styles/globals.css'
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren } from 'react';
+import { UserProvider } from '@/contexts/userContext';
 import type { Metadata } from 'next';
 import { Amiri_Quran } from 'next/font/google';
 const amiri = Amiri_Quran({weight: "400", subsets: ['latin']});
@@ -18,11 +19,13 @@ export default function RootLayout(props: PropsWithChildren) {
       <head>
       </head>
       <body className={amiri.className}>
-        <Header />
-        <main>
-          {props.children}
-        </main>
-        <Footer />
+      <UserProvider>
+          <Header />
+          <main>
+            {props.children}
+          </main>
+          <Footer />
+        </UserProvider>
       </body>
     </html>
   )

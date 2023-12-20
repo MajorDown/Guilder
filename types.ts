@@ -15,7 +15,13 @@ export type User = {
     guild: Guild
 };
 export type UserContext = {
-    user: User | null;
+    user: {
+        name: UserName,
+        mail: UserMail,
+        phone: UserPhone,
+        counter: UserCounter,
+        guild: Guild
+    }
     updateUser: () => void;
 }
 
