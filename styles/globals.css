@@ -51,6 +51,15 @@ h2 {
     padding: 10px 30px;
 }
 
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a.isActive {
+    text-decoration: underline;
+}
+
 ::-webkit-scrollbar {
     width: 1.6vw;
     max-width: 16px;

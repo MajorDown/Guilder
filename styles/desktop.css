@@ -43,6 +43,13 @@ header {
     width: 200px;
 }
 
+/**********OPERATION*************************/
+#operationForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 /********************************************/
 /***********BP-996***************************/
 @media screen and (max-width: 996px) {

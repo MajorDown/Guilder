@@ -19,7 +19,7 @@ export default function RootLayout(props: PropsWithChildren) {
       <head>
       </head>
       <body className={amiri.className}>
-      <UserProvider>
+        <UserProvider>
           <Header />
           <main>
             {props.children}
