@@ -10,10 +10,9 @@ export async function GET(request: Request, { params }: { params: { guild: strin
     await databaseConnecter();
     const headersList = headers()
     const auth = headersList.get('authorization');
-    if (auth?.startsWith('Bearer ')) {
-      const token = auth.slice(7);
-      console.log(token);
-    }
+    if (auth && !auth.startsWith('Bearer ')) return NextResponse.json({ status: 400 });
+    const token = auth?.slice(7);
+    console.log(token);
     let members = await UserModel.find({guild: params.guild});
     if(!members[0]) return NextResponse.json(`aucun membres trouvés pour la guild "${params.guild}"`, { status: 200 });
     members.forEach((member) => {member.password = null});

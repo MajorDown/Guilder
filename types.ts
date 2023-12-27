@@ -22,7 +22,13 @@ export type UserContext = {
         counter: UserCounter,
         guild: Guild
     }
-    updateUser: () => void;
+    updateUser: (user: {
+        name: UserName,
+        mail: UserMail,
+        phone: UserPhone,
+        counter: UserCounter,
+        guild: Guild   
+    }) => void;
 }
 
 export type OperationPoints = number;

@@ -8,7 +8,8 @@ import { Guild } from "@/types";
  *   - Si la promesse résout avec une réponse, elle peut contenir les données des membres de la guilde.
  *   - Si la promesse est rejetée, elle contient une erreur indiquant la raison de l'échec.
  */
-export const getGuildMembers = async (guild: Guild): Promise<Response | Error> => {
+export const getGuildMembers = async (guild: Guild): Promise<Response | Error | void> => {
+    if (window) {
     const token = localStorage.getItem("guilder_token");
     const response: Response | Error = await fetch(`/api/guild/${guild}`, {
         method: "GET",
@@ -17,5 +18,5 @@ export const getGuildMembers = async (guild: Guild): Promise<Response | Error> =
           "Authorization": `Bearer ${token}`
         }
       })
-    return response;
+    return response;}
 }

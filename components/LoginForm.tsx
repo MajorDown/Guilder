@@ -1,14 +1,13 @@
-import {FormEvent, useEffect, useState} from 'react';
+import {FormEvent, useState} from 'react';
 import { UserMail, UserPassword } from '@/types';
 import connectUser from '@/tools/front/connectUser';
+import { useUserContext } from '@/contexts/userContext';
 
 const LoginForm = () => {
+    const UserContext = useUserContext();
     const [mail, setmail] = useState<UserMail>("");
     const [password, setPassword] = useState<UserPassword>("");
     const [errMessage, setErrMessage] = useState<string>("");
-
-    useEffect(() => {
-    }, [mail, password])
 
     const handleLogin = async (event: FormEvent) => {
       event.preventDefault();
@@ -16,6 +15,16 @@ const LoginForm = () => {
         const request = {mail, password};
         const response = await connectUser(request);
         console.log(response);
+        if (!(response instanceof Error)) {
+          UserContext?.updateUser({
+            name: response.name,
+            mail: response.mail,
+            phone: response.phone,
+            counter: response.counter,
+            guild: response.guild
+          })
+          localStorage.setItem("guilder_token", response.token);
+        }
     }
 
   return (

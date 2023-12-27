@@ -3,11 +3,19 @@ import {useState, useEffect} from 'react';
 import AppLink from './AppLink';
 import { Amatic_SC } from 'next/font/google';
 const amatic = Amatic_SC({weight: "700", subsets: ["latin"], display: 'swap', variable: "--font-Amatic-SC"});
+import { useUserContext } from '@/contexts/userContext';
+import { UserMail } from '@/types';
 
 const Header = () => {
+  const UserContext = useUserContext();
   const [isConnected, setIsConnected] = useState<boolean>(false);
-  const mail = "romain.fouillaron@gmx.fr";
+  const [mail, setMail] = useState<UserMail | null>()
   const points = "6";
+
+  useEffect(() => {
+    console.log(UserContext?.user)
+    if (UserContext?.user) setMail(UserContext?.user.mail);
+  }, [UserContext?.user])
 
   return (
     <header>
@@ -17,8 +25,8 @@ const Header = () => {
       </div>
       <div id="headerNav">
         <div id="userOptions">
-          <p>{mail}</p>
-          <p>|</p>
+          {mail && <p>{mail}</p>}
+          {mail && <p>|</p>}
           <p>{points} points</p>
           <p>|</p>
           {isConnected ? <AppLink href="/connexion" showActivation>Déconnexion</AppLink>

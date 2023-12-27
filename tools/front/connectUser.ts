@@ -4,7 +4,19 @@
  * @returns {Promise<Response | Error>} Une promesse qui résout avec l'objet Response en cas de réussite,
  * ou résout avec undefined en cas d'échec.
  */
-const connectUser = async (objectToFetch: Object): Promise<Response | Error> => {
+
+import { Guild, UserCounter, UserMail, UserName, UserPhone } from "@/types";
+
+export type ConnectedUserType = {
+  token: string;
+  mail: UserMail,
+  name: UserName,
+  phone: UserPhone,
+  counter: UserCounter,
+  guild: Guild
+}
+
+const connectUser = async (objectToFetch: Object): Promise<ConnectedUserType | Error> => {
     try {
       const response = await fetch("/api/user/login", {
         method: "POST",
@@ -17,8 +29,8 @@ const connectUser = async (objectToFetch: Object): Promise<Response | Error> => 
       if (!response.ok) {
         throw new Error(`connectUser ~> Request failed with status ${response.status} : ${response.body}`);
       }
-  
-      return response;
+      const connectedUser: ConnectedUserType = await response.json();
+      return connectedUser;
     } catch (error) {
       console.log("connectUser ~> Error:", error);
       return error as Error;

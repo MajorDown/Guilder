@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import UserModel from "@/tools/api/models/model.user";
 import { tokenMaker } from "@/tools/api/tokenManager";
 import { passwordChecker } from "@/tools/api/passwordManager";
+import { Guild, UserCounter, UserMail, UserName, UserPhone } from "@/types";
 
 export const POST = async (request: Request) => {
   const { mail, password } = await request.json();
@@ -21,9 +22,24 @@ export const POST = async (request: Request) => {
     }
     // RENVOI DU USER VALIDE
     const token = tokenMaker(mail);
-    const connectedUser = { mail: mail, token: token, guild: userToCheck.guild };
+    const connectedUser: {
+      token: string,
+      mail: UserMail,
+      name: UserName,
+      guild: Guild,
+      counter: UserCounter,
+      phone: UserPhone
+    } = { 
+      token: token, 
+      mail: userToCheck.mail, 
+      name: userToCheck.name, 
+      guild: userToCheck.guild, 
+      counter: userToCheck.counter,
+      phone: userToCheck.phone
+    };
     console.log("api/user/login ~> utilisateur connecté :", mail);
-    return NextResponse.json(connectedUser, { status: 201 });
+    console.log(connectedUser);
+    return NextResponse.json(connectedUser, {status: 201});
   } catch (error) {
     console.log("api/user/login ~> error :", error);
     return NextResponse.json("failed to login", { status: 500 });
