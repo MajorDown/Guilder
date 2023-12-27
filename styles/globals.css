@@ -56,6 +56,12 @@ a {
     cursor: pointer;
 }
 
+p,
+label {
+    margin: 0;
+    text-align: center;
+}
+
 a.isActive {
     text-decoration: underline;
 }

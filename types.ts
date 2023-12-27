@@ -3,7 +3,7 @@ export type Guild = string;
 export type UserName = string;
 export type UserMail = string;
 export type UserPassword = string;
-export type UserPhone = number | undefined;
+export type UserPhone = string;
 export type UserCounter = number
 
 export type User = {

@@ -6,14 +6,16 @@ const connectOptions: ConnectOptions = {
   dbName: "guilder"
 };
 
-export const databaseConnecter = async () => {
+const databaseConnecter = async () => {
   mongoose.set("strictQuery", true);
   if (isConnected) return;
   try {
     if(process.env.MONGODB_URI) await mongoose.connect(process.env.MONGODB_URI, connectOptions);
-    console.log("connectToDB ~> Connection à MongoDB établie");
+    console.log("databaseConnecter ~> Connection à MongoDB établie");
     isConnected = true;
   } catch (error) {
-    console.log("connectToDB ~> Error :", error);
+    console.log("databaseConnecter ~> Error :", error);
   }
 };
+
+export default databaseConnecter;

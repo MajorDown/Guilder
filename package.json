@@ -22,6 +22,7 @@
     "typescript": "5.3.3"
   },
   "devDependencies": {
-    "@types/bcrypt": "^5.0.2"
+    "@types/bcrypt": "^5.0.2",
+    "@types/mongoose-unique-validator": "^1.0.9"
   }
 }

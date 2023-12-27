@@ -7,9 +7,7 @@ export const passwordCrypter = async (password: UserPassword) => {
   return hashedPassword;
 };
 
-const passwordChecker = async (password: UserPassword, hashedpassword: string) => {
+export const passwordChecker = async (password: UserPassword, hashedpassword: string) => {
   const isPasswordValid = await bcrypt.compare(password, hashedpassword);
   return isPasswordValid;
 };
-
-module.exports = { passwordCrypter, passwordChecker };

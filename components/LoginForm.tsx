@@ -1,5 +1,6 @@
-import {useEffect, useState} from 'react';
+import {FormEvent, useEffect, useState} from 'react';
 import { UserMail, UserPassword } from '@/types';
+import connectUser from '@/tools/front/connectUser';
 
 const LoginForm = () => {
     const [mail, setmail] = useState<UserMail>("");
@@ -9,12 +10,16 @@ const LoginForm = () => {
     useEffect(() => {
     }, [mail, password])
 
-    const handleConnect = () => {
-        console.log("handleConnect");
+    const handleLogin = async (event: FormEvent) => {
+      event.preventDefault();
+        console.log("handleLogin");
+        const request = {mail, password};
+        const response = await connectUser(request);
+        console.log(response);
     }
 
   return (
-    <form onSubmit={() => handleConnect()}>
+    <form onSubmit={(event) => handleLogin(event)}>
         <label htmlFor="inputMail">Votre Email :</label>
         <input type="email" name="mail" id="inputMail" value={mail} onChange={(event) => setmail(event.target.value)} required/>
         <label htmlFor="inputPassword"> Votre mot de passe :</label>
