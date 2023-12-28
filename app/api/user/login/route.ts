@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import UserModel from "@/tools/api/models/model.user";
 import { tokenMaker } from "@/tools/api/tokenManager";
 import { passwordChecker } from "@/tools/api/passwordManager";
-import { Guild, UserCounter, UserMail, UserName, UserPhone } from "@/types";
+import { ConnectedUser, Guild, UserCounter, UserMail, UserName, UserPhone } from "@/types";
 
 export const POST = async (request: Request) => {
   const { mail, password } = await request.json();
@@ -22,14 +22,7 @@ export const POST = async (request: Request) => {
     }
     // RENVOI DU USER VALIDE
     const token = tokenMaker(mail);
-    const connectedUser: {
-      token: string,
-      mail: UserMail,
-      name: UserName,
-      guild: Guild,
-      counter: UserCounter,
-      phone: UserPhone
-    } = { 
+    const connectedUser: ConnectedUser = { 
       token: token, 
       mail: userToCheck.mail, 
       name: userToCheck.name, 

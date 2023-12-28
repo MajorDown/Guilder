@@ -14,21 +14,19 @@ export type User = {
     counter: UserCounter,
     guild: Guild
 };
+
+export type ConnectedUser = {
+    token: string,
+    name: UserName,
+    mail: UserMail,
+    phone: UserPhone,
+    counter: UserCounter,
+    guild: Guild
+}
+
 export type UserContext = {
-    user: {
-        name: UserName,
-        mail: UserMail,
-        phone: UserPhone,
-        counter: UserCounter,
-        guild: Guild
-    }
-    updateUser: (user: {
-        name: UserName,
-        mail: UserMail,
-        phone: UserPhone,
-        counter: UserCounter,
-        guild: Guild   
-    }) => void;
+    user: ConnectedUser,
+    updateUser: (user: ConnectedUser) => void
 }
 
 export type OperationPoints = number;

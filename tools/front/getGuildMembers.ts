@@ -9,7 +9,7 @@ import { Guild } from "@/types";
  *   - Si la promesse est rejetée, elle contient une erreur indiquant la raison de l'échec.
  */
 export const getGuildMembers = async (guild: Guild): Promise<Response | Error | void> => {
-    if (window) {
+    if (typeof window !== 'undefined') {
     const token = localStorage.getItem("guilder_token");
     const response: Response | Error = await fetch(`/api/guild/${guild}`, {
         method: "GET",
