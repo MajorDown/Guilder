@@ -1,22 +1,34 @@
-import { Guild } from "@/types";
+import { Guild, MembersList } from "@/types";
 
 /**
- * Récupère les membres d'une guilde à partir du serveur API.
+ * fonction communiquant avec l'API du serveur pour récupérer une liste des membres
+ * de sa guilde. Elle utilise un token d'authentification pour
+ * s'assurer que la requête est autorisée.
  *
- * @param {Guild} guild - L'objet représentant la guilde pour laquelle récupérer les membres.
- * @returns {Promise<Response|Error>} Une promesse qui résout avec la réponse de l'API ou une erreur en cas d'échec.
- *   - Si la promesse résout avec une réponse, elle peut contenir les données des membres de la guilde.
- *   - Si la promesse est rejetée, elle contient une erreur indiquant la raison de l'échec.
+ * @param {Guild} guildName - Le nom de la guilde pour laquelle récupérer les membres.
+ * @param {string} authToken - Le token d'authentification pour la requête API.
+ * @returns {Promise<MembersList | []>} Une promesse qui résout en une liste des membres
+ * de la guilde si la requête réussit, ou un tableau vide en cas d'échec.
  */
-export const getGuildMembers = async (guild: Guild): Promise<Response | Error | void> => {
-    if (typeof window !== 'undefined') {
-    const token = localStorage.getItem("guilder_token");
-    const response: Response | Error = await fetch(`/api/guild/${guild}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`
-        }
-      })
-    return response;}
+export const getGuildMembers = async (guildName: Guild, authToken: string): Promise<MembersList | []> => {
+  try {
+    const response = await fetch(`/api/guild/${guildName}`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${authToken}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      // Vous pouvez également traiter différentes réponses du serveur ici
+      throw new Error(`Erreur côté serveur: ${response.status}`);
+    }
+
+    const membersList: MembersList = await response.json();
+    return membersList;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
 }

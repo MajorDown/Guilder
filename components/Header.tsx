@@ -1,21 +1,30 @@
 'use client'
-import {useState, useEffect} from 'react';
-import AppLink from './AppLink';
+import { useEffect } from 'react';
 import { Amatic_SC } from 'next/font/google';
-const amatic = Amatic_SC({weight: "700", subsets: ["latin"], display: 'swap', variable: "--font-Amatic-SC"});
+import { ConnectedUser } from '@/types';
+import AppLink from './AppLink';
 import { useUserContext } from '@/contexts/userContext';
-import { UserMail } from '@/types';
+
+const amatic = Amatic_SC({weight: "700", subsets: ["latin"], display: 'swap', variable: "--font-Amatic-SC"});
 
 const Header = () => {
-  const UserContext = useUserContext();
-  const [isConnected, setIsConnected] = useState<boolean>(false);
-  const [mail, setMail] = useState<UserMail | null>()
-  const points = "6";
+  const {user, updateUser} = useUserContext();
 
   useEffect(() => {
-    console.log(UserContext?.user)
-    if (UserContext?.user) setMail(UserContext?.user.mail);
-  }, [UserContext?.user])
+    if (window != undefined) {
+      const localData = localStorage.getItem(process.env.LOCALSTORAGE_USERCONTEXT_KEY as string);
+      if (localData) {;
+        const actualUser: ConnectedUser = JSON.parse(localData);
+        updateUser(actualUser);
+      }
+      else updateUser(null);
+    }
+  }, [])
+
+  const disconnectUser = () => {
+    updateUser(null);
+    localStorage.removeItem(process.env.LOCALSTORAGE_USERCONTEXT_KEY as string);
+  }
 
   return (
     <header>
@@ -25,20 +34,24 @@ const Header = () => {
       </div>
       <div id="headerNav">
         <div id="userOptions">
-          {mail && <p>{mail}</p>}
-          {mail && <p>|</p>}
-          <p>{points} points</p>
-          <p>|</p>
-          {isConnected ? <AppLink href="/connexion" showActivation>Déconnexion</AppLink>
+          {user && 
+          <>
+            <p>{user.mail}</p>
+            <p>|</p>
+            <p>{user.counter} points</p>
+            <p>|</p>
+          </>
+          }
+          {user ? <AppLink onClick={() => disconnectUser()} href="/" showActivation>Déconnexion</AppLink>
            : <AppLink href="/connexion" showActivation>Connexion</AppLink>}
         </div>
-        <nav id="operationNav">
+       {user && <nav id="operationNav">
           <AppLink href="/operation" showActivation={true}>Déclarer une opération</AppLink>
           <p>|</p>          
           <AppLink href="/historique" showActivation={true}>Historique des opérations</AppLink>
           <p>|</p>
-          <AppLink href="/guild" showActivation={true}>Membres de la guilde</AppLink>
-        </nav>
+          <AppLink href="/guilde" showActivation={true}>Membres de la guilde</AppLink>
+        </nav>}
       </div>
     </header>
   )

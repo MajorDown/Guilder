@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import UserModel from "@/tools/api/models/model.user";
 import { tokenMaker } from "@/tools/api/tokenManager";
 import { passwordChecker } from "@/tools/api/passwordManager";
-import { ConnectedUser, Guild, UserCounter, UserMail, UserName, UserPhone } from "@/types";
+import { ConnectedUser} from "@/types";
 
 export const POST = async (request: Request) => {
   const { mail, password } = await request.json();
@@ -31,7 +31,6 @@ export const POST = async (request: Request) => {
       phone: userToCheck.phone
     };
     console.log("api/user/login ~> utilisateur connecté :", mail);
-    console.log(connectedUser);
     return NextResponse.json(connectedUser, {status: 201});
   } catch (error) {
     console.log("api/user/login ~> error :", error);

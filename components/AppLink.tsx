@@ -5,6 +5,7 @@ import Link from 'next/link';
 type AppLinkProps = PropsWithChildren<{
     href: string,
     showActivation?: boolean;
+    onClick?: () => void
 }>;
 
 const AppLink = (props: AppLinkProps) => {
@@ -16,7 +17,7 @@ const AppLink = (props: AppLinkProps) => {
   }, [actualPathName])
 
   return (
-    <Link className={isActive? "appLink isActive" : "appLink"} href={props.href} replace>{props.children}</Link>
+    <Link className={isActive? "appLink isActive" : "appLink"} href={props.href} onClick={props.onClick}replace>{props.children}</Link>
   )
 }
 

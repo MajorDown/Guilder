@@ -1,30 +1,26 @@
 import {FormEvent, useState} from 'react';
 import { UserMail, UserPassword } from '@/types';
 import connectUser from '@/tools/front/connectUser';
+import { useRouter } from 'next/navigation'; 
 import { useUserContext } from '@/contexts/userContext';
 
 const LoginForm = () => {
-    const UserContext = useUserContext();
+  const router = useRouter()
+  const {user, updateUser} = useUserContext();
     const [mail, setmail] = useState<UserMail>("");
     const [password, setPassword] = useState<UserPassword>("");
     const [errMessage, setErrMessage] = useState<string>("");
 
     const handleLogin = async (event: FormEvent) => {
       event.preventDefault();
-        console.log("handleLogin");
         const request = {mail, password};
         const response = await connectUser(request);
-        console.log(response);
-        if (!(response instanceof Error)) {
-          UserContext?.updateUser({
-            name: response.name,
-            mail: response.mail,
-            phone: response.phone,
-            counter: response.counter,
-            guild: response.guild
-          })
-          localStorage.setItem("guilder_token", response.token);
-        }
+        if (response instanceof Error) setErrMessage("mail / mot de passe incorrect"!)
+        else {
+          localStorage.setItem(process.env.LOCALSTORAGE_USERCONTEXT_KEY as string, JSON.stringify(response));
+          updateUser(response);
+          router.push("/")
+      }
     }
 
   return (
