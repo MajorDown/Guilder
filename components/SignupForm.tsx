@@ -1,6 +1,7 @@
 import {useEffect, useState, FormEvent} from 'react'
 import { UserMail, UserName, UserPhone, UserPassword, Guild } from '@/types'
 import createUser from '@/tools/front/createUser';
+import LoadSpinner from './LoadSpinner';
 
 const SignupForm = () => {
     const [mail, setMail] = useState<UserMail>("");
@@ -11,6 +12,7 @@ const SignupForm = () => {
     const [passwordConfirm, setPasswordConfirm] = useState<UserPassword>("");
     const [errMessage, setErrMessage] = useState<string>("");
     const [hasSignup, setHasSignup] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     useEffect(() => {
       if (password && passwordConfirm && password != passwordConfirm) setErrMessage("les mots de passes sont différents !");
@@ -20,11 +22,12 @@ const SignupForm = () => {
 
     const handleSignup = async (event: FormEvent) => {
       event.preventDefault();
-      console.log("envoi de la request")
+      setIsLoading(true);
       const request = {mail, name, password, phone, guild};
       const response: Response | Error = await createUser(request);
       console.log(response);
       if (response instanceof Response) {
+        setIsLoading(false);
         setHasSignup(true);
         setName("");
         setMail("");
@@ -33,7 +36,10 @@ const SignupForm = () => {
         setPassword("");
         setPasswordConfirm("")
       }
-      if (response instanceof Error) setErrMessage('Un problême à eu lieu lors de votre inscription. Veuillez réessayer plus tard.');
+      if (response instanceof Error) {
+        setIsLoading(false);
+        setErrMessage('Un problême à eu lieu lors de votre inscription. Veuillez réessayer plus tard.')
+      };
   }  
 
   return (
@@ -59,6 +65,7 @@ const SignupForm = () => {
           {errMessage && <p>{errMessage}</p>}
         </div>
         <button type="submit">S'inscrire</button>
+        {isLoading && <LoadSpinner />}
         </>
         }
     </form>

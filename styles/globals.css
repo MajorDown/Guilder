@@ -91,6 +91,7 @@ a.isActive {
 }
 
 /*IMPORT CSS (DESKTOP FIRST)*/
+@import url('animations.css');
 @import url('desktop.css');
 @import url('laptop.css') screen and (max-width: 1024px);
 @import url('tablet.css') screen and (max-width: 768px);

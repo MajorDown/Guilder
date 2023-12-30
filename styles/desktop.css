@@ -77,6 +77,10 @@ header {
     border-right: 2px solid var(--font-color-1);
 }
 
+.red {
+    color: red;
+}
+
 .memberMail {
     width: 30%;
     border-right: 2px solid var(--font-color-1);
