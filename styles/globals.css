@@ -2,8 +2,13 @@
 :root {
     --title-font-size: 64px;
     --desktop-font-size: 24px;
-    --laptop-font-size: 20px;
+    --desktop-line-height: 30px;
+    --laptop-font-size: 2vw;
+    --laptop-line-height: 2.2vw;
+    --tablet-font-size: 1.5vw;
+    --tablet-line-height: 1.6vw;
     --font-color-1: #000000;
+    --border-radius: 10px;
 }
 
 * {
@@ -58,8 +63,9 @@ a {
 
 p,
 label {
-    margin: 0;
+    margin: 10px;
     text-align: center;
+    line-height: var(--desktop-line-height);
 }
 
 a.isActive {
@@ -86,5 +92,6 @@ a.isActive {
 
 /*IMPORT CSS (DESKTOP FIRST)*/
 @import url('desktop.css');
+@import url('laptop.css') screen and (max-width: 1024px);
 @import url('tablet.css') screen and (max-width: 768px);
 @import url('mobile.css') screen and (max-width: 340px);

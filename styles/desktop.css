@@ -43,6 +43,49 @@ header {
     min-width: 200px;
 }
 
+/**********GUILDE****************************/
+#membersList {
+    width: 75%;
+}
+
+#membersList ul {
+    width: 100%;
+    padding: 0
+}
+
+.memberCard {
+    display: flex;
+    justify-content: space-between;
+    border: 2px solid var(--font-color-1);
+    border-radius: var(--border-radius);
+    min-width: 100%;
+    margin: 5px;
+}
+
+.memberCard p {
+    margin: 0;
+    padding: 0 0 5px 0;
+}
+
+.memberName {
+    width: 30%;
+    border-right: 2px solid var(--font-color-1);
+}
+
+.memberCounter {
+    width: 20%;
+    border-right: 2px solid var(--font-color-1);
+}
+
+.memberMail {
+    width: 30%;
+    border-right: 2px solid var(--font-color-1);
+}
+
+.memberPhone {
+    width: 20%;
+}
+
 
 /**********OPERATION*************************/
 #operationForm {
@@ -63,21 +106,4 @@ header {
     margin-block-start: 0;
     margin-block-end: 0;
     color: red;
-}
-
-/********************************************/
-/***********BP-996***************************/
-@media screen and (max-width: 996px) {
-
-    p,
-    label,
-    input,
-    button,
-    a {
-        font-size: var(--laptop-font-size);
-    }
-
-    h1 {
-        font-size: var(--title-dont-size);
-    }
 }
