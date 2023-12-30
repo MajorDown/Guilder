@@ -35,7 +35,7 @@ const Guilde = () => {
         {user && members && <>
             <p>liste des membres :</p>
             {members.map((member, index) => (
-                <p key={index}>{member.name}, {member.mail}, {member.counter} points, {member.phone}</p>
+                <p key={index}>{member.name}</p>
             ))}
         </>}
         </div>
