@@ -1,10 +1,7 @@
-import LoadSpinner from '@/components/LoadSpinner';
-import React from 'react'
-
 const Historic = () => {
   return (
     <section>
-        <LoadSpinner />
+        <p>Historic</p>
     </section>
   )
 }

@@ -30,13 +30,11 @@ const Guilde = () => {
       return (
           <section id="guildSection">
               <h2>Membres de la guilde</h2>
-              <Suspense fallback={<LoadSpinner />}>
                   {user && members && <>
                       <p>liste des membres de {user.guild} :</p>
                       <MembersLister members={members} />
                   </>}
                   {loadError && <p>Une erreur est survenue lors du chargement des membres : {loadError}</p>}
-              </Suspense>
           </section>
   )}
 }

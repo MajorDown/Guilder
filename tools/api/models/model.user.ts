@@ -12,7 +12,6 @@ const UserSchema = new mongoose.Schema({
 
 UserSchema.plugin(uniqueValidator);
 
-// Utilisez `export default` pour exporter le modèle par défaut
 const UserModel = mongoose.models.user || mongoose.model("user", UserSchema);
 export default UserModel;
 
