@@ -3,6 +3,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { PropsWithChildren } from 'react';
 import { UserProvider } from '@/contexts/userContext';
+import { GuildProvider } from '@/contexts/guildContext';
 import type { Metadata } from 'next';
 import { Amiri_Quran } from 'next/font/google';
 const amiri = Amiri_Quran({weight: "400", subsets: ['latin']});
@@ -20,11 +21,13 @@ export default function RootLayout(props: PropsWithChildren) {
       </head>
       <body className={amiri.className}>
         <UserProvider>
-          <Header />
-          <main>
-            {props.children}
-          </main>
-          <Footer />
+          <GuildProvider>
+            <Header />
+            <main>
+              {props.children}
+            </main>
+            <Footer />
+          </GuildProvider>
         </UserProvider>
       </body>
     </html>

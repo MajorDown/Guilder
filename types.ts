@@ -22,6 +22,11 @@ export type Member = Omit<User, 'password'> &
 
 export type MembersList = Member[];
 
+export type GuildContext = {
+    members: MembersList | null;
+    updateMembers: (members: MembersList | null) => void
+}
+
 export type ConnectedUser = {
     token: string,
     name: UserName,
@@ -36,7 +41,7 @@ export type UserContext = {
     updateUser: (user: ConnectedUser | null) => void
 }
 
-export type OperationPoints = number;
+export type OperationPoints = 1 | 2 | 3 |4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24;
 
 
 export type Operation = {

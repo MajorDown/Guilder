@@ -9,23 +9,25 @@ const MembersLister = (props: MembersListerProps) => {
 
     useEffect(() => {
         let sortedMembers;
-        switch(sortMethod) {
-            case "counter+":
-                sortedMembers = [...props.members].sort((a, b) => a.counter - b.counter);
-                break;
-            case "counter-":
-                sortedMembers = [...props.members].sort((a, b) => b.counter - a.counter);
-                break;
-            case "name+":
-                sortedMembers = [...props.members].sort((a, b) => a.name.localeCompare(b.name));
-                break;
-            case "name-":
-                sortedMembers = [...props.members].sort((a, b) => b.name.localeCompare(a.name));
-                break;
-            default:
-                sortedMembers = [...props.members];
+        if (props.members != null) {
+            switch(sortMethod) {
+                case "counter+":
+                    sortedMembers = [...props.members].sort((a, b) => a.counter - b.counter);
+                    break;
+                case "counter-":
+                    sortedMembers = [...props.members].sort((a, b) => b.counter - a.counter);
+                    break;
+                case "name+":
+                    sortedMembers = [...props.members].sort((a, b) => a.name.localeCompare(b.name));
+                    break;
+                case "name-":
+                    sortedMembers = [...props.members].sort((a, b) => b.name.localeCompare(a.name));
+                    break;
+                default:
+                    sortedMembers = [...props.members];
+            }
+            setSortedMembers(sortedMembers);
         }
-        setSortedMembers(sortedMembers);
     }, [sortMethod, props.members]);
 
   return (
