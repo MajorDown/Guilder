@@ -11,17 +11,20 @@ const Historic = () => {
   useEffect(() => {
     if(user) {
       const getOperation = async () => {
-        const operationsList = await getUserOperations(user);
-        if (operationsList) setOperations(operationsList as UserOperations)
+        const response = await getUserOperations(user);
+        console.log(response)
+        if (response)
+        setOperations(response as UserOperations);
       }
       getOperation();
-      console.log(operations);
     }
   }, [user])
 
   return (
     <section>
         <h2>Historique de vos opérations</h2>
+        {operations && operations.map((operation, index) => {
+          return (<p key={index}>{operation.date}</p>)})}
     </section>
   )
 }
