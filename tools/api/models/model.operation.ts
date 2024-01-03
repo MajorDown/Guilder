@@ -6,7 +6,7 @@ const OperationSchema = new mongoose.Schema({
   date: { type: String, required: true},
   worker: { type: String, required: true },
   payer: { type: String, required: true },
-  point: { type: Number, required: true },
+  points: { type: Number, required: true },
   nature: { type: String, required: true },
 });
 

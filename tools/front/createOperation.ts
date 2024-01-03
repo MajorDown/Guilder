@@ -1,14 +1,14 @@
-/**
- * Effectue une requête POST vers l'endpoint "/api/operation" avec les données fournies.
- * @param {FormData} formData - Les données du formulaire à envoyer.
- * @returns {Promise<Response>} Une promesse qui résout avec l'objet Response en cas de réussite,
- * ou résout avec undefined en cas d'échec.
- */
-const createOperation = async (formData: FormData): Promise<Response | undefined | unknown> => {
+import { Operation } from "@/types";
+
+const createOperation = async (operation: Operation, authToken: string): Promise<Response | undefined | unknown> => {
     try {
-      const response = await fetch("/api/operation", {
+      const response = await fetch("/api/operation/create", {
         method: "POST",
-        body: formData,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authToken}`
+        },
+        body: JSON.stringify(operation),
       });  
       if (!response.ok) {
         throw new Error(`createOperation ~> Request failed with status ${response.status} : ${response.body}`);

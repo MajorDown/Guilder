@@ -1,6 +1,6 @@
 'use client'
 import {useState, useEffect, FormEvent} from 'react';
-import { OperationPoints, UserName, isFormatted, operationDateFormat } from '@/types'
+import { Operation, OperationPoints, UserName, isFormatted, operationDateFormat } from '@/types'
 import createOperation from '@/tools/front/createOperation';
 import { useUserContext } from '@/contexts/userContext';
 import { useGuildContext } from '@/contexts/guildContext';
@@ -10,16 +10,19 @@ const OperationForm = () => {
     const {members} = useGuildContext();
     const [payer, setPayer] = useState<UserName | "">("");
     const [payerError, setPayerError] = useState<string>("");
-    const [points, setPoints] = useState<OperationPoints | 0>(0);
+    const [points, setPoints] = useState<OperationPoints>(1);
     const [pointsError, setPointsError] = useState<string>("");
     const [date, setDate] = useState<string>("");
+    const [minDate, setMinDate] = useState<string>();
     const [workNature, setWorkNature] = useState<string>("");
     const [confirm, setConfirm] = useState<boolean>(false);
 
     useEffect(() => {
-        const currentDate: string = new Date().toISOString().split('T')[0];
-        setDate(currentDate);
-    }, [])
+        const currentDate= new Date(); 
+        setDate(currentDate.toISOString().split('T')[0]);
+        currentDate.setDate(currentDate.getDate() - 7); // Retirer 7 jours pour la date minimale
+        setMinDate(currentDate.toISOString().split('T')[0]);
+    }, []);
 
     const handlePayer = (value: UserName) => {
         if (payerError) setPayerError("");
@@ -28,7 +31,7 @@ const OperationForm = () => {
 
     const handlePoints = (value: OperationPoints) => {
         if (pointsError) setPointsError("");
-        if (value >= 0 && value <= 24) setPoints(value);
+        if (value >= 1 && value <= 24) setPoints(value);
     }
 
     const handleDate = (value: string) => {
@@ -38,15 +41,17 @@ const OperationForm = () => {
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
         if (payer === "") setPayerError("Veuillez choisir un bénéficiaire avant de valider")
-        if (points <= 0) setPointsError("Veuillez renseigner un nombre d'heure effectuées correct avant de valider");
-        if (payer && points && date) {
-            const formData = new FormData();
-            formData.append("payer", payer);
-            formData.append("points", points.toString());
-            formData.append("date", date);
-            formData.append("workNature", workNature);
-            formData.append("confirm", confirm.toString());
-            const response = createOperation(formData);
+        if (points < 1 && points >24) setPointsError("Veuillez renseigner un nombre d'heure effectuées correct avant de valider");
+        if (user && !payerError && !pointsError && date) {
+            const request: Operation = {
+                declarationDate: new Date(),
+                date: date,
+                worker: user?.name,
+                payer: payer,
+                points: points,
+                nature: workNature
+            }
+            const response = createOperation(request, user.token);
             console.log(response);
         }
     }
@@ -81,13 +86,18 @@ const OperationForm = () => {
             />
             {pointsError && <p>{pointsError}</p>}
         </div>
-        <label htmlFor="">A quelle date avez-vous réalisé ses heures ?</label>
+        <label htmlFor="dateinput">
+            <p>A quelle date avez-vous réalisé ses heures ?</p>
+            <p>(Vous ne pouvez pas déclarer une opération datant de plus d'une semaine)</p>
+        </label>
         <div  className="inputWrapper">
             <input 
                 type="date" 
                 name="date" 
                 id="dateInput" 
                 value={date} 
+                min={minDate}
+                max={date}
                 onChange={(event) => handleDate(event.target.value)} 
                 required
             />

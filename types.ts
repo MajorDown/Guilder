@@ -45,13 +45,15 @@ export type OperationPoints = 1 | 2 | 3 |4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 
 
 
 export type Operation = {
-    date: string,
     declarationDate: Date,
+    date: string,
     worker: UserName,
     payer: UserName,
-    point: OperationPoints,
+    points: OperationPoints,
     nature: string,
 }
+
+export type UserOperations = Operation[];
 
 /*
  * fonction de vérification du format
