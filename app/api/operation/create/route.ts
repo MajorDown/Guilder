@@ -1,4 +1,3 @@
-// Importations nécessaires
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
 import databaseConnecter from "@/tools/api/databaseConnecter";
@@ -57,7 +56,7 @@ export async function POST(request: Request) {
       // FIN DE LA TRANSACTION
       await session.commitTransaction();
       console.log(`api/operation/create ~> Nouvelle opération déclarée par ${worker}`);
-      return NextResponse.json("Opération créée avec succès", { status: 200 });
+      return NextResponse.json(newOperation, { status: 200 });
     } 
     // GESTION DES ERREURS DE TRANSACTION
     catch (error) {

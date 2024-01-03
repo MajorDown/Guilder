@@ -6,8 +6,8 @@ import { useUserContext } from '@/contexts/userContext';
 import { useGuildContext } from '@/contexts/guildContext';
 
 const OperationForm = () => {
-    const {user} = useUserContext();
-    const {members} = useGuildContext();
+    const {user, updateUser} = useUserContext();
+    const {members, updateMembers} = useGuildContext();
     const [payer, setPayer] = useState<UserName | "">("");
     const [payerError, setPayerError] = useState<string>("");
     const [points, setPoints] = useState<OperationPoints>(1);
@@ -38,7 +38,7 @@ const OperationForm = () => {
         if (isFormatted(value, operationDateFormat)) setDate(value);
     }
 
-    const handleSubmit = (event: FormEvent) => {
+    const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
         if (payer === "") setPayerError("Veuillez choisir un bénéficiaire avant de valider")
         if (points < 1 && points >24) setPointsError("Veuillez renseigner un nombre d'heure effectuées correct avant de valider");
@@ -51,8 +51,33 @@ const OperationForm = () => {
                 points: points,
                 nature: workNature
             }
-            const response = createOperation(request, user.token);
-            console.log(response);
+            const response = await createOperation(request, user.token);
+            if (response instanceof Response && response.status === 200) {
+                const updatedData = await response.json();
+                if (updatedData.worker) {
+                    // Mettre à jour le context user si nécessaire
+                    if (user.name === updatedData.worker) {
+                        updateUser({ ...user, counter: user.counter + updatedData.points });
+                    }
+                }
+                if (updatedData.payer && members) {
+                    const newMembers = members.map(member => {
+                        if (member.name === updatedData.payer) {
+                            return { ...member, counter: member.counter - updatedData.points };
+                        }
+                        else if (member.name === updatedData.worker) {
+                            return { ...member, counter: member.counter + updatedData.points };
+                        } 
+                        else {
+                            return member;
+                        }
+                    });
+                    updateMembers(newMembers);
+                }
+            } else {
+                // Gérer l'erreur ici
+                console.error("Erreur lors de la création de l'opération");
+            }
         }
     }
 
