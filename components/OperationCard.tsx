@@ -6,6 +6,7 @@ import { useUserContext } from "@/contexts/userContext";
 type OperationCardProps = {
     operation: Operation,
     userName: UserName;
+    onDelete: (operation: Operation) => void;
 }
 
 const OperationCard = (props: OperationCardProps) => {
@@ -22,11 +23,11 @@ const OperationCard = (props: OperationCardProps) => {
     }, [props.operation.date]);
 
     const handleDelete = async () => {
-        if (user) {
+        if (user && typeof props.operation.declarationDate === "string") {
             const response = await deleteOperation(props.operation.declarationDate, user);
             if (response instanceof Response) {
-                const isDeleted = response.json()
-                console.log(isDeleted);
+                const isDeleted = await response.json();
+                if (isDeleted) props.onDelete(props.operation);
             }
             else console.log(response);
         }
@@ -51,7 +52,7 @@ const OperationCard = (props: OperationCardProps) => {
                 <p>Cette opération datant de plus de 7 jours, son annulation est impossible</p>
             </> : <>
                 <p>Souhaitez-vous vraiment contester cette opération ?</p>
-                <button onClick={() => handleDelete}>Supprimer</button>
+                <button onClick={() => handleDelete()}>Supprimer</button>
             </>}
         </div>}
     </li>

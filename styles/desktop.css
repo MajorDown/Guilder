@@ -107,6 +107,7 @@ header {
     border-radius: var(--border-radius);
     min-width: 100%;
     margin: 5px;
+    overflow: hidden;
 }
 
 .operationInfos {
@@ -122,6 +123,7 @@ header {
     gap: 5px;
     justify-content: center;
     align-items: center;
+    background-color: rgb(161, 161, 161);
 }
 
 .operationCard p {
