@@ -17,7 +17,6 @@ export async function GET(request: Request) {
     await databaseConnecter();
     // AUTHENTIFICATION
     const userToCheck = await UserModel.findOne({name: userName});
-    console.log("api/operation/get ~>", userToCheck);
     if (!userToCheck) {
       console.log(`api/operation/get ~> ${userName} n'existe pas dans la db`);
       return NextResponse.json("Non autorisé", { status: 401 });      
@@ -30,11 +29,9 @@ export async function GET(request: Request) {
       return NextResponse.json("Non autorisé", { status: 401 });
     }
     // RECUPERATION DES DONNNES
-    console.log("OperationModel : ", OperationModel);
     const operationsList = await OperationModel.find({
       $or: [{ worker: userName }, { payer: userName }]
     }).lean();
-    console.log(operationsList);
     return NextResponse.json(operationsList, { status: 200 });
   }
   catch (error) {

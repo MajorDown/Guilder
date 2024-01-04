@@ -1,11 +1,13 @@
 'use client'
 import {useState, useEffect, FormEvent} from 'react';
+import { useRouter } from 'next/navigation';
 import { Operation, OperationPoints, UserName, isFormatted, operationDateFormat } from '@/types'
 import createOperation from '@/tools/front/createOperation';
 import { useUserContext } from '@/contexts/userContext';
 import { useGuildContext } from '@/contexts/guildContext';
 
 const OperationForm = () => {
+    const Router = useRouter()
     const {user, updateUser} = useUserContext();
     const {members, updateMembers} = useGuildContext();
     const [payer, setPayer] = useState<UserName | "">("");
@@ -16,6 +18,7 @@ const OperationForm = () => {
     const [minDate, setMinDate] = useState<string>();
     const [workNature, setWorkNature] = useState<string>("");
     const [confirm, setConfirm] = useState<boolean>(false);
+    const [loadError, setLoadError] = useState<string>("")
 
     useEffect(() => {
         const currentDate= new Date(); 
@@ -46,7 +49,7 @@ const OperationForm = () => {
             const request: Operation = {
                 declarationDate: new Date(),
                 date: date,
-                worker: user?.name,
+                worker: user.name,
                 payer: payer,
                 points: points,
                 nature: workNature
@@ -55,13 +58,12 @@ const OperationForm = () => {
             if (response instanceof Response && response.status === 200) {
                 const updatedData = await response.json();
                 if (updatedData.worker) {
-                    // Mettre à jour le context user si nécessaire
                     if (user.name === updatedData.worker) {
                         updateUser({ ...user, counter: user.counter + updatedData.points });
                     }
                 }
                 if (updatedData.payer && members) {
-                    const newMembers = members.map(member => {
+                    const newMembers = members.map((member) => {
                         if (member.name === updatedData.payer) {
                             return { ...member, counter: member.counter - updatedData.points };
                         }
@@ -74,9 +76,10 @@ const OperationForm = () => {
                     });
                     updateMembers(newMembers);
                 }
-            } else {
-                // Gérer l'erreur ici
-                console.error("Erreur lors de la création de l'opération");
+                Router.push("/historique");
+            }
+            else {
+                setLoadError("une erreur est survenue lors de la déclaration. Veuillez réessayer plus tard.")
             }
         }
     }
@@ -143,9 +146,10 @@ const OperationForm = () => {
                 onChange={() => setConfirm(!confirm)} 
                 required/>
             en cochant cette case, vous confirmez que l'ensemble des informations
-            fournis dans ce formulaire sont correct : 
+            fournis dans ce formulaire sont correct !
         </label>
         <button type="submit">Déclarer l'opération</button>
+        {loadError && <p>{loadError}</p>}
     </form>
   )
 }

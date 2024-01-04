@@ -31,7 +31,6 @@ export const tokenChecker = async (token: string, userMail?: UserMail): Promise<
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
     const decodedMail = decodedToken.mail;
     const userToCheck = await UserModel.findOne({mail: decodedMail});
-    console.log("tokenChecker ~>", userToCheck)
     if (!userToCheck) {
       throw new Error("tokenChecker ~> Utilisateur introuvable");
     }

@@ -90,6 +90,30 @@ header {
     width: 20%;
 }
 
+/**********HISTORIQUE************************/
+#operationsList {
+    width: 75%;
+}
+
+#operationsList ul {
+    width: 100%;
+    padding: 0
+}
+
+.operationCard {
+    display: flex;
+    justify-content: space-between;
+    border: 2px solid var(--font-color-1);
+    border-radius: var(--border-radius);
+    min-width: 100%;
+    margin: 5px;
+}
+
+.operationCard p {
+    margin: 0;
+    padding: 0 0 5px 0;
+}
+
 
 /**********OPERATION*************************/
 #operationForm {
