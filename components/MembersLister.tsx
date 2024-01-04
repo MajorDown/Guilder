@@ -45,7 +45,7 @@ const MembersLister = (props: MembersListerProps) => {
         </select>
         <ul>
             <li className="memberCard">
-                <p className="memberName">nom, Prénom</p>
+                <p className="memberName">Prénom, Nom</p>
                 <p className="memberCounter">compteur</p>
                 <p className="memberMail">adresse mail</p>
                 <p className="memberPhone">téléphone</p>

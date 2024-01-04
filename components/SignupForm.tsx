@@ -5,7 +5,8 @@ import LoadSpinner from './LoadSpinner';
 
 const SignupForm = () => {
     const [mail, setMail] = useState<UserMail>("");
-    const [name, setName] = useState<UserName>("");
+    const [lastName, setLastName] = useState<string>("");
+    const [firstName, setFirstName] = useState<string>("");
     const [phone, setPhone] = useState<UserPhone>("");
     const [guild, setGuild] = useState<Guild>("");
     const [password, setPassword] = useState<UserPassword>("");
@@ -23,13 +24,14 @@ const SignupForm = () => {
     const handleSignup = async (event: FormEvent) => {
       event.preventDefault();
       setIsLoading(true);
+      const name: UserName = `${firstName} ${lastName}`
       const request = {mail, name, password, phone, guild};
       const response: Response | Error = await createUser(request);
-      console.log(response);
       if (response instanceof Response) {
         setIsLoading(false);
         setHasSignup(true);
-        setName("");
+        setFirstName("");
+        setLastName("");
         setMail("");
         setPhone("");
         setGuild("");
@@ -44,12 +46,15 @@ const SignupForm = () => {
 
   return (
     <form onSubmit={(event) => handleSignup(event)}>
-        {hasSignup ? <p>Votre inscription a réussi. Bienvenue ! vous pouvez maintenant vous connecter</p>
-        : <>
+        {hasSignup ? <p>
+          Votre inscription a réussi. Bienvenue ! vous pouvez maintenant vous connecter
+          </p> : <>
         <label htmlFor="inputMail">Votre Email :</label>
         <input type="email" name="mail" id="inputMail" value={mail} onChange={(event) => setMail(event.target.value)} required/>
-        <label htmlFor="inputName">Votre prénom et nom : (ex: Jean Dupont)</label>
-        <input type="text" name="name" id="inputName" value={name} onChange={(event) => setName(event.target.value)} required/>
+        <label htmlFor="inputFirstName">Votre prénom : (ex: Jean)</label>
+        <input type="text" name="firstname" id="inputFirstName" value={firstName} onChange={(event) => setFirstName(event.target.value)} required/>
+        <label htmlFor="inputLaststName">Votre nom de famille : (ex: Dupont)</label>
+        <input type="text" name="firstname" id="inputLastName" value={lastName} onChange={(event) => setLastName(event.target.value)} required/>
         <label htmlFor="inputPhone">Votre numéro de tel :</label>
         <input type="text" pattern="[0-9]{10}" name="phone" id="inputPhone" value={phone} onChange={(event) => setPhone(event.target.value)} required/>
         <label htmlFor="inputGuild">

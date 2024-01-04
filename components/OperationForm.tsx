@@ -1,7 +1,7 @@
 'use client'
 import {useState, useEffect, FormEvent} from 'react';
 import { useRouter } from 'next/navigation';
-import { Operation, OperationPoints, UserName, isFormatted, operationDateFormat } from '@/types'
+import { ConnectedUser, Operation, OperationPoints, UserName, isFormatted, operationDateFormat } from '@/types'
 import createOperation from '@/tools/front/createOperation';
 import { useUserContext } from '@/contexts/userContext';
 import { useGuildContext } from '@/contexts/guildContext';
@@ -16,14 +16,16 @@ const OperationForm = () => {
     const [pointsError, setPointsError] = useState<string>("");
     const [date, setDate] = useState<string>("");
     const [minDate, setMinDate] = useState<string>();
+    const [maxDate, setMaxDate] = useState<string>();
     const [workNature, setWorkNature] = useState<string>("");
     const [confirm, setConfirm] = useState<boolean>(false);
     const [loadError, setLoadError] = useState<string>("")
 
     useEffect(() => {
-        const currentDate= new Date(); 
+        const currentDate= new Date();
         setDate(currentDate.toISOString().split('T')[0]);
-        currentDate.setDate(currentDate.getDate() - 7); // Retirer 7 jours pour la date minimale
+        setMaxDate(currentDate.toISOString().split('T')[0])
+        currentDate.setDate(currentDate.getDate() - 7);
         setMinDate(currentDate.toISOString().split('T')[0]);
     }, []);
 
@@ -59,7 +61,9 @@ const OperationForm = () => {
                 const updatedData = await response.json();
                 if (updatedData.worker) {
                     if (user.name === updatedData.worker) {
-                        updateUser({ ...user, counter: user.counter + updatedData.points });
+                        const newUser: ConnectedUser = { ...user, counter: user.counter + updatedData.points } 
+                        updateUser(newUser);
+                        localStorage.setItem(process.env.NEXT_PUBLIC_LOCALSTORAGE_USERCONTEXT_KEY as string, JSON.stringify(newUser))
                     }
                 }
                 if (updatedData.payer && members) {
@@ -75,6 +79,7 @@ const OperationForm = () => {
                         }
                     });
                     updateMembers(newMembers);
+                    localStorage.setItem(process.env.NEXT_PUBLIC_LOCALSTORAGE_GUILDCONTEXT_KEY as string, JSON.stringify(newMembers))
                 }
                 Router.push("/historique");
             }
@@ -125,7 +130,7 @@ const OperationForm = () => {
                 id="dateInput" 
                 value={date} 
                 min={minDate}
-                max={date}
+                max={maxDate}
                 onChange={(event) => handleDate(event.target.value)} 
                 required
             />

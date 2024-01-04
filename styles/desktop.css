@@ -102,11 +102,26 @@ header {
 
 .operationCard {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     border: 2px solid var(--font-color-1);
     border-radius: var(--border-radius);
     min-width: 100%;
     margin: 5px;
+}
+
+.operationInfos {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.wantToDeleteOperation {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
 }
 
 .operationCard p {
@@ -114,6 +129,20 @@ header {
     padding: 0 0 5px 0;
 }
 
+.operationDate {
+    width: 18%;
+    border-right: 2px solid var(--font-color-1);
+}
+
+.operationTransaction {
+    width: 65%;
+    text-align: start;
+}
+
+.operationPoints {
+    width: 15%;
+    border-left: 2px solid var(--font-color-1);
+}
 
 /**********OPERATION*************************/
 #operationForm {

@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import getUserOperations from "@/tools/front/getUserOperations";
 import { useUserContext } from "@/contexts/userContext";
-import { UserOperations } from "@/types";
+import { UserName, UserOperations } from "@/types";
 import OperationCard from "./OperationCard";
 
 const OperationsLister = () => {
@@ -22,16 +22,11 @@ const OperationsLister = () => {
     
     return (
       <div id="operationsList">
-        <ul>
-          <li className="operationCard">
-            <p className="operationDate">Date</p>
-            <p className="operationWorker">Membre aidant</p>
-            <p className="operationPayer">Membre aidé</p>
-            <p className="operationPoints">transaction</p>
-          </li>
+        {operations && operations[0] ? <ul>
           {operations && operations.map((operation, index) => 
-          (<OperationCard key={index} operation={operation} />))}
-        </ul>
+          (<OperationCard key={index} operation={operation} userName={user?.name as UserName}/>))}
+        </ul> : 
+        <p>Vous n'avez pas encore d'opérations déclarées au sein de la guilde {user?.guild}</p>}
       </div>
     )
 }
