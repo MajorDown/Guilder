@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import databaseConnecter from "@/tools/api/databaseConnecter";
 import { tokenChecker } from "@/tools/api/tokenManager";
 import OperationModel from "@/tools/api/models/model.operation";
+import UserModel from "@/tools/api/models/model.user";
 
 export async function GET(request: Request) {
   console.log(`api/operation/get ~> Requète de récupération des opérations de l'utilisateur`);
@@ -15,9 +16,15 @@ export async function GET(request: Request) {
     // CONNEXION A LA DB
     await databaseConnecter();
     // AUTHENTIFICATION
+    const userToCheck = await UserModel.findOne({name: userName});
+    console.log("api/operation/get ~>", userToCheck);
+    if (!userToCheck) {
+      console.log(`api/operation/get ~> ${userName} n'existe pas dans la db`);
+      return NextResponse.json("Non autorisé", { status: 401 });      
+    }
     const authHeader = request.headers.get('Authorization');
     const token = authHeader && authHeader.split(' ')[1];
-    const isAuthentified = token ? await tokenChecker(token) : false;
+    const isAuthentified = token ? await tokenChecker(token, userToCheck.mail) : false;
     if (!isAuthentified) {
       console.log(`api/operation/get ~> ${userName} a échoué son authentification`);
       return NextResponse.json("Non autorisé", { status: 401 });
