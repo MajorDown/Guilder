@@ -45,7 +45,7 @@ export type OperationPoints = 1 | 2 | 3 |4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 
 
 
 export type Operation = {
-    declarationDate: Date,
+    declarationDate: Date | string,
     date: string,
     worker: UserName,
     payer: UserName,
@@ -67,3 +67,20 @@ export const isFormatted = (toValidate: string, regex: RegExp): boolean => {
 }
 
 export const operationDateFormat: RegExp = /^\d{4}-\d{2}-\d{2}$/;
+
+export type Admin = {
+    name: UserName,
+    mail: UserMail,
+    phone: UserPhone,
+    guild: Guild,
+    password: UserPassword;
+}
+
+export type ConnectedAdmin = Omit<Admin, 'password'> & { token: string };
+
+export type AdminContext = {
+    admin: ConnectedAdmin | null,
+    updateAdmin: (admin: ConnectedAdmin | null) => void,
+    administratedMembers: MembersList | null,
+    updateAdministratedMembers: (administratedMembers: MembersList | null) => void
+}

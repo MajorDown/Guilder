@@ -4,19 +4,22 @@ header {
     justify-content: space-between;
 }
 
-#headerNav {
+#userNav,
+#adminNav {
     display: flex;
     flex-direction: column;
 }
 
-#userOptions {
+#userOptions,
+#adminOptions {
     display: flex;
     gap: 10px;
     justify-content: flex-end;
     align-items: center;
 }
 
-#operationNav {
+#userPages,
+#adminPages {
     display: flex;
     gap: 10px;
     justify-content: flex-end;
