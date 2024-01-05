@@ -47,10 +47,10 @@ const Header = () => {
     }
   }, [])
   
-    const disconnectAdmin = () => {
-      updateAdmin(null);
-      localStorage.removeItem(process.env.NEXT_PUBLIC_LOCALSTORAGE_ADMINCONTEXT_KEY as string);
-    }
+  const disconnectAdmin = () => {
+    updateAdmin(null);
+    localStorage.removeItem(process.env.NEXT_PUBLIC_LOCALSTORAGE_ADMINCONTEXT_KEY as string);
+  }
 
   const disconnectUser = () => {
     updateUser(null);

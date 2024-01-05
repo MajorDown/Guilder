@@ -9,7 +9,6 @@ import type { Metadata } from 'next';
 import { Amiri_Quran } from 'next/font/google';
 const amiri = Amiri_Quran({weight: "400", subsets: ['latin']});
 
-
 export const metadata: Metadata = {
   title: 'Guilder',
   description: "Application de gestion de compteurs d'heures au sein de collectifs dont l'objectif est l'entraide",
