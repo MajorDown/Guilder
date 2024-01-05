@@ -10,8 +10,6 @@ const adminContext: React.Context<AdminContext> = createContext<AdminContext>(
   {
     admin: null,
     updateAdmin: () => {},
-    administratedMembers: null,
-    updateAdministratedMembers: () => {},
   }
 );
 
@@ -35,11 +33,9 @@ export function useAdminContext(): AdminContext {
  */
 export const AdminProvider = (props: PropsWithChildren): JSX.Element => {
   const [admin, updateAdmin] = useState<ConnectedAdmin | null>(null);
-  const [administratedMembers, updateAdministratedMembers] = useState<MembersList | null>(null);
-
 
   return (
-    <adminContext.Provider value={{admin, updateAdmin, administratedMembers, updateAdministratedMembers}}>
+    <adminContext.Provider value={{admin, updateAdmin}}>
       {props.children}
     </adminContext.Provider>
   );

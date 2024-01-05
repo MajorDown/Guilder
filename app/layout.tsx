@@ -2,6 +2,7 @@ import '../styles/globals.css'
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { PropsWithChildren } from 'react';
+import { AdminProvider } from '@/contexts/adminContext';
 import { UserProvider } from '@/contexts/userContext';
 import { GuildProvider } from '@/contexts/guildContext';
 import type { Metadata } from 'next';
@@ -20,15 +21,17 @@ export default function RootLayout(props: PropsWithChildren) {
       <head>
       </head>
       <body className={amiri.className}>
-        <UserProvider>
-          <GuildProvider>
-            <Header />
-            <main>
-              {props.children}
-            </main>
-            <Footer />
-          </GuildProvider>
-        </UserProvider>
+        <AdminProvider>
+          <UserProvider>
+            <GuildProvider>
+              <Header />
+              <main>
+                {props.children}
+              </main>
+              <Footer />
+            </GuildProvider>
+          </UserProvider>
+        </AdminProvider>
       </body>
     </html>
   )

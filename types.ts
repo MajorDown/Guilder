@@ -81,6 +81,4 @@ export type ConnectedAdmin = Omit<Admin, 'password'> & { token: string };
 export type AdminContext = {
     admin: ConnectedAdmin | null,
     updateAdmin: (admin: ConnectedAdmin | null) => void,
-    administratedMembers: MembersList | null,
-    updateAdministratedMembers: (administratedMembers: MembersList | null) => void
 }
