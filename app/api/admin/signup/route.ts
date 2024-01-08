@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import databaseConnecter from "@/tools/api/databaseConnecter";
-import AdminModel from "@/tools/api/models/model.user";
+import AdminModel from "@/tools/api/models/model.admin";
 import { passwordCrypter } from "@/tools/api/passwordManager";
-import { Admin } from "@/types";
+import { Admin, Guild } from "@/types";
 
 export async function POST(request: Request) {
   const { name, password, mail, phone, guild } = await request.json();
@@ -13,15 +13,22 @@ export async function POST(request: Request) {
   try {
     await databaseConnecter();
     // VERIFICATION SI L'UTILISATEUR EXISTE DEJA
-    const existingAdmin: Admin | null = await AdminModel.findOne({
-      mail: mail,
-    });
+    const existingAdmin: Admin | null = await AdminModel.findOne({mail: mail});
     if (existingAdmin) {
       console.log(
         "api/admin/signup ~> Ce mail est déjà utilisé pour gérer une autre guilde :",
         mail
       );
       return NextResponse.json("mail déjà utilisé pour une autre guilde", { status: 400 });
+    }
+    // VERIFICATION SI LA GUILDE N'EXISTE PAS DEJA
+    const existingGuild: Guild | null = await AdminModel.findOne({guild: guild})
+    if (existingGuild) {
+        console.log(
+            "api/admin/signup ~> Cette guilde existe déjà :",
+            mail
+          );
+          return NextResponse.json("guilde déjà existante", { status: 400 });        
     }
     // CRYPTAGE DU MOT DE PASSE
     const hashedpassword = await passwordCrypter(password);

@@ -1,3 +1,4 @@
+'use client'
 import {useEffect, useState, FormEvent} from 'react'
 import { UserMail, UserName, UserPhone, UserPassword, Guild } from '@/types'
 import createAdmin from '@/tools/front/createAdmin';

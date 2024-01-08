@@ -34,7 +34,8 @@ header {
     gap: 10px;
 }
 
-#connexionSection form {
+#connexionSection form,
+#adminSignupSection form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -42,7 +43,8 @@ header {
     align-items: center;
 }
 
-#connexionSection input {
+#connexionSection input,
+#adminSignupSection input {
     min-width: 200px;
 }
 
