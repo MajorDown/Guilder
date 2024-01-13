@@ -6,6 +6,7 @@ export type Condition = {
 };
 
 export type TextInputProps = {
+    ariaLabel: string,
     conditions: Condition[];
     inputRef: RefObject<HTMLInputElement>
 } & React.InputHTMLAttributes<HTMLInputElement>;
@@ -42,12 +43,15 @@ const UITextInput = (props: TextInputProps) => {
             <input 
                 id={props.id}
                 className={`UITextInput ${props.className}`}
+                name={props.name}
+                aria-label={props.ariaLabel}
                 ref={props.inputRef}
                 value={value} 
                 onChange={handleChange}
                 placeholder={props.placeholder}
                 disabled={props.disabled}
                 autoComplete={props.autoComplete}
+                spellCheck={props.spellCheck}
                 style={{
                     ...(value ? (error ? {
                         backgroundColor: "#ff00003e",
