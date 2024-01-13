@@ -40,11 +40,24 @@ const UITextInput = (props: TextInputProps) => {
     return (
         <div>
             <input 
+                id={props.id}
                 className={`UITextInput ${props.className}`}
                 ref={props.inputRef}
                 value={value} 
                 onChange={handleChange}
-                {...props}
+                placeholder={props.placeholder}
+                disabled={props.disabled}
+                autoComplete={props.autoComplete}
+                style={{
+                    ...(value ? (error ? {
+                        backgroundColor: "#ff00003e",
+                        borderColor: "#750909"
+                    } : {
+                        backgroundColor: "#7bff003e",
+                        borderColor: "#2a5205"
+                    }) : {}),
+                    ...props.style
+                }}
             />
             {error && <p style={{ color: 'red' }}>{error}</p>}
         </div>
