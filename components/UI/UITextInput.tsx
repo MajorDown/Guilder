@@ -5,13 +5,13 @@ export type Condition = {
     error: string;
 };
 
-export type TextInputProps = {
+export type UITextInputProps = {
     ariaLabel: string,
     conditions: Condition[];
     inputRef: RefObject<HTMLInputElement>
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
-const UITextInput = (props: TextInputProps) => {
+const UITextInput = (props: UITextInputProps) => {
     const [value, setValue] = useState<string>('');
     const [error, setError] = useState<string>('');
 
