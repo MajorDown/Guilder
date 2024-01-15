@@ -1,18 +1,25 @@
-import UITextInput, { UITextInputProps, Condition } from './UITextInput';
+import React, { RefObject } from 'react';
+import UITextInput, { Condition } from './UITextInput';
 
 const firstnameConditions: Condition[] = [
-    { regex: /^[A-Za-z-]+$/, error: "Uniquement des lettres et des tirets." },
-    { regex: /^.{3,20}$/, error: "Le nom doit avoir entre 3 et 30 caractères." }
+    { regex: /^[A-ZÀ-Ý][A-Za-zà-ÿ '-]*$/, error: "La première lettre doit être une majuscule." },
+    { regex: /^[A-Za-zéèêàù-]+$/, error: "Uniquement des lettres et des tirets." },
 ];
 
-const UIFirstnameInput = (props: UITextInputProps) => {
+export type UIFirstnameInputProps = {
+    inputRef: RefObject<HTMLInputElement>
+} & React.InputHTMLAttributes<HTMLInputElement>;
 
+const UIFirstnameInput = ({ inputRef, className, ...rest }: UIFirstnameInputProps) => {
     return (
         <UITextInput
-            className="UIFirstnameInput"
-            inputRef={props.inputRef} 
+            inputRef={inputRef}
+            placeholder='ex : Jean-Claude'
+            className={`UIFirstnameInput ${className || ''}`}
             conditions={firstnameConditions}
-
+            minLength={3} 
+            maxLength={20}
+            {...rest}
         />
     );
 };

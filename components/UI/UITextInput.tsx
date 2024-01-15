@@ -1,4 +1,4 @@
-import React, { useState, useEffect, RefObject } from 'react';
+import { useState, useEffect, RefObject } from 'react';
 
 export type Condition = {
     regex: RegExp;
@@ -6,7 +6,7 @@ export type Condition = {
 };
 
 export type UITextInputProps = {
-    ariaLabel: string,
+    ariaLabel?: string,
     conditions: Condition[];
     inputRef: RefObject<HTMLInputElement>
 } & React.InputHTMLAttributes<HTMLInputElement>;
@@ -25,6 +25,11 @@ const UITextInput = (props: UITextInputProps) => {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = event.target.value;
         let isValid: boolean = true;
+        if (newValue === '') {
+            setValue('');
+            setError('');
+            return;
+        }
         for (const condition of props.conditions) {
             if (!condition.regex.test(newValue)) {
                 setError(condition.error);
@@ -36,7 +41,7 @@ const UITextInput = (props: UITextInputProps) => {
             setValue(newValue);
             setError('');
         }
-    };
+};
 
     return (
         <div>
@@ -49,7 +54,10 @@ const UITextInput = (props: UITextInputProps) => {
                 value={value} 
                 onChange={handleChange}
                 placeholder={props.placeholder}
+                minLength={props.minLength}
+                maxLength={props.maxLength}
                 disabled={props.disabled}
+                required={props.required}
                 autoComplete={props.autoComplete}
                 spellCheck={props.spellCheck}
                 style={{
