@@ -24,6 +24,7 @@ header {
     gap: 10px;
     justify-content: flex-end;
     align-items: center;
+    color: #2a5205
 }
 
 /**********CONNEXION*************************/
@@ -170,4 +171,8 @@ header {
     margin-block-start: 0;
     margin-block-end: 0;
     color: red;
+}
+
+.UITextInput .error {
+    background-color: blueviolet;
 }

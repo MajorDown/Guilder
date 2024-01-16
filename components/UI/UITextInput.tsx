@@ -44,10 +44,9 @@ const UITextInput = (props: UITextInputProps) => {
 };
 
     return (
-        <div>
+        <div className={`UITextInput ${props.className}`}>
             <input 
                 id={props.id}
-                className={`UITextInput ${props.className}`}
                 name={props.name}
                 aria-label={props.ariaLabel}
                 ref={props.inputRef}
@@ -71,7 +70,7 @@ const UITextInput = (props: UITextInputProps) => {
                     ...props.style
                 }}
             />
-            {error && <p style={{ color: 'red' }}>{error}</p>}
+            {error && <p className={"error"} style={{ color: 'red' }}>{error}</p>}
         </div>
     );
 };
