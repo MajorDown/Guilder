@@ -2,7 +2,7 @@ import React, { RefObject } from 'react';
 import UITextInput from './UITextInput';
 
 const firstnameConditions = {
-    regex: /^[A-ZÀ-Ý][A-Za-zéèêàù '-]*$/,
+    regex: /^[A-Z][A-Za-z '\-]*$/,
     error: "La première lettre doit être une majuscule. Uniquement des lettres, des espaces et des tirets sont autorisés."
 };
 

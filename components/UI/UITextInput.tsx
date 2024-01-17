@@ -1,4 +1,4 @@
-import { useState, useEffect, RefObject } from 'react';
+import { useState, RefObject, useEffect } from 'react';
 
 export type UITextInputProps = {
     ariaLabel?: string,
@@ -14,22 +14,10 @@ const UITextInput = (props: UITextInputProps) => {
     const [error, setError] = useState<boolean>(false);
 
     useEffect(() => {
-        if (error) {
-            const timer = setTimeout(() => setError(false), 2000);
-            return () => clearTimeout(timer);
-        }
-    }, [error]);
-
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const newValue = event.target.value;
-        setValue(newValue);
-        if (newValue === '') {
-            setError(false);
-        }
-        if (!props.conditions.regex.test(newValue)) {
-            setError(true);
-        }
-    };
+        if(value === '') setError(false);
+        if(!props.conditions.regex.test(value)) setError(true);
+        if(props.conditions.regex.test(value)) setError(false);
+    }, [value])
 
     const regexToPattern = (regex: RegExp): string => {
         return regex.toString().replace(/^\/|\/$/g, '');
@@ -44,7 +32,7 @@ const UITextInput = (props: UITextInputProps) => {
                 aria-label={props.ariaLabel}
                 ref={props.inputRef}
                 value={value} 
-                onChange={(event) => handleChange(event)}
+                onChange={(event) => setValue(event.target.value)}
                 pattern={regexToPattern(props.conditions.regex)}
                 title={props.conditions.error}
                 placeholder={props.placeholder}
