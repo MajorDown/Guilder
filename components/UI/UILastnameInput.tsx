@@ -1,10 +1,10 @@
 import React, { RefObject } from 'react';
-import UITextInput, { Condition } from './UITextInput';
+import UITextInput from './UITextInput';
 
-const lastnameConditions: Condition[] = [
-    { regex: /^[A-ZÀ-Ý][A-Za-zà-ÿ '-]*$/, error: "La première lettre doit être une majuscule." },
-    { regex: /^[A-Za-zéèêàù '-]+$/, error: "Uniquement des lettres, espaces, apostrophes et tirets." },
-];
+const lastnameConditions = {
+    regex: /^[A-ZÀ-Ý][A-Za-zà-ÿ '-]*$/,
+    error: "La première lettre doit être une majuscule. Uniquement des lettres, espaces, apostrophes et tirets sont autorisés."
+};
 
 export type UILastnameInputProps = {
     inputRef: RefObject<HTMLInputElement>
@@ -14,7 +14,7 @@ const UILastnameInput = ({ inputRef, className, ...rest }: UILastnameInputProps)
     return (
         <UITextInput
             inputRef={inputRef}
-            placeholder='ex : Jean-Claude'
+            placeholder='ex : De Vilaine'
             className={`UIFirstnameInput ${className || ''}`}
             conditions={lastnameConditions}
             minLength={3} 

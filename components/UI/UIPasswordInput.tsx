@@ -1,52 +1,63 @@
 import { useState, useEffect, RefObject } from 'react';
 
-export type UITextInputProps = {
+type Condition = {
+    regex: RegExp;
+    error: string;
+};
+
+export type UIPasswordInputProps = {
     ariaLabel?: string,
-    conditions: {
-        regex: RegExp,
-        error: string
-    }
     inputRef: RefObject<HTMLInputElement>
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
-const UITextInput = (props: UITextInputProps) => {
+const UIPasswordInput = (props: UIPasswordInputProps) => {
     const [value, setValue] = useState<string>('');
-    const [error, setError] = useState<boolean>(false);
+    const [error, setError] = useState<string>('');
+    const conditions: Condition[] = [
+        {
+            regex: /^.{10,}$/,
+            error: "Le nombre de caractère doit être au minimum de 10"
+        }
+    ]
 
     useEffect(() => {
         if (error) {
-            const timer = setTimeout(() => setError(false), 2000);
+            const timer = setTimeout(() => setError(''), 2000);
             return () => clearTimeout(timer);
         }
     }, [error]);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = event.target.value;
-        setValue(newValue);
+        let isValid: boolean = true;
         if (newValue === '') {
-            setError(false);
+            setValue('');
+            setError('');
+            return;
         }
-        if (!props.conditions.regex.test(newValue)) {
-            setError(true);
+        for (const condition of props.conditions) {
+            if (!condition.regex.test(newValue)) {
+                setError(condition.error);
+                isValid = false;
+                break;
+            }
         }
-    };
-
-    const regexToPattern = (regex: RegExp): string => {
-        return regex.toString().replace(/^\/|\/$/g, '');
-    }
+        if (isValid) {
+            setValue(newValue);
+            setError('');
+        }
+};
 
     return (
-        <div className={`UITextInput ${props.className}`}>
+        <div className={`UIPasswordInput ${props.className}`}>
             <input 
+                type="password" 
                 id={props.id}
-                className={`UITextInput ${props.className}`}
                 name={props.name}
                 aria-label={props.ariaLabel}
                 ref={props.inputRef}
                 value={value} 
-                onChange={(event) => handleChange(event)}
-                pattern={regexToPattern(props.conditions.regex)}
-                title={props.conditions.error}
+                onChange={handleChange}
                 placeholder={props.placeholder}
                 minLength={props.minLength}
                 maxLength={props.maxLength}
@@ -65,8 +76,9 @@ const UITextInput = (props: UITextInputProps) => {
                     ...props.style
                 }}
             />
+            {error && <p className={"error"} style={{ color: 'red' }}>{error}</p>}
         </div>
     );
 };
 
-export default UITextInput;
+export default UIPasswordInput;

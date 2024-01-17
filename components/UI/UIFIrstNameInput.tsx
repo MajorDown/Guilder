@@ -1,10 +1,10 @@
 import React, { RefObject } from 'react';
-import UITextInput, { Condition } from './UITextInput';
+import UITextInput from './UITextInput';
 
-const firstnameConditions: Condition[] = [
-    { regex: /^[A-ZÀ-Ý][A-Za-zà-ÿ '-]*$/, error: "La première lettre doit être une majuscule." },
-    { regex: /^[A-Za-zéèêàù-]+$/, error: "Uniquement des lettres et des tirets." },
-];
+const firstnameConditions = {
+    regex: /^[A-ZÀ-Ý][A-Za-zéèêàù '-]*$/,
+    error: "La première lettre doit être une majuscule. Uniquement des lettres, des espaces et des tirets sont autorisés."
+};
 
 export type UIFirstnameInputProps = {
     inputRef: RefObject<HTMLInputElement>
