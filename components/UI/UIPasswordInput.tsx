@@ -1,64 +1,44 @@
-import { useState, useEffect, RefObject } from 'react';
-
-type Condition = {
-    regex: RegExp;
-    error: string;
-};
+import { useState, RefObject, useEffect } from 'react';
+import regexToPattern from '@/tools/regexToPattern';
 
 export type UIPasswordInputProps = {
-    ariaLabel?: string,
-    inputRef: RefObject<HTMLInputElement>
+    ariaLabel?: string;
+    inputRef?: RefObject<HTMLInputElement>;
+    onChangeInputValue?: (value: string) => void;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 const UIPasswordInput = (props: UIPasswordInputProps) => {
     const [value, setValue] = useState<string>('');
-    const [error, setError] = useState<string>('');
-    const conditions: Condition[] = [
-        {
-            regex: /^.{10,}$/,
-            error: "Le nombre de caractère doit être au minimum de 10"
-        }
-    ]
+    const [error, setError] = useState<boolean>(false);
+    const conditions : {
+        regex: RegExp,
+        error: string
+    } = {
+        regex: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/,
+        error: "Votre mdp doit contenir au moins 10 caractères, avec au moins 1 chiffre, 1 lettre minuscule, 1 lettre majuscule et un caractère spécial (@, $, !, %, *, ?, ou &)"
+    }
 
     useEffect(() => {
-        if (error) {
-            const timer = setTimeout(() => setError(''), 2000);
-            return () => clearTimeout(timer);
-        }
-    }, [error]);
-
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const newValue = event.target.value;
-        let isValid: boolean = true;
-        if (newValue === '') {
-            setValue('');
-            setError('');
-            return;
-        }
-        for (const condition of props.conditions) {
-            if (!condition.regex.test(newValue)) {
-                setError(condition.error);
-                isValid = false;
-                break;
-            }
-        }
-        if (isValid) {
-            setValue(newValue);
-            setError('');
-        }
-};
+        if(value === '') setError(false)
+        if(!conditions.regex.test(value)) setError(true);
+        if(conditions.regex.test(value)) setError(false);
+        props.onChangeInputValue && props.onChangeInputValue(value);
+    }, [value])
 
     return (
         <div className={`UIPasswordInput ${props.className}`}>
             <input 
-                type="password" 
+                type='password'
                 id={props.id}
+                className={`UIPasswordInput ${props.className}`}
                 name={props.name}
                 aria-label={props.ariaLabel}
                 ref={props.inputRef}
                 value={value} 
-                onChange={handleChange}
-                placeholder={props.placeholder}
+                onChange={(event) => setValue(event.target.value)}
+                pattern={regexToPattern(conditions.regex)}
+                title={conditions.error}
+                placeholder={"votre mot de passe"}
                 minLength={props.minLength}
                 maxLength={props.maxLength}
                 disabled={props.disabled}
@@ -76,7 +56,6 @@ const UIPasswordInput = (props: UIPasswordInputProps) => {
                     ...props.style
                 }}
             />
-            {error && <p className={"error"} style={{ color: 'red' }}>{error}</p>}
         </div>
     );
 };

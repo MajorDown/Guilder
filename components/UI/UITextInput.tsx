@@ -1,4 +1,5 @@
 import { useState, RefObject, useEffect } from 'react';
+import regexToPattern from '@/tools/regexToPattern';
 
 export type UITextInputProps = {
     ariaLabel?: string,
@@ -6,7 +7,8 @@ export type UITextInputProps = {
         regex: RegExp,
         error: string
     }
-    inputRef: RefObject<HTMLInputElement>
+    inputRef?: RefObject<HTMLInputElement>;
+    onChangeInputValue?: (value: string) => void;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 const UITextInput = (props: UITextInputProps) => {
@@ -17,11 +19,8 @@ const UITextInput = (props: UITextInputProps) => {
         if(value === '') setError(false);
         if(!props.conditions.regex.test(value)) setError(true);
         if(props.conditions.regex.test(value)) setError(false);
+        props.onChangeInputValue && props.onChangeInputValue(value);
     }, [value])
-
-    const regexToPattern = (regex: RegExp): string => {
-        return regex.toString().replace(/^\/|\/$/g, '');
-    }
 
     return (
         <div className={`UITextInput ${props.className}`}>
