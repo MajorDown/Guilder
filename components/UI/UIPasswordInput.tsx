@@ -1,12 +1,26 @@
 import { useState, RefObject, useEffect } from 'react';
 import regexToPattern from '@/tools/regexToPattern';
 
+/**
+ * Propriétés du composant UIPasswordInput.
+ * @typedef {Object} UIPasswordInputProps
+ * @property {function(string): void} [onChangeInputValue] - Fonction de rappel pour le changement de valeur de l'input.
+ * @property {string} [ariaLabel] - Label ARIA pour l'accessibilité de l'input.
+ * @property {RefObject<HTMLInputElement>} [inputRef] - Référence de l'objet input.
+ * @property {React.InputHTMLAttributes<HTMLInputElement>} - Attributs HTML standards pour l'input.
+ */
 export type UIPasswordInputProps = {
     ariaLabel?: string;
     inputRef?: RefObject<HTMLInputElement>;
     onChangeInputValue?: (value: string) => void;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
+/**
+ * Ccomposant proposant la saisie d'un mots de passe, incluant une validation.
+ * 
+ * @param {UIPasswordInputProps} props - Propriétés pour configurer l'input.
+ * @returns {JSX.Element} Un champ de saisie de mot de passe stylisé avec validation.
+ */
 const UIPasswordInput = (props: UIPasswordInputProps) => {
     const [value, setValue] = useState<string>('');
     const [error, setError] = useState<boolean>(false);
@@ -31,7 +45,7 @@ const UIPasswordInput = (props: UIPasswordInputProps) => {
                 type='password'
                 id={props.id}
                 className={`UIPasswordInput ${props.className}`}
-                name={props.name}
+                name={props.name || "password"}
                 aria-label={props.ariaLabel}
                 ref={props.inputRef}
                 value={value} 

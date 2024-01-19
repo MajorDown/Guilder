@@ -1,6 +1,17 @@
 import { useState, RefObject, useEffect } from 'react';
 import regexToPattern from '@/tools/regexToPattern';
 
+/**
+ * Propriétés pour le composant UITextInput.
+ * @typedef {Object} UITextInputProps
+ * @extends {React.InputHTMLAttributes<HTMLInputElement>}
+ * @property {string} [ariaLabel] - Label ARIA pour l'accessibilité de l'input.
+ * @property {Object} conditions - Conditions pour la validation de l'input.
+ * @property {RegExp} conditions.regex - Expression régulière pour la validation.
+ * @property {string} conditions.error - Message d'erreur si la validation échoue.
+ * @property {RefObject<HTMLInputElement>} [inputRef] - Référence de l'objet input pour accès direct.
+ * @property {function(string): void} [onChangeInputValue] - Fonction de rappel lors du changement de valeur.
+ */
 export type UITextInputProps = {
     ariaLabel?: string,
     conditions: {
@@ -11,6 +22,12 @@ export type UITextInputProps = {
     onChangeInputValue?: (value: string) => void;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
+/**
+ * Composant pour un champ de saisie de texte avec validation basée sur une expression régulière.
+ *
+ * @param {UITextInputProps} props - Propriétés pour configurer l'input de texte.
+ * @returns {JSX.Element} Un champ de saisie de texte avec validation.
+ */
 const UITextInput = (props: UITextInputProps) => {
     const [value, setValue] = useState<string>('');
     const [error, setError] = useState<boolean>(false);
