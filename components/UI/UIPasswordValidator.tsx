@@ -7,23 +7,25 @@ type UIPasswordValidatorProps = InputHTMLAttributes<HTMLInputElement> & {
 };
 
 const UIPasswordValidator = (props: UIPasswordValidatorProps) => {
-  const [password1, setPassword1] = useState<string>();
-  const [password2, setPassword2] = useState<string>();
-  const [isConfirmed, setIsConfirmed] = useState<boolean>(true);
+  const [password1, setPassword1] = useState<string>("");
+  const [password2, setPassword2] = useState<string>("");
+  const [isConfirmed, setIsConfirmed] = useState<undefined | true | false>(undefined);
 
   useEffect(() => {
     if(password1 && password2) {
       if (password1 != password2) setIsConfirmed(false);
       else setIsConfirmed(true)
     }
+    else setIsConfirmed(false);
   }, [password1, password2])
 
-  const handleValidPassword = (value: string) => {
-    setPassword2(value);
-    if (password1 === password2) {
-      // logique de blocage ou d'actualisation de onChangeValue
+  useEffect(() => {
+    if (props.onChangeValue) {
+      if (isConfirmed != true) props.onChangeValue("");
+      if (isConfirmed === true) props.onChangeValue(password1);
     }
-  }
+  }, [isConfirmed])
+
 
   return (
     <div className={"UIPasswordValidator"} >
@@ -33,7 +35,7 @@ const UIPasswordValidator = (props: UIPasswordValidatorProps) => {
         type="password" 
         name="password2" 
         value={password2} 
-        onChange={(event) => handleValidPassword(event.target.value)}
+        onChange={(event) => setPassword2(event.target.value)}
         style={{
           ...(password2 ? (isConfirmed === false ? {
               backgroundColor: "#ff00003e",
