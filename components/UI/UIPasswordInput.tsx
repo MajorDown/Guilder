@@ -1,5 +1,4 @@
 import { useState, RefObject, useEffect } from 'react';
-import regexToPattern from '@/tools/regexToPattern';
 
 /**
  * Propriétés du composant UIPasswordInput.
@@ -24,6 +23,11 @@ export type UIPasswordInputProps = {
 const UIPasswordInput = (props: UIPasswordInputProps) => {
     const [value, setValue] = useState<string>('');
     const [error, setError] = useState<boolean>(false);
+
+    const regexToPattern = (regex: RegExp): string => {
+        return regex.toString().replace(/^\/|\/$/g, '');
+    }
+
     const conditions : {
         regex: RegExp,
         error: string

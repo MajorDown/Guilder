@@ -1,5 +1,4 @@
 import { useState, RefObject, useEffect } from 'react';
-import regexToPattern from '@/tools/regexToPattern';
 
 /**
  * Propriétés pour le composant UITextInput.
@@ -31,6 +30,10 @@ export type UITextInputProps = {
 const UITextInput = (props: UITextInputProps) => {
     const [value, setValue] = useState<string>('');
     const [error, setError] = useState<boolean>(false);
+
+    const regexToPattern = (regex: RegExp): string => {
+        return regex.toString().replace(/^\/|\/$/g, '');
+    }
 
     useEffect(() => {
         if(value === '') setError(false);
