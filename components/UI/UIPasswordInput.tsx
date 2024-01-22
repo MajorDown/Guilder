@@ -1,4 +1,4 @@
-import { useState, RefObject, useEffect } from 'react';
+import { useState, RefObject, useEffect, InputHTMLAttributes } from 'react';
 
 /**
  * Propriétés du composant UIPasswordInput.
@@ -12,7 +12,7 @@ export type UIPasswordInputProps = {
     ariaLabel?: string;
     inputRef?: RefObject<HTMLInputElement>;
     onChangeInputValue?: (value: string) => void;
-} & React.InputHTMLAttributes<HTMLInputElement>;
+} & InputHTMLAttributes<HTMLInputElement>;
 
 /**
  * Ccomposant proposant la saisie d'un mots de passe, incluant une validation.
