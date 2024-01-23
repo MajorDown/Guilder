@@ -176,3 +176,9 @@ header {
 .UITextInput .error {
     background-color: blueviolet;
 }
+
+.UINavLink {
+    border: solid 2px var(--font-color-1);
+    border-radius: var(--border-radius);
+    padding: 5px;
+}
