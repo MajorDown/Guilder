@@ -3,7 +3,7 @@
     --title-font-size-desktop: 64px;
     --title-font-size-laptop: 32px;
     --desktop-font-size: 24px;
-    --desktop-line-height: 30px;
+    --desktop-line-height: 25px;
     --laptop-font-size: 2vw;
     --laptop-line-height: 2.2vw;
     --tablet-font-size: 1.5vw;
@@ -86,16 +86,16 @@ a.isActive {
     border-radius: 0.8vw;
 }
 
-@import url('animations.css');
-
-@import url('./components/header.css');
-@import url('./components/UI/UINavLink.css');
-@import url('./components/main.css');
-@import url('./components/footer.css');
-
 @media screen and (max-width: 992px) {
     * {
         font-size: var(--laptop-font-size);
         line-height: var(--laptop-line-height);
     }
 }
+
+@import url('animations.css');
+
+@import url('./components/header.css');
+@import url('./components/UI/UINavLink.css');
+@import url('./components/main.css');
+@import url('./components/footer.css');

@@ -6,8 +6,8 @@ import { AdminProvider } from '@/contexts/adminContext';
 import { UserProvider } from '@/contexts/userContext';
 import { GuildProvider } from '@/contexts/guildContext';
 import type { Metadata } from 'next';
-import { Amiri_Quran } from 'next/font/google';
-const amiri = Amiri_Quran({weight: "400", subsets: ['latin']});
+import { Inter } from 'next/font/google'
+const inter = Inter({subsets: ['latin'], display: 'swap'})
 
 export const metadata: Metadata = {
   title: 'Guilder',
@@ -19,7 +19,7 @@ export default function RootLayout(props: PropsWithChildren) {
     <html lang="fr">
       <head>
       </head>
-      <body className={amiri.className}>
+      <body className={inter.className}>
         <AdminProvider>
           <UserProvider>
             <GuildProvider>
