@@ -1,6 +1,7 @@
 /*GLOBALS*/
 :root {
-    --title-font-size: 64px;
+    --title-font-size-desktop: 64px;
+    --title-font-size-laptop: 32px;
     --desktop-font-size: 24px;
     --desktop-line-height: 30px;
     --laptop-font-size: 2vw;
@@ -8,12 +9,16 @@
     --tablet-font-size: 1.5vw;
     --tablet-line-height: 1.6vw;
     --font-color-1: #000000;
-    --border-radius: 10px;
+    --navLink-color: #aeaeae;
+    --border-radius-absolute: 10px;
+    --border-radius-relative: 1vw;
 }
 
 * {
     font-size: var(--desktop-font-size);
     color: var(--font-color-1);
+    margin: 0;
+    padding: 0;
 }
 
 body {
@@ -36,12 +41,6 @@ main {
     flex-grow: 1;
 }
 
-h1 {
-    font-size: var(--title-font-size);
-    line-height: 0px;
-    text-align: center;
-}
-
 section {
     display: flex;
     flex-direction: column;
@@ -61,15 +60,12 @@ a {
     cursor: pointer;
 }
 
-p,
-label {
-    margin: 10px;
-    text-align: center;
-    line-height: var(--desktop-line-height);
+a:hover p {
+    text-decoration: underline;
 }
 
 a.isActive {
-    text-decoration: underline;
+    background-color: var(--navLink-color);
 }
 
 ::-webkit-scrollbar {
@@ -90,9 +86,16 @@ a.isActive {
     border-radius: 0.8vw;
 }
 
-/*IMPORT CSS (DESKTOP FIRST)*/
 @import url('animations.css');
-@import url('desktop.css');
-@import url('laptop.css') screen and (max-width: 1024px);
-@import url('tablet.css') screen and (max-width: 768px);
-@import url('mobile.css') screen and (max-width: 340px);
+
+@import url('./components/header.css');
+@import url('./components/UI/UINavLink.css');
+@import url('./components/main.css');
+@import url('./components/footer.css');
+
+@media screen and (max-width: 992px) {
+    * {
+        font-size: var(--laptop-font-size);
+        line-height: var(--laptop-line-height);
+    }
+}

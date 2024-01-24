@@ -1,0 +1,33 @@
+.UINavLink {
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: solid 3px var(--font-color-1);
+    border-radius: var(--border-radius-absolute);
+    transition: 0.3s;
+}
+
+.UINavLink p {
+    transition: text-decoration 0.3s;
+}
+
+.UINavLink:hover p {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/*breakpoint à 1024px*/
+@media screen and (max-width: 992px) {
+    .UINavLink {
+        border: solid 2px var(--font-color-1);
+        border-radius: var(--border-radius-relative);
+    }
+
+    .UINavLink img {
+        width: 24px;
+        height: 24px;
+    }
+
+}

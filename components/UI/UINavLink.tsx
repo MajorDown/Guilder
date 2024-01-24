@@ -1,19 +1,44 @@
+'use client'
+import { useState, useEffect } from "react";
 import { MouseEvent } from "react";
 import Link from "next/link";
 import Image from 'next/image';
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { LinkHTMLAttributes } from "react";
 
+/**
+ * Propriétés du composant UINavLink.
+ * @typedef {Object} UINavLinkProps
+ * @property {string} label - Label du lien.
+ * @property {string} href - URL de destination.
+ * @property {string} icon - URL de l'icône.
+ * @property {boolean} [showActivation] - Afficher l'activation du lien.
+ * @property {function(): void} [onClick] - Fonction de rappel pour le clic.
+ * @property {LinkHTMLAttributes<HTMLAnchorElement>} [style] - Style pour le lien.
+ */
 export type UINavLinkProps = {
     label: string;
     href: string;
     icon: string;
     onClick?: () => void;
+    showActivation?: boolean;
     style?: LinkHTMLAttributes<HTMLAnchorElement>;
 }
 
+/**
+ * Composant de navigation.
+ * 
+ * @param {UINavLinkProps} props - Propriétés pour configurer le lien.
+ * @returns {JSX.Element} Un lien de navigation stylisé.
+ */
 const UINavLink = (props: UINavLinkProps) => {
     const router = useRouter();
+    const actualPathName = usePathname();
+    const [isActive, setIsActive] = useState<boolean>(false);
+  
+    useEffect(() => {
+      if (props.showActivation) actualPathName === props.href ? setIsActive(true) : setIsActive(false);
+    }, [actualPathName])
 
     const handleClick = async (event: MouseEvent) => {
         if (props.onClick) {
@@ -25,7 +50,7 @@ const UINavLink = (props: UINavLinkProps) => {
 
     return (
         <Link
-            className="UINavLink"
+            className={`UINavLink ${isActive? "isActive" : ""}`}
             href={props.href}
             onClick={(event) => handleClick(event)}
             style={{

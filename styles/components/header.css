@@ -1,0 +1,35 @@
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+#appTitle {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+h1 {
+    font-size: var(--title-font-size-desktop);
+    line-height: var(--title-font-size-desktop);
+    text-align: center;
+}
+
+#appNavbar {
+    margin-top: 5px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+@media screen and (max-width: 992px) {
+    h1 {
+        font-size: var(--title-font-size-laptop);
+    }
+
+    #appTitle img {
+        width: 100px;
+        height: 47px;
+    }
+}

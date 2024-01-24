@@ -1,5 +1,7 @@
 'use client'
 import { useEffect } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import { Amatic_SC } from 'next/font/google';
 import { ConnectedAdmin, ConnectedUser, MembersList } from '@/types';
 import { useAdminContext } from '@/contexts/adminContext';
@@ -8,6 +10,7 @@ import { useGuildContext } from '@/contexts/guildContext';
 import AppLink from './AppLink';
 import UserNav from './UserNav';
 import AdminNav from './AdminNav';
+import UINavLink from './UI/UINavLink';
 
 const amatic = Amatic_SC({weight: "700", subsets: ["latin"], display: 'swap', variable: "--font-Amatic-SC"});
 
@@ -61,13 +64,15 @@ const Header = () => {
 
   return (
     <header>
-      <div id="title">
-        <AppLink href="/"><h1 className={amatic.className}>Guilder</h1></AppLink>
-        <img src="/images/logo.png" alt="logo" width="200px"/>
-      </div>
-      {admin && <AdminNav admin={admin} onDisconnect={() => disconnectAdmin()}/>}
-      {!admin && user && <UserNav user={user} onDisconnect={() => disconnectUser()}/>}
-      {!admin && !user && <AppLink href="/connexion" showActivation>Connexion</AppLink>}
+      <Link id="appTitle" href={"/"}>
+        <h1 className={amatic.className}>Guilder</h1>
+        <Image src="/images/logo.png" alt="logo" width={200} height={94}/>
+      </Link>
+      <nav id="appNavbar">
+        {admin && <AdminNav admin={admin} onDisconnect={() => disconnectAdmin()}/>}
+        {!admin && user && <UserNav user={user} onDisconnect={() => disconnectUser()}/>}
+        {!admin && !user && <UINavLink href="/connexion" label="Se connecter" icon="/images/user.svg" showActivation/>}
+      </nav>
     </header>
   )
 }
