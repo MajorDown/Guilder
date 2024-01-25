@@ -1,23 +1,29 @@
 'use client'
-import {FormEvent, useState} from 'react';
-import { UserMail, UserPassword } from '@/types';
+import {FormEvent, useState, useRef} from 'react';
 import connectAdmin from '@/tools/front/connectAdmin';
 import { useRouter } from 'next/navigation'; 
 import { useAdminContext } from '@/contexts/adminContext';
 import LoadSpinner from './LoadSpinner';
+import UIEmailInput from './UI/UIEmailInput';
+import UIPasswordInput from './UI/UIPasswordInput';
+import UIButton from './UI/UIButton';
 
 const AdminLoginForm = () => {
   const router = useRouter()
   const {updateAdmin} = useAdminContext();
-  const [mail, setmail] = useState<UserMail>("");
-  const [password, setPassword] = useState<UserPassword>("");
   const [errMessage, setErrMessage] = useState<string>("");
   const [isLoadIng, setIsLoading] = useState<boolean>(false);
+
+  const mailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
 
     const handleLogin = async (event: FormEvent) => {
       setIsLoading(true);
       event.preventDefault();
-      const request = {mail, password};
+      const request = {
+        mail: mailRef.current?.value,
+        password: passwordRef.current?.value
+      };
       const response = await connectAdmin(request);
       if (response instanceof Error) {
         setIsLoading(false);
@@ -34,16 +40,15 @@ const AdminLoginForm = () => {
   return (
     <form onSubmit={(event) => handleLogin(event)}>
         <label htmlFor="inputMail">Votre Email :</label>
-        <input type="email" name="mail" id="inputMail" value={mail} onChange={(event) => setmail(event.target.value)} required/>
+        <UIEmailInput inputRef={mailRef} name="inputMail" required/>
         <label htmlFor="inputPassword"> Votre mot de passe :</label>
-        <input type="password" name="password" id="inputPassword" value={password} onChange={(event) => setPassword(event.target.value)} required/>
-        {errMessage && <p>{errMessage}</p>}
-        <button type="submit">Se Connecter en tnt qu'admin</button>
+        <UIPasswordInput inputRef={passwordRef} name="inputPassword" required/>
+        <UIButton type="submit">Se Connecter</UIButton>
         {isLoadIng && <>
-          <p>chargement des données utilisateur... veuillez patienter</p>
+          <p>chargement des données utilisateurs... veuillez patienter</p>
           <LoadSpinner />
-        </>
-        }
+        </>}
+        {errMessage && <p>{errMessage}</p>}
     </form>
   )
 }

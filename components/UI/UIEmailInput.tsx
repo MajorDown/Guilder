@@ -50,7 +50,7 @@ const UIEmailInput = (props: UIEmailInputProps) => {
             ref={props.inputRef}
             value={email} 
             onChange={(event) => handleInputChange(event)}
-            placeholder={props.placeholder}
+            placeholder={"votre email"}
             minLength={props.minLength}
             maxLength={props.maxLength}
             disabled={props.disabled}

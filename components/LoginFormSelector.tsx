@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import Image from 'next/image';
 import UIButton from './UI/UIButton';
+import AdminLoginForm from './AdminLoginForm';
 
 type LoginFormType = "membre" | "admin" | undefined;
 
@@ -21,7 +22,7 @@ const LoginFormSelector = () => {
                 </UIButton>
             </div>
             {loginForm === "membre" && (<p>membre</p>)}
-            {loginForm === "admin" && (<p>admin</p>)}
+            {loginForm === "admin" && (<AdminLoginForm />)}
         </div>
   )
 }
