@@ -1,0 +1,22 @@
+section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h2 {
+    border: solid 3px var(--font-color-1);
+    border-radius: var(--border-radius-absolute);
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/**********CONNEXION**************************************/
+
+#selectorButtons {
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}

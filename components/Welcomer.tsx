@@ -9,7 +9,7 @@ const Welcomer = () => {
   return (
     <>
       {admin && <p id="Welcomer">Admin : ${admin.name}</p>}
-      {!admin && user && <p id="Welcomer">User : {user.name} | Guilde: {user.guild} | Compteur : {user.counter} points</p>}
+      {!admin && user && <p id="Welcomer">Membre : {user.name} ({user.counter} points) ~ Guilde {user.guild}</p>}
     </>
   )
 }

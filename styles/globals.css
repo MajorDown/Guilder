@@ -9,7 +9,8 @@
     --tablet-font-size: 1.5vw;
     --tablet-line-height: 1.6vw;
     --font-color-1: #000000;
-    --navLink-color: #aeaeae;
+    --focus-color: #bebebe;
+    --button-color: #d6d6d6;
     --border-radius-absolute: 10px;
     --border-radius-relative: 1vw;
 }
@@ -41,31 +42,9 @@ main {
     flex-grow: 1;
 }
 
-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-h2 {
-    line-height: 30px;
-    border: solid 3px var(--font-color-1);
-    border-radius: 10px;
-    padding: 10px 30px;
-}
-
 a {
     text-decoration: none;
     cursor: pointer;
-}
-
-a:hover p {
-    text-decoration: underline;
-}
-
-a.isActive {
-    background-color: var(--navLink-color);
 }
 
 ::-webkit-scrollbar {
@@ -97,5 +76,6 @@ a.isActive {
 
 @import url('./components/header.css');
 @import url('./components/UI/UINavLink.css');
+@import url('./components/UI/UIButton.css');
 @import url('./components/main.css');
 @import url('./components/footer.css');

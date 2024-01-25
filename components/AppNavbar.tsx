@@ -57,16 +57,22 @@ const AppNavbar = () => {
     return (
         <>
             {admin && (<>
-                <UINavLink label={"interventions"} href={'/'} icon={'/images/logout.svg'} />
+                <UINavLink label={"Les Historiques"} href={'/'} icon={'/images/analyse.svg'} showActivation/>
+                <UINavLink label={"La Guilde"} href={'/'} icon={'/images/guild.svg'} showActivation/>
+                <UINavLink label={"Les Outils"} href={'/'} icon={'/images/tools.svg'} showActivation/>
+                <UINavLink label={"Options"} href={'/'} icon={'/images/options.svg'} showActivation/>
                 <UINavLink label={"Déconnexion"} href={'/'} icon={'/images/logout.svg'} onClick={disconnectAdmin} />
             </>
             )}
             {user && (<>
-                <UINavLink label={"Ma Guilde"} href={'/'} icon={'/images/logout.svg'}/>
+                <UINavLink label={"Intervention"} href={'/'} icon={'/images/new-intervention.svg'} showActivation/>
+                <UINavLink label={"historique"} href={'/'} icon={'/images/stats.svg'} showActivation/>
+                <UINavLink label={"La Guilde"} href={'/'} icon={'/images/guild.svg'} showActivation/>
+                <UINavLink label={"Options"} href={'/'} icon={'/images/options.svg'} showActivation/>
                 <UINavLink label={"Déconnexion"} href={'/'} icon={'/images/logout.svg'} onClick={disconnectUser} />
             </>
             )}
-            {!admin && !user && <UINavLink label={"Se Connecter"} href={'/connexion'} icon={'/images/user.svg'} />}
+            {!admin && !user && <UINavLink label={"Se Connecter"} href={'/connexion'} icon={'/images/user.svg'} showActivation/>}
         </>
   )
 }

@@ -63,7 +63,7 @@ const UINavLink = (props: UINavLinkProps) => {
         >
             <Image 
                 src={props.icon} 
-                alt={`${props.label}`} 
+                alt={`icon_${props.label}`} 
                 width={32} 
                 height={32}
             />

@@ -28,8 +28,10 @@ h1 {
     display: flex;
     justify-content: flex-end;
     align-items: flex-start;
+    gap: 5px;
 }
 
+/**********BREAKPOINT A 992PX**************************************/
 @media screen and (max-width: 992px) {
     h1 {
         font-size: var(--title-font-size-laptop);
