@@ -3,11 +3,16 @@ import {FormEvent, useState, useRef} from 'react';
 import connectAdmin from '@/tools/front/connectAdmin';
 import { useRouter } from 'next/navigation'; 
 import { useAdminContext } from '@/contexts/adminContext';
-import LoadSpinner from './LoadSpinner';
 import UIEmailInput from './UI/UIEmailInput';
 import UIPasswordInput from './UI/UIPasswordInput';
 import UIButton from './UI/UIButton';
+import LoadSpinner from './LoadSpinner';
 
+/**
+ * Composant pour un formulaire de connexion d'administrateur.
+ *
+ * @returns {JSX.Element} Un formulaire de connexion d'administrateur.
+ */
 const AdminLoginForm = () => {
   const router = useRouter()
   const {updateAdmin} = useAdminContext();
@@ -39,16 +44,16 @@ const AdminLoginForm = () => {
 
   return (
     <form onSubmit={(event) => handleLogin(event)}>
-        <label htmlFor="inputMail">Votre Email :</label>
-        <UIEmailInput inputRef={mailRef} name="inputMail" required/>
-        <label htmlFor="inputPassword"> Votre mot de passe :</label>
-        <UIPasswordInput inputRef={passwordRef} name="inputPassword" required/>
-        <UIButton type="submit">Se Connecter</UIButton>
-        {isLoadIng && <>
-          <p>chargement des données utilisateurs... veuillez patienter</p>
-          <LoadSpinner />
-        </>}
-        {errMessage && <p>{errMessage}</p>}
+      <label htmlFor="inputMail">Votre Email :</label>
+      <UIEmailInput inputRef={mailRef} name="inputMail" required/>
+      <label htmlFor="inputPassword"> Votre mot de passe :</label>
+      <UIPasswordInput inputRef={passwordRef} name="inputPassword" required/>
+      <UIButton type="submit">Se Connecter en tant qu'admin</UIButton>
+      {isLoadIng && <>
+        <p>chargement des données utilisateurs... veuillez patienter</p>
+        <LoadSpinner />
+      </>}
+      {errMessage && <p>{errMessage}</p>}
     </form>
   )
 }

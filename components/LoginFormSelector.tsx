@@ -2,9 +2,15 @@ import {useState} from 'react';
 import Image from 'next/image';
 import UIButton from './UI/UIButton';
 import AdminLoginForm from './AdminLoginForm';
+import UserLoginForm from './UserLoginForm';
 
 type LoginFormType = "membre" | "admin" | undefined;
 
+/**
+ * Composant pour un sélecteur de formulaire de connexion.
+ *
+ * @returns {JSX.Element} Un sélecteur de formulaire de connexion.
+ */
 const LoginFormSelector = () => {
     const [loginForm, setLoginForm] = useState<LoginFormType>(undefined);
     
@@ -21,7 +27,7 @@ const LoginFormSelector = () => {
                     <Image src="/images/admin.svg" alt="adminIcon" width={32} height={32}/>
                 </UIButton>
             </div>
-            {loginForm === "membre" && (<p>membre</p>)}
+            {loginForm === "membre" && (<UserLoginForm />)}
             {loginForm === "admin" && (<AdminLoginForm />)}
         </div>
   )
