@@ -1,3 +1,4 @@
+'use client'
 import {FormEvent, useState, useRef} from 'react';
 import connectUser from '@/tools/front/connectUser';
 import { useRouter } from 'next/navigation'; 

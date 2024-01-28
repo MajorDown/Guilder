@@ -55,6 +55,18 @@ export type Operation = {
 
 export type UserOperations = Operation[];
 
+export type intervention = {
+    declarationDate: Date | string,
+    date: string,
+    worker: UserName,
+    payer: UserName,
+    hours: 1 | 2 | 3 |4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24;
+    tools: string[];
+    nature: string,  
+}
+
+export type UserInterventions = intervention[];
+
 /*
  * fonction de vérification du format
  * @param {RegExp} regex - L'expression régulière à utiliser pour la vérification.

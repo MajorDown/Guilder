@@ -72,7 +72,10 @@ const AppNavbar = () => {
                 <UINavLink label={"Déconnexion"} href={'/'} icon={'/images/logout.svg'} onClick={disconnectUser} />
             </>
             )}
-            {!admin && !user && <UINavLink label={"Se Connecter"} href={'/connexion'} icon={'/images/user.svg'} showActivation/>}
+            {!admin && !user && (<>
+                <UINavLink label={"Se Connecter"} href={'/connexion'} icon={'/images/user.svg'} showActivation/>
+                <UINavLink label={"Créer sa guilde"} href={'/inscription'} icon={'/images/guild.svg'} showActivation/>
+            </>)}
         </>
   )
 }

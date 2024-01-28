@@ -14,6 +14,14 @@ h2 {
 
 /**********CONNEXION**************************************/
 
+#loginFormSelector {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
 #selectorButtons {
     margin: 5px;
     display: flex;

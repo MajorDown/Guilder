@@ -27,6 +27,8 @@ const LoginFormSelector = () => {
                     <Image src="/images/admin.svg" alt="adminIcon" width={32} height={32}/>
                 </UIButton>
             </div>
+            {loginForm === "membre" && <p>Déclarez vos interventions et tenez-vous informé des compteurs de points des autres membres de la guilde</p>}
+            {loginForm === "admin" && <p>Gérez votre guilde, administrez les coefficients, les inscriptions, les requètes...</p>}
             {loginForm === "membre" && (<UserLoginForm />)}
             {loginForm === "admin" && (<AdminLoginForm />)}
         </div>
