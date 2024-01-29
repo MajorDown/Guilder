@@ -48,7 +48,7 @@ a {
 }
 
 form {
-    width: 400px;
+    width: 500px;
     margin: 10px;
     padding: 10px;
     border: solid 3px var(--font-color-1);
@@ -58,6 +58,10 @@ form {
     justify-content: center;
     align-items: center;
     gap: 10px;
+}
+
+label p {
+    text-align: center;
 }
 
 ::-webkit-scrollbar {

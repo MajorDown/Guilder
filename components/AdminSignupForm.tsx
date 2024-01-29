@@ -1,9 +1,17 @@
 'use client'
-import {useEffect, useState, FormEvent} from 'react'
+import {useEffect, useState, FormEvent, useRef} from 'react'
 import { UserMail, UserName, UserPhone, UserPassword, Guild } from '@/types'
 import createAdmin from '@/tools/front/createAdmin';
 import LoadSpinner from './LoadSpinner';
-import AppLink from './AppLink';
+import UINavLink from './UI/UINavLink';
+import UIEmailInput from './UI/UIEmailInput';
+import UIFirstnameInput from './UI/UIFirstnameInput';
+import UILastnameInput from './UI/UILastnameInput';
+import UIPhoneInput from './UI/UIPhoneInput';
+import UIButton from './UI/UIButton';
+import UITextInput from './UI/UITextInput';
+import UIGuildNameInput from './UI/UIGuildNameInput';
+import UIPasswordValidator from './UI/UIPasswordValidator';
 
 const AdminSignupForm = () => {
     const [mail, setMail] = useState<UserMail>("");
@@ -17,28 +25,26 @@ const AdminSignupForm = () => {
     const [hasSignup, setHasSignup] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
-    useEffect(() => {
-      if (password && passwordConfirm && password != passwordConfirm) setErrMessage("les mots de passes sont différents !");
-      else setErrMessage("");
-    }, 
-    [password, passwordConfirm])
+    const lastNameRef = useRef<HTMLInputElement>(null);
+    const firstNameRef = useRef<HTMLInputElement>(null);
+    const mailRef = useRef<HTMLInputElement>(null);
+    const phoneRef = useRef<HTMLInputElement>(null);
+    const guildRef = useRef<HTMLInputElement>(null);
+    const passwordRef = useRef<HTMLInputElement>(null);
 
     const handleSignup = async (event: FormEvent) => {
       event.preventDefault();
       setIsLoading(true);
-      const name: UserName = `${firstName} ${lastName}`
-      const request = {mail, name, password, phone, guild};
+      const request = {
+        mail: mailRef.current?.value, 
+        name: `${firstNameRef.current?.value} ${lastNameRef.current?.value}`, 
+        password: passwordRef.current?.value, 
+        phone: phoneRef.current?.value, 
+        guild: guildRef.current?.value};
       const response: Response | Error = await createAdmin(request);
       if (response instanceof Response) {
         setIsLoading(false);
         setHasSignup(true);
-        setFirstName("");
-        setLastName("");
-        setMail("");
-        setPhone("");
-        setGuild("");
-        setPassword("");
-        setPasswordConfirm("")
       }
       if (response instanceof Error) {
         setIsLoading(false);
@@ -52,28 +58,26 @@ const AdminSignupForm = () => {
             <p>Votre inscription a réussi. Bienvenue ! vous pouvez maintenant 
                 vous connecter et gérer votre guilde :
             </p>
-            <AppLink href={"/admin"}>Se connecter en tant qu'admin</AppLink>
+            <UINavLink label={"Se connecter"} href={'/connexion'} icon={'/images/admin.svg'} />
         </> : <>
             <label htmlFor="inputMail">Votre Email :</label>
-            <input type="email" name="mail" id="inputMail" value={mail} onChange={(event) => setMail(event.target.value)} required/>
+            <UIEmailInput inputRef={mailRef} name="inputMail" required/>
             <label htmlFor="inputFirstName">Votre prénom : (ex: Jean)</label>
-            <input type="text" name="firstname" id="inputFirstName" value={firstName} onChange={(event) => setFirstName(event.target.value)} required/>
+            <UIFirstnameInput inputRef={firstNameRef} name="inputFirstName" required/>
             <label htmlFor="inputLaststName">Votre nom de famille : (ex: Dupont)</label>
-            <input type="text" name="firstname" id="inputLastName" value={lastName} onChange={(event) => setLastName(event.target.value)} required/>
+            <UILastnameInput inputRef={lastNameRef} name="inputLastName" required/>
             <label htmlFor="inputPhone">Votre numéro de tel :</label>
-            <input type="text" pattern="[0-9]{10}" name="phone" id="inputPhone" value={phone} onChange={(event) => setPhone(event.target.value)} required/>
+            <UIPhoneInput inputRef={phoneRef} name="inputPhone" required/>
             <label htmlFor="inputGuild">
-                <p>Quel est le nom de la guilde que vous souhaitez intégrer ?</p>
-                <p>(n'hésitez pas à demander aux autres membres si vous ne l'avez pas encore)</p>
+                <p>Quel nom avez-vous choisis pour votre guilde ?</p>
+                <p>(important /!\ Ce nom ne seras plus modifiable. Choisissez bien !)</p>
             </label>
-            <input type="text" name="guild" id="inputGuild" value={guild} onChange={(event) => setGuild(event.target.value)} required/>     
-            <label htmlFor="inputPassword">Votre mot de passe : (pensez à ne pas le faire trop simple)</label>
-            <input type="password" name="password" id="inputPassword" value={password} onChange={(event) => setPassword(event.target.value)} required/>
-            <label htmlFor="inputPassword">Confirmer votre mot de passe :</label>
-            <div className="inputWrapper">
-                <input type="password" name="passwordConfirm" id="inputPasswordConfirm" value={passwordConfirm} onChange={(event) => setPasswordConfirm(event.target.value)} required/>
-                {errMessage && <p>{errMessage}</p>}
-            </div>
+            <UIGuildNameInput inputRef={guildRef} name="inputGuild" required/>    
+            <label htmlFor="inputPassword">
+              <p>Votre mot de passe :</p>
+              <p>(10 caractères minimum, avec au moins 1 chiffre, 1 lettre minuscule, 1 lettre majuscule et un caractère spécial (@, $, !, %, *, ?, ou &))</p>
+            </label>
+            <UIPasswordValidator inputRef={passwordRef} name="inputPassword" required/>
             <button type="submit">S'inscrire</button>
             {isLoading && <LoadSpinner />}
         </>
