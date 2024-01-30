@@ -14,7 +14,6 @@ import UserModel from "@/tools/api/models/model.user";
  * @param {Request} request - La requête entrante contenant les données de type Operation.
  * @returns {NextResponse} - Une réponse indiquant le succès ou l'échec de la création de l'opération.
  */
-
 export async function POST(request: Request) {
   const { declarationDate, date, worker, payer, points, nature } = await request.json();
   console.log(`api/operation/create ~> Tentative de création d'opération par ${worker}`);

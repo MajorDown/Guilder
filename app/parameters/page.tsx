@@ -10,12 +10,20 @@ const Parameters = () => {
     const {user } = useUserContext();
     const {admin} = useAdminContext();
 
+    const whoIsConnected = {
+        name: admin?.name || user?.name,
+        token: admin?.token || user?.token
+    }
+
   return (
     <section id="parametersSection">
         <h2>Paramètres de votre compte</h2>
         <p>Modifiez ici vos informations</p>
         {(admin || user) && (<div>
-            <PasswordUpdater passwordFor={admin ? "admin" : "user"}/>
+            <PasswordUpdater 
+              role={admin ? "admin" : "user"} 
+              who={whoIsConnected} 
+            />
         </div>)}
     </section>
   )

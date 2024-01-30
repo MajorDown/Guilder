@@ -1,6 +1,7 @@
 import { UserMail } from "@/types";
 const jwt = require("jsonwebtoken");
 import UserModel from "@/tools/api/models/model.user";
+import AdminModel from "@/tools/api/models/model.admin";
 
 /**
  * crée un token JWT en utilisant l'adresse e-mail de l'utilisateur
@@ -30,9 +31,12 @@ export const tokenChecker = async (token: string, userMail?: UserMail): Promise<
     }
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
     const decodedMail = decodedToken.mail;
-    const userToCheck = await UserModel.findOne({mail: decodedMail});
-    if (!userToCheck) {
-      throw new Error("tokenChecker ~> Utilisateur introuvable");
+    let memberToCheck = await UserModel.findOne({mail: decodedMail});
+    if (!memberToCheck) {
+      memberToCheck = await AdminModel.findOne({mail: decodedMail});
+      if (!memberToCheck) {
+        throw new Error("tokenChecker ~> Utilisateur introuvable");
+      }
     }
     if (userMail && decodedMail != userMail) {
       throw new Error("tokenChecker ~> le mail rentré en paramètre ne corespond pas au mail de l'utilisateur authentitfié. Requète rejeté.")
