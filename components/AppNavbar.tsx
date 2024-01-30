@@ -57,10 +57,10 @@ const AppNavbar = () => {
     return (
         <>
             {admin && (<>
-                <UINavLink label={"Les Historiques"} href={'/'} icon={'/images/analyse.svg'} showActivation/>
-                <UINavLink label={"La Guilde"} href={'/'} icon={'/images/guild.svg'} showActivation/>
+                <UINavLink label={"Les membres"} href={'/'} icon={'/images/guild.svg'} showActivation/>
                 <UINavLink label={"Les Outils"} href={'/'} icon={'/images/tools.svg'} showActivation/>
-                <UINavLink label={"Options"} href={'/'} icon={'/images/options.svg'} showActivation/>
+                <UINavLink label={"Notifications"} href={'/'} icon={'/images/analyse.svg'} showActivation/>
+                <UINavLink label={"Paramètres"} href={'/parameters'} icon={'/images/options.svg'} showActivation/>
                 <UINavLink label={"Déconnexion"} href={'/'} icon={'/images/logout.svg'} onClick={disconnectAdmin} />
             </>
             )}
@@ -68,7 +68,7 @@ const AppNavbar = () => {
                 <UINavLink label={"Intervention"} href={'/'} icon={'/images/new-intervention.svg'} showActivation/>
                 <UINavLink label={"historique"} href={'/'} icon={'/images/stats.svg'} showActivation/>
                 <UINavLink label={"La Guilde"} href={'/'} icon={'/images/guild.svg'} showActivation/>
-                <UINavLink label={"Options"} href={'/'} icon={'/images/options.svg'} showActivation/>
+                <UINavLink label={"Paramètres"} href={'/parameters'} icon={'/images/options.svg'} showActivation/>
                 <UINavLink label={"Déconnexion"} href={'/'} icon={'/images/logout.svg'} onClick={disconnectUser} />
             </>
             )}

@@ -70,7 +70,7 @@ const AdminSignupForm = () => {
             <UIPhoneInput inputRef={phoneRef} name="inputPhone" required/>
             <label htmlFor="inputGuild">
                 <p>Quel nom avez-vous choisis pour votre guilde ?</p>
-                <p>(important /!\ Ce nom ne seras plus modifiable. Choisissez bien !)</p>
+                <p>(/!\ Ce nom ne seras plus modifiable. Choisissez bien !)</p>
             </label>
             <UIGuildNameInput inputRef={guildRef} name="inputGuild" required/>    
             <label htmlFor="inputPassword">
@@ -78,7 +78,7 @@ const AdminSignupForm = () => {
               <p>(10 caractères minimum, avec au moins 1 chiffre, 1 lettre minuscule, 1 lettre majuscule et un caractère spécial (@, $, !, %, *, ?, ou &))</p>
             </label>
             <UIPasswordValidator inputRef={passwordRef} name="inputPassword" required/>
-            <button type="submit">S'inscrire</button>
+            <UIButton type={"submit"}>Créer sa guilde</UIButton>
             {isLoading && <LoadSpinner />}
         </>
         }

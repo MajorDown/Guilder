@@ -2,8 +2,8 @@ import { RefObject, InputHTMLAttributes} from 'react';
 import UITextInput from './UITextInput';
 
 const UIPhoneInputConditions = {
-    regex: /^\d+$/,
-    error: "Veuillez saisir uniquement des chiffres"
+    regex: /^\d{10}$/    ,
+    error: "Veuillez saisir uniquement des chiffres (10)"
 };
 /**
  * Propriétés pour le composant UIPhoneInput.
@@ -16,7 +16,7 @@ export type UIGuildNameInputProps = {
 } & InputHTMLAttributes<HTMLInputElement>;
 
 /**
- * Composant spécifique pour saisir un nom de guilde, avec des règles de validation prédéfinies.
+ * Composant spécifique pour saisir un numéro de téléphone.
  * 
  * @param {UIFirstnameInputProps} props - Propriétés pour configurer l'input du prénom.
  * @returns {JSX.Element} Un champ de saisie pour le prénom avec des règles de validation spécifiques.
