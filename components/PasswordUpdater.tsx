@@ -36,7 +36,12 @@ const PasswordUpdater = (props: PasswordUpdaterProps) => {
             who: props.who
         };
         const response: Response | Error = await updatePassword(request);
-        console.log(response);
+        if (response instanceof Response && response.status === 200) {
+            setIsActualised(true);
+        } 
+        else if (response instanceof Error) {
+            setErrMessage("Il semble que votre ancien mot de passe soit incorrect");
+        }
     }
 
   return (
