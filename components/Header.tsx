@@ -12,7 +12,7 @@ const Header = () => {
     <header>
       <Link id="appTitle" href={"/"}>
         <h1 className={amatic.className}>Guilder</h1>
-        <Image src="/images/logo.png" alt="logo" width={200} height={94}/>
+        <Image src="/images/logo.png" alt="logo" width={200} height={94} priority/>
       </Link>
       <div id="appOptions">
         <Welcomer />     

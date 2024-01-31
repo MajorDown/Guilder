@@ -22,7 +22,7 @@ export async function PATCH(request: Request) {
         // AUTHENTIFICATION
         const authHeader = request.headers.get('Authorization');
         const token = authHeader && authHeader.split(' ')[1];
-        const isAuthentified = token ? await tokenChecker(token, memberToUpdate.mail) : false;
+        const isAuthentified = token ? await tokenChecker(role, token, memberToUpdate.mail) : false;
         if (!isAuthentified) {
           console.log(`api/password/update ~> ${who} a échoué son authentification`);
           return NextResponse.json("Non autorisé", { status: 401 });

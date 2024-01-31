@@ -24,18 +24,23 @@ export const tokenMaker = (mail: UserMail): string => {
  * @param {UserMail} [userMail] - (Optionnel) Une adresse e-mail spécifique à vérifier contre l'e-mail extrait du token.
  * @returns {Promise<boolean>} `true` si le token est valide (et, le cas échéant, correspond à l'adresse e-mail), sinon `false`.
  */
-export const tokenChecker = async (token: string, userMail?: UserMail): Promise<boolean> => {
+export const tokenChecker = async (db: "user" | "admin", token: string, userMail?: UserMail): Promise<boolean> => {
   try {
     if (!token) {
       throw new Error("tokenChecker ~> utilisateur non authentifié !");
     }
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
     const decodedMail = decodedToken.mail;
-    let memberToCheck = await UserModel.findOne({mail: decodedMail});
-    if (!memberToCheck) {
-      memberToCheck = await AdminModel.findOne({mail: decodedMail});
-      if (!memberToCheck) {
-        throw new Error("tokenChecker ~> Utilisateur introuvable");
+    if (db === "user") {
+      let userToCheck = await UserModel.findOne({mail: decodedMail});
+      if (!userToCheck) {
+        throw new Error("tokenChecker ~> membre introuvable");
+      }
+    }
+    if (db === "admin") {
+      let adminToCheck = await AdminModel.findOne({mail: decodedMail});
+      if (!adminToCheck) {
+        throw new Error("tokenChecker ~> Admin introuvable");
       }
     }
     if (userMail && decodedMail != userMail) {

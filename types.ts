@@ -67,6 +67,15 @@ export type intervention = {
 
 export type UserInterventions = intervention[];
 
+export type GuildConfig = {
+    name: Guild,
+    config: {
+        option: string,
+        coef: number,
+        enabled: boolean
+    }[]
+}
+
 /*
  * fonction de vérification du format
  * @param {RegExp} regex - L'expression régulière à utiliser pour la vérification.

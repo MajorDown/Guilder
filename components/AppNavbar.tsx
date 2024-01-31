@@ -1,5 +1,5 @@
 'use client'
-import {useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import { ConnectedAdmin, ConnectedUser, MembersList } from '@/types';
 import { useAdminContext } from '@/contexts/adminContext';
 import { useUserContext } from '@/contexts/userContext';
@@ -10,6 +10,7 @@ const AppNavbar = () => {
     const {admin, updateAdmin} = useAdminContext();
     const {user, updateUser} = useUserContext();
     const {members, updateMembers} = useGuildContext();
+    const [hasCheckedlogs, setHasCheckedlogs] = useState<boolean>(false);
     
     useEffect(() => {
       if (window != undefined && !admin) {
@@ -40,35 +41,36 @@ const AppNavbar = () => {
           else updateMembers(null);
         }
       }
-    }, [])
+      setHasCheckedlogs(true);
+    }, [admin, user])
 
     const disconnectAdmin = () => {
         updateAdmin(null);
         localStorage.removeItem(process.env.NEXT_PUBLIC_LOCALSTORAGE_ADMINCONTEXT_KEY as string);
-      }
+    }
     
-      const disconnectUser = () => {
-        updateUser(null);
-        localStorage.removeItem(process.env.NEXT_PUBLIC_LOCALSTORAGE_USERCONTEXT_KEY as string);
-        updateMembers(null);
-        localStorage.removeItem(process.env.NEXT_PUBLIC_LOCALSTORAGE_GUILDCONTEXT_KEY as string);
-      }
+    const disconnectUser = () => {
+      updateUser(null);
+      localStorage.removeItem(process.env.NEXT_PUBLIC_LOCALSTORAGE_USERCONTEXT_KEY as string);
+      updateMembers(null);
+      localStorage.removeItem(process.env.NEXT_PUBLIC_LOCALSTORAGE_GUILDCONTEXT_KEY as string);
+    }
     
-    return (
-        <>
+    return (<>
+        {hasCheckedlogs && (<>
             {admin && (<>
-                <UINavLink label={"Les membres"} href={'/'} icon={'/images/guild.svg'} showActivation/>
-                <UINavLink label={"Les Outils"} href={'/'} icon={'/images/tools.svg'} showActivation/>
-                <UINavLink label={"Notifications"} href={'/'} icon={'/images/analyse.svg'} showActivation/>
-                <UINavLink label={"Paramètres"} href={'/parameters'} icon={'/images/options.svg'} showActivation/>
+                <UINavLink label={"Membres"} href={'/'} icon={'/images/guild.svg'} showActivation/>
+                <UINavLink label={"Outils"} href={'/config'} icon={'/images/tools.svg'} showActivation/>
+                <UINavLink label={"Notifs"} href={'/'} icon={'/images/analyse.svg'} showActivation/>
+                <UINavLink label={"Options"} href={'/options'} icon={'/images/options.svg'} showActivation/>
                 <UINavLink label={"Déconnexion"} href={'/'} icon={'/images/logout.svg'} onClick={disconnectAdmin} />
             </>
             )}
             {user && (<>
-                <UINavLink label={"Intervention"} href={'/'} icon={'/images/new-intervention.svg'} showActivation/>
-                <UINavLink label={"historique"} href={'/'} icon={'/images/stats.svg'} showActivation/>
-                <UINavLink label={"La Guilde"} href={'/'} icon={'/images/guild.svg'} showActivation/>
-                <UINavLink label={"Paramètres"} href={'/parameters'} icon={'/images/options.svg'} showActivation/>
+                <UINavLink label={"Déclarer"} href={'/'} icon={'/images/new-intervention.svg'} showActivation/>
+                <UINavLink label={"Historique"} href={'/'} icon={'/images/stats.svg'} showActivation/>
+                <UINavLink label={"Guilde"} href={'/'} icon={'/images/guild.svg'} showActivation/>
+                <UINavLink label={"Options"} href={'/options'} icon={'/images/options.svg'} showActivation/>
                 <UINavLink label={"Déconnexion"} href={'/'} icon={'/images/logout.svg'} onClick={disconnectUser} />
             </>
             )}
@@ -76,7 +78,9 @@ const AppNavbar = () => {
                 <UINavLink label={"Se Connecter"} href={'/connexion'} icon={'/images/user.svg'} showActivation/>
                 <UINavLink label={"Créer sa guilde"} href={'/inscription'} icon={'/images/guild.svg'} showActivation/>
             </>)}
-        </>
+        </>)
+      }
+    </>
   )
 }
 

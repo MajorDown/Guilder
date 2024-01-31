@@ -19,7 +19,7 @@ const OperationForm = () => {
     const [maxDate, setMaxDate] = useState<string>();
     const [workNature, setWorkNature] = useState<string>("");
     const [confirm, setConfirm] = useState<boolean>(false);
-    const [loadError, setLoadError] = useState<string>("")
+    const [loadError, setLoadError] = useState<string>("");
 
     useEffect(() => {
         const currentDate= new Date();
