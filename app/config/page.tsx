@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useAdminContext} from "@/contexts/adminContext";
 import UINavLink from '@/components/UI/UINavLink';
+import ConfigManager from '@/components/ConfigManager';
 
 /**
  * @module Config
@@ -21,6 +22,7 @@ const Config = () => {
         <h2>Les outils de la Guilde</h2>
         {hasCheckedAdmin && admin && <>
             <p>Gérez ici les options disponibles lorsqu'un membre déclare une intervention</p>
+            <ConfigManager configFor={admin}/>
         </>}
         {hasCheckedAdmin && !admin && <>
             <p>Vous devez être connecté en tant qu'admin pour accéder à cette page !</p>
