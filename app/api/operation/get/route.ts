@@ -23,7 +23,7 @@ export async function GET(request: Request) {
     }
     const authHeader = request.headers.get('Authorization');
     const token = authHeader && authHeader.split(' ')[1];
-    const isAuthentified = token ? await tokenChecker(token, userToCheck.mail) : false;
+    const isAuthentified = token ? await tokenChecker("user", token, userToCheck.mail) : false;
     if (!isAuthentified) {
       console.log(`api/operation/get ~> ${userName} a échoué son authentification`);
       return NextResponse.json("Non autorisé", { status: 401 });

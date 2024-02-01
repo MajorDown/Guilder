@@ -10,7 +10,7 @@ const AppNavbar = () => {
     const {admin, updateAdmin} = useAdminContext();
     const {user, updateUser} = useUserContext();
     const {members, updateMembers} = useGuildContext();
-    const [hasCheckedlogs, setHasCheckedlogs] = useState<boolean>(false);
+    const [hasCheckedLog, setHasCheckedLog] = useState<boolean>(false);
     
     useEffect(() => {
       if (window != undefined && !admin) {
@@ -41,7 +41,7 @@ const AppNavbar = () => {
           else updateMembers(null);
         }
       }
-      setHasCheckedlogs(true);
+      setHasCheckedLog(true);
     }, [admin, user])
 
     const disconnectAdmin = () => {
@@ -57,7 +57,7 @@ const AppNavbar = () => {
     }
     
     return (<>
-        {hasCheckedlogs && (<>
+        {hasCheckedLog && (<>
             {admin && (<>
                 <UINavLink label={"Membres"} href={'/'} icon={'/images/guild.svg'} showActivation/>
                 <UINavLink label={"Outils"} href={'/config'} icon={'/images/tools.svg'} showActivation/>

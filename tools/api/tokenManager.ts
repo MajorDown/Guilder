@@ -46,7 +46,7 @@ export const tokenChecker = async (db: "user" | "admin", token: string, userMail
     if (userMail && decodedMail != userMail) {
       throw new Error("tokenChecker ~> le mail rentré en paramètre ne corespond pas au mail de l'utilisateur authentitfié. Requète rejeté.")
     }
-    console.log("tokenChecker ~> utilisateur authentitifé");
+    console.log("tokenChecker ~> utilisateur authentifié");
     return true;
   } catch (error) {
     console.log(error);

@@ -3,6 +3,7 @@ import databaseConnecter from "@/tools/api/databaseConnecter";
 import AdminModel from "@/tools/api/models/model.admin";
 import { passwordCrypter } from "@/tools/api/passwordManager";
 import { Admin, Guild } from "@/types";
+import GuildConfigModel from "@/tools/api/models/model.guildConfig";
 
 export async function POST(request: Request) {
   const { name, password, mail, phone, guild } = await request.json();
@@ -43,6 +44,14 @@ export async function POST(request: Request) {
     // SAUVEGARDE DE L'UTILISATEUR
     await newAdmin.save();
     console.log("api/admin/signup ~> nouvelle guilde créé :", guild, "par", name);
+    // CREATION DE LA CONFIGURATION DE LA GUILDE
+    const newGuildConfig = new GuildConfigModel({
+        name: guild,
+        config: []
+      });
+    // SAUVEGARDE DE LA CONFIGURATION DE LA GUILDE
+    await newGuildConfig.save();
+    console.log("api/admin/signup ~> nouvelle config créé pour la guilde", guild);
     // RENVOI DE L'UTILISATEUR
     return NextResponse.json(newAdmin, { status: 201 });
   } catch (error) {
