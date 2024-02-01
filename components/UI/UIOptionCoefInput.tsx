@@ -38,7 +38,7 @@ const UIOptionCoefInput = ({ inputRef, onChangeValue, ...rest }: UIOptionCoefInp
                 step="0.01"
                 ref={inputRef}
                 value={value}
-                onChange={handleChange}
+                onChange={(event) => handleChange(event)}
                 aria-label={rest.ariaLabel}
                 {...rest}
             />

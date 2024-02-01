@@ -21,7 +21,6 @@ const ConfigManager = (props: ConfigManagerProps) => {
     //STATES
     const [guildConfig, setGuildConfig] = useState<GuildConfig | undefined>(undefined);
     const [wantNewOption, setWantNewOption] = useState<boolean>(false);
-    const [hasCreateNewOption, setHasCreateNewOption] = useState<boolean>(false);
     const [newOptionError, setNewOptionError] = useState<string>("");
     // REFS
     const optionNameRef = useRef<HTMLInputElement>(null);
@@ -29,15 +28,16 @@ const ConfigManager = (props: ConfigManagerProps) => {
     const optionEnableCheckboxRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
-        if (hasCreateNewOption) {
-            setHasCreateNewOption(false);
-        }
+        console.log(guildConfig);
+    }, [guildConfig])
+
+    useEffect(() => {
         const getConfig = async() => {
             const response = await getGuildConfig(props.configFor) as GuildConfig;
             if (response) setGuildConfig(response);
         }
         getConfig();
-    }, [props.configFor, hasCreateNewOption]);
+    }, []);
 
     const handleSubmitNewOption = async(event: FormEvent) => {
         event.preventDefault();        
@@ -50,10 +50,10 @@ const ConfigManager = (props: ConfigManagerProps) => {
             });
             const response = await updateGuildConfig(props.configFor, newGuildConfig as GuildConfig);
             if (response instanceof Response) {
-                const data = await response.json();
-                if(data) {
+                const newData = await response.json();
+                if(newData) {
+                    setGuildConfig(newData);
                     setWantNewOption(false);
-                    setHasCreateNewOption(true);
                 }
             }
             else {

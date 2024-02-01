@@ -10,7 +10,7 @@ import { ConnectedAdmin, GuildConfig } from "@/types";
 const updateGuildConfig = async (admin: ConnectedAdmin, objectTofetch: GuildConfig): Promise<Response | Error> => {
     try {
       const response = await fetch("/api/guildConfig/update", {
-        method: "PATCH",
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
           'Authorization': `Bearer ${admin.token}`

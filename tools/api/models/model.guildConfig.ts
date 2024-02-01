@@ -5,7 +5,7 @@ const GuildConfigSchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true},
   config: [
     {
-      option: {type: String, required: true, unique: true}, 
+      option: {type: String, required: true}, 
       coef: {type: Number, required: true},
       enabled: {type: Boolean, required: true}
     }
