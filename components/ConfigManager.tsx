@@ -1,11 +1,12 @@
 'use client'
-import {useState, useEffect, useRef} from 'react';
+import {useState, useEffect, useRef, FormEvent} from 'react';
 import { ConnectedAdmin, GuildConfig } from '@/types';
 import UIButton from './UI/UIButton';
 import UIOptionNameInput from './UI/UIOptionNameInput';
 import UIOptionCoefInput from './UI/UIOptionCoefInput';
 import UIOptionEnableCheckbox from './UI/UIOptionEnableCheckBox';
 import getGuildConfig from '@/tools/front/getGuildConfig';
+import updateGuildConfig from '@/tools/front/updateGuildConfig';
 
 export type ConfigManagerProps = {
     configFor: ConnectedAdmin;
@@ -17,15 +18,17 @@ export type ConfigManagerProps = {
  * Permet de gérer la config de la guilde.
  */
 const ConfigManager = (props: ConfigManagerProps) => {
+    //STATES
     const [guildConfig, setGuildConfig] = useState<GuildConfig | undefined>(undefined);
     const [wantNewOption, setWantNewOption] = useState<boolean>(false);
     const [hasCreateNewOption, setHasCreateNewOption] = useState<boolean>(false);
+    const [newOptionError, setNewOptionError] = useState<string>("");
+    // REFS
     const optionNameRef = useRef<HTMLInputElement>(null);
     const optionCoefRef = useRef<HTMLInputElement>(null);
     const optionEnableCheckboxRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
-        console.log("useEffect");
         if (hasCreateNewOption) {
             setHasCreateNewOption(false);
         }
@@ -36,20 +39,25 @@ const ConfigManager = (props: ConfigManagerProps) => {
         getConfig();
     }, [props.configFor, hasCreateNewOption]);
 
-    const handleSubmitNewOption = async() => {
+    const handleSubmitNewOption = async(event: FormEvent) => {
+        event.preventDefault();        
         if (optionNameRef.current && optionCoefRef.current && optionEnableCheckboxRef.current) {
-            let request = guildConfig;
-            request?.config.push({
+            let newGuildConfig = guildConfig;
+            newGuildConfig?.config.push({
                 option: optionNameRef.current.value,
                 coef: parseInt(optionCoefRef.current.value),
                 enabled: optionEnableCheckboxRef.current.checked
             });
-            setGuildConfig(request);
-            const response = await updateGuildConfig(request);
-            const data = await response.json();
-            if(data) {
-                setWantNewOption(false);
-                setHasCreateNewOption(true);
+            const response = await updateGuildConfig(props.configFor, newGuildConfig as GuildConfig);
+            if (response instanceof Response) {
+                const data = await response.json();
+                if(data) {
+                    setWantNewOption(false);
+                    setHasCreateNewOption(true);
+                }
+            }
+            else {
+                setNewOptionError("un problême est survenu lors de la création de la nouvelle option. Veuillez réessayer plus tard.");
             }
         }
     }
@@ -59,14 +67,14 @@ const ConfigManager = (props: ConfigManagerProps) => {
             <div id="configOptionsList">Tableau de config de {guildConfig?.name}</div>
             <div id="ConfigOptionForm">
                 {!wantNewOption && <UIButton onClick={() => setWantNewOption(true)}>Ajouter une nouvelle option</UIButton>}
-                {wantNewOption && <form onSubmit={() => handleSubmitNewOption()}>
+                {wantNewOption && <form onSubmit={(event) => handleSubmitNewOption(event)}>
                     <div className="ConfigInputWrapper">
                         <label htmlFor="optionName">Nom de la nouvelle option :</label>
-                        <UIOptionNameInput inputRef={optionNameRef} />                     
+                        <UIOptionNameInput inputRef={optionNameRef} required/>                     
                     </div>
                     <div className="ConfigInputWrapper">
                         <label htmlFor="optionCoef">Coef à appliquer :</label>
-                        <UIOptionCoefInput inputRef={optionCoefRef} />
+                        <UIOptionCoefInput inputRef={optionCoefRef} required/>
                     </div>
                     <div className="ConfigInputWrapper">
                         <label htmlFor="optionIsEnable">Souhaitez-vous rendre cette option utilisable dessuite ?</label>
@@ -74,6 +82,7 @@ const ConfigManager = (props: ConfigManagerProps) => {
                     </div>
                     <UIButton type="submit">Valider la nouvelle option</UIButton>
                     <UIButton onClick={() => setWantNewOption(false)}>Annuler la création d'une nouvelle option</UIButton>
+                    {newOptionError && <p style={{color: "red"}}>{newOptionError}</p>}
                 </form>}
             </div>
         </div>
