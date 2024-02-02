@@ -7,6 +7,7 @@ import UIOptionCoefInput from './UI/UIOptionCoefInput';
 import UIOptionEnableCheckbox from './UI/UIOptionEnableCheckBox';
 import getGuildConfig from '@/tools/front/getGuildConfig';
 import updateGuildConfig from '@/tools/front/updateGuildConfig';
+import ConfigLister from './ConfigLister';
 
 export type ConfigManagerProps = {
     configFor: ConnectedAdmin;
@@ -72,7 +73,10 @@ const ConfigManager = (props: ConfigManagerProps) => {
     
     return (
         <div id="configManager">
-            <div id="configOptionsList">Tableau de config de {guildConfig?.name}</div>
+            <div id="configOptionsList">
+                <h3>Options pour {guildConfig?.name} :</h3>
+                <ConfigLister config={guildConfig}/>
+            </div>
             <div id="ConfigOptionForm">
                 {!wantNewOption && <UIButton onClick={() => setWantNewOption(true)}>Ajouter une nouvelle option</UIButton>}
                 {wantNewOption && <form onSubmit={(event) => handleSubmitNewOption(event)}>
