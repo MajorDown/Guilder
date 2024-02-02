@@ -43,7 +43,13 @@ const ConfigManager = (props: ConfigManagerProps) => {
         event.preventDefault();        
         if (optionNameRef.current && optionCoefRef.current && optionEnableCheckboxRef.current) {
             let newGuildConfig = guildConfig;
-
+            //vérifier que la valeur de optionNameRef.current.value n'a pas la meme valeur qu'une option déjà existante
+            const alreadyExist = newGuildConfig?.config.find((option) => option.option === optionNameRef.current?.value);
+            if (alreadyExist) {
+                setNewOptionError("Cette option existe déjà. Veuillez renommer votre nouvelle option.");
+                setTimeout(() => setNewOptionError(""), 5000);
+                return;
+            }
             newGuildConfig?.config.push({
                 option: optionNameRef.current.value,
                 coef: parseFloat(optionCoefRef.current.value),
@@ -59,6 +65,7 @@ const ConfigManager = (props: ConfigManagerProps) => {
             }
             else {
                 setNewOptionError("un problême est survenu lors de la création de la nouvelle option. Veuillez réessayer plus tard.");
+                setTimeout(() => setNewOptionError(""), 5000);
             }
         }
     }
