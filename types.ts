@@ -70,6 +70,7 @@ export type UserInterventions = intervention[];
 export type GuildConfig = {
     name: Guild,
     config: {
+        _id: string | undefined,
         option: string,
         coef: number,
         enabled: boolean

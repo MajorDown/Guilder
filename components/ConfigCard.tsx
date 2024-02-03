@@ -3,14 +3,13 @@ import UIButton from "./UI/UIButton";
 import UISwitch from "./UI/UISwitch";
 
 export type ConfigCardProps = {
-    key: number;
     option: {
         option: string;
         coef: number;
         enabled: boolean;
     }
-    onChangeEnabled: (value: boolean) => void;
-    onDelete: () => void;
+    onChangeEnabled: (value: boolean, optionName: string) => void;
+    onDelete: (optionName: string) => void;
 }
 
 const ConfigCard = (props: ConfigCardProps) => {
@@ -32,9 +31,9 @@ const ConfigCard = (props: ConfigCardProps) => {
                 minWidth="80px"
                 options={["actif", "inactif"]} 
                 value={props.option.enabled} 
-                onChange={(value) => props.onChangeEnabled(value)} 
+                onChange={(value) => props.onChangeEnabled(value, props.option.option)} 
             />
-            <UIButton style={{minWidth: "50px", marginLeft: "5px"}} onClick={() => props.onDelete()}>
+            <UIButton style={{minWidth: "50px", marginLeft: "5px"}} onClick={() => props.onDelete(props.option.option)}>
                 <Image src="/images/trash.svg" alt="supprimer" width={24} height={24}/>
             </UIButton>
         </li>

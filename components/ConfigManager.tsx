@@ -54,7 +54,7 @@ const ConfigManager = (props: ConfigManagerProps) => {
             newGuildConfig?.config.push({
                 option: optionNameRef.current.value,
                 coef: parseFloat(optionCoefRef.current.value),
-                enabled: optionEnableCheckboxRef.current.checked
+                enabled: optionEnableCheckboxRef.current.checked,
             });
             const response = await updateGuildConfig(props.configFor, newGuildConfig as GuildConfig);
             if (response instanceof Response) {

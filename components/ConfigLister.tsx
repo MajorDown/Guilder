@@ -6,9 +6,9 @@ export type ConfigListerProps = {
 }
 
 const ConfigLister = (props: ConfigListerProps) => {
-  
-  const handleChangeEnabled = (value: boolean) => {
-    console.log("changing", value);
+
+  const handleChangeEnabled = (value: boolean, optionName: string) => {
+    console.log("changing", optionName, "to", value);
   }
 
   const handleDeleteOption = () => {
@@ -21,7 +21,7 @@ const ConfigLister = (props: ConfigListerProps) => {
             <ConfigCard 
                 key={index} 
                 option={option}
-                onChangeEnabled={(value) => handleChangeEnabled(value)}
+                onChangeEnabled={(value) => handleChangeEnabled(value, option.option)}
                 onDelete={() => handleDeleteOption()}/>
         ))}
     </ul>
