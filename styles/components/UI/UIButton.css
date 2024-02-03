@@ -1,7 +1,7 @@
 .UIButton {
     border-radius: var(--border-radius-absolute);
     border: 3px solid var(--font-color-1);
-    background-color: none;
+    background-color: var(--button-color);
     padding: 5px;
     display: flex;
     justify-content: center;
