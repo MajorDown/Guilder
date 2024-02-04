@@ -75,7 +75,7 @@ const ConfigManager = (props: ConfigManagerProps) => {
         <div id="configManager">
             <div id="configOptionsList">
                 <h3>Options pour {guildConfig?.name} :</h3>
-                <ConfigLister config={guildConfig}/>
+                <ConfigLister config={guildConfig} admin={props.configFor}/>
             </div>
             <div id="ConfigOptionForm">
                 {!wantNewOption && <UIButton onClick={() => setWantNewOption(true)}>Ajouter une nouvelle option</UIButton>}

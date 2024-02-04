@@ -1,18 +1,56 @@
-import { GuildConfig } from "@/types";
+import { ConnectedAdmin, GuildConfig } from "@/types";
 import ConfigCard from "./ConfigCard";
+import updateGuildConfig from "@/tools/front/updateGuildConfig";
+import { useState } from "react";
 
 export type ConfigListerProps = {
     config: GuildConfig | undefined;
+    admin: ConnectedAdmin
 }
 
 const ConfigLister = (props: ConfigListerProps) => {
+  const [guildConfig, setGuildConfig] = useState<GuildConfig | undefined>(props.config);
+  const [updateError, setUpdateError] = useState<string>("");
 
-  const handleChangeEnabled = (value: boolean, optionName: string) => {
-    console.log("changing", optionName, "to", value);
-  }
+  const handleChangeEnabled = async (value: boolean, optionName: string) => {
+    let newConfig = props.config;
+    newConfig?.config.map((option) => {
+      if (option.option === optionName) {
+        option.enabled = value;
+      }
+    })
+    const response = await updateGuildConfig(props.admin, newConfig as GuildConfig);
+    if (response instanceof Response) {
+      const newData = await response.json();
+      if(newData) {
+          setGuildConfig(newData);
+      }
+    }
+    else {
+      setUpdateError("un problême est survenu lors de l'actualisation des options'. Veuillez réessayer plus tard.");
+      setTimeout(() => setUpdateError(""), 5000);
+  }}
 
-  const handleDeleteOption = () => {
-    console.log("deleting option");
+  const handleDeleteOption = async (optionName: string) => {
+    console.log("deleting", optionName);
+    let newConfig = props.config;
+    newConfig?.config.map((option) => {
+      if (option.option === optionName) {
+        //supprimer l'option du tableau config
+        newConfig?.config.splice(newConfig?.config.indexOf(option), 1);
+      }
+    })
+    const response = await updateGuildConfig(props.admin, newConfig as GuildConfig);
+    if (response instanceof Response) {
+      const newData = await response.json();
+      if(newData) {
+          setGuildConfig(newData);
+      }
+    }
+    else {
+      setUpdateError("un problême est survenu lors de l'actualisation des options'. Veuillez réessayer plus tard.");
+      setTimeout(() => setUpdateError(""), 5000);
+    }
   }
 
   if (props.config) return (
@@ -22,8 +60,10 @@ const ConfigLister = (props: ConfigListerProps) => {
                 key={index} 
                 option={option}
                 onChangeEnabled={(value) => handleChangeEnabled(value, option.option)}
-                onDelete={() => handleDeleteOption()}/>
+                onDelete={(optionName) => handleDeleteOption(optionName)}
+                />
         ))}
+        {updateError && <p style={{color: "red"}}>{updateError}</p>}
     </ul>
   )
 }
