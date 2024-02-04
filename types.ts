@@ -6,21 +6,35 @@ export type UserPassword = string;
 export type UserPhone = string;
 export type UserCounter = number
 
-export type User = {
+export type NewMemberInfos = {
+    mail: UserMail, 
+    name: UserName, 
+    phone: UserPhone, 
+    guild: Guild
+}
+
+export type Admin = {
     name: UserName,
     mail: UserMail,
-    password: UserPassword,
     phone: UserPhone,
-    counter: UserCounter,
-    guild: Guild
-};
+    guild: Guild,
+    password: UserPassword;
+}
 
-export type UsersList = User[];
+export type ConnectedAdmin = Omit<Admin, 'password'> & { token: string };
 
-export type Member = Omit<User, 'password'> & 
-{ password: null };
+export type Member = {
+    name: UserName,
+    mail: UserMail,
+    phone: UserPhone,
+    guild: Guild,
+    password: UserPassword;
+    counter: UserCounter
+}
 
-export type MembersList = Member[];
+export type ConnectedMember = Omit<Member, 'password'> & { token: string };
+
+export type MembersList = Omit<Member, 'password'>[];
 
 export type GuildContext = {
     members: MembersList | null;
@@ -70,7 +84,6 @@ export type UserInterventions = intervention[];
 export type GuildConfig = {
     name: Guild,
     config: {
-        _id: string | undefined,
         option: string,
         coef: number,
         enabled: boolean
@@ -90,15 +103,6 @@ export const isFormatted = (toValidate: string, regex: RegExp): boolean => {
 
 export const operationDateFormat: RegExp = /^\d{4}-\d{2}-\d{2}$/;
 
-export type Admin = {
-    name: UserName,
-    mail: UserMail,
-    phone: UserPhone,
-    guild: Guild,
-    password: UserPassword;
-}
-
-export type ConnectedAdmin = Omit<Admin, 'password'> & { token: string };
 
 export type AdminContext = {
     admin: ConnectedAdmin | null,

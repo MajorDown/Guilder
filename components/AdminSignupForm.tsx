@@ -9,18 +9,10 @@ import UIFirstnameInput from './UI/UIFirstnameInput';
 import UILastnameInput from './UI/UILastnameInput';
 import UIPhoneInput from './UI/UIPhoneInput';
 import UIButton from './UI/UIButton';
-import UITextInput from './UI/UITextInput';
 import UIGuildNameInput from './UI/UIGuildNameInput';
 import UIPasswordValidator from './UI/UIPasswordValidator';
 
 const AdminSignupForm = () => {
-    const [mail, setMail] = useState<UserMail>("");
-    const [lastName, setLastName] = useState<string>("");
-    const [firstName, setFirstName] = useState<string>("");
-    const [phone, setPhone] = useState<UserPhone>("");
-    const [guild, setGuild] = useState<Guild>("");
-    const [password, setPassword] = useState<UserPassword>("");
-    const [passwordConfirm, setPasswordConfirm] = useState<UserPassword>("");
     const [errMessage, setErrMessage] = useState<string>("");
     const [hasSignup, setHasSignup] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -62,9 +54,9 @@ const AdminSignupForm = () => {
         </> : <>
             <label htmlFor="inputMail">Votre Email :</label>
             <UIEmailInput inputRef={mailRef} name="inputMail" required/>
-            <label htmlFor="inputFirstName">Votre prénom : (ex: Jean)</label>
+            <label htmlFor="inputFirstName">Votre prénom :</label>
             <UIFirstnameInput inputRef={firstNameRef} name="inputFirstName" required/>
-            <label htmlFor="inputLaststName">Votre nom de famille : (ex: Dupont)</label>
+            <label htmlFor="inputLaststName">Votre nom de famille :</label>
             <UILastnameInput inputRef={lastNameRef} name="inputLastName" required/>
             <label htmlFor="inputPhone">Votre numéro de tel :</label>
             <UIPhoneInput inputRef={phoneRef} name="inputPhone" required/>
@@ -79,6 +71,7 @@ const AdminSignupForm = () => {
             </label>
             <UIPasswordValidator inputRef={passwordRef} name="inputPassword" required/>
             <UIButton type={"submit"}>Créer sa guilde</UIButton>
+            {errMessage && <p>{errMessage}</p>}
             {isLoading && <LoadSpinner />}
         </>
         }

@@ -1,34 +1,31 @@
-import { Guild, MembersList } from "@/types";
+import { ConnectedAdmin, MembersList } from "@/types";
 
 /**
  * fonction communiquant avec l'API du serveur pour récupérer une liste des membres
- * de sa guilde. Elle utilise un token d'authentification pour
- * s'assurer que la requête est autorisée.
- *
- * @param {Guild} guildName - Le nom de la guilde pour laquelle récupérer les membres.
- * @param {string} authToken - Le token d'authentification pour la requête API.
- * @returns {Promise<MembersList | []>} Une promesse qui résout en une liste des membres
- * de la guilde si la requête réussit, ou un tableau vide en cas d'échec.
- */
-export const getGuildMembers = async (guildName: Guild, authToken: string): Promise<MembersList | []> => {
+ * de sa guilde.
+ * 
+ * @param {ConnectedAdmin} admin - L'objet contenant les informations de connexion.
+ **/
+export const getGuildMembers = async (admin: ConnectedAdmin): Promise<MembersList | null> => {
   try {
-    const response = await fetch(`/api/guild/${guildName}`, {
+    const response = await fetch(`/api/guild/${admin.guild}`, {
       method: 'GET',
       headers: {
-        'Authorization': `Bearer ${authToken}`,
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${admin.token}`,
+        'X-Admin-Email': admin.mail
       },
     });
-
     if (!response.ok) {
-      // Vous pouvez également traiter différentes réponses du serveur ici
       throw new Error(`Erreur côté serveur: ${response.status}`);
     }
-
+    if (response.status === 204) {
+      return null;
+    }
     const membersList: MembersList = await response.json();
     return membersList;
   } catch (error) {
     console.error(error);
-    return [];
+    return null;
   }
 }

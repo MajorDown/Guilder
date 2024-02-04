@@ -1,6 +1,8 @@
 import { Member } from "@/types"
 
-type MemberCardProps = {member: Member}
+type MemberCardProps = {
+  member: Omit<Member, 'password'>
+}
 
 const MemberCard = (props: MemberCardProps) => {
 

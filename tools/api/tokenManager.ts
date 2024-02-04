@@ -1,6 +1,6 @@
 import { UserMail } from "@/types";
 const jwt = require("jsonwebtoken");
-import UserModel from "@/tools/api/models/model.user";
+import MemberModel from "@/tools/api/models/model.member";
 import AdminModel from "@/tools/api/models/model.admin";
 
 /**
@@ -24,16 +24,16 @@ export const tokenMaker = (mail: UserMail): string => {
  * @param {UserMail} [userMail] - (Optionnel) Une adresse e-mail spécifique à vérifier contre l'e-mail extrait du token.
  * @returns {Promise<boolean>} `true` si le token est valide (et, le cas échéant, correspond à l'adresse e-mail), sinon `false`.
  */
-export const tokenChecker = async (db: "user" | "admin", token: string, userMail?: UserMail): Promise<boolean> => {
+export const tokenChecker = async (db: "member" | "admin", token: string, userMail?: UserMail): Promise<boolean> => {
   try {
     if (!token) {
       throw new Error("tokenChecker ~> utilisateur non authentifié !");
     }
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
     const decodedMail = decodedToken.mail;
-    if (db === "user") {
-      let userToCheck = await UserModel.findOne({mail: decodedMail});
-      if (!userToCheck) {
+    if (db === "member") {
+      let memberToCheck = await MemberModel.findOne({mail: decodedMail});
+      if (!memberToCheck) {
         throw new Error("tokenChecker ~> membre introuvable");
       }
     }
