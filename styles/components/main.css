@@ -28,3 +28,33 @@ h2 {
     justify-content: center;
     gap: 5px;
 }
+
+/***********INSCRIPTION**************************************/
+
+/***********OPTIONS******************************************/
+
+/***********CONFIG*******************************************/
+
+#configManager {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+#configManager label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.configInputWrapper {
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

@@ -80,17 +80,19 @@ const ConfigManager = (props: ConfigManagerProps) => {
             <div id="ConfigOptionForm">
                 {!wantNewOption && <UIButton onClick={() => setWantNewOption(true)}>Ajouter une nouvelle option</UIButton>}
                 {wantNewOption && <form onSubmit={(event) => handleSubmitNewOption(event)}>
-                    <div className="ConfigInputWrapper">
+                    <div className="configInputWrapper">
                         <label htmlFor="optionName">Nom de la nouvelle option :</label>
                         <UIOptionNameInput inputRef={optionNameRef} required/>                     
                     </div>
-                    <div className="ConfigInputWrapper">
+                    <div className="configInputWrapper">
                         <label htmlFor="optionCoef">Coef à appliquer :</label>
                         <UIOptionCoefInput inputRef={optionCoefRef} required/>
                     </div>
-                    <div className="ConfigInputWrapper">
-                        <label htmlFor="optionIsEnable">Souhaitez-vous rendre cette option utilisable dessuite ?</label>
-                        <UIOptionEnableCheckbox inputRef={optionEnableCheckboxRef}/>
+                    <div className="configInputWrapper">
+                        <label htmlFor="optionIsEnable">
+                            <p>Souhaitez-vous rendre cette option utilisable dessuite ?</p>
+                            <UIOptionEnableCheckbox inputRef={optionEnableCheckboxRef}/>
+                        </label>
                     </div>
                     <UIButton type="submit">Valider la nouvelle option</UIButton>
                     <UIButton onClick={() => setWantNewOption(false)}>Annuler la création d'une nouvelle option</UIButton>

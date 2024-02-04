@@ -12,8 +12,12 @@ export type ConfigCardProps = {
     onDelete: (optionName: string) => void;
 }
 
-const ConfigCard = (props: ConfigCardProps) => {
-    
+/**
+ * @module ConfigCard
+ * 
+ * Permet d'afficher une option de la config de la guilde ainsi que les options de modification.
+ */
+const ConfigCard = (props: ConfigCardProps) => {   
     return (
         <li 
             className="configCard"

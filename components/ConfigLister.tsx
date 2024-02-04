@@ -8,6 +8,11 @@ export type ConfigListerProps = {
     admin: ConnectedAdmin
 }
 
+/**
+ * @module ConfigLister
+ * 
+ * Permet de lister les options de la config de la guilde et de gérer leur modification.
+ */
 const ConfigLister = (props: ConfigListerProps) => {
   const [guildConfig, setGuildConfig] = useState<GuildConfig | undefined>(props.config);
   const [updateError, setUpdateError] = useState<string>("");
@@ -32,7 +37,7 @@ const ConfigLister = (props: ConfigListerProps) => {
   }}
 
   const handleDeleteOption = async (optionName: string) => {
-    console.log("deleting", optionName);
+    if (!window.confirm("Etes-vous sûr de vouloir supprimer cette option ?")) return;
     let newConfig = props.config;
     newConfig?.config.map((option) => {
       if (option.option === optionName) {

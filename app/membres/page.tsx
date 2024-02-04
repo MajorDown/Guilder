@@ -2,15 +2,15 @@
 import { useState, useEffect } from 'react';
 import { useAdminContext} from "@/contexts/adminContext";
 import UINavLink from '@/components/UI/UINavLink';
-import ConfigManager from '@/components/ConfigManager';
 import LoadSpinner from '@/components/LoadSpinner';
+import MembersManager from '@/components/MembersManager';
 
 /**
- * @module Config
+ * @module Membres
  * 
  * Nécessite d'être connecté en tant qu'admin pour accéder à cette page.
  */
-const Config = () => {
+const Membres = () => {
     const { admin } = useAdminContext();
     const [hasCheckedAdmin, setHasCheckedAdmin] = useState(false);
 
@@ -19,12 +19,12 @@ const Config = () => {
     }, [admin])
 
     return (
-      <section id="ConfigSection">
-        <h2>Les outils de la Guilde</h2>
+      <section id="MembersSection">
+        <h2>Les membres de la Guilde</h2>
         {!hasCheckedAdmin && <LoadSpinner />}
         {hasCheckedAdmin && admin && <>
-            <p>Gérez ici les options disponibles lorsqu'un membre déclare une intervention</p>
-            <ConfigManager configFor={admin}/>
+            <p>Checkez ici le statut des membres, et gerez leur inscription / suppression</p>
+            <MembersManager admin={admin}/>
         </>}
         {hasCheckedAdmin && !admin && <>
             <p>Vous devez être connecté en tant qu'admin pour accéder à cette page !</p>
@@ -34,4 +34,4 @@ const Config = () => {
     )
   }
   
-  export default Config;
+  export default Membres;
