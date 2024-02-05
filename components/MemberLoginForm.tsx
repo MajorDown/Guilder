@@ -1,14 +1,12 @@
 'use client'
 import {FormEvent, useState, useRef} from 'react';
-import connectUser from '@/tools/front/connectUser';
+import connectMember from '@/tools/front/connectMember';
 import { useRouter } from 'next/navigation'; 
-import { useUserContext } from '@/contexts/userContext';
-import { useGuildContext } from '@/contexts/guildContext';
+import { useMemberContext } from '@/contexts/memberContext';
 import UIEmailInput from './UI/UIEmailInput';
 import UIPasswordInput from './UI/UIPasswordInput';
 import UIButton from './UI/UIButton';
 import LoadSpinner from './LoadSpinner';
-import { getGuildMembers } from '@/tools/front/getGuildMembers';
 
 /**
  * Composant pour un formulaire de connexion d'utilisateur.
@@ -17,8 +15,7 @@ import { getGuildMembers } from '@/tools/front/getGuildMembers';
  */
 const UserLoginForm = () => {
   const router = useRouter()
-  const {updateUser} = useUserContext();
-  const {updateMembers} = useGuildContext();
+  const {updateMember} = useMemberContext();
   const [errMessage, setErrMessage] = useState<string>("");
   const [isLoadIng, setIsLoading] = useState<boolean>(false);
 
@@ -32,17 +29,14 @@ const UserLoginForm = () => {
       mail: mailRef.current?.value,
       password: passwordRef.current?.value
     };
-    const response = await connectUser(request);
+    const response = await connectMember(request);
     if (response instanceof Error) {
       setIsLoading(false);
       setErrMessage("mail / mot de passe incorrect"!)
     }
     else {
       localStorage.setItem(process.env.NEXT_PUBLIC_LOCALSTORAGE_USERCONTEXT_KEY as string, JSON.stringify(response));
-      updateUser(response);
-      const guildMembers = await getGuildMembers(response.guild, response.token);
-      localStorage.setItem(process.env.NEXT_PUBLIC_LOCALSTORAGE_GUILDCONTEXT_KEY as string, JSON.stringify(guildMembers));
-      updateMembers(guildMembers);
+      updateMember(response);
       setIsLoading(false);
       router.push("/")
     }

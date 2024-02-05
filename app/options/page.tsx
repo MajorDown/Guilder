@@ -1,28 +1,29 @@
 'use client'
-import PasswordUpdater from "@/components/PasswordUpdater";
-import { useUserContext } from "@/contexts/userContext";
+import PasswordUpdater, {PasswordUpdaterProps} from "@/components/PasswordUpdater";
+import { useMemberContext } from "@/contexts/memberContext";
 import { useAdminContext } from "@/contexts/adminContext";
 
 /**
  * @module Parameters
  */
 const Parameters = () => {
-    const {user } = useUserContext();
+    const {member} = useMemberContext();
     const {admin} = useAdminContext();
 
-    const whoIsConnected = {
-        name: admin?.name || user?.name,
-        token: admin?.token || user?.token
+    const connectedUserInfos = {
+        mail: admin?.mail || member?.mail,
+        token: admin?.token || member?.token
     }
+    
 
   return (
     <section id="parametersSection">
         <h2>Paramètres de votre compte</h2>
         <p>Modifiez ici vos informations</p>
-        {(admin || user) && (<div>
+        {(admin || member) && (<div>
             <PasswordUpdater 
-              role={admin ? "admin" : "user"} 
-              who={whoIsConnected} 
+              status={admin ? "admin" : "member"} 
+              user={connectedUserInfos || null} 
             />
         </div>)}
     </section>

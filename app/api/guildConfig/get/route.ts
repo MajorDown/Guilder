@@ -39,7 +39,7 @@ export async function GET(request: Request) {
   }
   catch (error) {
     // SI ERREUR
-      console.log(`api/guildConfig/get/[user] ~> error :`, error);
+      console.log(`api/guildConfig/get/ ~> error :`, error);
       return NextResponse.json("Echec de chargement des membres de la guilde", { status: 500 });
   }
 };

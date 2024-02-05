@@ -3,13 +3,13 @@ import databaseConnecter from "@/tools/api/databaseConnecter";
 import AdminModel from "@/tools/api/models/model.admin";
 import MemberModel from "@/tools/api/models/model.member";
 import { passwordCrypter } from "@/tools/api/passwordManager";
-import { Member, NewMemberInfos } from "@/types";
 import { tokenChecker } from "@/tools/api/tokenManager";
 import generatePassword from "@/tools/api/passwordGenerator";
 import sendMailToNewMember from "@/tools/api/nodemailer/sendMailToNewMember";
+import { Member } from "@/types";
 
 export async function POST(request: Request) {
-    const { name, mail, phone, guild } = await request.json() as NewMemberInfos;
+    const { name, mail, phone, guild } = await request.json();
     console.log(
         "api/member/signup ~> Tentative d'inscription via l'adresse mail :",
         mail
@@ -30,7 +30,7 @@ export async function POST(request: Request) {
             return NextResponse.json("Non autorisé", { status: 401 });
         }
         // VERIFICATION SI L'UTILISATEUR EXISTE DEJA
-        const existingMember: Member | null = await MemberModel.findOne({
+        const existingMember = await MemberModel.findOne({
             mail: mail,
         });
         if (existingMember) {
@@ -44,14 +44,15 @@ export async function POST(request: Request) {
         const newPassword = generatePassword();
         const cryptedNewPassword = await passwordCrypter(newPassword);
         // CREATION DE L'UTILISATEUR
-        const newMember = new MemberModel({
+        const newMemberData: Member = {
             name: name,
             mail: mail,
             phone: phone,
             guild: guild,
             password: cryptedNewPassword,
-            counter: 0
-        });
+            counter: 0            
+        }
+        const newMember = new MemberModel(newMemberData);
         // ENVOI DU MOT DE PASSE PAR MAIL
         console.log(
             "api/member/signup ~> Envoi d'une notification à l'utilisateur via l'adresse :",

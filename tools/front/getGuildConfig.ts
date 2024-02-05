@@ -1,4 +1,4 @@
-import { GuildConfig, Guild, ConnectedAdmin } from "@/types";
+import { ConnectedAdmin } from "@/types";
 
 const getGuildConfig = async (admin: ConnectedAdmin): Promise<Response | unknown> => {
   try {

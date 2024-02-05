@@ -4,17 +4,21 @@ import UIPasswordInput from './UI/UIPasswordInput';
 import UIPasswordValidator from './UI/UIPasswordValidator';
 import UIButton from './UI/UIButton';
 import updatePassword from '@/tools/front/updatePassword';
+import { UserMail, UserStatus } from '@/types';
 
 export type PasswordUpdateRequest = {
     lastPassword: string | undefined,
     newPassword: string | undefined,
-    role: "user" | "admin" | undefined,
-    who: {name: string | undefined, token: string | undefined} | null
+    status: UserStatus | undefined,
+    user: {mail: UserMail | undefined, token: string | undefined} | null
 }
 
 export type PasswordUpdaterProps = {
-    role: "user" | "admin" | undefined,
-    who: {name: string | undefined, token: string | undefined} | null
+    status: UserStatus | undefined,
+    user: {
+        mail: string | undefined;
+        token: string | undefined
+    } | null
 }
 
 const PasswordUpdater = (props: PasswordUpdaterProps) => {
@@ -32,8 +36,8 @@ const PasswordUpdater = (props: PasswordUpdaterProps) => {
         const request: PasswordUpdateRequest = {
             lastPassword: lastPasswordRef.current?.value,
             newPassword: newPasswordRef.current?.value,
-            role: props.role,
-            who: props.who
+            status: props.status,
+            user: props.user
         };
         const response: Response | Error = await updatePassword(request);
         if (response instanceof Response && response.status === 200) {

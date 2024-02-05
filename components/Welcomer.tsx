@@ -1,15 +1,15 @@
 'use client'
 import { useAdminContext } from '@/contexts/adminContext';
-import { useUserContext } from '@/contexts/userContext';
+import { useMemberContext } from '@/contexts/memberContext';
 
 const Welcomer = () => {
   const {admin} = useAdminContext();
-  const {user} = useUserContext();
+  const {member} = useMemberContext();
 
   return (
     <>
       {admin && <p id="Welcomer">Admin : {admin.name}</p>}
-      {!admin && user && <p id="Welcomer">Membre : {user.name} ({user.counter} points) ~ Guilde {user.guild}</p>}
+      {!admin && member && <p id="Welcomer">Membre : {member.name} ({member.counter} points) ~ Guilde {member.guild}</p>}
     </>
   )
 }

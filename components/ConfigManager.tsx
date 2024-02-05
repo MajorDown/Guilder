@@ -36,6 +36,7 @@ const ConfigManager = (props: ConfigManagerProps) => {
         const getConfig = async() => {
             const response = await getGuildConfig(props.configFor) as GuildConfig;
             if (response) setGuildConfig(response);
+            else setGuildConfig(undefined);
         }
         getConfig();
     }, []);

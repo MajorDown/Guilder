@@ -3,8 +3,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { PropsWithChildren } from 'react';
 import { AdminProvider } from '@/contexts/adminContext';
-import { UserProvider } from '@/contexts/userContext';
-import { GuildProvider } from '@/contexts/guildContext';
+import { MemberProvider } from '@/contexts/memberContext';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google'
 const inter = Inter({subsets: ['latin'], display: 'swap'})
@@ -21,15 +20,13 @@ export default function RootLayout(props: PropsWithChildren) {
       </head>
       <body className={inter.className}>
         <AdminProvider>
-          <UserProvider>
-            <GuildProvider>
-              <Header />
-              <main>
-                {props.children}
-              </main>
-              <Footer />
-            </GuildProvider>
-          </UserProvider>
+          <MemberProvider>
+            <Header />
+            <main>
+              {props.children}
+            </main>
+            <Footer />
+          </MemberProvider>
         </AdminProvider>
       </body>
     </html>

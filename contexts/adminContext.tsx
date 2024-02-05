@@ -1,6 +1,6 @@
 'use client'
 import { createContext, useContext, useState, PropsWithChildren } from "react";
-import {ConnectedAdmin, AdminContext, MembersList } from "../types";
+import {ConnectedAdmin, AdminContext } from "../types";
 
 /**
  * Contexte utilisé pour fournir et consommer l'état de l'utilisateur connecté

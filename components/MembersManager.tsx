@@ -31,7 +31,7 @@ const MembersManager = (props: MembersManagerProps) => {
     
     return (
         <div id="membersManager">
-            {membersList && <MembersLister members={membersList} />}
+            {membersList != null && <MembersLister members={membersList} />}
             {wantNewMember ?
             <>
                 <MemberSignupForm admin={props.admin} onSignup={() => setHasNewMember(true)}/>

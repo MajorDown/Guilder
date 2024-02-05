@@ -1,14 +1,14 @@
 'use client'
 import { createContext, useContext, useState, PropsWithChildren } from "react";
-import {ConnectedUser, UserContext } from "../types";
+import {ConnectedMember, MemberContext } from "../types";
 
 /**
  * Contexte utilisé pour fournir et consommer l'état de l'utilisateur connecté
  * à travers l'application.
  */
-const userContext: React.Context<UserContext> = createContext<UserContext>(
+const memberContext: React.Context<MemberContext> = createContext<MemberContext>(
   {
-    user: null, updateUser: () => {}
+    member: null, updateMember: () => {}
   }
 );
 
@@ -17,8 +17,8 @@ const userContext: React.Context<UserContext> = createContext<UserContext>(
  *
  * @returns {UserContext} L'état actuel de l'utilisateur et la fonction pour le mettre à jour.
  */
-export function useUserContext(): UserContext {
-  const context = useContext(userContext);
+export function useMemberContext(): MemberContext {
+  const context = useContext(memberContext);
   return context;
 }
 
@@ -30,13 +30,13 @@ export function useUserContext(): UserContext {
  * @param {PropsWithChildren} props Les props du composant, y compris les enfants à rendre.
  * @returns {JSX.Element} Un composant Provider qui englobe les enfants avec le contexte de l'utilisateur.
  */
-export const UserProvider = (props: PropsWithChildren): JSX.Element => {
-  const [user, updateUser] = useState<ConnectedUser | null>(null);
+export const MemberProvider = (props: PropsWithChildren): JSX.Element => {
+  const [member, updateMember] = useState<ConnectedMember | null>(null);
 
 
   return (
-    <userContext.Provider value={{user, updateUser}}>
+    <memberContext.Provider value={{member, updateMember}}>
       {props.children}
-    </userContext.Provider>
+    </memberContext.Provider>
   );
 };

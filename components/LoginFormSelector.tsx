@@ -2,7 +2,7 @@ import {useState} from 'react';
 import Image from 'next/image';
 import UIButton from './UI/UIButton';
 import AdminLoginForm from './AdminLoginForm';
-import UserLoginForm from './UserLoginForm';
+import MemberLoginForm from './MemberLoginForm';
 
 type LoginFormType = "membre" | "admin" | undefined;
 
@@ -29,7 +29,7 @@ const LoginFormSelector = () => {
             </div>
             {loginForm === "membre" && <p>Déclarez vos interventions et tenez-vous informé des compteurs de points des autres membres de la guilde</p>}
             {loginForm === "admin" && <p>Gérez votre guilde, administrez les coefficients, les inscriptions, les requètes...</p>}
-            {loginForm === "membre" && (<UserLoginForm />)}
+            {loginForm === "membre" && (<MemberLoginForm />)}
             {loginForm === "admin" && (<AdminLoginForm />)}
         </div>
   )

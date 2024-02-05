@@ -38,7 +38,7 @@ export async function PUT(request: Request) {
     }
     // GESTION DES ERREURS
     catch (error) {
-        console.log("api/password/update ~> error :", error);
-        return NextResponse.json("Échec de la modification du password", { status: 500 });
+        console.log("api/guildConfig/update ~> error :", error);
+        return NextResponse.json("Échec de la modification du guildConfig", { status: 500 });
     }
 }

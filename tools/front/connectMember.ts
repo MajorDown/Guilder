@@ -1,4 +1,4 @@
-import { ConnectedUser } from "@/types";
+import { ConnectedMember } from "@/types";
 
 /**
  * Effectue une requête POST vers l'endpoint "/api/user/login" avec les données fournies.
@@ -6,9 +6,9 @@ import { ConnectedUser } from "@/types";
  * @returns {Promise<Response | Error>} Une promesse qui résout avec l'objet Response en cas de réussite,
  * ou résout avec undefined en cas d'échec.
  */
-const connectUser = async (objectToFetch: Object): Promise<ConnectedUser | Error> => {
+const connectMember = async (objectToFetch: Object): Promise<ConnectedMember | Error> => {
     try {
-      const response = await fetch("/api/user/login", {
+      const response = await fetch("/api/member/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -17,14 +17,14 @@ const connectUser = async (objectToFetch: Object): Promise<ConnectedUser | Error
       });
   
       if (!response.ok) {
-        throw new Error(`connectUser ~> Request failed with status ${response.status} : ${response.body}`);
+        throw new Error(`connectMember ~> Request failed with status ${response.status} : ${response.body}`);
       }
-      const connectedUser: ConnectedUser = await response.json();
-      return connectedUser;
+      const connectedMember: ConnectedMember = await response.json();
+      return connectedMember;
     } catch (error) {
-      console.log("connectUser ~> Error:", error);
+      console.log("connectMember ~> Error:", error);
       return error as Error;
     }
   };
   
-  export default connectUser;
+  export default connectMember;
