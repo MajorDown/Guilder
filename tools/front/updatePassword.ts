@@ -12,7 +12,7 @@ const updatePassword = async (objectTofetch: PasswordUpdateRequest): Promise<Res
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          'Authorization': `Bearer ${objectTofetch.who?.token}`
+          'Authorization': `Bearer ${objectTofetch.user?.token}`
         },
         body: JSON.stringify(objectTofetch),
       });  

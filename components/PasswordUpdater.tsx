@@ -28,11 +28,8 @@ const PasswordUpdater = (props: PasswordUpdaterProps) => {
     const [isActualised, setIsActualised] = useState<boolean>(false);
     const [errMessage, setErrMessage] = useState<string>("");
 
-
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
-        console.log(lastPasswordRef.current?.value);
-        console.log(newPasswordRef.current?.value);
         const request: PasswordUpdateRequest = {
             lastPassword: lastPasswordRef.current?.value,
             newPassword: newPasswordRef.current?.value,

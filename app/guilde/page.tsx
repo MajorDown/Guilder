@@ -1,12 +1,10 @@
 'use client'
 import { useState, lazy } from "react";
-import { useUserContext } from "@/contexts/userContext";
-import { useGuildContext } from "@/contexts/guildContext";
+import { useMemberContext } from "@/contexts/memberContext";
 const MembersLister = lazy(() => import("@/components/MembersLister"));
 
 const Guilde = () => {
-    const {user} = useUserContext();
-    const {members} = useGuildContext();
+    const {member} = useMemberContext();
     const [loadError, setLoadError] = useState<string>();
 
   if(members) { 

@@ -29,10 +29,6 @@ const ConfigManager = (props: ConfigManagerProps) => {
     const optionEnableCheckboxRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
-        console.log(guildConfig);
-    }, [guildConfig])
-
-    useEffect(() => {
         const getConfig = async() => {
             const response = await getGuildConfig(props.configFor) as GuildConfig;
             if (response) setGuildConfig(response);

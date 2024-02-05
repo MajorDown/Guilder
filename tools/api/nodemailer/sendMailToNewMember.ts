@@ -47,7 +47,7 @@ async function sendMailToNewMember(member: Member, newPassword: string) {
         await transporter.sendMail(mailOptions);
         console.log('sendMailToNewMember ~> Email envoyé avec succès à', member.mail);
         return true;
-    } catch (error) {
+    } catch (error: any) {
         console.error('sendMailToNewMember ~> Erreur lors de l\'envoi de l\'email:', error);
         return false;
     }

@@ -12,5 +12,5 @@ const MemberSchema = new mongoose.Schema({
 
 MemberSchema.plugin(uniqueValidator);
 
-const MemberModel = mongoose.models.Member || mongoose.model("member", MemberSchema);
+const MemberModel = mongoose.models.member || mongoose.model("member", MemberSchema);
 export default MemberModel;

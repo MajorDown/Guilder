@@ -27,11 +27,11 @@ const MembersManager = (props: MembersManagerProps) => {
             if (response) setMembersList(response);
         }
         getMembers();
-    }, [])
+    }, [hasNewMember])
     
     return (
         <div id="membersManager">
-            {membersList != null && <MembersLister members={membersList} />}
+            {membersList[0] && <MembersLister members={membersList} />}
             {wantNewMember ?
             <>
                 <MemberSignupForm admin={props.admin} onSignup={() => setHasNewMember(true)}/>

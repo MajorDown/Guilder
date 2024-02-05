@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import AdminModel from "@/tools/api/models/model.admin";
 import databaseConnecter from "@/tools/api/databaseConnecter";
+import AdminModel from "@/tools/api/models/model.admin";
 import { tokenMaker } from "@/tools/api/tokenManager";
 import { passwordChecker } from "@/tools/api/passwordManager";
 import { ConnectedAdmin} from "@/types";
@@ -22,8 +22,9 @@ export const POST = async (request: Request) => {
       console.log("api/admin/login ~> Erreur de password");
       return NextResponse.json("mail / password incorrect", { status: 400 });
     }
-    // RENVOI DU USER VALIDE
+    // GENERATION DU TOKEN
     const token = tokenMaker(mail);
+    // RENVOI DU USER VALIDE
     const connectedAdmin: ConnectedAdmin = { 
       token: token, 
       mail: adminToCheck.mail, 

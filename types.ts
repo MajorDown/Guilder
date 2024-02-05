@@ -1,11 +1,11 @@
-export type Guild = string;
+// TYPES GENERIQUES DES USERS
 
+export type Guild = string;
 export type UserName = string;
 export type UserMail = string;
 export type UserPassword = string;
 export type UserPhone = string;
 export type UserCounter = number
-
 export type UserStatus = 'admin' | 'member';
 
 export type NewMemberInfos = {
@@ -14,6 +14,8 @@ export type NewMemberInfos = {
     phone: UserPhone, 
     guild: Guild
 }
+
+// TYPES POUR ADMIN
 
 export type Admin = {
     name: UserName,
@@ -24,6 +26,13 @@ export type Admin = {
 }
 
 export type ConnectedAdmin = Omit<Admin, 'password'> & { token: string };
+
+export type AdminContext = {
+    admin: ConnectedAdmin | null,
+    updateAdmin: (admin: ConnectedAdmin | null) => void,
+}
+
+// TYPES POUR MEMBER
 
 export type Member = {
     name: UserName,
@@ -36,13 +45,14 @@ export type Member = {
 
 export type ConnectedMember = Omit<Member, 'password'> & { token: string };
 
-export type MembersList = Omit<Member, 'password'>[];
-
-
 export type MemberContext = {
     member: ConnectedMember | null,
     updateMember: (member: ConnectedMember | null) => void
 }
+
+export type MembersList = Omit<Member, 'password'>[];
+
+// TYPES POUR INTERVENTIONS
 
 export type intervention = {
     declarationDate: Date | string,
@@ -55,6 +65,8 @@ export type intervention = {
 }
 
 export type UserInterventions = intervention[];
+
+// TYPES POUR GUILDS
 
 export type GuildConfig = {
     name: Guild,
@@ -78,8 +90,3 @@ export const isFormatted = (toValidate: string, regex: RegExp): boolean => {
 
 export const operationDateFormat: RegExp = /^\d{4}-\d{2}-\d{2}$/;
 
-
-export type AdminContext = {
-    admin: ConnectedAdmin | null,
-    updateAdmin: (admin: ConnectedAdmin | null) => void,
-}

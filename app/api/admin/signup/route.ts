@@ -34,13 +34,14 @@ export async function POST(request: Request) {
     // CRYPTAGE DU MOT DE PASSE
     const hashedpassword = await passwordCrypter(password);
     // CREATION DE L'UTILISATEUR
-    const newAdmin = new AdminModel({
+    const newAdminData: Admin = {
       name: name,
       password: hashedpassword,
       mail: mail,
       phone: phone,
       guild: guild
-    });
+    }
+    const newAdmin = new AdminModel(newAdminData);
     // SAUVEGARDE DE L'UTILISATEUR
     await newAdmin.save();
     console.log("api/admin/signup ~> nouvelle guilde créé :", guild, "par", name);

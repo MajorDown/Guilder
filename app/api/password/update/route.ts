@@ -22,6 +22,7 @@ export async function PATCH(request: Request) {
         // AUTHENTIFICATION
         const authHeader = request.headers.get('Authorization');
         const token = authHeader && authHeader.split(' ')[1];
+        console.log(`api/password/update ~> token :`, token);
         const isAuthentified = token ? await tokenChecker(status, token, userToUpdate.mail) : false;
         if (!isAuthentified) {
           console.log(`api/password/update ~> ${user.mail} a échoué son authentification`);

@@ -39,7 +39,7 @@ const MemberSignupForm = (props: MemberSignupFormProps ) => {
         }
         if (response instanceof Error) {
           setIsLoading(false);
-          setErrMessage('Un problême à eu lieu lors de la création du compte. Veuillez réessayer plus tard.')
+          setErrMessage("Un problême à eu lieu lors de la création du compte. Veuillez vérifier si l'adresse mail que vous avez rentré est valide.")
         }
       }
     }

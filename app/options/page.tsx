@@ -1,5 +1,5 @@
 'use client'
-import PasswordUpdater, {PasswordUpdaterProps} from "@/components/PasswordUpdater";
+import PasswordUpdater from "@/components/PasswordUpdater";
 import { useMemberContext } from "@/contexts/memberContext";
 import { useAdminContext } from "@/contexts/adminContext";
 
@@ -10,12 +10,6 @@ const Parameters = () => {
     const {member} = useMemberContext();
     const {admin} = useAdminContext();
 
-    const connectedUserInfos = {
-        mail: admin?.mail || member?.mail,
-        token: admin?.token || member?.token
-    }
-    
-
   return (
     <section id="parametersSection">
         <h2>Paramètres de votre compte</h2>
@@ -23,7 +17,10 @@ const Parameters = () => {
         {(admin || member) && (<div>
             <PasswordUpdater 
               status={admin ? "admin" : "member"} 
-              user={connectedUserInfos || null} 
+              user={{
+                  mail: admin?.mail || member?.mail,
+                  token: admin?.token || member?.token
+              }} 
             />
         </div>)}
     </section>
