@@ -21,6 +21,11 @@ export type PasswordUpdaterProps = {
     } | null
 }
 
+/**
+ * @module PasswordUpdater
+ * 
+ * @param {PasswordUpdaterProps} props
+ */
 const PasswordUpdater = (props: PasswordUpdaterProps) => {
     const lastPasswordRef = useRef<HTMLInputElement>(null);
     const newPasswordRef = useRef<HTMLInputElement>(null);
