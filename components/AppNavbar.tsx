@@ -49,7 +49,6 @@ const AppNavbar = () => {
             {admin && (<>
                 <UINavLink label={"Membres"} href={'/membres'} icon={'/images/guild.svg'} showActivation/>
                 <UINavLink label={"Outils"} href={'/config'} icon={'/images/tools.svg'} showActivation/>
-                <UINavLink label={"Notifs"} href={'/'} icon={'/images/analyse.svg'} showActivation/>
                 <UINavLink label={"Options"} href={'/options'} icon={'/images/options.svg'} showActivation/>
                 <UINavLink label={"Déconnexion"} href={'/'} icon={'/images/logout.svg'} onClick={() => disconnectAdmin()} />
             </>
