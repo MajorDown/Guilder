@@ -50,12 +50,6 @@ const MembersLister = (props: MembersListerProps) => {
         {isEmpty ? 
             <p>Il n'y a pas encore de membres au sein de la guilde</p> : 
             <ul>
-                <li className="memberCard">
-                    <p className="memberName">Prénom, Nom</p>
-                    <p className="memberCounter">compteur</p>
-                    <p className="memberMail">adresse mail</p>
-                    <p className="memberPhone">téléphone</p>
-                </li>
                 {sortedMembers.map((member, index) => (
                     <MemberCard key={index} member={member}/>
                 ))}

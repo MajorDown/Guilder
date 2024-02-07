@@ -32,6 +32,6 @@ const Membres = () => {
         </>}
       </section>
     )
-  }
+}
   
   export default Membres;

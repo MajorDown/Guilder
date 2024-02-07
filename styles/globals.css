@@ -64,6 +64,12 @@ label p {
     text-align: center;
 }
 
+select {
+    margin: 10px;
+    border-radius: var(--border-radius-absolute);
+    border: solid 3px var(--font-color-1);
+}
+
 ::-webkit-scrollbar {
     width: 1.6vw;
     max-width: 16px;

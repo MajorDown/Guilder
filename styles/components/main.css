@@ -61,34 +61,51 @@ h2 {
 
 /***********MEMBRES******************************************/
 
+#membersList {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#membersManager {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
 .memberCard {
     list-style: none;
     width: 800px;
+    max-width: 90vw;
+    margin: 10px 0px;
+    padding: 5px;
     display: flex;
     justify-content: space-between;
-    background-color: brown;
-}
-
-.memberCard p {
-    text-align: center;
-    width: 25%
+    align-items: center;
+    border: solid 3px var(--font-color-1);
+    border-radius: var(--border-radius-absolute);
 }
 
 .memberName {
-
-    background-color: aqua;
+    max-width: 25%;
 }
 
 .memberCounter {
-
-    background-color: rgb(184, 164, 137);
+    max-width: 25%;
 }
 
-.memberMail {
-
-    background-color: rgb(197, 173, 221);
+.memberCounter.red {
+    color: red;
 }
 
-.memberPhone {
-    background-color: rgb(164, 210, 174);
+.memberInfos {
+    max-width: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
