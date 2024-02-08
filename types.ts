@@ -54,17 +54,20 @@ export type MembersList = Omit<Member, 'password'>[];
 
 // TYPES POUR INTERVENTIONS
 
-export type intervention = {
-    declarationDate: Date | string,
-    date: string,
+export type Intervention = {
+    declarationDate: string, // format YYYY-MM-DD-HH-MM-SS-MMM
+    interventionDate: string, // format YYYY-MM-DD
     worker: UserName,
     payer: UserName,
     hours: 1 | 2 | 3 |4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24;
-    tools: string[];
-    nature: string,  
+    tools: {
+        option: string;
+        coef: number;
+    }[] | [];
+    description: string
 }
 
-export type UserInterventions = intervention[];
+export type UserInterventions = Intervention[];
 
 // TYPES POUR GUILDS
 
@@ -88,5 +91,5 @@ export const isFormatted = (toValidate: string, regex: RegExp): boolean => {
   else return false;
 }
 
-export const operationDateFormat: RegExp = /^\d{4}-\d{2}-\d{2}$/;
+export const interventionDateFormat: RegExp = /^\d{4}-\d{2}-\d{2}$/;
 

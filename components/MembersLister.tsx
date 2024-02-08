@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import MemberCard from "@/components/MemberCard";
-import { MembersList } from "@/types";
+import { MembersList, UserMail } from "@/types";
+import { useAdminContext } from "@/contexts/adminContext";
 
 type MembersListerProps = {members: MembersList}
 
 const MembersLister = (props: MembersListerProps) => {
+    const {admin} = useAdminContext();
     const [isEmpty, setIsEmpty] = useState<boolean>(false);
     const [sortMethod, setSortMethod] = useState<string>("counter+");
     const [sortedMembers, setSortedMembers] = useState<MembersList>([]);
@@ -34,6 +36,15 @@ const MembersLister = (props: MembersListerProps) => {
         else setIsEmpty(true);
     }, [sortMethod, props.members]);
 
+    const handleDeleteMember = (memberMail: UserMail) => {
+        const confirmation = window.confirm(`La suppression d'un membre est irreversible, 
+        car l'ensemble des données le concernant seront supprimées. 
+        Etes-vous sûr de vouloir supprimer le membre "${memberMail}"?`);
+        if (admin && confirmation) {
+            // Ajoutez le code pour supprimer le membre de la guilde
+        }
+    }
+
   return (
     <div id="membersList">
         <select 
@@ -51,7 +62,7 @@ const MembersLister = (props: MembersListerProps) => {
             <p>Il n'y a pas encore de membres au sein de la guilde</p> : 
             <ul>
                 {sortedMembers.map((member, index) => (
-                    <MemberCard adminMode key={index} member={member}/>
+                    <MemberCard key={index} member={member} onDelete={(memberMail) => handleDeleteMember(memberMail)} adminMode={admin ? true : false}/>
                 ))}
             </ul>
         }

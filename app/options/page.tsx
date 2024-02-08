@@ -1,7 +1,9 @@
 'use client'
+import {useState, useEffect} from 'react';
 import PasswordUpdater from "@/components/PasswordUpdater";
 import { useMemberContext } from "@/contexts/memberContext";
 import { useAdminContext } from "@/contexts/adminContext";
+import UINavLink from '@/components/UI/UINavLink';
 
 /**
  * @module Parameters
@@ -9,6 +11,11 @@ import { useAdminContext } from "@/contexts/adminContext";
 const Parameters = () => {
     const {member} = useMemberContext();
     const {admin} = useAdminContext();
+    const [checkedLogin, setCheckedLogin] = useState(false);
+
+    useEffect(() => {
+      setCheckedLogin(true);
+    }, [admin, member])
 
   return (
     <section id="parametersSection">
@@ -23,6 +30,10 @@ const Parameters = () => {
               }} 
             />
         </div>)}
+        {checkedLogin && !admin && !member && <>
+            <p>Vous devez être connecté pour accéder à cette page !</p>
+            <UINavLink label={"Se Connecter"} href={'/connexion'} icon={'/images/user.svg'} />
+        </>}
     </section>
   )
 }

@@ -1,18 +1,15 @@
 'use client'
 import {useState, useEffect, FormEvent} from 'react';
 import { useRouter } from 'next/navigation';
-import { ConnectedUser, Operation, OperationPoints, UserName, isFormatted, operationDateFormat } from '@/types'
+import { isFormatted, interventionDateFormat } from '@/tools/isFormatted';
+import { ConnectedMember, Intervention, InterventionHours, UserName } from '@/types'
 import createOperation from '@/tools/front/createOperation';
-import { useUserContext } from '@/contexts/userContext';
-import { useGuildContext } from '@/contexts/guildContext';
 
-const OperationForm = () => {
-    const Router = useRouter()
-    const {user, updateUser} = useUserContext();
-    const {members, updateMembers} = useGuildContext();
+const InterventionForm = () => {
+    const Router = useRouter();
     const [payer, setPayer] = useState<UserName | "">("");
     const [payerError, setPayerError] = useState<string>("");
-    const [points, setPoints] = useState<OperationPoints>(1);
+    const [points, setPoints] = useState<InterventionHours>(1);
     const [pointsError, setPointsError] = useState<string>("");
     const [date, setDate] = useState<string>("");
     const [minDate, setMinDate] = useState<string>();
@@ -34,21 +31,21 @@ const OperationForm = () => {
         setPayer(value)
     }
 
-    const handlePoints = (value: OperationPoints) => {
+    const handlePoints = (value: InterventionHours) => {
         if (pointsError) setPointsError("");
         if (value >= 1 && value <= 24) setPoints(value);
     }
 
     const handleDate = (value: string) => {
-        if (isFormatted(value, operationDateFormat)) setDate(value);
+        if (isFormatted(value, interventionDateFormat)) setDate(value);
     }
 
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
         if (payer === "") setPayerError("Veuillez choisir un bénéficiaire avant de valider")
         if (points < 1 && points >24) setPointsError("Veuillez renseigner un nombre d'heure effectuées correct avant de valider");
-        if (user && !payerError && !pointsError && date) {
-            const request: Operation = {
+        if (member && !payerError && !pointsError && date) {
+            const request: Intervention = {
                 declarationDate: new Date(),
                 date: date,
                 worker: user.name,
@@ -115,7 +112,7 @@ const OperationForm = () => {
                 min={0}
                 max={24}
                 value={points} 
-                onChange={(event) => handlePoints(parseInt(event.target.value, 10) as unknown as OperationPoints) }
+                onChange={(event) => handlePoints(parseInt(event.target.value, 10) as unknown as InterventionHours) }
             />
             {pointsError && <p>{pointsError}</p>}
         </div>
@@ -159,4 +156,4 @@ const OperationForm = () => {
   )
 }
 
-export default OperationForm;
+export default InterventionForm;
