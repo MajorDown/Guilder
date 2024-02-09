@@ -13,7 +13,8 @@ const InterventionSchema = new mongoose.Schema({
       option: {type: String, required: true}, 
       coef: {type: Number, required: true},
     }  
-  ] 
+  ],
+  imagesUrls: [ { type: String, required: false } ]
 })
 
 InterventionSchema.plugin(uniqueValidator);

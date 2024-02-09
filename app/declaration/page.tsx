@@ -18,6 +18,10 @@ const Declaration = () => {
                 <p>Vous devez être connecté pour accéder à cette page !</p>
                 <UINavLink label={"Se Connecter"} href={'/connexion'} icon={'/images/user.svg'} />
             </>}
+            {checkedMember && member && <>
+                <p>Formulaire de déclaration</p>
+            </>}
+
         </section>
   )
 }
