@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import databaseConnecter from "@/tools/api/databaseConnecter";
 import { tokenChecker } from "@/tools/api/tokenManager";
-import { UserMail } from "@/types";
+import { UserMail, UserStatus } from "@/types";
 import MemberModel from "@/tools/api/models/model.member";
 
 export async function GET(request: Request, { params }: { params: { guild: string } }) {
@@ -10,11 +10,12 @@ export async function GET(request: Request, { params }: { params: { guild: strin
     await databaseConnecter();
     // AUTHENTIFICATION DE L'ADMIN
     const auth = request.headers.get('Authorization');
-    const adminToken = auth && auth.split(' ')[1];
-    const adminMail = request.headers.get('X-Admin-Email');
-    const isAuthentified = adminToken ? await tokenChecker("admin", adminToken, adminMail as UserMail) : false;
+    const userToken = auth && auth.split(' ')[1];
+    const userMail = request.headers.get('X-user-Email');
+    const role = request.headers.get('X-role') as UserStatus;
+    const isAuthentified = userToken ? await tokenChecker(role, userToken, userMail as UserMail) : false;
     if (!isAuthentified) {
-        console.log(`api/guild/[guild] ~> Requète de récupération des membres de la guilde ${params.guild}`);
+        console.log(`api/guild/[guild] ~> echec de l'authentification de l'utilisateur ${userMail}`);
         return NextResponse.json("Non autorisé", { status: 401 });
     }
     // RECUPERATION DES MEMBRES

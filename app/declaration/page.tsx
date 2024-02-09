@@ -2,6 +2,7 @@
 import { useState, useEffect} from 'react';
 import { useMemberContext } from '@/contexts/memberContext';
 import UINavLink from '@/components/UI/UINavLink';
+import InterventionForm from '@/components/InterventionForm';
 
 const Declaration = () => {
     const { member } = useMemberContext();
@@ -19,9 +20,8 @@ const Declaration = () => {
                 <UINavLink label={"Se Connecter"} href={'/connexion'} icon={'/images/user.svg'} />
             </>}
             {checkedMember && member && <>
-                <p>Formulaire de déclaration</p>
+                <InterventionForm />
             </>}
-
         </section>
   )
 }

@@ -1,12 +1,12 @@
-import { ConnectedAdmin } from "@/types";
+import { ConnectedAdmin, ConnectedMember } from "@/types";
 
-const getGuildConfig = async (admin: ConnectedAdmin): Promise<Response | unknown> => {
+const getGuildConfig = async (user: ConnectedAdmin | ConnectedMember): Promise<Response | unknown> => {
   try {
-    const response = await fetch(`/api/guildConfig/get?guildName=${encodeURIComponent(admin.guild)}`, {
+    const response = await fetch(`/api/guildConfig/get?guildName=${encodeURIComponent(user.guild)}`, {
       method: "GET",
       headers: {
-        'Authorization': `Bearer ${admin.token}`
-      }
+        'Authorization': `Bearer ${user.token}`,
+        'X-role': user.hasOwnProperty('counter') ? 'member' : 'admin'},
     });  
     if (!response.ok) {
       throw new Error(`getGuildConfig ~> Request failed with status ${response.status} : ${response.body}`);

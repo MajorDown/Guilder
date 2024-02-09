@@ -138,3 +138,19 @@ h2 {
     width: 40px;
     aspect-ratio: 1/1;
 }
+
+/***********INTERVENTION************************************/
+
+#checkedConfigOptions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+}
+
+.checked {
+    background-color: rgb(197, 241, 197);
+    color: var(--background-color-1);
+}

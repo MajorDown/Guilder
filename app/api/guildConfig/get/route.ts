@@ -2,7 +2,9 @@ import { NextResponse } from "next/server";
 import databaseConnecter from "@/tools/api/databaseConnecter";
 import { tokenChecker } from "@/tools/api/tokenManager";
 import AdminModel from "@/tools/api/models/model.admin";
+import MemberModel from "@/tools/api/models/model.member";
 import GuildConfigModel from "@/tools/api/models/model.guildConfig";
+import { UserStatus } from "@/types";
 
 export async function GET(request: Request) {
   console.log(`api/guildConfig/get ~> Requète de récupération de guildConfig`);
@@ -22,14 +24,17 @@ export async function GET(request: Request) {
         return NextResponse.json("Non autorisé", { status: 401 });      
     }
     // AUTHENTIFICATION
-    const adminToCheck = await AdminModel.findOne({guild: guildName});
-    if (!adminToCheck) {
+    const role = request.headers.get('X-role') as UserStatus;
+    let userToCheck;
+    if (role === "admin") userToCheck = await AdminModel.findOne({guild: guildName});
+    else userToCheck = await MemberModel.findOne({guild: guildName});
+    if (!userToCheck) {
       console.log(`api/guildConfig/get ~> l'admin de la guilde ${guildName} est introuvable dans la db`);
       return NextResponse.json("Non autorisé", { status: 401 });      
     }
     const authHeader = request.headers.get('Authorization');
     const token = authHeader && authHeader.split(' ')[1];
-    const isAuthentified = token ? await tokenChecker("admin", token, adminToCheck.mail) : false;
+    const isAuthentified = token ? await tokenChecker(role, token, userToCheck.mail) : false;
     if (!isAuthentified) {
       console.log(`api/guildConfig/get ~> l'admin de la guilde ${guildName} a échoué son authentification`);
       return NextResponse.json("Non autorisé", { status: 401 });

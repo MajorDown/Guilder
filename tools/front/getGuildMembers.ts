@@ -13,8 +13,8 @@ export const getGuildMembers = async (user: ConnectedAdmin | ConnectedMember): P
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${user.token}`,
-        'X-Admin-Email': user.mail
-      },
+        'X-user-Email': user.mail,
+        'X-role': user.hasOwnProperty('counter') ? 'member' : 'admin'},
     });
     if (!response.ok) {
       throw new Error(`Erreur côté serveur: ${response.status}`);
