@@ -1,6 +1,5 @@
 'use client'
-import {useState, useEffect, useRef, FormEvent} from 'react';
-import { useRouter } from 'next/navigation';
+import {useState, useEffect, FormEvent} from 'react';
 import { isFormatted, interventionDateFormat } from '@/tools/isFormatted';
 import { ConnectedMember, GuildConfig, Intervention, InterventionHours, MembersList, UserInterventions, UserName } from '@/types'
 import createIntervention from '@/tools/front/createIntervention';
@@ -9,21 +8,19 @@ import { dateGenerator } from '@/tools/dateGenerator';
 import { getGuildMembers } from '@/tools/front/getGuildMembers';
 import getGuildConfig from '@/tools/front/getGuildConfig';
 import UIButton from './UI/UIButton';
+import UINavLink from './UI/UINavLink';
 
 const InterventionForm = () => {
     const {member, updateMember} = useMemberContext();
-    const Router = useRouter();
     const [payer, setPayer] = useState<UserName | "">("");
     const [payerError, setPayerError] = useState<string>("");
-    const [points, setPoints] = useState<InterventionHours>(1);
-    const [pointsError, setPointsError] = useState<string>("");
-    // état : tableau des noms d'option checkées
+    const [hours, setHours] = useState<InterventionHours>(1);
+    const [hoursError, setHoursError] = useState<string>("");
     const [checkedConfigOptions, setCheckedConfigOptions] = useState<string[]>([]);
-
     const [date, setDate] = useState<string>("");
     const [minDate, setMinDate] = useState<string>();
     const [maxDate, setMaxDate] = useState<string>();
-    const [workNature, setWorkNature] = useState<string>("");
+    const [description, setDescription] = useState<string>("");
     const [confirm, setConfirm] = useState<boolean>(false);
     const [loadError, setLoadError] = useState<string>("");
     const [membersList, setMembersList] = useState<MembersList | null>(null);
@@ -34,19 +31,48 @@ const InterventionForm = () => {
         const getMembers = async () => {
             if (!member) return;
             const response = await getGuildMembers(member) as MembersList;
-            if (response)
-                setMembersList(response);
+            if (response) setMembersList(response);
+            if (membersList) {
+                let sortedList = membersList.sort((a, b) => a.name.localeCompare(b.name));
+                setMembersList(sortedList);
+            }
         }
         getMembers();
         const getConfig = async () => {
             if (!member) return;
             const response = await getGuildConfig(member) as GuildConfig;
             if (response) setConfigsList(response);
+            if (configsList) {
+                let sortedList = configsList.config.sort((a, b) => a.option.localeCompare(b.option));
+                setConfigsList({...configsList, config: sortedList});
+            }
         };
         getConfig();
-    }, [member])
+    }, [member]);
 
-    useEffect(() => {console.log(checkedConfigOptions)}, [checkedConfigOptions])
+    useEffect(() => {
+        const today = new Date();
+        const minDayDate = new Date(today);
+        minDayDate.setDate(today.getDate() - 7); // Définit la date minimum à J-2
+        const maxDayDate = new Date(today); // La date maximale est aujourd'hui
+    
+        // Formate les dates en 'YYYY-MM-DD'
+        const formatDateString = (date: Date): string => {
+            const year = date.getFullYear();
+            let monthValue = date.getMonth() + 1;
+            let dayValue = date.getDate();
+    
+            // Conversion en chaîne avec ajout d'un zéro si nécessaire
+            const month = monthValue < 10 ? `0${monthValue}` : `${monthValue}`;
+            const day = dayValue < 10 ? `0${dayValue}` : `${dayValue}`;
+    
+            return `${year}-${month}-${day}`;
+        };
+    
+        setMinDate(formatDateString(minDayDate));
+        setMaxDate(formatDateString(maxDayDate));
+    }, []);
+    
 
     const handlePayer = (value: UserName) => {
         if (payerError) setPayerError("");
@@ -54,8 +80,8 @@ const InterventionForm = () => {
     }
 
     const handlePoints = (value: InterventionHours) => {
-        if (pointsError) setPointsError("");
-        if (value >= 1 && value <= 24) setPoints(value);
+        if (hoursError) setHoursError("");
+        if (value >= 1 && value <= 24) setHours(value);
     }
 
     const handlechangeCheckedConfigOptions = (option: string) => {
@@ -67,8 +93,6 @@ const InterventionForm = () => {
                 setCheckedConfigOptions([...checkedConfigOptions, option]);
                 break;
         }
-        // conditionner la className du bouton à la présence de l'option dans le tableau
-
     }
 
     const handleDate = (value: string) => {
@@ -78,40 +102,20 @@ const InterventionForm = () => {
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
         if (payer === "") setPayerError("Veuillez choisir un bénéficiaire avant de valider")
-        if (points < 1 && points >24) setPointsError("Veuillez renseigner un nombre d'heure effectuées correct avant de valider");
-        if (member && !payerError && !pointsError && date) {
+        if (hours < 1 && hours >24) setHoursError("Veuillez renseigner un nombre d'heure effectuées correct avant de valider");
+        if (member && !payerError && !hoursError && date) {
             const request: Intervention = {
                 declarationDate: dateGenerator("declaration"),
                 interventionDate: dateGenerator("intervention"),
                 worker: member.name,
                 payer: payer,
-                hours: points,
-                options: [],
-                description: workNature
+                hours: hours,
+                options: configsList ? configsList.config.map((option) => option.option) : [],
+                description: description
             }
-            const response = await createIntervention(request, member.token);
+            console.log(request);
+            const response = await createIntervention(request, member);
             if (response instanceof Response && response.status === 200) {
-                const updatedData = await response.json();
-                if (updatedData.worker) {
-                    if (member.name === updatedData.worker) {
-                        const newMember: ConnectedMember = { ...member, counter: member.counter + updatedData.points } 
-                        updateMember(newMember);
-                        localStorage.setItem(process.env.NEXT_PUBLIC_LOCALSTORAGE_MEMBERCONTEXT_KEY as string, JSON.stringify(newMember))
-                    }
-                }
-                if (updatedData.payer && membersList) {
-                    const newMembers = membersList.map((member) => {
-                        if (member.name === updatedData.payer) {
-                            return { ...member, counter: member.counter - updatedData.points };
-                        }
-                        else if (member.name === updatedData.worker) {
-                            return { ...member, counter: member.counter + updatedData.points };
-                        } 
-                        else {
-                            return member;
-                        }
-                    });
-                }
                 setHasDeclared(true);
             }
             else {
@@ -120,8 +124,8 @@ const InterventionForm = () => {
         }
     }
 
-  return (
-    <form id="operationForm" onSubmit={(event) => handleSubmit(event)}>
+  return (<>
+    {!hasDeclared && <form id="operationForm" onSubmit={(event) => handleSubmit(event)}>
         <label htmlFor="payerInput">Pour quel membre de la guilde avez-vous oeuvré ?</label>
         <div className="inputWrapper" >
             <select 
@@ -132,7 +136,7 @@ const InterventionForm = () => {
                 <option value={""}>Choisissez le bénéficiaire</option>
                 {membersList && membersList.map((user, index) => {
                     if (member && user && user.mail != member.mail) return (
-                        <option key={index} value={member.name}>{member.name}</option>
+                        <option key={index} value={user.name}>{user.name}</option>
                     )
                 })}
             </select>           
@@ -146,10 +150,10 @@ const InterventionForm = () => {
                 id="pointsInput" 
                 min={0}
                 max={24}
-                value={points} 
+                value={hours} 
                 onChange={(event) => handlePoints(parseInt(event.target.value, 10) as unknown as InterventionHours) }
                 />
-            {pointsError && <p>{pointsError}</p>}
+            {hoursError && <p>{hoursError}</p>}
         </div>
         <p>Sélectionnez ici les options / outils que vous avez eu à utiliser :</p>
         <div id={"checkedConfigOptions"}>
@@ -185,8 +189,8 @@ const InterventionForm = () => {
             name="nature" 
             id="natureInput" 
             cols={30} rows={5} 
-            value={workNature} 
-            onChange={(event) => setWorkNature(event.target.value)}></textarea>
+            value={description} 
+            onChange={(event) => setDescription(event.target.value)}></textarea>
         <label htmlFor="">
             <input 
                 type="checkbox" 
@@ -198,9 +202,14 @@ const InterventionForm = () => {
             en cochant cette case, vous confirmez que l'ensemble des informations
             fournis dans ce formulaire sont correct !
         </label>
-        <button type="submit">Déclarer l'opération</button>
+        <UIButton type="submit">Déclarer l'opération</UIButton>
         {loadError && <p>{loadError}</p>}
-    </form>
+    </form>}
+    {hasDeclared && <>
+        <p>Votre déclaration a bien été enregistrée !</p>
+        <UINavLink label={"Déclarer une autre opération"} href={'/declaration'} icon={'/images/user.svg'} />
+    </>}
+  </>
   )
 }
 
