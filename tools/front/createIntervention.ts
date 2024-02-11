@@ -1,14 +1,16 @@
-import { Operation } from "@/types";
+import { ConnectedMember, Intervention } from "@/types";
 
-const createOperation = async (operation: Operation, authToken: string): Promise<Response | undefined | unknown> => {
+const createIntervention = async (intervention: Intervention, member: ConnectedMember): Promise<Response | undefined | unknown> => {
     try {
-      const response = await fetch("/api/operation/create", {
+      const response = await fetch("/api/intervention/create", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${authToken}`
+          'Authorization': `Bearer ${member.token}`,
+          'X-user-Email': member.mail,
+          'X-user-Guild': member.guild
         },
-        body: JSON.stringify(operation),
+        body: JSON.stringify(intervention),
       });  
       if (!response.ok) {
         throw new Error(`createOperation ~> Request failed with status ${response.status} : ${response.body}`);
@@ -20,4 +22,4 @@ const createOperation = async (operation: Operation, authToken: string): Promise
     }
   };
 
-export default createOperation;
+export default createIntervention;

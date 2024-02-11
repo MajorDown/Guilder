@@ -106,7 +106,7 @@ const InterventionForm = () => {
         if (member && !payerError && !hoursError && date) {
             const request: Intervention = {
                 declarationDate: dateGenerator("declaration"),
-                interventionDate: dateGenerator("intervention"),
+                interventionDate: date,
                 worker: member.name,
                 payer: payer,
                 hours: hours,
