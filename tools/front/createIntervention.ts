@@ -2,7 +2,7 @@ import { ConnectedMember, Intervention } from "@/types";
 
 const createIntervention = async (intervention: Intervention, member: ConnectedMember): Promise<Response | undefined | unknown> => {
     try {
-      const response = await fetch("/api/intervention/create", {
+      const response = await fetch("/api/interventions/create", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',

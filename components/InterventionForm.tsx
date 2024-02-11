@@ -41,10 +41,10 @@ const InterventionForm = () => {
         const getConfig = async () => {
             if (!member) return;
             const response = await getGuildConfig(member) as GuildConfig;
-            if (response) setConfigsList(response);
-            if (configsList) {
-                let sortedList = configsList.config.sort((a, b) => a.option.localeCompare(b.option));
-                setConfigsList({...configsList, config: sortedList});
+            if (response) {
+                const filteredConfig = response.config.filter(option => option.enabled);
+                let sortedList = filteredConfig.sort((a, b) => a.option.localeCompare(b.option));
+                setConfigsList({...response, config: sortedList});
             }
         };
         getConfig();
