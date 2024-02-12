@@ -28,7 +28,7 @@ const InterventionsLister = (props: InterventionsListerProps) => {
       <div id="interventionsLister">
         {interventionsList && interventionsList[0] ? <ul>
           {interventionsList && interventionsList.map((intervention, index) => 
-          (<InterventionCard key={index} intervention={intervention} asUser={"member"} />))}
+          (<InterventionCard key={index} intervention={intervention} role={"member"} user={props.user}/>))}
         </ul> : 
         <p>Vous n'avez pas encore d'opérations déclarées au sein de la guilde {props.user?.guild}</p>}
       </div>

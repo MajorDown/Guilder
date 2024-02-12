@@ -5,6 +5,7 @@ import { tokenChecker } from "@/tools/api/tokenManager";
 import MemberModel from "@/tools/api/models/model.member";
 import InterventionModel from "@/tools/api/models/model.intervention";
 import GuildConfigModel from "@/tools/api/models/model.guildConfig";
+import { ConnectedMember, UserCounter } from "@/types";
 
 export async function POST(request: Request) {
     const {declarationDate, interventionDate, worker, payer, hours, options, description} = await request.json();
@@ -29,14 +30,14 @@ export async function POST(request: Request) {
         const memberGuild = request.headers.get('X-user-Guild');        
         const guildConfig = await GuildConfigModel.findOne({guild: memberGuild});
         // EXTRACTION DES COEFFICIENTS POUR LES OPTIONS
-        let coefsList = options.map((optionName: string) => {
+        let coefsList = options && options.length > 0 ? options.map((optionName: string) => {
             const optionConfig = guildConfig.config.find((option: {option: string, coef: number, enabled: boolean}) => option.option === optionName && option.enabled);
             return optionConfig ? optionConfig.coef : 0;
-        });
+        }) : [];
         // création de optionsList au format [{option: string, coef: number}] à partir de options et coefsList
-        const optionsList = options.map((option: string, index: number) => ({option, coef: coefsList[index]}));
-        // CALCUL DU TOTAL DES POINTS : hours + (hours*coef1) + (hours*coef2) + ...
-        const totalPoints = coefsList.reduce((acc: number, coef: number) => acc + (hours * coef), hours);
+        const optionsList = options && options.length > 0 ? options.map((option: string, index: number) => ({option, coef: coefsList[index]})) : [];
+        // CALCUL DU TOTAL DES POINTS
+        const totalPoints = optionsList.length > 0 ? coefsList.reduce((acc: number, coef: number) => acc + (hours * coef), hours) : hours;
         // REDUIRE LE NOMBRE DE DECIMALES
         const interventionPoints = totalPoints.toFixed(2);        
         // CREATION DE L'INTERVENTION
@@ -63,7 +64,7 @@ export async function POST(request: Request) {
         await session.commitTransaction();
         session.endSession();
         console.log("api/intervention/create ~> nouvelle intervention créé :", newIntervention);
-        return NextResponse.json("nouvelle intervention déclarée !", { status: 200 });
+        return NextResponse.json(workerMember.counter as UserCounter, { status: 200 });
     }
     // GESTION DES ERREURS
     catch (error) {

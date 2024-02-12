@@ -10,6 +10,12 @@ import getGuildConfig from '@/tools/front/getGuildConfig';
 import UIButton from './UI/UIButton';
 import UINavLink from './UI/UINavLink';
 
+//JSDoc
+/**
+ * gère le formulaire de déclaration d'intervention
+ * 
+ * @property {ConnectedMember} member - The connected member
+ */
 const InterventionForm = () => {
     const {member, updateMember} = useMemberContext();
     const [payer, setPayer] = useState<UserName | "">("");
@@ -110,13 +116,14 @@ const InterventionForm = () => {
                 worker: member.name,
                 payer: payer,
                 hours: hours,
-                options: configsList ? configsList.config.map((option) => option.option) : [],
+                options: checkedConfigOptions,
                 description: description
             }
             console.log(request);
             const response = await createIntervention(request, member);
-            if (response instanceof Response && response.status === 200) {
+            if (response) {
                 setHasDeclared(true);
+                updateMember({...member, counter: response});
             }
             else {
                 setLoadError("une erreur est survenue lors de la déclaration. Veuillez réessayer plus tard.")
@@ -184,7 +191,7 @@ const InterventionForm = () => {
                 required
             />
         </div>
-        <label htmlFor="natureInput">souhaitez-vous décrire ici votre oeuvre ? (facultatif)</label>
+        <label htmlFor="natureInput">Décrivez ici votre intervention (objectif, lieu...) :</label>
         <textarea 
             name="nature" 
             id="natureInput" 

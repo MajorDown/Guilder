@@ -35,7 +35,7 @@ const UserLoginForm = () => {
       setErrMessage("mail / mot de passe incorrect"!)
     }
     else {
-      localStorage.setItem(process.env.NEXT_PUBLIC_LOCALSTORAGE_USERCONTEXT_KEY as string, JSON.stringify(response));
+      localStorage.setItem(process.env.NEXT_PUBLIC_LOCALSTORAGE_MEMBERCONTEXT_KEY as string, JSON.stringify(response));
       updateMember(response);
       setIsLoading(false);
       router.push("/")

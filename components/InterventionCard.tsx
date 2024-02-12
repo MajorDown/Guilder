@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react";
-import { ConnectedMember, Intervention, UserName, UserStatus } from "@/types";
+import { ConnectedAdmin, ConnectedMember, Intervention, UserStatus } from "@/types";
 
 type interventionCardProps = {
     intervention: Intervention,
-    asUser: UserStatus
+    role: UserStatus
+    user: ConnectedMember | ConnectedAdmin;
+
 }
 
 const InterventionCard = (props: interventionCardProps) => {
     const [dateDisplay, setDateDisplay] = useState<string>();
     const [logDisplay, setLogDisplay] = useState<string>();
-    const [creditDisplay, setCreditDisplay] = useState<number>();
+    const [creditDisplay, setCreditDisplay] = useState<string>();
     
     useEffect(() => {
         // FORMATTAGE DE INTERVENTIONDATE AU FORMAT DD-MM-YY
@@ -22,9 +24,9 @@ const InterventionCard = (props: interventionCardProps) => {
         // CALCUL DE CREDITDISPLAY
         let totalCredits:number = props.intervention.hours; // Démarre avec le nombre d'heures
         props.intervention.options.forEach((option) => {
-            totalCredits += (props.intervention.hours * option.coef) as number; // Ajoute les crédits supplémentaires basés sur chaque coef d'option
+            if (typeof option === 'object') totalCredits += (props.intervention.hours * option.coef) as number; // Ajoute les crédits supplémentaires basés sur chaque coef d'option
         });
-        setCreditDisplay(parseInt(totalCredits.toFixed(2)));
+        setCreditDisplay(`${props.intervention.payer === props.user.name ? '-': ''}${totalCredits.toFixed(2)}`);
     }, [props.intervention]);
 
     return (
@@ -32,7 +34,7 @@ const InterventionCard = (props: interventionCardProps) => {
         <div className={"interventionCardResume"}>
             <p className={"interventionDate"}>{dateDisplay}</p>
             <p className={"interventionlog"}>{logDisplay}</p>
-            <p className={"interventionCredit"}>{creditDisplay}</p>
+            <p className={"interventionCredit"} style={{color: props.intervention.payer === props.user.name ? 'red' : ''}}>{creditDisplay}</p>
         </div>
     </li>
   )

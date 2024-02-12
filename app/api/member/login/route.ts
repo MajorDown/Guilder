@@ -31,7 +31,7 @@ export const POST = async (request: Request) => {
       name: memberToCheck.name, 
       guild: memberToCheck.guild, 
       phone: memberToCheck.phone,
-      counter: 0
+      counter: memberToCheck.counter
     };
     console.log("api/member/login ~> utilisateur connecté :", mail);
     return NextResponse.json(connectedMember, {status: 201});

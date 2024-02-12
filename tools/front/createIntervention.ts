@@ -1,6 +1,6 @@
-import { ConnectedMember, Intervention } from "@/types";
+import { ConnectedMember, Intervention, UserCounter } from "@/types";
 
-const createIntervention = async (intervention: Intervention, member: ConnectedMember): Promise<Response | undefined | unknown> => {
+const createIntervention = async (intervention: Intervention, member: ConnectedMember): Promise<UserCounter | undefined> => {
     try {
       const response = await fetch("/api/interventions/create", {
         method: "POST",
@@ -15,10 +15,11 @@ const createIntervention = async (intervention: Intervention, member: ConnectedM
       if (!response.ok) {
         throw new Error(`createOperation ~> Request failed with status ${response.status} : ${response.body}`);
       }  
-      return response;
+      const data: UserCounter = await response.json();
+      return data;
     } catch (error) {
       console.error("Error submitting operation:", error);
-      return error;
+      return undefined;
     }
   };
 

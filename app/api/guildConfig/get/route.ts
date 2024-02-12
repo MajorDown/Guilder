@@ -24,19 +24,20 @@ export async function GET(request: Request) {
         return NextResponse.json("Non autorisé", { status: 401 });      
     }
     // AUTHENTIFICATION
-    const role = request.headers.get('X-role') as UserStatus;
+    const role = request.headers.get('X-user-Role') as UserStatus;
+    const userMail = request.headers.get('X-user-Mail');
     let userToCheck;
-    if (role === "admin") userToCheck = await AdminModel.findOne({guild: guildName});
-    else userToCheck = await MemberModel.findOne({guild: guildName});
+    if (role === "admin") userToCheck = await AdminModel.findOne({mail: userMail});
+    else userToCheck = await MemberModel.findOne({mail: userMail});
     if (!userToCheck) {
-      console.log(`api/guildConfig/get ~> l'admin de la guilde ${guildName} est introuvable dans la db`);
+      console.log(`api/guildConfig/get ~> ${userMail} est introuvable dans la guilde ${guildName}`);
       return NextResponse.json("Non autorisé", { status: 401 });      
     }
     const authHeader = request.headers.get('Authorization');
     const token = authHeader && authHeader.split(' ')[1];
     const isAuthentified = token ? await tokenChecker(role, token, userToCheck.mail) : false;
     if (!isAuthentified) {
-      console.log(`api/guildConfig/get ~> l'admin de la guilde ${guildName} a échoué son authentification`);
+      console.log(`api/guildConfig/get ~> l'utilisateur ${userMail} a échoué son authentification`);
       return NextResponse.json("Non autorisé", { status: 401 });
     }    
     // RECUPERATION DES DONNNES

@@ -23,10 +23,10 @@ const AppNavbar = () => {
       }
       if (window != undefined && !member) {
         if (!member) {
-          const userData = localStorage.getItem(process.env.NEXT_PUBLIC_LOCALSTORAGE_USERCONTEXT_KEY as string);
-          if (userData) {;
-            const actualUser: ConnectedMember = JSON.parse(userData);
-            updateMember(actualUser);
+          const memberData = localStorage.getItem(process.env.NEXT_PUBLIC_LOCALSTORAGE_MEMBERCONTEXT_KEY as string);
+          if (memberData) {;
+            const actualMember: ConnectedMember = JSON.parse(memberData);
+            updateMember(actualMember);
           }
           else updateMember(null);
         }
@@ -41,7 +41,7 @@ const AppNavbar = () => {
     
     const disconnectMember = () => {
       updateMember(null);
-      localStorage.removeItem(process.env.NEXT_PUBLIC_LOCALSTORAGE_USERCONTEXT_KEY as string);
+      localStorage.removeItem(process.env.NEXT_PUBLIC_LOCALSTORAGE_MEMBERCONTEXT_KEY as string);
     }
     
     return (<>
@@ -53,7 +53,7 @@ const AppNavbar = () => {
                 <UINavLink label={"Déconnexion"} href={'/'} icon={'/images/logout.svg'} onClick={() => disconnectAdmin()} />
             </>
             )}
-            {member && (<>
+            {!admin && member && (<>
                 <UINavLink label={"Déclarer"} href={'/declaration'} icon={'/images/new-intervention.svg'} showActivation/>
                 <UINavLink label={"Historique"} href={'/historique'} icon={'/images/stats.svg'} showActivation/>
                 <UINavLink label={"Guilde"} href={'/guilde'} icon={'/images/guild.svg'} showActivation/>
