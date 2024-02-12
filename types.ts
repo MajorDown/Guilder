@@ -62,12 +62,12 @@ export type Intervention = {
     worker: UserName,
     payer: UserName,
     hours: InterventionHours,
-    options: string[];
+    options: {option: string, coef: number}[];
     description: string;
     imagesUrls?: string[];
 }
 
-export type UserInterventions = Intervention[];
+export type MemberInterventions = Intervention[];
 
 // TYPES POUR GUILDS
 

@@ -1,7 +1,7 @@
 'use client'
 import {useState, useEffect, FormEvent} from 'react';
 import { isFormatted, interventionDateFormat } from '@/tools/isFormatted';
-import { ConnectedMember, GuildConfig, Intervention, InterventionHours, MembersList, UserInterventions, UserName } from '@/types'
+import { ConnectedMember, GuildConfig, Intervention, InterventionHours, MembersList, UserName } from '@/types'
 import createIntervention from '@/tools/front/createIntervention';
 import { useMemberContext } from '@/contexts/memberContext';
 import { dateGenerator } from '@/tools/dateGenerator';
@@ -202,12 +202,13 @@ const InterventionForm = () => {
             en cochant cette case, vous confirmez que l'ensemble des informations
             fournis dans ce formulaire sont correct !
         </label>
-        <UIButton type="submit">Déclarer l'opération</UIButton>
+        <UIButton type="submit">Déclarer l'intervention</UIButton>
         {loadError && <p>{loadError}</p>}
     </form>}
     {hasDeclared && <>
         <p>Votre déclaration a bien été enregistrée !</p>
-        <UINavLink label={"Déclarer une autre opération"} href={'/declaration'} icon={'/images/user.svg'} />
+        <UIButton onClick={() => setHasDeclared(false)}>Déclarer une nouvelle Intervention</UIButton>
+        <UINavLink label={"Consulter votre historique"} href={'/historique'} icon={'/images/stats.svg'} />
     </>}
   </>
   )

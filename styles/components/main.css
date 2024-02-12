@@ -147,10 +147,26 @@ h2 {
     justify-content: center;
     align-items: center;
     gap: 5px;
-
 }
 
 .checked {
     background-color: rgb(197, 241, 197);
     color: var(--background-color-1);
+}
+
+/**********INTERVENTIONS************************************/
+
+.interventionCard {
+    list-style: none;
+    border: solid 3px var(--font-color-1);
+    border-radius: var(--border-radius-absolute);
+    margin: 5px;
+    padding: 5px;
+}
+
+.interventionCardResume {
+    width: 800px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

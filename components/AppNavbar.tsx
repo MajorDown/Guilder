@@ -55,8 +55,8 @@ const AppNavbar = () => {
             )}
             {member && (<>
                 <UINavLink label={"Déclarer"} href={'/declaration'} icon={'/images/new-intervention.svg'} showActivation/>
-                <UINavLink label={"Historique"} href={'/'} icon={'/images/stats.svg'} showActivation/>
-                <UINavLink label={"Guilde"} href={'/'} icon={'/images/guild.svg'} showActivation/>
+                <UINavLink label={"Historique"} href={'/historique'} icon={'/images/stats.svg'} showActivation/>
+                <UINavLink label={"Guilde"} href={'/guilde'} icon={'/images/guild.svg'} showActivation/>
                 <UINavLink label={"Options"} href={'/options'} icon={'/images/options.svg'} showActivation/>
                 <UINavLink label={"Déconnexion"} href={'/'} icon={'/images/logout.svg'} onClick={() => disconnectMember()} />
             </>
