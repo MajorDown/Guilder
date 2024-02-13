@@ -177,3 +177,30 @@ h2 {
     justify-content: space-between;
     align-items: center;
 }
+
+.interventionCard button {
+    min-width: 0px;
+    width: 40px;
+    aspect-ratio: 1/1;
+}
+
+.interventionDetails {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+}
+
+.interventionDetails .UINavLink {
+    width: 50px;
+    height: 50px;
+}
+
+.interventionDetails .UINavLink p {
+    text-align: center;
+    font-size: x-small;
+}
+
+.interventionDetails .UINavLink img {
+    width: 15px;
+    aspect-ratio: 1/1;
+}

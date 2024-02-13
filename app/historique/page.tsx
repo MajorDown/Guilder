@@ -21,8 +21,8 @@ const Historic = () => {
         </>}
         {checkedMember && member && <>
             <p>Consultez ici l'historique des interventions vous concernant.</p>
-            <p>*Dans le cas ou vous constatez une erreur de déclaration, vous avez 
-              la possibilité de la contester si celle-ci date de maximum 48h.
+            <p>*Dans le cas ou vous constatez une erreur sur une intervention, vous avez 
+              la possibilité de contester celle-ci au maximum 48h après sa date de déclaration.
             </p>
         <InterventionsLister user={member} />
         </>}

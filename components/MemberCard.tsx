@@ -7,7 +7,6 @@ type MemberCardProps = {
   adminMode: boolean;
   member: Omit<Member, 'password'>
   onDelete: (memberName: UserMail) => void;
-
 }
 
 const MemberCard = (props: MemberCardProps) => {
