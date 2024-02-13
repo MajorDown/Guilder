@@ -28,14 +28,14 @@ const MemberCard = (props: MemberCardProps) => {
         </div>
         {props.adminMode && <div className={"memberOptions"}>
           <UIButton onClick={() => setWantHistoric(!wantHistoric)}>
-            <Image src={wantHistoric ? "/images/analyse.svg" : "/images/minimize.svg"} alt={"Voir l'historique"} width={24} height={24}/>
+            <Image src={wantHistoric ? "/images/minimize.svg" : "/images/stats.svg"} alt={"Voir l'historique"} width={24} height={24}/>
           </UIButton>
           <UIButton onClick={() => handleDeleteMember(props.member.mail)}>
             <Image src={"/images/trash.svg"} alt={"Supprimer le membre"} width={24} height={24}/>
           </UIButton>
         </div>}
       </div>
-      {wantHistoric && <div className={"memberCardHistoric"}>historic of member</div>}
+      {wantHistoric && <div className={"memberCardHistoric"}>historique (en cours de développement)</div>}
     </li>
   )
 }

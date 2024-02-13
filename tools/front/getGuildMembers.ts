@@ -1,4 +1,4 @@
-import { ConnectedAdmin, ConnectedMember, MembersList } from "@/types";
+import { ConnectedAdmin, ConnectedMember, MembersList, UserName } from "@/types";
 
 /**
  * fonction communiquant avec l'API du serveur pour récupérer une liste des membres
@@ -14,7 +14,8 @@ export const getGuildMembers = async (user: ConnectedAdmin | ConnectedMember): P
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${user.token}`,
         'X-user-Email': user.mail,
-        'X-role': user.hasOwnProperty('counter') ? 'member' : 'admin'},
+        'X-role': user.hasOwnProperty('counter') ? 'member' : 'admin',
+      }
     });
     if (!response.ok) {
       throw new Error(`Erreur côté serveur: ${response.status}`);

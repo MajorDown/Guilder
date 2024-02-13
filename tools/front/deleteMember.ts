@@ -3,13 +3,14 @@ import { ConnectedAdmin, UserMail } from "@/types";
 const deleteMember = async (memberMail: UserMail, admin: ConnectedAdmin): Promise<Response | Error> => {
     try {
         // Ajoutez memberMail comme paramètre dans l'URL
-        const url = `/api/member/delete/${encodeURIComponent(memberMail)}`;
+        const url = `/api/member/delete/`;
         const response = await fetch(url, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${admin.token}`,
                 "X-admin-Mail": `${admin.mail}`,
+                "X-memberToDelete-Mail": `${memberMail}`,
             },
         })  
         if (!response.ok) {

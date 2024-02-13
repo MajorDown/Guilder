@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import MemberCard from "@/components/MemberCard";
 import { MembersList, UserMail } from "@/types";
 import { useAdminContext } from "@/contexts/adminContext";
+import deleteMember from "@/tools/front/deleteMember";
 
 type MembersListerProps = {members: MembersList}
 
@@ -36,12 +37,19 @@ const MembersLister = (props: MembersListerProps) => {
         else setIsEmpty(true);
     }, [sortMethod, props.members]);
 
-    const handleDeleteMember = (memberMail: UserMail) => {
+    const handleDeleteMember = async (memberMail: UserMail) => {
         const confirmation = window.confirm(`La suppression d'un membre est irreversible, 
         car l'ensemble des données le concernant seront supprimées. 
         Etes-vous sûr de vouloir supprimer le membre "${memberMail}"?`);
         if (admin && confirmation) {
-            // Ajoutez le code pour supprimer le membre de la guilde
+            const request = await deleteMember(memberMail, admin);
+            if (request instanceof Error) {
+                console.error("handleDeleteMember ~> Error:", request);
+            }
+            else {
+                const newMembersList = sortedMembers.filter((member) => member.mail !== memberMail);
+                setSortedMembers(newMembersList);
+            }
         }
     }
 

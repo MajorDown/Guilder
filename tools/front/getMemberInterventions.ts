@@ -1,13 +1,14 @@
 import { ConnectedMember, ConnectedAdmin } from "@/types";
 
-const getMemberInterventiontions = async (user: ConnectedMember | ConnectedAdmin): Promise<Response | unknown> => {
+const getMemberInterventiontions = async (user: ConnectedMember | ConnectedAdmin, numberOfInterventions?: number): Promise<Response | unknown> => {
   try {
     const response = await fetch(`/api/interventions/get?user=${encodeURIComponent(user.name)}`, {
       method: "GET",
       headers: {
         'Authorization': `Bearer ${user.token}`,
         'X-user-Mail': user.mail,
-        'X-user-Role': user.hasOwnProperty('counter') ? 'member' : 'admin'
+        'X-user-Role': user.hasOwnProperty('counter') ? 'member' : 'admin',
+        'X-number-Of-Interventions': numberOfInterventions ? numberOfInterventions.toString() : ''
       },
     });  
     if (!response.ok) {

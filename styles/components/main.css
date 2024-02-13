@@ -156,6 +156,13 @@ h2 {
 
 /**********INTERVENTIONS************************************/
 
+#interventionsLister {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .interventionCard {
     list-style: none;
     border: solid 3px var(--font-color-1);

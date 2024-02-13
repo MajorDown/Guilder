@@ -23,11 +23,15 @@ export async function GET(request: Request) {
     // RECUPERATION DES INTERVENTIONS
     let interventionsList : MemberInterventions = [];
     const interventionsAsWorker = await InterventionModel.find({worker: userName});
-    console.log('en tant que worker :', interventionsAsWorker);
     const interventionsAsPayer = await InterventionModel.find({payer: userName}); 
-    console.log('en tant que payer :', interventionsAsPayer);
     interventionsList =  [...interventionsAsWorker, ...interventionsAsPayer];
-    console.log('total :', interventionsList);
+    // TRIER PAR INTERVENTIONDATE
+    interventionsList.sort((a, b) => a.interventionDate.localeCompare(b.interventionDate));
+    // NE GARDER QUE LES PLUS RECENTS (SI DEMANDE)
+    const numberOfInterventions = parseInt(request.headers.get('X-number-Of-Interventions') as string);
+    if (numberOfInterventions && interventionsList.length > numberOfInterventions) {
+        interventionsList = interventionsList.slice(interventionsList.length - numberOfInterventions);
+    };
     return NextResponse.json(interventionsList, { status: 200 });
   } catch (error) {
   // SI ERREUR
