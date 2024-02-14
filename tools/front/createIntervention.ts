@@ -13,7 +13,7 @@ const createIntervention = async (intervention: Intervention, member: ConnectedM
         body: JSON.stringify(intervention),
       });  
       if (!response.ok) {
-        throw new Error(`createOperation ~> Request failed with status ${response.status} : ${response.body}`);
+        throw new Error(`createIntervention ~> Request failed with status ${response.status} : ${response.body}`);
       }  
       const data: UserCounter = await response.json();
       return data;
