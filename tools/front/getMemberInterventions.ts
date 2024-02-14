@@ -16,7 +16,7 @@ const getMemberInterventiontions = async (user: ConnectedMember | ConnectedAdmin
     }  
     return response.json();
   } catch (error) {
-    console.error("Error searching operation:", error);
+    console.error("Error searching interventions:", error);
     return error;
   }
 };

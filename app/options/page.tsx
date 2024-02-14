@@ -4,6 +4,7 @@ import PasswordUpdater from "@/components/PasswordUpdater";
 import { useMemberContext } from "@/contexts/memberContext";
 import { useAdminContext } from "@/contexts/adminContext";
 import UINavLink from '@/components/UI/UINavLink';
+import ContestationLister from '@/components/ContestationLister';
 
 /**
  * @module Parameters
@@ -20,7 +21,10 @@ const Parameters = () => {
   return (
     <section id="parametersSection">
         <h2>Paramètres de votre compte</h2>
-        <p>Modifiez ici vos informations</p>
+        {checkedLogin && !admin && !member && <>
+            <p>Vous devez être connecté pour accéder à cette page !</p>
+            <UINavLink label={"Se Connecter"} href={'/connexion'} icon={'/images/user.svg'} />
+        </>}
         {(admin || member) && (<div>
             <PasswordUpdater 
               status={admin ? "admin" : "member"} 
@@ -30,10 +34,10 @@ const Parameters = () => {
               }} 
             />
         </div>)}
-        {checkedLogin && !admin && !member && <>
-            <p>Vous devez être connecté pour accéder à cette page !</p>
-            <UINavLink label={"Se Connecter"} href={'/connexion'} icon={'/images/user.svg'} />
+        {member && <>
+            <ContestationLister member={member} />
         </>}
+
     </section>
   )
 }
