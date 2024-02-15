@@ -2,7 +2,7 @@ import { ConnectedMember, Contestation } from "@/types";
 
 const getMemberContestations = async (member: ConnectedMember): Promise<Contestation[] | undefined> => {
   try {
-    const response = await fetch(`/api/contestation/get?user=${encodeURIComponent(member.name)}`, {
+    const response = await fetch(`/api/contestation/get?member=${encodeURIComponent(member.name)}`, {
       method: "GET",
       headers: {
         'Authorization': `Bearer ${member.token}`,

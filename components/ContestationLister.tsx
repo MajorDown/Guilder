@@ -12,18 +12,29 @@ const ContestationLister = (props : ContestationListerProps) => {
 
     useEffect(() => {
         if (!props.member) return;
+    
         const getContestations = async () => {
             const contestations = await getMemberContestations(props.member);
+            console.log("Contestations récupérées :", contestations);
             if (contestations) {
+                // Contestations où le membre est le contester
                 const memberContestation = contestations.filter((contestation: Contestation) => contestation.contester === props.member.name);
                 setYourContestations(memberContestation);
-                const restOfContestations = contestations.filter((contestation: Contestation) => contestation.contestedIntervention.worker == props.member.name);
+                console.log("Vos contestations :", memberContestation);
+    
+                // ContestationDates uniques des contestations déjà ajoutées
+                const addedContestationDates = new Set(memberContestation.map((contestation: Contestation) => contestation.contestationDate));
+    
+                // Contestations où le membre est worker ou payer, mais pas déjà inclus
+                const restOfContestations = contestations.filter((contestation: Contestation) => {
+                    return (contestation.contestedIntervention.worker === props.member.name || contestation.contestedIntervention.payer === props.member.name) && !addedContestationDates.has(contestation.contestationDate);
+                });
                 setOthersContestations(restOfContestations);
+                console.log("Autres contestations :", restOfContestations);
             }
         }
         getContestations();
-    }, [props.member])
-    
+    }, [props.member]);  
     
     return (
         <div className={"contestationLister"}>
@@ -55,6 +66,7 @@ const ContestationLister = (props : ContestationListerProps) => {
                     })}
                 </ul>
             </>}
+            {othersContestations === null && <p>Personne n'a contesté vos déclarations</p>}
 
         </div>
   )
