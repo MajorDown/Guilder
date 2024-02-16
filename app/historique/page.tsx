@@ -24,7 +24,7 @@ const Historic = () => {
             <p>*Dans le cas ou vous constatez une erreur sur une intervention, vous avez 
               la possibilité de contester celle-ci au maximum 48h après sa date de déclaration.
             </p>
-        <InterventionsLister user={member} />
+            <InterventionsLister user={member} />
         </>}
     </section>
   )

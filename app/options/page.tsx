@@ -5,6 +5,7 @@ import { useMemberContext } from "@/contexts/memberContext";
 import { useAdminContext } from "@/contexts/adminContext";
 import UINavLink from '@/components/UI/UINavLink';
 import ContestationLister from '@/components/ContestationLister';
+import UIButton from '@/components/UI/UIButton';
 
 /**
  * @module Parameters
@@ -13,6 +14,7 @@ const Parameters = () => {
     const {member} = useMemberContext();
     const {admin} = useAdminContext();
     const [checkedLogin, setCheckedLogin] = useState(false);
+    const [selectedTab, setSelectedTab] = useState<"password" | "contestation" | null>(null);
 
     useEffect(() => {
       setCheckedLogin(true);
@@ -20,23 +22,26 @@ const Parameters = () => {
 
   return (
     <section id="parametersSection">
-        <h2>Paramètres de votre compte</h2>
+        <h2>Paramètres</h2>
         {checkedLogin && !admin && !member && <>
             <p>Vous devez être connecté pour accéder à cette page !</p>
             <UINavLink label={"Se Connecter"} href={'/connexion'} icon={'/images/user.svg'} />
         </>}
         {(admin || member) && (<div>
-            <PasswordUpdater 
+            <p>Que souhaitez-vous faire ?</p>
+            <div className={"tabsLister"}>
+              <UIButton onClick={() => setSelectedTab("contestation")}>Consulter mes contestations</UIButton>
+              {member && <UIButton onClick={() => setSelectedTab("password")}>Modifier mon mot de passe</UIButton>}
+            </div>
+            {selectedTab === "password" && <PasswordUpdater 
               status={admin ? "admin" : "member"} 
               user={{
                   mail: admin?.mail || member?.mail,
                   token: admin?.token || member?.token
               }} 
-            />
+            />}
+            {member && selectedTab === "contestation" && <ContestationLister member={member} />}
         </div>)}
-        {member && <>
-            <ContestationLister member={member} />
-        </>}
 
     </section>
   )

@@ -24,9 +24,6 @@ export async function GET(request: Request) {
         const memberContestations = await ContestationModel.find({ contester: memberName });
         const contestationsIncludingMemberAsWorker = await ContestationModel.find({ "contestedIntervention.worker": memberName });
         const contestationsIncludingMemberAsPayer = await ContestationModel.find({ "contestedIntervention.payer": memberName });
-        console.log("api/contestation/get ~> memberContestations :", memberContestations);
-        console.log("api/contestation/get ~> contestationsIncludingMemberAsWorker :", contestationsIncludingMemberAsWorker);
-        console.log("api/contestation/get ~> contestationsIncludingMemberAsPayer :", contestationsIncludingMemberAsPayer);
         // Fusion des tableaux
         const allContestations = memberContestations
         .concat(contestationsIncludingMemberAsWorker)

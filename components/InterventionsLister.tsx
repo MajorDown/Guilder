@@ -15,11 +15,9 @@ const InterventionsLister = (props: InterventionsListerProps) => {
         if (props.user) {
           const getInterventions = async () => {
             const response = await getMemberInterventions(props.user);
-            if (Array.isArray(response)) { // Check if response is an array
+            if (Array.isArray(response)) {
               console.log(response);
-              // Assure-toi que la réponse est un tableau avant de tenter de trier
               const sortedInterventions = [...response].sort((a, b) => {
-                // Convertit les dates en objets Date pour les comparer
                 return new Date(b.interventionDate).getTime() - new Date(a.interventionDate).getTime();
               });
               setInterventionsList(sortedInterventions as MemberInterventions);
@@ -31,7 +29,7 @@ const InterventionsLister = (props: InterventionsListerProps) => {
     
     return (
       <div id="interventionsLister">
-        {'counter' in props.user && <p>Le solde actuel de votre compteur est de : {props.user.counter.toFixed(2)} points</p>}
+        {'counter' in props.user && <p>Le solde actuel de votre compteur est de : <b>{props.user.counter.toFixed(2)} points</b></p>}
         {interventionsList && interventionsList[0] ? <ul>
           {interventionsList && interventionsList.map((intervention, index) => 
           (<InterventionCard key={index} intervention={intervention} role={"member"} user={props.user}/>))}
