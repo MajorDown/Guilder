@@ -62,7 +62,7 @@ export type Intervention = {
     worker: UserName,
     payer: UserName,
     hours: InterventionHours,
-    options: {option: string, coef: number}[];
+    options: {option: string, coef: number}[] | string[]
     description: string;
     imagesUrls?: string[];
 }
@@ -80,6 +80,16 @@ export type GuildConfig = {
     }[]
 }
 
+export type Contestation = {
+    contestationDate: string // format YYYY-MM-DD-HH-MM-SS-MMM
+    contester: UserName,
+    contesterMessage: string,
+    contestedIntervention: Intervention,
+    adminConclusion: 'accordé' | 'refusé' | 'en attente';
+    adminMessage?: string;
+    guild: Guild;
+}
+
 /*
  * fonction de vérification du format
  * @param {RegExp} regex - L'expression régulière à utiliser pour la vérification.
@@ -92,4 +102,5 @@ export const isFormatted = (toValidate: string, regex: RegExp): boolean => {
 }
 
 export const interventionDateFormat: RegExp = /^\d{4}-\d{2}-\d{2}$/;
+
 

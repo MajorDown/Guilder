@@ -30,8 +30,8 @@ const Parameters = () => {
         {(admin || member) && (<div>
             <p>Que souhaitez-vous faire ?</p>
             <div className={"tabsLister"}>
-              <UIButton onClick={() => setSelectedTab("contestation")}>Consulter mes contestations</UIButton>
-              {member && <UIButton onClick={() => setSelectedTab("password")}>Modifier mon mot de passe</UIButton>}
+              {member && <UIButton onClick={() => setSelectedTab("contestation")}>Consulter mes contestations</UIButton>}
+              <UIButton onClick={() => setSelectedTab("password")}>Modifier mon mot de passe</UIButton>
             </div>
             {selectedTab === "password" && <PasswordUpdater 
               status={admin ? "admin" : "member"} 
@@ -42,7 +42,6 @@ const Parameters = () => {
             />}
             {member && selectedTab === "contestation" && <ContestationLister member={member} />}
         </div>)}
-
     </section>
   )
 }

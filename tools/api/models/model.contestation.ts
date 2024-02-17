@@ -7,7 +7,8 @@ const ContestationSchema = new mongoose.Schema({
   contesterMessage: { type: String, required: true},
   contestedIntervention: { type: Object, required: true},
   adminConclusion: { type: String, required: true},
-  adminMessage: { type: String, required: false}
+  adminMessage: { type: String, required: false},
+  guild: { type: String, required: true},
 })
 
 ContestationSchema.plugin(uniqueValidator);

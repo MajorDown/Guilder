@@ -254,3 +254,53 @@ h2 {
     width: 15px;
     aspect-ratio: 1/1;
 }
+
+/**********ARBITRAGE****************************************/
+
+.contestationArbCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    border: solid 3px var(--font-color-1);
+    border-radius: var(--border-radius-absolute);
+    margin: 5px;
+    padding: 5px;
+}
+
+.contestationTitle {
+    width: 900px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contestationTitle button {
+    min-width: 0px;
+    width: 40px;
+    aspect-ratio: 1/1;
+}
+
+.contestedIntervention {
+    width: 800px;
+    margin: 5px;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    border-top: solid 3px var(--font-color-1);
+}
+
+.contestedIntervention .UINavLink {
+    width: 40px;
+    height: 40px;
+}
+
+.contestedIntervention .UINavLink p {
+    text-align: center;
+    font-size: x-small;
+}
+
+.contestedIntervention .UINavLink img {
+    width: 20px;
+    aspect-ratio: 1/1;
+}

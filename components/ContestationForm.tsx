@@ -27,7 +27,8 @@ const ContestationForm = (props : ContestationFormProps) => {
                 contesterMessage: contesterMessage,
                 contestedIntervention: props.contestedIntervention,
                 adminConclusion: "en attente",
-                adminMessage: ""
+                adminMessage: "",
+                guild: props.member.guild
             }
             const response = await createContestation(request, props.member);
             if (response != undefined) {

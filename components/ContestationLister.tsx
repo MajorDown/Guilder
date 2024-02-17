@@ -13,9 +13,7 @@ const ContestationLister = (props : ContestationListerProps) => {
     const [yourContestations, setYourContestations] = useState<Contestation[] | null>();
     const [othersContestations, setOthersContestations] = useState<Contestation[] | null>();
 
-    useEffect(() => {
-        if (!props.member) return;
-    
+    useEffect(() => {   
         const getContestations = async () => {
             const contestations = await getMemberContestations(props.member);
             if (contestations) {
