@@ -1,8 +1,9 @@
 import getGuildConfig from '@/tools/front/getGuildConfig';
 import { getGuildMembers } from '@/tools/front/getGuildMembers';
 import { ConnectedAdmin, Contestation, GuildConfig, InterventionHours, MembersList, UserName } from '@/types';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import UIButton from './UI/UIButton';
+import { interventionDateFormat, isFormatted } from '@/tools/isFormatted';
 
 export type interventionModifierProps = {
     admin: ConnectedAdmin;
@@ -12,12 +13,12 @@ export type interventionModifierProps = {
 const InterventionModifier = (props: interventionModifierProps) => {
     const [guildMembers, setGuildMembers] = useState<MembersList | null>();
     const [configsList, setConfigsList] = useState<GuildConfig | null>();
-    const [interventionDate, setInterventionDate] = useState<string>();
-    const [worker, setWorker] = useState<UserName>();
-    const [payer, setPayer] = useState<UserName>();
+    const [interventionDate, setInterventionDate] = useState<string>(props.contestation.contestedIntervention.interventionDate);
+    const [worker, setWorker] = useState<UserName>(props.contestation.contestedIntervention.worker);
+    const [payer, setPayer] = useState<UserName>(props.contestation.contestedIntervention.payer);
     const [hours, setHours] = useState<InterventionHours>(props.contestation.contestedIntervention.hours);
     const [checkedConfigOptions, setCheckedConfigOptions] = useState<string[]>([]);
-    const [description, setDescription] = useState<string>();
+    const [description, setDescription] = useState<string>(props.contestation.contestedIntervention.description);
 
     useEffect(() => {
         //RECUPERATION DE LA LISTE DES MEMBRES DE LA GUILDE
@@ -62,12 +63,13 @@ const InterventionModifier = (props: interventionModifierProps) => {
     }
     
     return (
-        <div id={"contestationmodifier"}>
+        <div id={"interventionModifier"}>
+            <p>{props.contestation.contester} : "{props.contestation.contesterMessage}"</p>
             <div className={"dataModifier workerModifier"}>
                 <label htmlFor="workerInput">Membre Déclarant :</label>
                 <select 
                     id="workerInput"
-                    value={props.contestation.contestedIntervention.worker}
+                    value={worker}
                     onChange={(event) => setWorker(event.target.value as UserName)}
                 >
                     {guildMembers && guildMembers.map((member) => (
@@ -79,7 +81,7 @@ const InterventionModifier = (props: interventionModifierProps) => {
                 <label htmlFor="payerInput">Membre Payeur :</label>
                 <select 
                     id="payerInput"
-                    value={props.contestation.contestedIntervention.payer}
+                    value={payer}
                     onChange={(event) => setPayer(event.target.value as UserName)}
                 >
                     {guildMembers && guildMembers.map((member) => (
@@ -119,6 +121,27 @@ const InterventionModifier = (props: interventionModifierProps) => {
                     ))}
                 </div>
             </div>
+            <div className={"dataModifier dateModifier"}>
+                <label htmlFor="dateinput">A quelle date a été réalisé l'intervntion ?</label>
+                <input 
+                    type="date" 
+                    id="dateInput" 
+                    value={interventionDate}
+                    onChange={(event) => {
+                        if (isFormatted(event.target.value, interventionDateFormat)) setInterventionDate(event.target.value)
+                    } }
+                    required
+                />
+            </div>
+            <div className={"dataModifier descriptionModifier"}>
+                <label htmlFor="descriptionInput">Description de l'intervention :</label>
+                <textarea 
+                    id="descriptionInput"
+                    value={description}
+                    onChange={(event) => setDescription(event.target.value)}
+                />
+            </div>
+            <UIButton type={"submit"}>Enregistrer les modifications</UIButton>
         </div>
   )
 }

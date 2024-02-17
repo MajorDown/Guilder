@@ -307,9 +307,17 @@ h2 {
 
 /**********INTERVENTIONMODIFIER******************************/
 
+#interventionModifier {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
 .dataModifier {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     gap: 5px;
 }

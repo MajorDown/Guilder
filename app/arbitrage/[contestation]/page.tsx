@@ -37,11 +37,9 @@ const Modification = (props: ModificationProps) => {
                 <p>Vous devez être connecté pour accéder à cette page !</p>
                 <UINavLink label={"Se Connecter"} href={'/connexion'} icon={'/images/user.svg'} />
             </>}
-            {checkedAdmin && admin && <>
-                <p>Vous avez constaté une erreur dans cette déclaration ?</p>
-                <p>Vous avez la possibilité de la contester si celle-ci date de maximum 48h.</p>
-                {contestation &&<InterventionModifier admin={admin} contestation={contestation} />}
-            </>} 
+            {checkedAdmin && admin && contestation &&
+                <InterventionModifier admin={admin} contestation={contestation} />
+            } 
         </section>
     )
 }
