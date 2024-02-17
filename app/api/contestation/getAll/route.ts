@@ -21,7 +21,9 @@ export async function GET(request: Request) {
         }
         // RECUPERATION DES CONTESTATIONS
         const contestations = await ContestationModel.find({ guild: guildName });
-        return NextResponse.json(contestations, { status: 200 });
+        // FILTRER LES CONTESTATIONS PAR STATUS "EN ATTENTE"
+        const waitingContestations = contestations.filter((contestation) => contestation.adminConclusion === "en attente");
+        return NextResponse.json(waitingContestations, { status: 200 });
     }
     // GESTION DES ERREURS
     catch (error) {

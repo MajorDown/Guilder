@@ -304,3 +304,18 @@ h2 {
     width: 20px;
     aspect-ratio: 1/1;
 }
+
+/**********INTERVENTIONMODIFIER******************************/
+
+.dataModifier {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+}
+
+.dataModifier div {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
