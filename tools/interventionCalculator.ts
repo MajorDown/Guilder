@@ -14,7 +14,7 @@ const interventionCalculator = (intervention: Intervention): number => {
             total += (hours * option.coef) as number;
         }
     });
-    return parseInt(total.toFixed(2));
+    return parseFloat(total.toFixed(2));
 };
 
 export default interventionCalculator;

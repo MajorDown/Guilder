@@ -10,7 +10,6 @@ import getGuildConfig from '@/tools/front/getGuildConfig';
 import UIButton from './UI/UIButton';
 import UINavLink from './UI/UINavLink';
 
-//JSDoc
 /**
  * gère le formulaire de déclaration d'intervention
  * 

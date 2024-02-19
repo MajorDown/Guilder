@@ -13,7 +13,8 @@ header {
 h1 {
     font-size: var(--title-font-size-desktop);
     line-height: var(--title-font-size-desktop);
-    text-align: center;
+    text-transform: uppercase;
+    padding-top: 5px;
 }
 
 #appOptions {
