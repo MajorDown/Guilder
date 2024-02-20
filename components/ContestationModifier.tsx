@@ -99,7 +99,7 @@ const InterventionModifier = (props: interventionModifierProps) => {
         }
         const response = await updateIntervention(props.admin, updatedContestation);
         if (response) {
-            console.log("Intervention statuée avec succès avec succès !");
+            console.log("Intervention statuée avec succès !");
             setHasUpdate(true);
         }
     }

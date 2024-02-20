@@ -1,7 +1,7 @@
-import { ConnectedAdmin, Contestation, Intervention } from "@/types";
+import { ConnectedAdmin, Contestation } from "@/types";
 
 /**
- * Effectue une requête UPDATE vers l'endpoint "/api/guildConfig/update" avec les données fournies.
+ * Effectue une requête UPDATE vers l'endpoint "/api/interventions/update" avec les données fournies.
  * @param {FormData} formData - Les données du formulaire à envoyer.
  * @returns {Promise<Response | Error>} Une promesse qui résout avec l'objet Response en cas de réussite,
  * ou résout avec undefined en cas d'échec.
