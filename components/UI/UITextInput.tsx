@@ -37,8 +37,8 @@ const UITextInput = (props: UITextInputProps) => {
 
     useEffect(() => {
         if(value === '') setError(false);
-        if(!props.conditions.regex.test(value)) setError(true);
-        if(props.conditions.regex.test(value)) setError(false);
+        else if (!props.conditions.regex.test(value)) setError(true);
+        if (props.conditions.regex.test(value)) setError(false);
         props.onChangeInputValue && props.onChangeInputValue(value);
     }, [value])
 

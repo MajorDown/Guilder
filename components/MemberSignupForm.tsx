@@ -51,7 +51,7 @@ const MemberSignupForm = (props: MemberSignupFormProps ) => {
           <UIButton onClick={() => setHasSignup(false)}>Créer un autre membre</UIButton>
         </> : <>
           <label htmlFor="inputMail">Email du nouveau membre : (ex: jeandupont@gemail.net)</label>
-          <UIEmailInput inputRef={mailRef} name="inputMail" required/>
+          <UIEmailInput inputRef={mailRef} name="inputMail" placeholder='son adresse mail' required/>
           <label htmlFor="inputFirstName">Son prénom :</label>
           <UIFirstnameInput inputRef={firstnameRef} name="inputFirstName" required/>
           <label htmlFor="inputLaststName">Son nom de famille :</label>
