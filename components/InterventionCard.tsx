@@ -11,6 +11,15 @@ type interventionCardProps = {
 
 }
 
+/**
+ * @function InterventionCard
+ * @description Composant pour une carte d'intervention.
+ * @param {interventionCardProps} props - Les props du composant.
+ * @param {Intervention} props.intervention - L'intervention à afficher.
+ * @param {UserStatus} props.role - Le rôle de l'utilisateur.
+ * @param {ConnectedMember | ConnectedAdmin} props.user - L'utilisateur connecté.
+ * @returns {JSX.Element} Une carte d'intervention.
+ */
 const InterventionCard = (props: interventionCardProps) => {
     const [wantDetails, setWantDetails] = useState(false);
     const [dateDisplay, setDateDisplay] = useState<string>();
@@ -40,7 +49,6 @@ const InterventionCard = (props: interventionCardProps) => {
         // CALCUL DE ISTOOLATE
         // Conversion de declarationDate en objet Date
         const declarationDateTimeParts = props.intervention.declarationDate.split('-');
-        // Notez que les mois dans JS sont indexés à partir de 0, donc janvier = 0, février = 1, etc.// YYYY-MM-DD-HH-MM-SS-MMM, donc l'index [0] est l'année, [1] le mois, [2] le jour, [3] l'heure, [4] les minutes.
         const formattedDeclarationDate = new Date(Date.UTC(
             parseInt(declarationDateTimeParts[0], 10), // Année
             parseInt(declarationDateTimeParts[1], 10) - 1, // Mois, ajusté pour l'indexation à partir de 0

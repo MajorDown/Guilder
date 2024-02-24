@@ -3,12 +3,21 @@ import { Member, UserMail } from "@/types";
 import UIButton from "./UI/UIButton";
 import Image from "next/image";
 
-type MemberCardProps = {
+export type MemberCardProps = {
   adminMode: boolean;
   member: Omit<Member, 'password'>
   onDelete: (memberName: UserMail) => void;
 }
 
+/**
+ * @function MemberCard
+ * @description Composant pour une carte de membre.
+ * @param {MemberCardProps} props - Les props du composant.
+ * @param {boolean} props.adminMode - Le mode administrateur.
+ * @param {Member} props.member - Le membre à afficher.
+ * @param {(memberName: UserMail) => void} props.onDelete - La fonction de suppression d'un membre.
+ * @returns {JSX.Element} Une carte de membre.
+ */
 const MemberCard = (props: MemberCardProps) => {
   const [wantHistoric, setWantHistoric] = useState<boolean>(false);
 

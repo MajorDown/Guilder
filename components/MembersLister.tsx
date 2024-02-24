@@ -4,8 +4,15 @@ import { MembersList, UserMail } from "@/types";
 import { useAdminContext } from "@/contexts/adminContext";
 import deleteMember from "@/tools/front/deleteMember";
 
-type MembersListerProps = {members: MembersList}
+export type MembersListerProps = {members: MembersList}
 
+/**
+ * @function MembersLister
+ * @description Composant pour lister les membres de la guilde.
+ * @param {MembersListerProps} props - Les props du composant.
+ * @param {MembersList} props.members - La liste des membres de la guilde.
+ * @returns {JSX.Element} La liste des membres de la guilde.
+ */
 const MembersLister = (props: MembersListerProps) => {
     const {admin} = useAdminContext();
     const [isEmpty, setIsEmpty] = useState<boolean>(false);

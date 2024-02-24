@@ -11,9 +11,9 @@ import UIButton from './UI/UIButton';
 import UINavLink from './UI/UINavLink';
 
 /**
- * gère le formulaire de déclaration d'intervention
- * 
- * @property {ConnectedMember} member - The connected member
+ * @function InterventionForm
+ * @description Composant pour un formulaire de déclaration d'intervention.
+ * @returns {JSX.Element} Un formulaire de déclaration d'intervention.
  */
 const InterventionForm = () => {
     const {member, updateMember} = useMemberContext();

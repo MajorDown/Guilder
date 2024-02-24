@@ -13,6 +13,14 @@ export type MemberSignupFormProps = {
     onSignup: () => void;
 }
 
+/**
+ * @function MemberSignupForm
+ * @description Composant pour un formulaire d'inscription d'un membre.
+ * @param {MemberSignupFormProps} props - Les props du composant.
+ * @param {ConnectedAdmin} props.admin - L'admin connecté.
+ * @param {function} props.onSignup - La fonction à appeler après inscription.
+ * @returns {JSX.Element} Un formulaire d'inscription d'un membre.
+ */
 const MemberSignupForm = (props: MemberSignupFormProps ) => {
     const [errMessage, setErrMessage] = useState<string>("");
     const [hasSignup, setHasSignup] = useState<boolean>(false);

@@ -22,9 +22,12 @@ export type PasswordUpdaterProps = {
 }
 
 /**
- * @module PasswordUpdater
- * 
- * @param {PasswordUpdaterProps} props
+ * @function PasswordUpdater
+ * @description Composant pour la mise à jour du mot de passe.
+ * @param {PasswordUpdaterProps} props - Les props du composant.
+ * @param {UserStatus} props.status - Le status de l'utilisateur.
+ * @param {{mail: string, token: string}} props.user - L'utilisateur.
+ * @returns {JSX.Element} Un formulaire de mise à jour du mot de passe.
  */
 const PasswordUpdater = (props: PasswordUpdaterProps) => {
     const lastPasswordRef = useRef<HTMLInputElement>(null);

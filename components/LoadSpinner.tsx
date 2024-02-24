@@ -4,6 +4,13 @@ export type LoadSpinnerProps = {
   message?: string;
 }
 
+/**
+ * @function LoadSpinner
+ * @description Composant pour un spinner de chargement.
+ * @param {LoadSpinnerProps} props - Les props du composant.
+ * @param {string} props.message - Le message à afficher.
+ * @returns {JSX.Element} Un spinner de chargement.
+ */
 const LoadSpinner = (props: LoadSpinnerProps) => {
   return (<>
     {props.message && <p>{props.message}</p>}

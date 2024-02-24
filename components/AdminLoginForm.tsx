@@ -11,7 +11,7 @@ import LoadSpinner from './LoadSpinner';
 /**
  * Composant pour un formulaire de connexion d'administrateur.
  *
- * @returns {JSX.Element} Un formulaire de connexion d'administrateur.
+ * @returns {JSX.Element} Un formulaire de connexion d'admin.
  */
 const AdminLoginForm = () => {
   const router = useRouter()

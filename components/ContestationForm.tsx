@@ -10,6 +10,15 @@ export type ContestationFormProps = {
     member: ConnectedMember
 }
 
+/**
+ * @function ContestationForm
+ * @description Composant pour un formulaire de contestation.
+ * @param {ContestationFormProps} props - Les props du composant.
+ * @param {Intervention} props.contestedIntervention - L'intervention contestée.
+ * @param {ConnectedMember} props.member - Le membre connecté.
+ * 
+ * @returns {JSX.Element} Un formulaire de contestation.
+ */
 const ContestationForm = (props : ContestationFormProps) => {
     const [contesterMessage, setContesterMessage] = useState<string>("");
     const [isSending, setIsSending] = useState<boolean>(false);

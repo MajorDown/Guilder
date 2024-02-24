@@ -2,6 +2,11 @@
 import { useAdminContext } from '@/contexts/adminContext';
 import { useMemberContext } from '@/contexts/memberContext';
 
+/**
+ * @function Welcomer
+ * @description Composant pour accueillir l'utilisateur.
+ * @returns {JSX.Element} Un message de bienvenue.
+ */
 const Welcomer = () => {
   const {admin} = useAdminContext();
   const {member} = useMemberContext();

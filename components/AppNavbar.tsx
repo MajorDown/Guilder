@@ -5,6 +5,11 @@ import { useAdminContext } from '@/contexts/adminContext';
 import { useMemberContext } from '@/contexts/memberContext';
 import UINavLink from './UI/UINavLink';
 
+/**
+ * @function AppNavbar
+ * @description NavBar conditionnelle de l'application.
+ * @returns {JSX.Element} La NavBar de l'application.
+ */
 const AppNavbar = () => {
     const {admin, updateAdmin} = useAdminContext();
     const {member, updateMember} = useMemberContext();

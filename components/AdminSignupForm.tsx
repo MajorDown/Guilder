@@ -12,6 +12,11 @@ import UIButton from './UI/UIButton';
 import UIGuildNameInput from './UI/UIGuildNameInput';
 import UIPasswordValidator from './UI/UIPasswordValidator';
 
+/**
+ * Composant pour un formulaire d'inscription d'administrateur.
+ *
+ * @returns {JSX.Element} Un formulaire d'inscription d'admin.
+ */
 const AdminSignupForm = () => {
     const [errMessage, setErrMessage] = useState<string>("");
     const [hasSignup, setHasSignup] = useState<boolean>(false);

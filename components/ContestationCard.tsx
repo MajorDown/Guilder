@@ -7,6 +7,13 @@ export type ContestationCardProps = {
     contestation: Contestation
 }
 
+/**
+ * @function ContestationCard
+ * @description Composant pour une carte de contestation.
+ * @param {ContestationCardProps} props - Les props du composant.
+ * @param {Contestation} props.contestation - La contestation à afficher.
+ * @returns {JSX.Element} Une carte de contestation.
+ */
 const ContestationCard = (props: ContestationCardProps) => {
     const [wantDetails, setWantDetails] = useState<boolean>(false);
     

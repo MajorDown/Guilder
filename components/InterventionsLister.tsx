@@ -8,6 +8,13 @@ export type InterventionsListerProps = {
   user : ConnectedMember | ConnectedAdmin
 }
 
+/**
+ * @function InterventionsLister
+ * @description Composant pour lister les interventions d'un membre.
+ * @param {InterventionsListerProps} props - Les props du composant.
+ * @param {ConnectedMember} props.user - Le membre connecté.
+ * @returns {JSX.Element} La liste des interventions du membre.
+ */
 const InterventionsLister = (props: InterventionsListerProps) => {
     const [interventionsList, setInterventionsList] = useState<MemberInterventions>();
   

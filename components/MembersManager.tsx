@@ -11,9 +11,11 @@ export type MembersManagerProps = {
 }
 
 /**
- * @module MembersManager
- * 
- * Permet de gérer les membres de la guilde.
+ * @function MembersManager
+ * @description Composant pour la gestion des membres.
+ * @param {MembersManagerProps} props - Les props du composant.
+ * @param {ConnectedAdmin} props.admin - L'admin connecté.
+ * @returns {JSX.Element} La gestion des membres.
  */
 const MembersManager = (props: MembersManagerProps) => {
     const [wantNewMember, setWantNewMember] = useState<boolean>(false);

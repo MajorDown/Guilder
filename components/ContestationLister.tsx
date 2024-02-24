@@ -8,6 +8,13 @@ export type ContestationListerProps = {
     member: ConnectedMember;
 }
 
+/**
+ * @function ContestationLister
+ * @description Composant pour lister les contestations d'un membre.
+ * @param {ContestationListerProps} props - Les props du composant.
+ * @param {ConnectedMember} props.member - Le membre connecté.
+ * @returns {JSX.Element} La liste des contestations du membre.
+ */
 const ContestationLister = (props : ContestationListerProps) => {
     const [isSearching, setIsSearching] = useState<boolean>(true);
     const [yourContestations, setYourContestations] = useState<Contestation[] | null>();

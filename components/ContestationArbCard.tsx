@@ -8,6 +8,11 @@ export type ContestationCardProps = {
     contestation: Contestation
 }
 
+/**
+ * @function ContestationArbCard
+ * @description Composant pour une carte de contestation pour l'arbitrage.
+ * @param {ContestationCardProps} props - Les props du composant.
+ */
 const ContestationArbCard = (props: ContestationCardProps) => {
     const [wantDetails, setWantDetails] = useState<boolean>(false);
     

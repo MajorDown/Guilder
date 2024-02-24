@@ -12,6 +12,14 @@ export type interventionModifierProps = {
     contestation: Contestation;
 }
 
+/**
+ * @function InterventionModifier
+ * @description Composant pour modifier une intervention contestée.
+ * @param {interventionModifierProps} props - Les props du composant.
+ * @param {ConnectedAdmin} props.admin - L'admin connecté.
+ * @param {Contestation} props.contestation - La contestation à modifier.
+ * @returns {JSX.Element} Un formulaire pour modifier une intervention contestée.
+ */
 const InterventionModifier = (props: interventionModifierProps) => {
     const [guildMembers, setGuildMembers] = useState<MembersList | null>();
     const [configsList, setConfigsList] = useState<GuildConfig | null>();
