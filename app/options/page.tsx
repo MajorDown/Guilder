@@ -33,14 +33,16 @@ const Parameters = () => {
               {member && <UIButton onClick={() => setSelectedTab("contestation")}>Consulter mes contestations</UIButton>}
               <UIButton onClick={() => setSelectedTab("password")}>Modifier mon mot de passe</UIButton>
             </div>
-            {selectedTab === "password" && <PasswordUpdater 
-              status={admin ? "admin" : "member"} 
-              user={{
+            <div>
+              {selectedTab === "password" && <PasswordUpdater 
+                status={admin ? "admin" : "member"} 
+                user={{
                   mail: admin?.mail || member?.mail,
                   token: admin?.token || member?.token
-              }} 
-            />}
-            {member && selectedTab === "contestation" && <ContestationLister member={member} />}
+                }} 
+              />}
+              {member && selectedTab === "contestation" && <ContestationLister member={member} />}
+            </div>
         </div>)}
     </section>
   )
