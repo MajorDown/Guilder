@@ -1,5 +1,12 @@
 import { ConnectedMember, ConnectedAdmin } from "@/types";
 
+/**
+ * Récupère les interventions d'un membre
+ * 
+ * @param {ConnectedMember | ConnectedAdmin} user
+ * @param {number} numberOfInterventions
+ * @returns {Promise<Response | unknown>}
+ */
 const getMemberInterventiontions = async (user: ConnectedMember | ConnectedAdmin, numberOfInterventions?: number): Promise<Response | unknown> => {
   try {
     const response = await fetch(`/api/interventions/get?user=${encodeURIComponent(user.name)}`, {

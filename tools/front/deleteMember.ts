@@ -1,5 +1,12 @@
 import { ConnectedAdmin, UserMail } from "@/types";
 
+/**
+ * Supprime un membre
+ * 
+ * @param {UserMail} memberMail
+ * @param {ConnectedAdmin} admin
+ * @returns {Promise<Response | Error>}
+ */
 const deleteMember = async (memberMail: UserMail, admin: ConnectedAdmin): Promise<Response | Error> => {
     try {
         // Ajoutez memberMail comme paramètre dans l'URL

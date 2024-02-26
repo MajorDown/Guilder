@@ -1,5 +1,11 @@
 import { ConnectedMember, Contestation } from "@/types";
 
+/**
+ * Récupère les contestations d'un membre
+ * 
+ * @param {ConnectedMember} member
+ * @returns {Promise<Contestation[] | undefined>}
+ */
 const getMemberContestations = async (member: ConnectedMember): Promise<Contestation[] | undefined> => {
   try {
     const response = await fetch(`/api/contestation/get?member=${encodeURIComponent(member.name)}`, {

@@ -1,5 +1,12 @@
 import { ConnectedMember, Intervention, UserCounter } from "@/types";
 
+/**
+ * Crée une intervention
+ * 
+ * @param {Intervention} intervention
+ * @param {ConnectedMember} member
+ * @returns {Promise<UserCounter | undefined>}
+ */
 const createIntervention = async (intervention: Intervention, member: ConnectedMember): Promise<UserCounter | undefined> => {
     try {
       const response = await fetch("/api/interventions/create", {

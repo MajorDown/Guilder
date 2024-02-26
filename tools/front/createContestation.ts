@@ -1,5 +1,12 @@
 import { ConnectedMember, Contestation } from "@/types";
 
+/**
+ * Crée une intervention
+ * 
+ * @param {Contestation} contestation
+ * @param {ConnectedMember} member
+ * @returns {Promise<Contestation | undefined>}
+ */
 const createIntervention = async (contestation: Contestation, member: ConnectedMember): Promise<Contestation | undefined> => {
     try {
       const response = await fetch("/api/contestation/create", {

@@ -1,5 +1,11 @@
 import { ConnectedAdmin, ConnectedMember } from "@/types";
 
+/**
+ * Récupère la configuration de la guilde
+ * 
+ * @param {ConnectedAdmin | ConnectedMember} user
+ * @returns {Promise<Response | unknown>}
+ */
 const getGuildConfig = async (user: ConnectedAdmin | ConnectedMember): Promise<Response | unknown> => {
   try {
     const response = await fetch(`/api/guildConfig/get?guildName=${encodeURIComponent(user.guild)}`, {

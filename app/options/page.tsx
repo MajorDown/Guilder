@@ -41,7 +41,7 @@ const Parameters = () => {
                   token: admin?.token || member?.token
                 }} 
               />}
-              {member && selectedTab === "contestation" && <ContestationLister member={member} />}
+              {member && selectedTab === "contestation" && <ContestationLister member={member} />}              
             </div>
         </div>)}
     </section>

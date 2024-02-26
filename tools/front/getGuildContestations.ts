@@ -1,5 +1,11 @@
 import { ConnectedAdmin, Contestation } from "@/types";
 
+/**
+ * Récupère les contestations de la guilde
+ * 
+ * @param {ConnectedAdmin} admin
+ * @returns {Promise<Contestation[] | undefined>}
+ */
 const getGuildContestations = async (admin: ConnectedAdmin): Promise<Contestation[] | undefined> => {
   try {
     const response = await fetch(`/api/contestation/getAll?guildName=${encodeURIComponent(admin.guild)}`, {

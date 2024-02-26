@@ -1,8 +1,7 @@
 import { ConnectedAdmin, ConnectedMember, MembersList, UserName } from "@/types";
 
 /**
- * fonction communiquant avec l'API du serveur pour récupérer une liste des membres
- * de sa guilde.
+ * récupère une liste des membres de sa guilde.
  * 
  * @param {ConnectedAdmin | ConnectedMember} user - L'objet contenant les informations de connexion.
  **/

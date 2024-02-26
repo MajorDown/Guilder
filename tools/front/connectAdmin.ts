@@ -1,10 +1,10 @@
 import { ConnectedAdmin } from "@/types";
 
 /**
- * Effectue une requête POST vers l'endpoint "/api/user/login" avec les données fournies.
- * @param {Object} objectToFetch - Les données du formulaire à envoyer.
- * @returns {Promise<Response | Error>} Une promesse qui résout avec l'objet Response en cas de réussite,
- * ou résout avec undefined en cas d'échec.
+ * Connecte un administrateur à son compte
+ * 
+ * @param {Object} objectToFetch
+ * @returns {Promise<ConnectedAdmin | Error>}
  */
 const connectAdmin = async (objectToFetch: Object): Promise<ConnectedAdmin | Error> => {
     try {

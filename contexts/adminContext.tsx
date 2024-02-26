@@ -3,7 +3,7 @@ import { createContext, useContext, useState, PropsWithChildren } from "react";
 import {ConnectedAdmin, AdminContext } from "../types";
 
 /**
- * Contexte utilisé pour fournir et consommer l'état de l'utilisateur connecté
+ * Contexte utilisé pour fournir et consommer l'état de l'admin connecté
  * à travers l'application.
  */
 const adminContext: React.Context<AdminContext> = createContext<AdminContext>(
@@ -16,7 +16,7 @@ const adminContext: React.Context<AdminContext> = createContext<AdminContext>(
 /**
  * simplifie l'accès et la mise à jour userContext dans les composants de l'application. 
  *
- * @returns {UserContext} L'état actuel de l'utilisateur et la fonction pour le mettre à jour.
+ * @returns {AdminContext} L'état actuel de l'admin et la fonction pour le mettre à jour.
  */
 export function useAdminContext(): AdminContext {
   const context = useContext(adminContext);
@@ -25,11 +25,11 @@ export function useAdminContext(): AdminContext {
 
 /**
  * englobe les composants enfants dans l'application et fournit
- * l'état de userContext à travers un contexte React. Il utilise un hook d'état pour
- * accéder au getter (user) et au setter (updateUser) du userContext.
+ * l'état de adminContext à travers un contexte React. Il utilise un hook d'état pour
+ * accéder au getter (admin) et au setter (updateAdmin) du adminContext.
  *
  * @param {PropsWithChildren} props Les props du composant, y compris les enfants à rendre.
- * @returns {JSX.Element} Un composant Provider qui englobe les enfants avec le contexte de l'utilisateur.
+ * @returns {JSX.Element} Un composant Provider qui englobe les enfants avec le contexte de l'admin.
  */
 export const AdminProvider = (props: PropsWithChildren): JSX.Element => {
   const [admin, updateAdmin] = useState<ConnectedAdmin | null>(null);

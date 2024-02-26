@@ -1,6 +1,13 @@
 const Nodemailer = require('nodemailer');
 import { Member } from "@/types";
 
+/**
+ * Envoi un mail de bienvenue à un nouveau membre
+ * 
+ * @param {Member} member
+ * @param {string} newPassword
+ * @returns {Promise<boolean>}
+ */
 async function sendMailToNewMember(member: Member, newPassword: string) {
     // CREATION DU TRANSPORTEUR NODEMAILER
     const transporter = Nodemailer.createTransport({
