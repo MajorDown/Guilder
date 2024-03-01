@@ -4,15 +4,45 @@ import UILastnameInput from "./UI/UILastnameInput";
 import UIEmailInput from "./UI/UIEmailInput";
 import UIPhoneInput from "./UI/UIPhoneInput";
 import UIButton from "./UI/UIButton";
-import { ConnectedAdmin, UserMail, UserPhone } from "@/types";
-import createAdmin from "@/tools/front/createAdmin";
+import createAnotherAdmin from "@/tools/front/createAnotherAdmin";
+import { ConnectedAdmin } from "@/types";
+
+export type NewAdminFormProps = {
+    actualAdmin: ConnectedAdmin;
+}
+
+const NewAdminForm = (props: NewAdminFormProps) => {
+    const [error, setError] = useState<string>("");
+    const [adminIsCreated, setAdminIsCreated] = useState<boolean>(false);
 
 
-const NewAdminForm = () => {
     const firstNameRef = useRef<HTMLInputElement>(null);
     const lastNameRef = useRef<HTMLInputElement>(null);
     const mailRef = useRef<HTMLInputElement>(null);
     const phoneRef = useRef<HTMLInputElement>(null);
+
+    const handleSubmit = async (event: FormEvent) => {
+        event.preventDefault();
+        if (firstNameRef.current && lastNameRef.current && mailRef.current && phoneRef.current) {
+            const newAdmin = {
+                name: firstNameRef.current.value + " " + lastNameRef.current.value,
+                mail: mailRef.current.value,
+                phone: phoneRef.current.value,
+                guild: props.actualAdmin.guild,
+            }
+            const response = await createAnotherAdmin(newAdmin);
+            if (response instanceof Error) {
+                setError("Une erreur est survenue lors de la création de l'admin. Réessayez plus tard");
+            } else {
+                setAdminIsCreated(true);
+                firstNameRef.current.value = "";
+                lastNameRef.current.value = "";
+                mailRef.current.value = "";
+                phoneRef.current.value = "";
+                setError("");
+            }
+        }
+    }
     
     return (
         <div id={"newAdminForm"}>
@@ -20,7 +50,7 @@ const NewAdminForm = () => {
             <p>Besoin d'un coup de main pour gérer votre guilde ? Nommez un admin Supplémentaire !
                 il recevra un email de confirmation à l'adresse que vous avez renseignée.
             </p>
-            <form>
+            {!setAdminIsCreated && <form onSubmit={(event) => handleSubmit(event)}>
                 <label htmlFor="lastname">Son Prénom :</label>
                 <UIFirstnameInput inputRef={firstNameRef} required />
                 <label htmlFor="firstname">Son nom de famille:</label>
@@ -30,7 +60,12 @@ const NewAdminForm = () => {
                 <label htmlFor="passwordConfirm">Son numéro de téléphone :</label>
                 <UIPhoneInput inputRef={phoneRef} required />
                 <UIButton type="submit">Créer le nouvvel admin</UIButton>
-            </form>
+            </form>}
+            {adminIsCreated && <>
+                <p>L'admin a bien été créé ! Vous souhaitez en ajouter un autre ?</p>
+                <UIButton onClick={() => setAdminIsCreated(false)}>Créer un nouvel admin</UIButton>
+            </>}
+            {error && <p>{error}</p>}
         </div>
     )
 }
