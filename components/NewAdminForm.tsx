@@ -11,6 +11,12 @@ export type NewAdminFormProps = {
     actualAdmin: ConnectedAdmin;
 }
 
+/**
+ * Composant NewAdminForm
+ * @param {NewAdminFormProps} props - Les propriétés du composant.
+ * @param {ConnectedAdmin} props.actualAdmin - L'admin connecté.
+ * @returns {JSX.Element} Le composant NewAdminForm
+ */
 const NewAdminForm = (props: NewAdminFormProps) => {
     const [error, setError] = useState<string>("");
     const [adminIsCreated, setAdminIsCreated] = useState<boolean>(false);
@@ -30,7 +36,7 @@ const NewAdminForm = (props: NewAdminFormProps) => {
                 phone: phoneRef.current.value,
                 guild: props.actualAdmin.guild,
             }
-            const response = await createAnotherAdmin(newAdmin);
+            const response = await createAnotherAdmin(newAdmin, props.actualAdmin);
             if (response instanceof Error) {
                 setError("Une erreur est survenue lors de la création de l'admin. Réessayez plus tard");
             } else {
@@ -50,7 +56,7 @@ const NewAdminForm = (props: NewAdminFormProps) => {
             <p>Besoin d'un coup de main pour gérer votre guilde ? Nommez un admin Supplémentaire !
                 il recevra un email de confirmation à l'adresse que vous avez renseignée.
             </p>
-            {!setAdminIsCreated && <form onSubmit={(event) => handleSubmit(event)}>
+            {!adminIsCreated && <form onSubmit={(event) => handleSubmit(event)}>
                 <label htmlFor="lastname">Son Prénom :</label>
                 <UIFirstnameInput inputRef={firstNameRef} required />
                 <label htmlFor="firstname">Son nom de famille:</label>

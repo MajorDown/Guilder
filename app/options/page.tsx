@@ -6,6 +6,7 @@ import { useAdminContext } from "@/contexts/adminContext";
 import UINavLink from '@/components/UI/UINavLink';
 import ContestationLister from '@/components/ContestationLister';
 import UIButton from '@/components/UI/UIButton';
+import NewAdminForm from '@/components/NewAdminForm';
 
 /**
  * @module Parameters
@@ -14,7 +15,7 @@ const Parameters = () => {
     const {member} = useMemberContext();
     const {admin} = useAdminContext();
     const [checkedLogin, setCheckedLogin] = useState(false);
-    const [selectedTab, setSelectedTab] = useState<"password" | "contestation" | null>(null);
+    const [selectedTab, setSelectedTab] = useState<"password" | "contestation" | "addNewAdmin" | null>(null);
 
     useEffect(() => {
       setCheckedLogin(true);
@@ -31,6 +32,7 @@ const Parameters = () => {
             <p>Que souhaitez-vous faire ?</p>
             <div className={"tabsLister"}>
               {member && <UIButton onClick={() => setSelectedTab("contestation")}>Consulter mes contestations</UIButton>}
+              {admin && <UIButton onClick={() => setSelectedTab("addNewAdmin")}>Ajouter un nouvel admin</UIButton>}
               <UIButton onClick={() => setSelectedTab("password")}>Modifier mon mot de passe</UIButton>
             </div>
             <div>
@@ -41,7 +43,8 @@ const Parameters = () => {
                   token: admin?.token || member?.token
                 }} 
               />}
-              {member && selectedTab === "contestation" && <ContestationLister member={member} />}              
+              {member && selectedTab === "contestation" && <ContestationLister member={member} />}  
+              {admin && selectedTab === "addNewAdmin" && <NewAdminForm actualAdmin={admin} />}            
             </div>
         </div>)}
     </section>

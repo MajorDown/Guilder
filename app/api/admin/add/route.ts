@@ -16,18 +16,14 @@ export async function POST(request: Request) {
     try {
         await databaseConnecter();
         // AUTHENTIFICATION DE L'ADMIN
-        const adminToCheck = await AdminModel.findOne({guild: guild});
-        if (!adminToCheck) {
-            console.log(`api/admin/add ~> l'admin de la guilde ${guild} est introuvable dans la db`);
-            return NextResponse.json("Non autorisé", { status: 401 });      
-        }
+        const adminMail = request.headers.get('X-admin-Mail');
         const authHeader = request.headers.get('Authorization');
         const token = authHeader && authHeader.split(' ')[1];
-        const isAuthentified = token ? await tokenChecker("admin", token, adminToCheck.mail) : false;
+        const isAuthentified = adminMail && token ? await tokenChecker("admin", token, adminMail) : false;
         if (!isAuthentified) {
-            console.log(`api/admin/add ~> l'admin de la guilde ${guild} a échoué son authentification`);
-            return NextResponse.json("Non autorisé", { status: 401 });
-        }
+          console.log(`api/admin/add ~> ${adminMail} a échoué son authentification`);
+          return NextResponse.json("Non autorisé", { status: 401 });
+        } 
         // VERIFICATION SI L'ADMIN EXISTE DEJA
         const existingAdmin = await AdminModel.findOne({
             mail: mail,
