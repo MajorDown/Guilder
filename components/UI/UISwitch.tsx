@@ -13,6 +13,12 @@ export type UISwitchProps = {
     onChange: (value: boolean) => void;
 }
 
+/**
+ * @name UISwitch
+ * @description A switch component
+ * @param {UISwitchProps} props
+ * @returns {JSX.Element}
+ */
 const UISwitch = (props: UISwitchProps) => {
     const [value, setValue] = useState<boolean>(props.value);
 
