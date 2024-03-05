@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Member, UserMail } from "@/types";
 import UIButton from "./UI/UIButton";
 import Image from "next/image";

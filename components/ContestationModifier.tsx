@@ -1,6 +1,6 @@
 import getGuildConfig from '@/tools/front/getGuildConfig';
 import { getGuildMembers } from '@/tools/front/getGuildMembers';
-import { ConnectedAdmin, Contestation, GuildConfig, Intervention, InterventionHours, MembersList, UserName } from '@/types';
+import { ConnectedAdmin, Contestation, GuildConfig, InterventionHours, MembersList, UserName } from '@/types';
 import { FormEvent, useEffect, useState } from 'react';
 import UIButton from './UI/UIButton';
 import { interventionDateFormat, isFormatted } from '@/tools/isFormatted';

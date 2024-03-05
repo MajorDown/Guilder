@@ -1,7 +1,7 @@
 'use client'
 import {useState, useEffect, FormEvent} from 'react';
 import { isFormatted, interventionDateFormat } from '@/tools/isFormatted';
-import { ConnectedMember, GuildConfig, Intervention, InterventionHours, MembersList, UserName } from '@/types'
+import { GuildConfig, Intervention, InterventionHours, MembersList, UserName } from '@/types'
 import createIntervention from '@/tools/front/createIntervention';
 import { useMemberContext } from '@/contexts/memberContext';
 import { dateGenerator } from '@/tools/dateGenerator';

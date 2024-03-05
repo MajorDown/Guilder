@@ -1,6 +1,6 @@
 'use client'
 import { ConnectedAdmin, MembersList } from '@/types';
-import {useState, useEffect, useRef, FormEvent} from 'react';
+import {useState, useEffect} from 'react';
 import MemberSignupForm from './MemberSignupForm';
 import UIButton from './UI/UIButton';
 import { getGuildMembers } from '@/tools/front/getGuildMembers';
