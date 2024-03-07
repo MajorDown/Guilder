@@ -30,7 +30,7 @@ const PageLogo = () => {
     
     return (
         <section id={"pageLogo"}>
-            <Image src={logoPath} alt="Logo de la page" width={200} height={200} />
+            <Image src={logoPath} alt="Logo de la page" max-width={200} height={100} />
             {actualPathName != "/" && <Link href="/">
                 <Image src="/images/arrow_back.svg" alt="retour à l'accueil" width={40} height={40} />
                 <p>Retour à la page d'accueil</p>
