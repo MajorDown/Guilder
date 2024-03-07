@@ -50,7 +50,7 @@ const UINavLink = (props: UINavLinkProps) => {
 
     return (
         <Link
-            className={`UINavLink ${isActive? "isActive" : ""}`}
+            className={`UINavLink ${isActive? "isactive" : ""}`}
             href={props.href}
             onClick={(event) => handleClick(event)}
             style={{

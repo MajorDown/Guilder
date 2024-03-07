@@ -2,15 +2,14 @@
     padding: 5px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    border: solid 3px var(--font-color-1);
-    border-radius: var(--border-radius-absolute);
+    background-color: none;
     transition: 0.3s;
 }
 
-.UINavLink.isActive {
-    background-color: var(--focus-color);
+.UINavLink.isactive {
+    background-color: var(--color-active-link);
 }
 
 .UINavLink p {
@@ -19,17 +18,4 @@
 
 .UINavLink:hover p {
     text-decoration: underline;
-}
-
-/**********BREAKPOINT A 992PX**************************************/
-@media screen and (max-width: 992px) {
-    .UINavLink {
-        border: solid 2px var(--font-color-1);
-        border-radius: var(--border-radius-relative);
-    }
-
-    .UINavLink img {
-        width: 24px;
-        height: 24px;
-    }
 }
