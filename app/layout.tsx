@@ -5,8 +5,8 @@ import { PropsWithChildren } from 'react';
 import { AdminProvider } from '@/contexts/adminContext';
 import { MemberProvider } from '@/contexts/memberContext';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google'
-const inter = Inter({subsets: ['latin'], display: 'swap'})
+import { Inter } from 'next/font/google';
+const inter = Inter({weight: "400", subsets: ["latin"], display: 'swap', variable: "--font-Inter"});
 
 export const metadata: Metadata = {
   title: 'Guilder',

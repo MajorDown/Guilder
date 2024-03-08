@@ -1,105 +1,89 @@
 /*GLOBALS*/
 :root {
-    --title-font-size-desktop: 64px;
-    --title-font-size-laptop: 32px;
-    --desktop-font-size: 24px;
-    --desktop-line-height: 25px;
-    --laptop-font-size: 2vw;
-    --laptop-line-height: 2.2vw;
-    --tablet-font-size: 1.5vw;
-    --tablet-line-height: 1.6vw;
-    --font-color-1: #000000;
-    --focus-color: #bebebe;
-    --button-color: #cccccc;
-    --border-radius-absolute: 10px;
-    --border-radius-relative: 1vw;
+    --color-global: #ffffff;
+    --color-dark: #3B564D;
+    --color-light: #BAC7B5;
+    --color-green: #748678;
+    --size-font: 20px;
+    --size-title: 40px;
+    --size-line-height: 24px;
 }
 
 * {
     font-size: var(--desktop-font-size);
-    color: var(--font-color-1);
+    color: var(--color-global);
     margin: 0;
     padding: 0;
 }
 
 body {
     min-height: 100vh;
-    background: linear-gradient(135deg, #c6c6c6 0%, #eeeeee 80%);
-    background: -webkit-linear-gradient(135deg, #c6c6c6 0%, #eeeeee 80%);
-    background: -moz-linear-gradient(135deg, #c6c6c6 0%, #eeeeee 80%);
-    margin: 0 20px;
+    background-image: url(/images/backgrounds/background-accueil.jpg);
+    position: relative;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
 }
 
-header,
-footer {
-    flex-shrink: 0;
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 2vw;
 }
 
 main {
-    flex-grow: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 2vw;
+}
+
+h1,
+h2 {
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: var(--size-title);
+    text-transform: uppercase;
+    margin: 20px 0px;
 }
 
 a {
     text-decoration: none;
-    cursor: pointer;
 }
 
-form {
-    width: 600px;
-    margin: 10px;
-    padding: 10px;
-    border: solid 3px var(--font-color-1);
-    border-radius: var(--border-radius-absolute);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+p {
+    letter-spacing: 2px;
 }
 
-label p {
-    text-align: center;
-}
-
-select,
-input {
-    margin: 10px;
-    border-radius: var(--border-radius-absolute);
-    border: solid 3px var(--font-color-1);
-}
-
-::-webkit-scrollbar {
-    width: 1.6vw;
-    max-width: 16px;
-}
-
-::-moz-scrollbar {
-    width: 1.6vw;
-    max-width: 16px;
-}
-
-::-webkit-scrollbar-thumb {
-    border-radius: 0.8vw;
-}
-
-::-moz-scrollbar-thumb {
-    border-radius: 0.8vw;
-}
-
-@media screen and (max-width: 992px) {
-    * {
-        font-size: var(--laptop-font-size);
-        line-height: var(--laptop-line-height);
-    }
-}
 
 @import url('animations.css');
-
-@import url('./components/header.css');
 @import url('./components/UI/UINavLink.css');
 @import url('./components/UI/UIButton.css');
+@import url('./components/UI/UILink.css');
+
+@import url('./components/header.css');
 @import url('./components/main.css');
 @import url('./components/footer.css');
