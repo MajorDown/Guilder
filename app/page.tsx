@@ -11,7 +11,7 @@ const Home = () => {
       <h2>Bienvenue sur Guilder !</h2>
       <div id={"accueil_explications"}>
         <p>Guilder est une application web qui permet de favoriser et gérer l'entraide au sein de votre collectif.</p>
-        <Link href={"/"}><Image src={"/images/icons/arrow-white-right.svg"} alt={"en savoir plus"} width={40} height={40}/></Link>
+        <Link href={"/concept"}><Image src={"/images/icons/arrow-white-right.svg"} alt={"en savoir plus"} width={30} height={30}/></Link>
       </div>
       <div id={"accueil_navigation"}>
         <UILink color={"green"} href={"/inscription"}>
