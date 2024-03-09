@@ -1,35 +1,78 @@
-import Link from "next/link";
+'use client'
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import UILink from "@/components/UI/UILink";
+import { useAdminContext} from "@/contexts/adminContext";
+import { useMemberContext } from "@/contexts/memberContext";
 
 /**
  * @module Home
  */
 const Home = () => {
-  return (
-    <section id={"section_accueil"}>
-      <h2>Bienvenue sur Guilder !</h2>
-      <div id={"accueil_explications"}>
-        <p>Guilder est une application web qui permet de favoriser et gérer l'entraide au sein de votre collectif.</p>
-        <Link href={"/concept"}><Image src={"/images/icons/arrow-white-right.svg"} alt={"en savoir plus"} width={30} height={30}/></Link>
-      </div>
-      <div id={"accueil_navigation"}>
-        <UILink color={"green"} href={"/inscription"}>
-          <Image src={"/images/icons/guilde-white-dark.svg"} alt={"creer sa guilde"} width={30} height={30}/>
-          <p>Créer sa guilde</p>
-        </UILink>
-        <UILink color={"dark"} href={"/connexion"}>
-          <Image src={"/images/icons/membre-white-dark.svg"} alt={"se connecter"} width={30} height={30}/>
-          <p>Se Connecter</p>
-        </UILink>
-      </div>
-    </section>
-  )
+    const { admin } = useAdminContext();
+    const { member } = useMemberContext();
+    const [userIsConnected, setUserIsConnected] = useState<boolean>();
+    const [userIsChecked, setUserIsChecked] = useState<boolean>(false);
+    const [line, setLine] = useState<0 | 1 | 2 |3 | 4>(0);
+
+    useEffect(() => {
+        if (admin || member) setUserIsConnected(true);
+        else setUserIsConnected(false);
+        setUserIsChecked(true);
+    }, [admin, member]);
+
+    const conceptLines = [
+        "Guilder est une application web qui permet de favoriser et gérer l'entraide au sein de votre collectif.",
+        "En tant que membre de votre guilde, vous pouvez déclarer une intervention que vous aurez réalisée pour un autre membre.",
+        "En déclarant une intervention, votre compteur de points augmente en fonction de la nature de l'intervention, ainsi que le nombre d'heures effectuées.",
+        "Le membre qui aura bénéficié de votre intervention, quand à lui, verra son compteur de points diminuer de la même valeur.",
+        "Ce système, sollicité à l'origine par un collectif agricole, vise à péréniser et équilibrer l'entraide entre chaque membre."
+    ];
+
+    const handleNextLine = () => {
+        if (line === 0) setLine(1);
+        if (line === 1) setLine(2);
+        if (line === 2) setLine(3);
+        if (line === 3) setLine(4);
+        if (line === 4) setLine(0);
+    }
+    
+    return (<>
+        <section className={"section_left"} id={"section_accueil"}>
+            <Image className={"page_logo"} src={"/images/icons/logo-colors.svg"} alt={"logo"} width={120} height={184} priority/>
+            <h2>{line === 0 ? "Bienvenue sur Guilder !" : "Le concept est simple"}</h2>
+            <div id={"accueil_concept"}>
+                <p id={"lineDisplayer"}>
+                    {conceptLines[line]}
+                    {line === 0 && <>
+                        <Image src={"/images/icons/arrow-white-right.svg"} alt={"en savoir plus"} width={30} height={30} onClick={() => handleNextLine()}/>
+                    </>}
+                </p>
+                {line !=0 && <div id={"lineNav"}>
+                    <div id={"lineSelector"}>
+                        <Image src={`/images/icons/${line === 1 ? 'checked' : 'unchecked'}.svg`} alt={"line"} width={10} height={10} onClick={() => setLine(1)}/>
+                        <Image src={`/images/icons/${line === 2 ? 'checked' : 'unchecked'}.svg`} alt={"line"} width={10} height={10} onClick={() => setLine(2)}/>
+                        <Image src={`/images/icons/${line === 3 ? 'checked' : 'unchecked'}.svg`} alt={"line"} width={10} height={10} onClick={() => setLine(3)}/>
+                        <Image src={`/images/icons/${line === 4 ? 'checked' : 'unchecked'}.svg`} alt={"line"} width={10} height={10} onClick={() => setLine(4)}/>
+                    </div>
+                    <Image src={"/images/icons/arrow-white-right.svg"} alt={"en savoir plus"} width={30} height={30} onClick={() => handleNextLine()}/>
+                </div>}
+            </div>
+            <div id={"accueil_navigation"}>
+                <UILink color={"green"} href={"/inscription"}>
+                    <Image src={"/images/icons/guilde-white-dark.svg"} alt={"creer sa guilde"} width={30} height={30}/>
+                    <p>Créer sa guilde</p>
+                </UILink>
+                <UILink color={"dark"} href={"/connexion"}>
+                    <Image src={"/images/icons/membre-white-dark.svg"} alt={"se connecter"} width={30} height={30}/>
+                    <p>Se Connecter</p>
+                </UILink>
+            </div>
+        </section>
+        {userIsChecked && userIsConnected && <section className={"section_right"} id={"section_menu"}>
+          <p>section_right</p>            
+        </section>}
+    </>)
 }
 
 export default Home;
-
-{/* <p>Le concept est simple : En tant que membre de votre guilde, vous pouvez déclarer une intervention que vous aurez réalisée pour un autre membre.</p>
-<p>En déclarant une intervention, votre compteur de points augmente en fonction de la nature de l'intervention, ainsi que le nombre d'heures effectuées.</p>
-<p>Le membre qui aura bénéficié de votre intervention, quand à lui, verra son compteur de points diminuer de la même valeur.</p>
-<p>Ce système, sollicité à l'origine par un collectif agricole, vise à péréniser et équilibrer l'entraide entre chaque membre.</p> */}

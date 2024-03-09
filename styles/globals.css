@@ -44,8 +44,17 @@ main {
     height: 100%;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+}
+
+#section_right_background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background-color: var(--color-dark);
 }
 
 footer {

@@ -1,8 +1,21 @@
+.section_left {
+    width: 50%;
+}
+
 #section_accueil {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 550px;
+    max-width: 550px;
+}
+
+.page_logo {
+    margin: 0 auto;
+}
+
+#lineDisplayer {
+    display: flex;
+    justify-content: space-between;
 }
 
 #accueil_explications {
@@ -31,4 +44,8 @@
 #lineSelector {
     display: flex;
     gap: 5px;
+}
+
+.section_right {
+    width: 50%;
 }

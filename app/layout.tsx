@@ -23,6 +23,7 @@ export default function RootLayout(props: PropsWithChildren) {
           <MemberProvider>
             <Header />
             <main>
+              <div id={"section_right_background"}></div>
               {props.children}
             </main>
             <Footer />
