@@ -54,8 +54,8 @@ const Welcomer = () => {
     <div id={"welcomer"}>
       {hasCheckedLog && (<>
         <>
-          {admin && <p id="Welcomer">Bienvenue {admin.name} !</p>}
-          {!admin && member && <p id="Welcomer">Bienvenue {member.name} !</p>}
+          {admin && <p id="welcomerLine">Bienvenue {admin.name} !</p>}
+          {!admin && member && <p id="welcomerLine">Bienvenue {member.name} !</p>}
         </>
         <>
           {!admin && !member && <>
@@ -63,7 +63,7 @@ const Welcomer = () => {
             <UINavLink href={"/connexion"} label={"Se connecter"} icon={'/images/icons/membre-white-dark.svg'} />
           </>}
           {admin && <UINavLink href={"/"} label={"Se déconnecter"} icon={'/images/logout.svg'} onClick={() => disconnectAdmin()}/>}
-          {!admin && member && <UINavLink href={"/"} label={"Se déconnecter"} icon={'/images/logout.svg'} onClick={() => disconnectMember()}/>}
+          {!admin && member && <UINavLink href={"/"} label={"Se déconnecter"} icon={'/images/icons/connexion.svg'} onClick={() => disconnectMember()}/>}
         </>
       </>)}
     </div>

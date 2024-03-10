@@ -38,35 +38,37 @@ const Home = () => {
     }
     
     return (<>
-        <section className={"section_left"} id={"section_accueil"}>
-            <Image className={"page_logo"} src={"/images/icons/logo-colors.svg"} alt={"logo"} width={120} height={184} priority/>
-            <h2>{line === 0 ? "Bienvenue sur Guilder !" : "Le concept est simple"}</h2>
-            <div id={"accueil_concept"}>
-                <p id={"lineDisplayer"}>
-                    {conceptLines[line]}
-                    {line === 0 && <>
+        <section className={"section_left"} >
+            <div id={"section_accueil"} className={"section_content"}>
+                <Image className={"page_logo"} src={"/images/icons/logo-colors.svg"} alt={"logo"} width={120} height={184} priority/>
+                <h2>{line === 0 ? "Bienvenue sur Guilder !" : "Le concept est simple"}</h2>
+                <div id={"accueil_concept"}>
+                    <p id={"lineDisplayer"}>
+                        {conceptLines[line]}
+                        {line === 0 && <>
+                            <Image src={"/images/icons/arrow-white-right.svg"} alt={"en savoir plus"} width={30} height={30} onClick={() => handleNextLine()}/>
+                        </>}
+                    </p>
+                    {line !=0 && <div id={"lineNav"}>
+                        <div id={"lineSelector"}>
+                            <Image src={`/images/icons/${line === 1 ? 'checked' : 'unchecked'}.svg`} alt={"line"} width={10} height={10} onClick={() => setLine(1)}/>
+                            <Image src={`/images/icons/${line === 2 ? 'checked' : 'unchecked'}.svg`} alt={"line"} width={10} height={10} onClick={() => setLine(2)}/>
+                            <Image src={`/images/icons/${line === 3 ? 'checked' : 'unchecked'}.svg`} alt={"line"} width={10} height={10} onClick={() => setLine(3)}/>
+                            <Image src={`/images/icons/${line === 4 ? 'checked' : 'unchecked'}.svg`} alt={"line"} width={10} height={10} onClick={() => setLine(4)}/>
+                        </div>
                         <Image src={"/images/icons/arrow-white-right.svg"} alt={"en savoir plus"} width={30} height={30} onClick={() => handleNextLine()}/>
-                    </>}
-                </p>
-                {line !=0 && <div id={"lineNav"}>
-                    <div id={"lineSelector"}>
-                        <Image src={`/images/icons/${line === 1 ? 'checked' : 'unchecked'}.svg`} alt={"line"} width={10} height={10} onClick={() => setLine(1)}/>
-                        <Image src={`/images/icons/${line === 2 ? 'checked' : 'unchecked'}.svg`} alt={"line"} width={10} height={10} onClick={() => setLine(2)}/>
-                        <Image src={`/images/icons/${line === 3 ? 'checked' : 'unchecked'}.svg`} alt={"line"} width={10} height={10} onClick={() => setLine(3)}/>
-                        <Image src={`/images/icons/${line === 4 ? 'checked' : 'unchecked'}.svg`} alt={"line"} width={10} height={10} onClick={() => setLine(4)}/>
-                    </div>
-                    <Image src={"/images/icons/arrow-white-right.svg"} alt={"en savoir plus"} width={30} height={30} onClick={() => handleNextLine()}/>
-                </div>}
-            </div>
-            <div id={"accueil_navigation"}>
-                <UILink color={"green"} href={"/inscription"}>
-                    <Image src={"/images/icons/guilde-white-dark.svg"} alt={"creer sa guilde"} width={30} height={30}/>
-                    <p>Créer sa guilde</p>
-                </UILink>
-                <UILink color={"dark"} href={"/connexion"}>
-                    <Image src={"/images/icons/membre-white-dark.svg"} alt={"se connecter"} width={30} height={30}/>
-                    <p>Se Connecter</p>
-                </UILink>
+                    </div>}
+                </div>
+                <div id={"accueil_navigation"}>
+                    <UILink color={"green"} href={"/inscription"}>
+                        <Image src={"/images/icons/guilde-white-dark.svg"} alt={"creer sa guilde"} width={30} height={30}/>
+                        <p>Créer sa guilde</p>
+                    </UILink>
+                    <UILink color={"dark"} href={"/connexion"}>
+                        <Image src={"/images/icons/membre-white-dark.svg"} alt={"se connecter"} width={30} height={30}/>
+                        <p>Se Connecter</p>
+                    </UILink>
+                </div>
             </div>
         </section>
         {userIsChecked && userIsConnected && <section className={"section_right"} id={"section_menu"}>

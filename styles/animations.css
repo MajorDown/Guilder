@@ -11,3 +11,23 @@
 .loadSpinner {
     animation: spin 1s linear infinite;
 }
+
+@keyframes comeToRightFirst {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes comeToRightLast {
+    from {
+        transform: translateX(200%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
+}

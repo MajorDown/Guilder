@@ -1,5 +1,15 @@
-.section_left {
+.section_left,
+.section_right {
     width: 50%;
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 1s;
+}
+
+.section_content {
+    padding: 20px;
 }
 
 #section_accueil {
@@ -15,6 +25,7 @@
 
 #lineDisplayer {
     display: flex;
+    align-items: center;
     justify-content: space-between;
 }
 
@@ -44,8 +55,4 @@
 #lineSelector {
     display: flex;
     gap: 5px;
-}
-
-.section_right {
-    width: 50%;
 }

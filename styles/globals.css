@@ -4,13 +4,13 @@
     --color-dark: #3B564D;
     --color-light: #BAC7B5;
     --color-green: #748678;
-    --size-font: 20px;
-    --size-title: 40px;
+    --size-font: 1vw;
+    --size-title: 2vw;
     --size-line-height: 24px;
 }
 
 * {
-    font-size: var(--desktop-font-size);
+    font-size: var(--size-font);
     color: var(--color-global);
     margin: 0;
     padding: 0;
@@ -23,6 +23,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-x: hidden;
 }
 
 header {
@@ -33,6 +34,7 @@ header {
     z-index: 100;
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
     padding-top: 2vw;
 }
 
@@ -44,7 +46,7 @@ main {
     height: 100%;
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
@@ -52,9 +54,29 @@ main {
     position: absolute;
     top: 0;
     right: 0;
+    z-index: 1;
     width: 50%;
     height: 100%;
     background-color: var(--color-dark);
+    animation: comeToRightFirst 1s forwards;
+}
+
+#section_left_background.isAdmin {
+    background-image: url(/images/backgrounds/background-admin.jpg);
+}
+
+#section_left_background.isMember {
+    background-image: url(/images/backgrounds/background-membre.jpg);
+}
+
+#section_left_background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 50%;
+    height: 100%;
+    animation: comeToRightLast 2s;
 }
 
 footer {
@@ -64,13 +86,16 @@ footer {
     width: 100%;
     z-index: 100;
     display: flex;
-    justify-content: center;
-    padding-bottom: 2vw;
+    justify-content: flex-end;
 }
 
 h1,
 h2 {
     text-transform: uppercase;
+}
+
+h1 {
+    font-size: 20px;
 }
 
 h2 {

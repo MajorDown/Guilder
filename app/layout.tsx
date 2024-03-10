@@ -6,6 +6,7 @@ import { AdminProvider } from '@/contexts/adminContext';
 import { MemberProvider } from '@/contexts/memberContext';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import SectionRightBackground from '@/components/SectionRightBackground';
 const inter = Inter({weight: "400", subsets: ["latin"], display: 'swap', variable: "--font-Inter"});
 
 export const metadata: Metadata = {
@@ -23,7 +24,7 @@ export default function RootLayout(props: PropsWithChildren) {
           <MemberProvider>
             <Header />
             <main>
-              <div id={"section_right_background"}></div>
+              <SectionRightBackground />
               {props.children}
             </main>
             <Footer />

@@ -1,3 +1,4 @@
+'use client'
 import { useEffect, useState } from "react";
 import { useAdminContext } from "@/contexts/adminContext";
 import { useMemberContext } from "@/contexts/memberContext";
@@ -14,9 +15,10 @@ const SectionRightBackground = () => {
         setUserIsChecked(true);
     }, [admin, member]);
     
-    if (userIsChecked && userIsConnected) return (
+    if (userIsChecked && userIsConnected) return (<>
         <div id={"section_right_background"}></div>
-    )
+        <div id={"section_left_background"} className={admin && "isAdmin" || !admin && member && "isMember" || ""}></div>
+    </>)
 }
 
 export default SectionRightBackground;
