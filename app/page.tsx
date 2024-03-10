@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import UILink from "@/components/UI/UILink";
 import { useAdminContext} from "@/contexts/adminContext";
 import { useMemberContext } from "@/contexts/memberContext";
@@ -72,7 +73,43 @@ const Home = () => {
             </div>
         </section>
         {userIsChecked && userIsConnected && <section className={"section_right"} id={"section_menu"}>
-          <p>section_right</p>            
+            <div id={"section_accueil"} className={"section_content"}>
+                <h2>Que souhaitez-vous faire ?</h2>
+                <div id={"menu_list"}>
+                    {member && <>
+                    <Link className={"menu_1st_link"} href={"/declaration"}>
+                        <Image src={"/images/icons/declaration-white-light.svg"} alt={"déclarer"} width={100} height={100}/>
+                        <p>Déclarer</p>
+                    </Link>
+                    <Link className={"menu_2nd_link"} href={"/guilde"}>
+                        <Image src={"/images/icons/guilde-white-light.svg"} alt={"guilde"} width={100} height={100}/>
+                        <p>Guilde</p>
+                    </Link>
+                    <Link className={"menu_3rd_link"} href={"/historique"}>
+                        <Image src={"/images/icons/historique-white-light.svg"} alt={"historique"} width={100} height={100}/>
+                        <p>Historique</p>
+                    </Link>
+                    </>}
+                    {admin && <>
+                    <Link className={"menu_1st_link"} href={"/config"}>
+                        <Image src={"/images/icons/outils-white-light.svg"} alt={"outils"} width={100} height={100}/>
+                        <p>Outils</p>
+                    </Link>
+                    <Link className={"menu_2nd_link"} href={"/membres"}>
+                        <Image src={"/images/icons/membres-white-light.svg"} alt={"membres"} width={100} height={100}/>
+                        <p>Membres</p>
+                    </Link>
+                    <Link className={"menu_3rd_link"} href={"/arbitrage"}>
+                        <Image src={"/images/icons/arbitrage-white-light.svg"} alt={"arbitrage"} width={100} height={100}/>
+                        <p>Arbitrage</p>
+                    </Link>
+                    </>}
+                    <Link className={"menu_4st_link"} href={"/options"}>
+                        <Image src={"/images/icons/options-white-light.svg"} alt={"options"} width={150} height={100}/>
+                        <p>Options</p>
+                    </Link>                                  
+                </div>
+            </div>           
         </section>}
     </>)
 }

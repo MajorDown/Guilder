@@ -63,10 +63,12 @@ main {
 
 #section_left_background.isAdmin {
     background-image: url(/images/backgrounds/background-admin.jpg);
+    background-size: cover;
 }
 
 #section_left_background.isMember {
     background-image: url(/images/backgrounds/background-membre.jpg);
+    background-size: cover;
 }
 
 #section_left_background {
