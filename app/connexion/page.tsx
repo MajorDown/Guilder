@@ -1,11 +1,11 @@
 'use client'
 import {useState} from 'react';
 import Image from 'next/image';
-import UIButton from '@/components/UI/UIButton';
 import AdminLoginForm from '@/components/AdminLoginForm';
 import MemberLoginForm from '@/components/MemberLoginForm';
 import { useMemberContext } from '@/contexts/memberContext';
 import { useAdminContext } from '@/contexts/adminContext';
+import Link from 'next/link';
 
 type LoginFormType = "membre" | "admin" | undefined;
 
@@ -19,6 +19,11 @@ const Connexion = () => {
     updateMember(null);
     localStorage.removeItem(process.env.LOCALSTORAGE_ADMINCONTEXT_KEY as string);
     updateAdmin(null);
+  }
+
+  const handleGoBack = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    event.preventDefault();
+    setLoginForm(undefined);
   }
 
   return (
@@ -49,10 +54,10 @@ const Connexion = () => {
                 {loginForm === "membre" && (<MemberLoginForm />)}
                 {loginForm === "admin" && (<AdminLoginForm />)}
             </div>}
-            <button id={"goBack"} onClick={() => setLoginForm(undefined)}>
+            <Link id={"goBack"} href={"/"} onClick={(event) => {if (loginForm != undefined) handleGoBack(event)}}>
                 <Image src="/images/icons/arrow-white-left.svg" alt="retour" width={30} height={30}/>
                 <p>Revenir à l'écran précédent</p>
-            </button>
+            </Link>
         </div>
     </section>
   )

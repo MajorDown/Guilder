@@ -12,6 +12,8 @@
     padding: 20px;
 }
 
+/**********ACCUEIL**********/
+
 #section_accueil {
     display: flex;
     flex-direction: column;
@@ -97,6 +99,15 @@
     transform: scale(1.1);
 }
 
+#section_connexion {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/**********CONNEXION**********/
+
 #loginFormSelector {
     display: flex;
     flex-direction: column;
@@ -106,24 +117,12 @@
     margin-top: 20px;
 }
 
-#section_connexion {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 #selector_buttons {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 5px;
     margin-top: 20px;
-}
-
-#section_connexion button {
-    background-color: #ffffff00;
-    border: none;
 }
 
 .loginForm_button {
@@ -132,12 +131,15 @@
     justify-content: center;
     align-items: center;
     gap: 20px;
+    padding: 20px;
     cursor: pointer;
     transition: 0.3s;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
 }
 
 .loginForm_button:hover {
-    background-color: rgba(255, 255, 255, 0.664);
+    background-color: rgba(255, 255, 255, 0.442);
 }
 
 .loginForm_button p {
@@ -153,7 +155,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 50px;
+    gap: 10px;
+    padding: 100px;
 }
 
 @media screen and (min-width: 1650px) {

@@ -60,7 +60,7 @@ const Home = () => {
                         <Image src={"/images/icons/arrow-white-right.svg"} alt={"en savoir plus"} width={30} height={30} onClick={() => handleNextLine()}/>
                     </div>}
                 </div>
-                <div id={"accueil_navigation"}>
+                {userIsChecked && !userIsConnected && <div id={"accueil_navigation"}>
                     <UILink color={"green"} href={"/inscription"}>
                         <Image src={"/images/icons/guilde-white-dark.svg"} alt={"creer sa guilde"} width={30} height={30}/>
                         <p>Créer sa guilde</p>
@@ -69,7 +69,7 @@ const Home = () => {
                         <Image src={"/images/icons/membre-white-dark.svg"} alt={"se connecter"} width={30} height={30}/>
                         <p>Se Connecter</p>
                     </UILink>
-                </div>
+                </div>}
             </div>
         </section>
         {userIsChecked && userIsConnected && <section className={"section_right"} id={"section_menu"}>
