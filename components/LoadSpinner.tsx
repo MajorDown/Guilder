@@ -14,7 +14,7 @@ export type LoadSpinnerProps = {
 const LoadSpinner = (props: LoadSpinnerProps) => {
   return (<>
     {props.message && <p>{props.message}</p>}
-    <Image className="loadSpinner" src="/images/spinner.png" alt="loading" width={150} height={150}/>
+    <Image className="loadSpinner" src="/images/spinner.png" alt="loading" width={50} height={50}/>
   </>
   )
 }

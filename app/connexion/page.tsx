@@ -1,11 +1,11 @@
 'use client'
 import {useState} from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import AdminLoginForm from '@/components/AdminLoginForm';
 import MemberLoginForm from '@/components/MemberLoginForm';
 import { useMemberContext } from '@/contexts/memberContext';
 import { useAdminContext } from '@/contexts/adminContext';
-import Link from 'next/link';
 
 type LoginFormType = "membre" | "admin" | undefined;
 
@@ -29,6 +29,7 @@ const Connexion = () => {
   return (
     <section className="section_left">
         <div id={"section_connexion"}>
+            {loginForm != undefined && <Image className={"page_logo"} src={`/images/icons/${loginForm}-white-dark.svg`} alt={"logo"} width={120} height={184} priority/>}
             <h2>Page de connexion {loginForm === undefined ? "" : loginForm}</h2>
             {member || admin ? <>
                 <p>Cette page est dédié à la connexion des membres et des admin.</p>
@@ -49,8 +50,8 @@ const Connexion = () => {
                         </button>
                     </div>
                 </>}
-                {loginForm === "membre" && <p>Déclarez vos interventions et tenez-vous informé des compteurs de points des autres membres de la guilde</p>}
-                {loginForm === "admin" && <p>Gérez votre guilde, administrez les coefficients, les inscriptions, les requètes...</p>}
+                {loginForm === "membre" && <p id={"formDescription"} >Déclarez vos interventions et tenez-vous informé des compteurs de points des autres membres de la guilde</p>}
+                {loginForm === "admin" && <p id={"formDescription"} >Gérez votre guilde, administrez les coefficients, les inscriptions, les requètes...</p>}
                 {loginForm === "membre" && (<MemberLoginForm />)}
                 {loginForm === "admin" && (<AdminLoginForm />)}
             </div>}

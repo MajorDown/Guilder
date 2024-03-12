@@ -10,18 +10,16 @@ const PageLogo = () => {
 
     useEffect(() => {
         switch (actualPathName) {
-            //si le pathname actuel est "/", logopath sera égal à "/images/logo.svg"
-            case "/": setLogoPath("/images/logo.svg"); break;
             // si le pathname actuel est un pathname pour admin
-            case "/membres":setLogoPath("/images/guild.svg"); break;
-            case "/config": setLogoPath("/images/tools.svg"); break;
-            case "/arbitrage": setLogoPath("/images/justice.svg"); break;
+            case "/membres":setLogoPath("/images/icons/membres-white-dark.svg"); break;
+            case "/config": setLogoPath("/images/icons/outils-white-dark.svg"); break;
+            case "/arbitrage": setLogoPath("/images/icons/arbitrage-white-dark.svg"); break;
             // si le pathname actuel est un pathname pour membre
-            case "/declaration": setLogoPath("/images/new-intervention.svg"); break;
-            case "/historique": setLogoPath("/images/stats.svg"); break;
-            case "/guilde": setLogoPath("/images/guild.svg"); break;
+            case "/declaration": setLogoPath("/images/icons/declaration-white-dark.svg"); break;
+            case "/historique": setLogoPath("/images/icons/historique-white-dark.svg"); break;
+            case "/guilde": setLogoPath("/images/icons/guilde-white-dark.svg"); break;
             // si le pathname actuel est "/options"
-            case "/options": setLogoPath("/images/options.svg"); break;
+            case "/options": setLogoPath("/images/icons/options-white-dark.svg"); break;
             default: setLogoPath("/images/logo.svg"); break;
         }
 

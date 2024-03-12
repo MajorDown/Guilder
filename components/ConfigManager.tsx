@@ -74,25 +74,26 @@ const ConfigManager = (props: ConfigManagerProps) => {
                 <h3>Options pour {guildConfig?.name} :</h3>
                 <ConfigLister config={guildConfig} admin={props.configFor}/>
             </div>
-            <div id="ConfigOptionForm">
-                {!wantNewOption && <UIButton onClick={() => setWantNewOption(true)}>Ajouter une nouvelle option</UIButton>}
+            <div id="configOptionForm">
+                {!wantNewOption && <UIButton className={"createNewOption"} onClick={() => setWantNewOption(true)}>Ajouter une nouvelle option</UIButton>}
                 {wantNewOption && <form onSubmit={(event) => handleSubmitNewOption(event)}>
-                    <div className="configInputWrapper">
-                        <label htmlFor="optionName">Nom de la nouvelle option :</label>
-                        <UIOptionNameInput inputRef={optionNameRef} required/>                     
+                    <div className={"horizontalWrapper"}>
+                        <div className="verticalWrapper">
+                            <label htmlFor="optionName">Nom de la nouvelle option :</label>
+                            <UIOptionNameInput inputRef={optionNameRef} required/>
+                        </div>
+                        <div className="verticalWrapper">
+                            <label htmlFor="optionCoef">Coef à appliquer :</label>
+                            <UIOptionCoefInput inputRef={optionCoefRef} required/>
+                        </div>
                     </div>
-                    <div className="configInputWrapper">
-                        <label htmlFor="optionCoef">Coef à appliquer :</label>
-                        <UIOptionCoefInput inputRef={optionCoefRef} required/>
+                    <div className={"horizontalWrapper"}>
+                        <label htmlFor="optionIsEnable">Rendre cette option utilisable dessuite : <UIOptionEnableCheckbox inputRef={optionEnableCheckboxRef}/></label>
                     </div>
-                    <div className="configInputWrapper">
-                        <label htmlFor="optionIsEnable">
-                            <p>Souhaitez-vous rendre cette option utilisable dessuite ?</p>
-                            <UIOptionEnableCheckbox inputRef={optionEnableCheckboxRef}/>
-                        </label>
+                    <div className={"horizontalWrapper"}>
+                        <UIButton className={"validateNewOption"} type="submit">Valider la nouvelle option</UIButton>
+                        <UIButton className={"quitNewOption"} onClick={() => setWantNewOption(false)}>Annuler</UIButton>
                     </div>
-                    <UIButton type="submit">Valider la nouvelle option</UIButton>
-                    <UIButton onClick={() => setWantNewOption(false)}>Annuler la création d'une nouvelle option</UIButton>
                     {newOptionError && <p style={{color: "red"}}>{newOptionError}</p>}
                 </form>}
             </div>

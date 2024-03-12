@@ -62,7 +62,7 @@ const Welcomer = () => {
             <UINavLink href={"/signup"} label={"Créer sa guilde"} icon={'/images/icons/guilde-white-dark.svg'} />
             <UINavLink href={"/connexion"} label={"Se connecter"} icon={'/images/icons/membre-white-dark.svg'} />
           </>}
-          {admin && <UINavLink href={"/"} label={"Se déconnecter"} icon={'/images/logout.svg'} onClick={() => disconnectAdmin()}/>}
+          {admin && <UINavLink href={"/"} label={"Se déconnecter"} icon={'/images/icons/connexion.svg'} onClick={() => disconnectAdmin()}/>}
           {!admin && member && <UINavLink href={"/"} label={"Se déconnecter"} icon={'/images/icons/connexion.svg'} onClick={() => disconnectMember()}/>}
         </>
       </>)}

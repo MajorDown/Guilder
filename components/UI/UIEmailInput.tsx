@@ -44,7 +44,7 @@ const UIEmailInput = (props: UIEmailInputProps) => {
         <input
             type="email"
             id={props.id}
-            className={`UIEmailInput ${props.className}`}
+            className={`UIEmailInput ${props.className ? props.className : ""}`}
             name={props.name}
             aria-label={props.ariaLabel}
             ref={props.inputRef}

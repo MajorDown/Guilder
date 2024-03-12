@@ -36,7 +36,7 @@ const UISwitch = (props: UISwitchProps) => {
             height: "24px",
             position: "relative",
             borderRadius: "16px",
-            border: `solid 3px black`,
+            border: `solid 1px var(--color-dark)`,
             backgroundColor: value ? "#7bff003e" : "#ff00003e",
             transition: "0.3s",
             cursor: "pointer",
@@ -51,7 +51,7 @@ const UISwitch = (props: UISwitchProps) => {
                 transform: "translateY(-50%)",
                 left: value ? "5px" : "",
                 right: value ? "" : "5px",
-                fontSize: "16px",
+                fontSize: "10px",
                 transition: "0.3s",
                 cursor: "pointer",
             }}
@@ -64,14 +64,15 @@ const UISwitch = (props: UISwitchProps) => {
             style={{
                 height: "80%",
                 position: "absolute",
+                top: "1px",
                 left: value ? "100%" : "0%",
-                transform: value ? "translateX(-100%)" : "translateX(0%)",
+                transform: value ? "translateX(-100%)" : "translateX(5%)",
                 aspectRatio: "1/1",
                 borderRadius: "10px",
-                border: `solid 3px black`,
+                border: `solid 1px var(--color-dark)`,
                 transition: "0.3s",
                 cursor: "pointer",
-                backgroundColor: "grey",
+                backgroundColor: "var(--color-dark)",
             }}
             onClick={(event) => handleChangeValue(event)}
         ></div>

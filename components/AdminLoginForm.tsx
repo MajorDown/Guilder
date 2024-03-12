@@ -44,10 +44,8 @@ const AdminLoginForm = () => {
 
   return (
     <form onSubmit={(event) => handleLogin(event)}>
-      <label htmlFor="inputMail">Votre Email :</label>
-      <UIEmailInput inputRef={mailRef} name="inputMail" required/>
-      <label htmlFor="inputPassword"> Votre mot de passe :</label>
-      <UIPasswordInput inputRef={passwordRef} name="inputPassword" required/>
+      <UIEmailInput aria-label={"mail"} inputRef={mailRef} name="inputMail" required/>
+      <UIPasswordInput aria-label={"password"} inputRef={passwordRef} name="inputPassword" required/>
       <UIButton type="submit">Se Connecter en tant qu'admin</UIButton>
       {isLoadIng && <>
         <p>chargement des données utilisateurs... veuillez patienter</p>

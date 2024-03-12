@@ -26,7 +26,7 @@ const UIOptionNameInput = ({ inputRef, className, ...rest }: UIOptionNameInputPr
         <UITextInput
             inputRef={inputRef}
             placeholder='ex : Tracteur semoir'
-            className={`UIGuildNameInput ${className || ''}`}
+            className={`UIOptionNameInput ${className || ''}`}
             conditions={OptionNameConditions}
             minLength={3} 
             maxLength={20}

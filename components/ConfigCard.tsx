@@ -19,18 +19,9 @@ export type ConfigCardProps = {
  */
 const ConfigCard = (props: ConfigCardProps) => {   
     return (
-        <li 
-            className="configCard"
-            style={{
-                width: "600px",
-                display: "flex",
-                alignItems: "center",
-                border: "solid 3px var(--font-color-1)",
-                borderRadius: "var(--border-radius-absolute)",
-            }}
-        >
-            <p style={{width: "60%"}}>{props.option.option}</p>
-            <p style= {{width: "20%", textAlign: "center"}}>{props.option.coef}</p>
+        <li className="configCard" >
+            <p style={{width: "40%", paddingLeft: "5px"}}>{props.option.option}</p>
+            <p style= {{width: "40%", textAlign: "center"}}>{props.option.coef}</p>
             <UISwitch 
                 minWidth="80px"
                 options={["actif", "inactif"]} 

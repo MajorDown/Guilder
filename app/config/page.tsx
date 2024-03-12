@@ -18,19 +18,23 @@ const Config = () => {
         setHasCheckedAdmin(true);
     }, [admin])
 
-    return (
-      <section id="ConfigSection">
-        <h2>Les outils de la Guilde</h2>
-        {!hasCheckedAdmin && <LoadSpinner />}
-        {hasCheckedAdmin && admin && <>
+    return (<>
+      <section className={"section_left"}></section>
+      <section className={"section_right"}>
+        <div id={"section_config"}>
+          <h2>Les outils de la Guilde</h2>
+          {!hasCheckedAdmin && <LoadSpinner />}
+          {hasCheckedAdmin && admin && <>
             <p>Gérez ici les options disponibles lorsqu'un membre déclare une intervention</p>
             <ConfigManager configFor={admin}/>
-        </>}
-        {hasCheckedAdmin && !admin && <>
+          </>}
+          {hasCheckedAdmin && !admin && <>
             <p>Vous devez être connecté en tant qu'admin pour accéder à cette page !</p>
             <UINavLink label={"Se Connecter"} href={'/connexion'} icon={'/images/user.svg'} />
-        </>}
+          </>}
+        </div>
       </section>
+    </>
     )
   }
   

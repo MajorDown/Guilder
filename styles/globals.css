@@ -4,6 +4,7 @@
     --color-dark: #3B564D;
     --color-light: #BAC7B5;
     --color-green: #748678;
+    --color-form: #D3D4CC;
     --size-font: 1vw;
     --size-title: 2vw;
     --size-line-height: 24px;
@@ -19,6 +20,7 @@
 body {
     min-height: 100vh;
     background-image: url(/images/backgrounds/background-accueil.jpg);
+    background-size: cover;
     position: relative;
     display: flex;
     justify-content: center;
@@ -116,8 +118,8 @@ p {
 
 button {
     cursor: pointer;
-
 }
+
 
 
 @import url('animations.css');

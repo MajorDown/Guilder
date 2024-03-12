@@ -43,7 +43,6 @@ const UITextInput = (props: UITextInputProps) => {
     }, [value])
 
     return (
-        <div className={`UITextInput ${props.className}`}>
             <input 
                 id={props.id}
                 className={`UITextInput ${props.className}`}
@@ -72,7 +71,6 @@ const UITextInput = (props: UITextInputProps) => {
                     ...props.style
                 }}
             />
-        </div>
     );
 };
 

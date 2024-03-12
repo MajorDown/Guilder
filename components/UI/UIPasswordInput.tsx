@@ -44,37 +44,35 @@ const UIPasswordInput = (props: UIPasswordInputProps) => {
     }, [value])
 
     return (
-        <div className={`UIPasswordInput ${props.className}`}>
-            <input 
-                type='password'
-                id={props.id}
-                className={`UIPasswordInput ${props.className}`}
-                name={props.name || "password"}
-                aria-label={props.ariaLabel}
-                ref={props.inputRef}
-                value={value} 
-                onChange={(event) => setValue(event.target.value)}
-                pattern={regexToPattern(conditions.regex)}
-                title={conditions.error}
-                placeholder={"votre mot de passe"}
-                minLength={props.minLength}
-                maxLength={props.maxLength}
-                disabled={props.disabled}
-                required={props.required}
-                autoComplete={props.autoComplete}
-                spellCheck={props.spellCheck}
-                style={{
-                    ...(value ? (error ? {
-                        backgroundColor: "#ff00003e",
-                        borderColor: "#750909"
-                    } : {
-                        backgroundColor: "#7bff003e",
-                        borderColor: "#2a5205"
-                    }) : {}),
-                    ...props.style
-                }}
-            />
-        </div>
+        <input 
+            type='password'
+            id={props.id}
+            className={`UIPasswordInput ${props.className? props.className : ""}`}
+            name={props.name || "password"}
+            aria-label={props.ariaLabel}
+            ref={props.inputRef}
+            value={value} 
+            onChange={(event) => setValue(event.target.value)}
+            pattern={regexToPattern(conditions.regex)}
+            title={conditions.error}
+            placeholder={"votre mot de passe"}
+            minLength={props.minLength}
+            maxLength={props.maxLength}
+            disabled={props.disabled}
+            required={props.required}
+            autoComplete={props.autoComplete}
+            spellCheck={props.spellCheck}
+            style={{
+                ...(value ? (error ? {
+                    backgroundColor: "#ff00003e",
+                    borderColor: "#750909"
+                } : {
+                    backgroundColor: "#7bff003e",
+                    borderColor: "#2a5205"
+                }) : {}),
+                ...props.style
+            }}
+        />
     );
 };
 

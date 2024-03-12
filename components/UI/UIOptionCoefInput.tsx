@@ -32,17 +32,16 @@ const UIOptionCoefInput = ({ inputRef, onChangeValue, ...rest }: UIOptionCoefInp
     };
 
     return (
-        <div className={`UIOptionCoefInput ${rest.className}`}>
-            <input 
-                type="number"
-                step="0.01"
-                ref={inputRef}
-                value={value}
-                onChange={(event) => handleChange(event)}
-                aria-label={rest.ariaLabel}
-                {...rest}
-            />
-        </div>
+        <input 
+            type="number"
+            step="0.01"
+            className={`UIOptionCoefInput ${rest.className || ''}`}
+            ref={inputRef}
+            value={value}
+            onChange={(event) => handleChange(event)}
+            aria-label={rest.ariaLabel}
+            {...rest}
+        />
     );
 };
 
