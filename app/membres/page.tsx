@@ -23,7 +23,7 @@ const Membres = () => {
     return (<>
       <section className={"section_left"}>
         <div id={"section_navigation"} className={"section_content"}>
-          <PageLogo pseudoTitle='Outils'/>
+          <PageLogo pseudoTitle='Membres'/>
           <AppNavbar />
         </div>
       </section>
@@ -37,7 +37,7 @@ const Membres = () => {
           </>}
           {hasCheckedAdmin && !admin && <>
             <p>Vous devez être connecté en tant qu'admin pour accéder à cette page !</p>
-            <UINavLink label={"Se Connecter"} href={'/connexion'} icon={'/images/user.svg'} />
+            <UINavLink label={"Se Connecter"} href={'/connexion'} icon={'/images/icons/membre-white-dark.svg'} />
           </>}
         </div>
       </section>

@@ -37,7 +37,7 @@ const Config = () => {
           </>}
           {hasCheckedAdmin && !admin && <>
             <p>Vous devez être connecté en tant qu'admin pour accéder à cette page !</p>
-            <UINavLink label={"Se Connecter"} href={'/connexion'} icon={'/images/user.svg'} />
+            <UINavLink label={"Se Connecter"} href={'/connexion'} icon={'/images/icons/membre-white-dark.svg'} />
           </>}
         </div>
       </section>

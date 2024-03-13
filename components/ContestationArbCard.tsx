@@ -18,11 +18,11 @@ const ContestationArbCard = (props: ContestationCardProps) => {
     
     return (
     <li className={"contestationArbCard"}>
-        <div className={"contestationTitle"}>
-            <p>Contestation n°{props.contestation.contestationDate} par : {props.contestation.contester}</p>
-            <UIButton onClick={() => setWantDetails(!wantDetails)}>
-                <Image src={wantDetails ? '/images/minimize.svg' : '/images/analyse.svg'} alt={"plus d'information"} width={24} height={24}/>
-            </UIButton>
+        <div className={"contestationResume"}>
+            <p>n°{props.contestation.contestationDate} par : {props.contestation.contester}</p>
+            <button onClick={() => setWantDetails(!wantDetails)}>
+                <Image className={wantDetails ? "extended" : ""} src={'/images/icons/show-more.svg'} alt={"plus d'information"} width={24} height={24}/>
+            </button>
         </div>
         { wantDetails && <>
             <div className={"contestationMessage"}>

@@ -19,8 +19,6 @@ export type MemberCardProps = {
  * @returns {JSX.Element} Une carte de membre.
  */
 const MemberCard = (props: MemberCardProps) => {
-  const [wantHistoric, setWantHistoric] = useState<boolean>(false);
-
   const handleDeleteMember = async (memberName: UserMail) => {
     if (props.adminMode) props.onDelete(memberName);
   }
@@ -35,7 +33,7 @@ const MemberCard = (props: MemberCardProps) => {
       </div>
       {props.adminMode && <div className={"memberOptions"}>
         <button onClick={() => handleDeleteMember(props.member.mail)}>
-          <Image src={"/images/icons/trash.svg"} alt={"Supprimer le membre"} width={24} height={24}/>
+          <Image src={"/images/icons/trash-white.svg"} alt={"Supprimer le membre"} width={24} height={24}/>
           <p>Supprimer</p>
         </button>
       </div>}

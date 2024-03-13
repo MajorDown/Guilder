@@ -30,11 +30,12 @@ const Options = () => {
           <AppNavbar />
         </div>
       </section>
-    <section id="section_options">
-        <h2>Paramètres</h2>
+    <section className={"section_right"}>
+      <div id="section_options" className={"section_content"}>
+        <h2>Options et Paramètres</h2>
         {checkedLogin && !admin && !member && <>
             <p>Vous devez être connecté pour accéder à cette page !</p>
-            <UINavLink label={"Se Connecter"} href={'/connexion'} icon={'/images/user.svg'} />
+            <UINavLink label={"Se Connecter"} href={'/connexion'} icon={'/images/icons/membre-white-dark.svg'} />
         </>}
         {(admin || member) && (<div>
             <p>Que souhaitez-vous faire ?</p>
@@ -55,6 +56,7 @@ const Options = () => {
               {admin && selectedTab === "addNewAdmin" && <NewAdminForm actualAdmin={admin} />}            
             </div>
         </div>)}
+      </div>
     </section>
   </>)
 }

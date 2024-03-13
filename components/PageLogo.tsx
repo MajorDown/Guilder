@@ -18,22 +18,37 @@ const PageLogo = (props: PageLogoProps) => {
     const [logoPath, setLogoPath] = useState<string>("");
 
     useEffect(() => {
-        switch (actualPathName) {
-            // si le pathname actuel est un pathname pour admin
-            case "/membres":setLogoPath("/images/icons/membres-white-dark.svg"); break;
-            case "/config": setLogoPath("/images/icons/outils-white-dark.svg"); break;
-            case "/arbitrage": setLogoPath("/images/icons/arbitrage-white-dark.svg"); break;
-            // si le pathname actuel est un pathname pour membre
-            case "/declaration": setLogoPath("/images/icons/declaration-white-dark.svg"); break;
-            case "/historique": setLogoPath("/images/icons/historique-white-dark.svg"); break;
-            case "/guilde": setLogoPath("/images/icons/guilde-white-dark.svg"); break;
-            // si le pathname actuel est "/options"
-            case "/options": setLogoPath("/images/icons/options-white-dark.svg"); break;
-            default: setLogoPath("/images/logo.svg"); break;
+        if (actualPathName.includes("/arbitrage")) {
+            setLogoPath("/images/icons/arbitrage-white-dark.svg");
+        } else {
+            switch (actualPathName) {
+                // si le pathname actuel est un pathname pour admin
+                case "/membres":
+                    setLogoPath("/images/icons/membres-white-dark.svg");
+                    break;
+                case "/config":
+                    setLogoPath("/images/icons/outils-white-dark.svg");
+                    break;
+                // si le pathname actuel est un pathname pour membre
+                case "/declaration":
+                    setLogoPath("/images/icons/declaration-white-dark.svg");
+                    break;
+                case "/historique":
+                    setLogoPath("/images/icons/historique-white-dark.svg");
+                    break;
+                case "/guilde":
+                    setLogoPath("/images/icons/guilde-white-dark.svg");
+                    break;
+                // si le pathname actuel est "/options"
+                case "/options":
+                    setLogoPath("/images/icons/options-white-dark.svg");
+                    break;
+                default:
+                    setLogoPath("/images/logo.svg");
+                    break;
+            }
         }
-
-
-    }, [actualPathName])
+    }, [actualPathName]);
     
     return (
         <div id={"pageLogo"}>

@@ -126,10 +126,19 @@ p {
 
 button {
     cursor: pointer;
+    background-color: transparent;
+    border: none;
 }
 
 li {
     list-style: none;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 

@@ -9,6 +9,10 @@
 }
 
 .section_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 20px;
 }
 
@@ -486,6 +490,50 @@
     width: 45%;
 }
 
+/**********ARBITRAGE**********/
+
+#contestationArbitrer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    width: 100%;
+}
+
+.contestationArbCard {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-form);
+    width: 100%;
+}
+
+.contestationArbCard p {
+    text-align: center;
+    color: var(--color-dark);
+    font-weight: 800;
+    padding: 10px;
+}
+
+.contestationResume {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.contestationResume button {
+    padding: 10px;
+}
+
+.contestationResume button img {
+    transition: 0.3s;
+}
+
+.contestationResume button img.extended {
+    transform: rotate(43deg);
+}
 
 @media screen and (min-width: 1650px) {
     h2 {

@@ -31,7 +31,7 @@ const ContestationArbitrer = (props : ContestationArbitrerProps) => {
     }, [props.admin]); 
     
     return (
-        <ul className={"contestationArbitrer"}>
+        <ul id={"contestationArbitrer"}>
             {isSearching ? <LoadSpinner message={"Chargement des contestations en cours..."}/> : <>
                 {guildContestations && <>
                     {guildContestations.map((contestation: Contestation, index: number) => {

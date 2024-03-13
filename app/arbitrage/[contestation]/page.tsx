@@ -4,6 +4,8 @@ import { useAdminContext} from "@/contexts/adminContext";
 import { Contestation } from '@/types';
 import UINavLink from '@/components/UI/UINavLink';
 import InterventionModifier from '@/components/ContestationModifier';
+import AppNavbar from '@/components/AppNavbar';
+import PageLogo from '@/components/PageLogo';
 
 export type ModificationProps = {
     params: {contestation: string}
@@ -29,19 +31,27 @@ const Modification = (props: ModificationProps) => {
         }
     }, [props.params.contestation])
 
-    return (
-        <section>
-            <h2>Modification de l'intervention</h2>
-            <p>Statuez ici sur les contestations faites par les membres de la guilde</p>
-            {checkedAdmin && !admin && <>
-                <p>Vous devez être connecté pour accéder à cette page !</p>
-                <UINavLink label={"Se Connecter"} href={'/connexion'} icon={'/images/user.svg'} />
-            </>}
-            {checkedAdmin && admin && contestation &&
-                <InterventionModifier admin={admin} contestation={contestation} />
-            } 
+    return (<>
+        <section className={"section_left"}>
+            <div id={"section_navigation"} className={"section_content"}>
+                <PageLogo pseudoTitle='Arbitrage'/>
+                <AppNavbar />
+            </div>
         </section>
-    )
+        <section className={"section_right"}>
+            <div id={"section_contest_checker"} className={"section_content"}>
+                <h2>Modification de l'intervention</h2>
+                <p>Statuez ici sur les contestations faites par les membres de la guilde</p>
+                {checkedAdmin && !admin && <>
+                    <p>Vous devez être connecté pour accéder à cette page !</p>
+                    <UINavLink label={"Se Connecter"} href={'/connexion'} icon={'/images/user.svg'} />
+                </>}
+                {checkedAdmin && admin && contestation &&
+                    <InterventionModifier admin={admin} contestation={contestation} />
+                } 
+            </div>
+        </section>
+    </>)
 }
 
 export default Modification;
