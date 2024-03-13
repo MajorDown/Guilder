@@ -58,17 +58,29 @@ const MemberSignupForm = (props: MemberSignupFormProps ) => {
           <p>L'inscription du nouveau membre a réussi ! il recevra un email de confirmation à l'adresse que vous avez renseignée.</p>
           <UIButton onClick={() => setHasSignup(false)}>Créer un autre membre</UIButton>
         </> : <>
-          <label htmlFor="inputMail">Email du nouveau membre : (ex: jeandupont@gemail.net)</label>
-          <UIEmailInput inputRef={mailRef} name="inputMail" placeholder='son adresse mail' required/>
-          <label htmlFor="inputFirstName">Son prénom :</label>
-          <UIFirstnameInput inputRef={firstnameRef} name="inputFirstName" required/>
-          <label htmlFor="inputLaststName">Son nom de famille :</label>
-          <UILastnameInput inputRef={lastnameRef} name="inputLastName" required/>
-          <label htmlFor="inputPhone">Son numéro de tel :</label>
-          <UIPhoneInput inputRef={phoneRef} name="inputPhone" required/>
-          <p>A savoir : un email sera envoyé à l'adresse que vous aurez renseigné. Il contiendra les informations du membre, 
+          <div className={"horizontalWrapper"}>
+            <div className={"verticalWrapper"}>
+              <label htmlFor="inputLastName">Son nom de famille :</label>
+              <UILastnameInput inputRef={lastnameRef} name="inputLastName" required/>
+            </div>
+            <div className={"verticalWrapper"}>
+              <label htmlFor="inputFirstName">Son prénom :</label>
+              <UIFirstnameInput inputRef={firstnameRef} name="inputFirstName" required/>
+            </div>
+          </div>
+          <div className={"horizontalWrapper"}>
+            <div className={"verticalWrapper"}>
+              <label htmlFor="inputMail">Son Email :</label>
+              <UIEmailInput inputRef={mailRef} name="inputMail" required/>
+            </div>
+            <div className={"verticalWrapper"}>
+              <label htmlFor="inputPhone">Son numéro de tel :</label>
+              <UIPhoneInput inputRef={phoneRef} name="inputPhone" required/>
+            </div>
+          </div>
+          <p id={"toKnow"}>A savoir : un email sera envoyé à l'adresse que vous aurez renseigné. Il contiendra les informations du membre, 
             dont un mot de passe généré aléatoirement, qu'il pourra personnaliser dès sa première connexion.</p>
-          <UIButton type="submit">Inscrire le nouveau membre</UIButton>
+          <UIButton id={"createMemberBtn"} type="submit">Inscrire le nouveau membre</UIButton>
           {errMessage && <p>{errMessage}</p>}
         </>
         }

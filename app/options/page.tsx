@@ -7,11 +7,13 @@ import UINavLink from '@/components/UI/UINavLink';
 import ContestationLister from '@/components/ContestationLister';
 import UIButton from '@/components/UI/UIButton';
 import NewAdminForm from '@/components/NewAdminForm';
+import PageLogo from '@/components/PageLogo';
+import AppNavbar from '@/components/AppNavbar';
 
 /**
  * @module Parameters
  */
-const Parameters = () => {
+const Options = () => {
     const {member} = useMemberContext();
     const {admin} = useAdminContext();
     const [checkedLogin, setCheckedLogin] = useState(false);
@@ -21,8 +23,14 @@ const Parameters = () => {
       setCheckedLogin(true);
     }, [admin, member])
 
-  return (
-    <section id="parametersSection">
+  return (<>
+    <section className={"section_left"}>
+        <div id={"section_navigation"} className={"section_content"}>
+          <PageLogo pseudoTitle='Outils'/>
+          <AppNavbar />
+        </div>
+      </section>
+    <section id="section_options">
         <h2>Paramètres</h2>
         {checkedLogin && !admin && !member && <>
             <p>Vous devez être connecté pour accéder à cette page !</p>
@@ -48,7 +56,7 @@ const Parameters = () => {
             </div>
         </div>)}
     </section>
-  )
+  </>)
 }
 
-export default Parameters;
+export default Options;

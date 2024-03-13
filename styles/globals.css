@@ -6,6 +6,7 @@
     --color-green: #748678;
     --color-form: #D3D4CC;
     --size-font: 1vw;
+    --size-font-mini: 0.6vw;
     --size-title: 2vw;
     --size-line-height: 24px;
 }
@@ -125,6 +126,10 @@ p {
 
 button {
     cursor: pointer;
+}
+
+li {
+    list-style: none;
 }
 
 

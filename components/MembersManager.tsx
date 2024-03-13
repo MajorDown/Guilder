@@ -37,9 +37,9 @@ const MembersManager = (props: MembersManagerProps) => {
             {wantNewMember ?
             <>
                 <MemberSignupForm admin={props.admin} onSignup={() => setHasNewMember(true)}/>
-                <UIButton onClick={() => setWantNewMember(false)}>Annuler l'inscription d'un nouveau membre</UIButton>
+                <button id={"quitBtn"} onClick={() => setWantNewMember(false)}>Annuler</button>
             </> :
-            <UIButton onClick={() => setWantNewMember(true)}>Inscrire un nouveau membre</UIButton>
+            <button id={"createMemberBtn"} onClick={() => setWantNewMember(true)}>Inscrire un nouveau membre</button>
             }
         </div>
     )

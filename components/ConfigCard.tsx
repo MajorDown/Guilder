@@ -29,7 +29,7 @@ const ConfigCard = (props: ConfigCardProps) => {
                 onChange={(value) => props.onChangeEnabled(value, props.option.option)} 
             />
             <UIButton style={{minWidth: "50px", marginLeft: "5px"}} onClick={() => props.onDelete(props.option.option)}>
-                <Image src="/images/trash.svg" alt="supprimer" width={24} height={24}/>
+                <Image src="/images/icons/trash-green.svg" alt="supprimer" width={24} height={24}/>
             </UIButton>
         </li>
   )

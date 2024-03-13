@@ -30,20 +30,15 @@ const MemberCard = (props: MemberCardProps) => {
       <div className={"memberCardResume"}>
         <p className={"memberName"}>{props.member.name}</p>
         <p className={props.member.counter < 0 ? "memberCounter red": "memberCounter"}>{props.member.counter} points</p>
-        <div className={"memberInfos"}>
-          <p>{props.member.mail}</p>
-          <p>{props.member.phone}</p>
-        </div>
-        {props.adminMode && <div className={"memberOptions"}>
-          <UIButton onClick={() => setWantHistoric(!wantHistoric)}>
-            <Image src={wantHistoric ? "/images/minimize.svg" : "/images/stats.svg"} alt={"Voir l'historique"} width={24} height={24}/>
-          </UIButton>
-          <UIButton onClick={() => handleDeleteMember(props.member.mail)}>
-            <Image src={"/images/trash.svg"} alt={"Supprimer le membre"} width={24} height={24}/>
-          </UIButton>
-        </div>}
+        <p className={"memberMail"}>{props.member.mail}</p>
+        <p className={"memberPhone"}>{props.member.phone}</p>
       </div>
-      {wantHistoric && <div className={"memberCardHistoric"}>historique (en cours de développement)</div>}
+      {props.adminMode && <div className={"memberOptions"}>
+        <button onClick={() => handleDeleteMember(props.member.mail)}>
+          <Image src={"/images/icons/trash.svg"} alt={"Supprimer le membre"} width={24} height={24}/>
+          <p>Supprimer</p>
+        </button>
+      </div>}
     </li>
   )
 }

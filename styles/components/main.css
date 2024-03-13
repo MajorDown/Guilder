@@ -346,6 +346,146 @@
     height: 40px;
 }
 
+/**********MEMBRES**********/
+
+#section_membres {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#membersManager {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#membersList {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+#membersList ul {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#membersList select,
+#membersList select option {
+    color: var(--color-dark);
+    font-weight: 600;
+    margin: 20px;
+    text-align: center;
+}
+
+.memberCard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.memberCard p {
+    font-size: var(--size-font-mini);
+    padding: 10px 0;
+}
+
+.memberCardResume {
+    display: flex;
+    background-color: var(--color-form);
+    width: 88%;
+}
+
+.memberCardResume p {
+    text-align: center;
+    color: var(--color-dark);
+    font-weight: 800;
+}
+
+.memberName {
+    width: 30%;
+    border-right: 1px solid var(--color-dark);
+}
+
+.memberCounter {
+    width: 20%;
+    border-right: 1px solid var(--color-dark);
+}
+
+.memberCounter.red {
+    color: rgb(168, 0, 0);
+}
+
+.memberMail {
+    width: 35%;
+    border-right: 1px solid var(--color-dark);
+}
+
+.memberPhone {
+    width: 15%;
+}
+
+.memberCard button {
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background-color: transparent;
+    border: none;
+}
+
+.memberCard button p {
+    padding: 0;
+}
+
+#createMemberBtn {
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    font-weight: 800;
+    border: none;
+    text-align: center;
+    height: 40px;
+    width: 45%;
+    margin-bottom: 10px;
+}
+
+#membersManager form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#membersManager form input {
+    min-width: 300px;
+}
+
+#toKnow {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#quitBtn {
+    background-color: var(--color-green);
+    color: var(--color-global);
+    font-weight: 800;
+    border: none;
+    text-align: center;
+    height: 40px;
+    width: 45%;
+}
+
 
 @media screen and (min-width: 1650px) {
     h2 {
