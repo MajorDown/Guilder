@@ -3,7 +3,16 @@ import Image from 'next/image';
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 
-const PageLogo = () => {
+type PageLogoProps = {
+    pseudoTitle?: string;
+}
+
+/**
+ * @module PageLogo
+ * 
+ * Affiche le logo et le pseudo-titre de la page actuelle, ainsi qu'un lien pour revenir à la page d'accueil.
+ */
+const PageLogo = (props: PageLogoProps) => {
     const router = useRouter();
     const actualPathName = usePathname();
     const [logoPath, setLogoPath] = useState<string>("");
@@ -27,13 +36,14 @@ const PageLogo = () => {
     }, [actualPathName])
     
     return (
-        <section id={"pageLogo"}>
-            <Image src={logoPath} alt="Logo de la page" max-width={200} height={100} />
+        <div id={"pageLogo"}>
+            <Image src={logoPath} alt="Logo de la page" width={300} height={150} />
+            <p className={"pseudoTitle"}>{props.pseudoTitle}</p>
             {actualPathName != "/" && <Link href="/">
                 <Image src="/images/arrow_back.svg" alt="retour à l'accueil" width={40} height={40} />
                 <p>Retour à la page d'accueil</p>
             </Link>}
-        </section>
+        </div>
   )
 }
 

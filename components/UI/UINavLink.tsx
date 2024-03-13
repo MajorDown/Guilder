@@ -20,6 +20,9 @@ export type UINavLinkProps = {
     label: string;
     href: string;
     icon: string;
+    activedIcon?: string;
+    iconWidth?: number;
+    iconHeight?: number
     onClick?: () => void;
     showActivation?: boolean;
     style?: LinkHTMLAttributes<HTMLAnchorElement>;
@@ -62,10 +65,10 @@ const UINavLink = (props: UINavLinkProps) => {
             }}
         >
             <Image 
-                src={props.icon} 
+                src={props. activedIcon && isActive? props.activedIcon : props.icon} 
                 alt={`icon_${props.label}`} 
-                width={50} 
-                height={50}
+                width={props.iconWidth || 50} 
+                height={props.iconHeight || 50}
             />
             <p>{props.label}</p>
         </Link>

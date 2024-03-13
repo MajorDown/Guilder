@@ -4,6 +4,8 @@ import { useAdminContext} from "@/contexts/adminContext";
 import UINavLink from '@/components/UI/UINavLink';
 import ConfigManager from '@/components/ConfigManager';
 import LoadSpinner from '@/components/LoadSpinner';
+import PageLogo from '@/components/PageLogo';
+import AppNavbar from '@/components/AppNavbar';
 
 /**
  * @module Config
@@ -19,9 +21,14 @@ const Config = () => {
     }, [admin])
 
     return (<>
-      <section className={"section_left"}></section>
+      <section className={"section_left"}>
+        <div id={"section_navigation"} className={"section_content"}>
+          <PageLogo pseudoTitle='Outils'/>
+          <AppNavbar />
+        </div>
+      </section>
       <section className={"section_right"}>
-        <div id={"section_config"}>
+        <div id={"section_config"} className={"section_content"}>
           <h2>Les outils de la Guilde</h2>
           {!hasCheckedAdmin && <LoadSpinner />}
           {hasCheckedAdmin && admin && <>
