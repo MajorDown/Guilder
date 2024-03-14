@@ -141,6 +141,14 @@ form {
     align-items: center;
 }
 
+input,
+select,
+option,
+textarea {
+    background-color: var(--color-global);
+    color: var(--color-dark);
+}
+
 
 
 @import url('animations.css');

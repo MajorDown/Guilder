@@ -131,9 +131,9 @@ const InterventionForm = () => {
     }
 
   return (<>
-    {!hasDeclared && <form id="operationForm" onSubmit={(event) => handleSubmit(event)}>
-        <label htmlFor="payerInput">Pour quel membre de la guilde avez-vous oeuvré ?</label>
-        <div className="inputWrapper" >
+    {!hasDeclared && <form id="interventionForm" onSubmit={(event) => handleSubmit(event)}>
+        <div className="verticalWrapper" >
+            <label htmlFor="payerInput">Pour quel membre de la guilde avez-vous oeuvré ?</label>
             <select 
                 id="payerInput" 
                 value={payer} 
@@ -148,8 +148,8 @@ const InterventionForm = () => {
             </select>           
             {payerError && <p>{payerError}</p>}
         </div>
-        <label htmlFor="pointsInput">Combien d'heures avez-vous effectué ?</label>
-        <div className="inputWrapper">
+        <div className="verticalWrapper">
+            <label htmlFor="pointsInput">Combien d'heures avez-vous effectué ?</label>
             <input 
                 type="number" 
                 name="points" 
@@ -161,24 +161,26 @@ const InterventionForm = () => {
                 />
             {hoursError && <p>{hoursError}</p>}
         </div>
-        <p>Sélectionnez ici les options / outils que vous avez eu à utiliser :</p>
-        <div id={"checkedConfigOptions"}>
-            {configsList && configsList.config.map((option, index) => (
-                <UIButton
-                    type={"button"}
-                    key={index}
-                    onClick={() => handlechangeCheckedConfigOptions(option.option)}
-                    className={checkedConfigOptions.includes(option.option) ? "UIButton checked" : "UIButton"}
+        <div className={"verticalWrapper"}>
+            <p>Sélectionnez ici les options / outils que vous avez eu à utiliser :</p>
+            <div id={"checkedConfigOptions"}>
+                {configsList && configsList.config.map((option, index) => (
+                    <button
+                        type={"button"}
+                        key={index}
+                        onClick={() => handlechangeCheckedConfigOptions(option.option)}
+                        className={checkedConfigOptions.includes(option.option) ? "option checked" : "option"}
                     >
-                    {option.option}
-                </UIButton>
-            ))}
+                        {option.option}
+                    </button>
+                ))}
+            </div>
         </div>
-        <label htmlFor="dateinput">
-            <p>A quelle date avez-vous réalisé ses heures ?</p>
-            <p>(Vous ne pouvez pas déclarer une opération datant de plus d'une semaine)</p>
-        </label>
-        <div className="inputWrapper">
+        <div className="verticalWrapper">
+            <label htmlFor="dateinput">
+                <p>A quelle date avez-vous réalisé ses heures ?</p>
+                <p>(Vous ne pouvez pas déclarer une opération datant de plus d'une semaine)</p>
+            </label>
             <input 
                 type="date" 
                 name="date" 
@@ -190,25 +192,31 @@ const InterventionForm = () => {
                 required
             />
         </div>
-        <label htmlFor="natureInput">Décrivez ici votre intervention (objectif, lieu...) :</label>
-        <textarea 
-            name="nature" 
-            id="natureInput" 
-            cols={30} rows={5} 
-            value={description} 
-            onChange={(event) => setDescription(event.target.value)}></textarea>
-        <label htmlFor="">
-            <input 
-                type="checkbox" 
-                name="confirm" 
-                id="confirmInput" 
-                checked={confirm} 
-                onChange={() => setConfirm(!confirm)} 
-                required/>
-            en cochant cette case, vous confirmez que l'ensemble des informations
-            fournis dans ce formulaire sont correct !
-        </label>
-        <UIButton type="submit">Déclarer l'intervention</UIButton>
+        <div className="verticalWrapper">
+            <label htmlFor="natureInput">Décrivez ici votre intervention (objectif, lieu...) :</label>
+            <textarea 
+                name="nature" 
+                id="natureInput" 
+                cols={30} rows={5} 
+                value={description} 
+                onChange={(event) => setDescription(event.target.value)}>
+            </textarea>
+        </div>
+        <div className="verticalWrapper">
+            <label id={"infosConfirmation"} htmlFor="">
+                <input 
+                    type="checkbox" 
+                    name="confirm" 
+                    id="confirmInput" 
+                    checked={confirm} 
+                    onChange={() => setConfirm(!confirm)} 
+                    required
+                />
+                en cochant cette case, vous confirmez que l'ensemble des informations
+                fournis dans ce formulaire sont correct !
+            </label>
+        </div>
+        <button id={"declareBtn"} type="submit">Déclarer l'intervention</button>
         {loadError && <p>{loadError}</p>}
     </form>}
     {hasDeclared && <>

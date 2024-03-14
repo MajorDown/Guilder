@@ -37,12 +37,12 @@ const Options = () => {
             <p>Vous devez être connecté pour accéder à cette page !</p>
             <UINavLink label={"Se Connecter"} href={'/connexion'} icon={'/images/icons/membre-white-dark.svg'} />
         </>}
-        {(admin || member) && (<div>
+        {(admin || member) && (<>
             <p>Que souhaitez-vous faire ?</p>
             <div className={"tabsLister"}>
-              {member && <UIButton onClick={() => setSelectedTab("contestation")}>Consulter mes contestations</UIButton>}
-              {admin && <UIButton onClick={() => setSelectedTab("addNewAdmin")}>Ajouter un nouvel admin</UIButton>}
-              <UIButton onClick={() => setSelectedTab("password")}>Modifier mon mot de passe</UIButton>
+              {member && <button onClick={() => setSelectedTab("contestation")}>Consulter mes contestations</button>}
+              {admin && <button onClick={() => setSelectedTab("addNewAdmin")}>Ajouter un nouvel admin</button>}
+              <button onClick={() => setSelectedTab("password")}>Modifier mon mot de passe</button>
             </div>
             <div>
               {selectedTab === "password" && <PasswordUpdater 
@@ -55,7 +55,7 @@ const Options = () => {
               {member && selectedTab === "contestation" && <ContestationLister member={member} />}  
               {admin && selectedTab === "addNewAdmin" && <NewAdminForm actualAdmin={admin} />}            
             </div>
-        </div>)}
+        </>)}
       </div>
     </section>
   </>)

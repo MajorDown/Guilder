@@ -535,6 +535,145 @@
     transform: rotate(43deg);
 }
 
+.dataModifier {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 5px 0;
+}
+
+.optionsModifier {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.option {
+    background-color: var(--color-global);
+    color: var(--color-dark);
+    font-weight: 800;
+    padding: 5px;
+    width: 150px;
+    margin: 5px;
+}
+
+.option.checked {
+    background-color: var(--color-green);
+    color: var(--color-global);
+}
+
+.adminMessage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 5px 0;
+}
+
+#modifyIntervention {
+    text-align: center;
+    background-color: var(--color-green);
+    color: var(--color-global);
+    margin: 10px;
+    padding: 10px 20px;
+}
+
+/**********OPTIONS**********/
+
+.tabsLister {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.tabsLister button {
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    font-weight: 800;
+    border: none;
+    text-align: center;
+    padding: 10px 20px;
+    margin: 10px 0 20px 0;
+}
+
+/**********OPTIONS:PASSWORD**********/
+
+#passwordUpdater {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+#passwordUpdater form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+#passwordUpdater .verticalWrapper label p {
+    text-align: center;
+}
+
+#passwordUpdater .verticalWrapper div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#passwordUpdater button {
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    font-weight: 800;
+    border: none;
+    text-align: center;
+    padding: 10px 20px;
+    margin: 10px 0 20px 0;
+}
+
+/**********DECLARATION**********/
+
+#section_declaration .verticalWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 0;
+}
+
+#section_declaration .verticalWrapper label p {
+    text-align: center;
+}
+
+#infosConfirmation {
+    max-width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+#declareBtn {
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    font-weight: 800;
+    border: none;
+    text-align: center;
+    padding: 10px 20px;
+    margin: 10px 0 20px 0;
+}
+
 @media screen and (min-width: 1650px) {
     h2 {
         font-size: 1vw;

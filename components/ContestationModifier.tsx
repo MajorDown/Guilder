@@ -164,14 +164,14 @@ const InterventionModifier = (props: interventionModifierProps) => {
                 <label htmlFor="optionsInput">Options déclarées :</label>
                 <div>
                     {configsList && configsList.config.map((option, index) => (
-                        <UIButton
+                        <button
                             type={"button"}
                             key={index}
                             onClick={() => handlechangeCheckedConfigOptions(option.option)}
-                            className={checkedConfigOptions.includes(option.option) ? "UIButton checked" : "UIButton"}
+                            className={checkedConfigOptions.includes(option.option) ? "option checked" : "option"}
                         >
                             {option.option}
-                        </UIButton>
+                        </button>
                     ))}
                 </div>
             </div>
@@ -207,16 +207,18 @@ const InterventionModifier = (props: interventionModifierProps) => {
                     <option value={"refusé"}>Refusé</option>
                 </select>
             </div>
-            <label htmlFor="adminMessageInput">Message de l'admin :</label>
-            <textarea 
-                rows={5}
-                cols={30}
-                maxLength={500}
-                id="adminMessageInput" 
-                value={adminMessage}
-                onChange={(event) => setAdminMessage(event.target.value)} 
-            />
-            <UIButton type={"submit"}>Enregistrer les modifications</UIButton>
+            <div className={"adminMessage"}>
+                <label htmlFor="adminMessageInput">Message de l'admin :</label>
+                <textarea 
+                    rows={5}
+                    cols={50}
+                    maxLength={500}
+                    id="adminMessageInput" 
+                    value={adminMessage}
+                    onChange={(event) => setAdminMessage(event.target.value)} 
+                />
+            </div>
+            <button id={"modifyIntervention"} type={"submit"}>Enregistrer les modifications</button>
         </form>}
     </>)
 }
