@@ -3,6 +3,8 @@ import {useState, useEffect} from "react";
 import { useMemberContext } from "@/contexts/memberContext";
 import UINavLink from "@/components/UI/UINavLink";
 import InterventionsLister from "@/components/InterventionsLister";
+import AppNavbar from "@/components/AppNavbar";
+import PageLogo from "@/components/PageLogo";
 
 const Historic = () => {
   const { member } = useMemberContext();
@@ -12,8 +14,15 @@ const Historic = () => {
       setCheckedMember(true);
   }, [member])
 
-  return (
-    <section id={"historicSection"}>
+  return (<>
+    <section className={"section_left"}>
+      <div id={"section_navigation"} className={"section_content"}>
+        <PageLogo pseudoTitle='Historique'/>
+        <AppNavbar />
+      </div>
+    </section>
+    <section className={"section_right"} >
+      <div id={"section_historique"} className={"section_content"}>
         <h2>Historique de vos interventions</h2>
         {checkedMember && !member && <>
             <p>Vous devez être connecté pour accéder à cette page !</p>
@@ -26,8 +35,9 @@ const Historic = () => {
             </p>
             <InterventionsLister user={member} />
         </>}
+      </div>
     </section>
-  )
+  </>)
 }
 
 export default Historic;

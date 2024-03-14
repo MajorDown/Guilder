@@ -17,7 +17,7 @@ const Declaration = () => {
     return (<>
         <section className={"section_left"}>
             <div id={"section_navigation"} className={"section_content"}>
-                <PageLogo pseudoTitle='Outils'/>
+                <PageLogo pseudoTitle='Déclarer'/>
                 <AppNavbar />
             </div>
         </section>

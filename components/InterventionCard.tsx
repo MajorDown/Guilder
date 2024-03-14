@@ -70,11 +70,11 @@ const InterventionCard = (props: interventionCardProps) => {
     <li className={"interventionCard"}>
         <div className={"interventionCardResume"}>
             <p className={"interventionDate"}>{dateDisplay}</p>
-            <p className={"interventionlog"}>{logDisplay}</p>
+            <p className={"interventionLog"}>{logDisplay}</p>
             <p className={"interventionCredit"} style={{color: props.intervention.payer === props.user.name ? 'red' : ''}}>{creditDisplay}</p>
-            <UIButton onClick={() => setWantDetails(!wantDetails)}>
-                <Image src={wantDetails ? "/images/minimize.svg" : "images/analyse.svg"} alt={"détail de la déclaration"} width={20} height={20}/>
-            </UIButton>
+            <button onClick={() => setWantDetails(!wantDetails)}>
+                <Image className={wantDetails ? "extended" : ""} src={"images/icons/show-more.svg"} alt={"détail de la déclaration"} width={20} height={20}/>
+            </button>
         </div>
         {wantDetails && <div className={"interventionDetails"}>
             <div className={"interventionDescAndOptions"}>
