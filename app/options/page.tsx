@@ -44,17 +44,15 @@ const Options = () => {
               {admin && <button onClick={() => setSelectedTab("addNewAdmin")}>Ajouter un nouvel admin</button>}
               <button onClick={() => setSelectedTab("password")}>Modifier mon mot de passe</button>
             </div>
-            <div>
-              {selectedTab === "password" && <PasswordUpdater 
-                status={admin ? "admin" : "member"} 
-                user={{
-                  mail: admin?.mail || member?.mail,
-                  token: admin?.token || member?.token
-                }} 
-              />}
-              {member && selectedTab === "contestation" && <ContestationLister member={member} />}  
-              {admin && selectedTab === "addNewAdmin" && <NewAdminForm actualAdmin={admin} />}            
-            </div>
+            {selectedTab === "password" && <PasswordUpdater 
+              status={admin ? "admin" : "member"} 
+              user={{
+                mail: admin?.mail || member?.mail,
+                token: admin?.token || member?.token
+              }} 
+            />}
+            {member && selectedTab === "contestation" && <ContestationLister member={member} />}  
+            {admin && selectedTab === "addNewAdmin" && <NewAdminForm actualAdmin={admin} />}            
         </>)}
       </div>
     </section>

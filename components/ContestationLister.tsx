@@ -42,7 +42,7 @@ const ContestationLister = (props : ContestationListerProps) => {
     }, [props.member]);  
     
     return (
-        <div className={"contestationLister"}>
+        <div id={"contestationLister"}>
             <h3>Liste des contestations vous concernant</h3>
             {isSearching ? <LoadSpinner message={"Chargement des contestations en cours..."}/> : <>
                 {yourContestations && <>

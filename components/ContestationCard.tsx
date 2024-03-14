@@ -28,13 +28,13 @@ const ContestationCard = (props: ContestationCardProps) => {
                 <p>Contesté par</p>
                 <p>{props.contestation.contester}</p>
             </div>
-            <div className={"adminStatus"}>
+            <div className={"status"}>
                 <p>Statut</p>
                 <p>{props.contestation.adminConclusion}</p>
             </div>
-            <UIButton onClick={() => setWantDetails(!wantDetails)}>
-                <Image src={wantDetails ? '/images/minimize.svg' : '/images/analyse.svg'} alt={"plus d'information"} width={24} height={24}/>
-            </UIButton>
+            <button onClick={() => setWantDetails(!wantDetails)}>
+                <Image className={wantDetails ? "extended" : ""} src={'/images/icons/show-more.svg'} alt={"plus d'information"} width={24} height={24}/>
+            </button>
         </div>
         { wantDetails && <>
             <div className={"contestationDetails"}>
