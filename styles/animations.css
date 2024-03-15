@@ -12,7 +12,7 @@
     animation: spin 1s linear infinite;
 }
 
-@keyframes comeToRightFirst {
+@keyframes comeToRight {
     from {
         transform: translateX(100%);
     }
@@ -22,9 +22,9 @@
     }
 }
 
-@keyframes comeToRightLast {
+@keyframes comeToLeft {
     from {
-        transform: translateX(200%);
+        transform: translateX(-100%);
     }
 
     to {

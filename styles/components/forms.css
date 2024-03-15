@@ -48,6 +48,8 @@ button {
     cursor: pointer;
     font-weight: 600;
     border: none;
+    background-color: var(--color-global);
+    color: black;
 }
 
 form.bg-dark button.validation {

@@ -1,5 +1,4 @@
-.section_left,
-.section_right {
+.section_left {
     width: 50%;
     z-index: 50;
     display: flex;
@@ -8,10 +7,19 @@
     transition: 1s;
 }
 
+.section_right {
+    width: 50%;
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    transition: 1s;
+}
+
 .section_content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     padding: 20px;
 }
