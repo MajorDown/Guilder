@@ -91,7 +91,7 @@ const ConfigManager = (props: ConfigManagerProps) => {
                         <label htmlFor="optionIsEnable">Rendre cette option utilisable dessuite : <UIOptionEnableCheckbox inputRef={optionEnableCheckboxRef}/></label>
                     </div>
                     <div className={"horizontalWrapper"}>
-                        <UIButton className={"validateNewOption"} type="submit">Valider la nouvelle option</UIButton>
+                        <UIButton className={"validateNewOption"} type="submit">Valider l'option</UIButton>
                         <UIButton className={"quitNewOption"} onClick={() => setWantNewOption(false)}>Annuler</UIButton>
                     </div>
                     {newOptionError && <p style={{color: "red"}}>{newOptionError}</p>}

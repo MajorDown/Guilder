@@ -64,10 +64,10 @@ const UIPasswordInput = (props: UIPasswordInputProps) => {
             spellCheck={props.spellCheck}
             style={{
                 ...(value ? (error ? {
-                    backgroundColor: "#ff00003e",
+                    backgroundColor: "#ff7676",
                     borderColor: "#750909"
                 } : {
-                    backgroundColor: "#7bff003e",
+                    backgroundColor: "#4fad4f",
                     borderColor: "#2a5205"
                 }) : {}),
                 ...props.style

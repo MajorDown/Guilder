@@ -60,12 +60,12 @@ const MemberSignupForm = (props: MemberSignupFormProps ) => {
         </> : <>
           <div className={"horizontalWrapper"}>
             <div className={"verticalWrapper"}>
-              <label htmlFor="inputLastName">Son nom de famille :</label>
-              <UILastnameInput inputRef={lastnameRef} name="inputLastName" required/>
-            </div>
-            <div className={"verticalWrapper"}>
               <label htmlFor="inputFirstName">Son prénom :</label>
               <UIFirstnameInput inputRef={firstnameRef} name="inputFirstName" required/>
+            </div>
+            <div className={"verticalWrapper"}>
+              <label htmlFor="inputLastName">Son nom de famille :</label>
+              <UILastnameInput inputRef={lastnameRef} name="inputLastName" required/>
             </div>
           </div>
           <div className={"horizontalWrapper"}>

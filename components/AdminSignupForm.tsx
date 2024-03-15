@@ -55,7 +55,7 @@ const AdminSignupForm = () => {
             <p>Votre inscription a réussi. Bienvenue ! vous pouvez maintenant 
                 vous connecter et gérer votre guilde :
             </p>
-            <UINavLink label={"Se connecter"} href={'/connexion'} icon={'/images/admin.svg'} />
+            <UINavLink label={"Se connecter"} href={'/connexion'} icon={'/images/icons/admin-white-dark.svg'} />
         </> : <>
           <div className={"horizontalWrapper"}>
             <div className={"verticalWrapper"}>
@@ -91,7 +91,7 @@ const AdminSignupForm = () => {
                 </label>
               <UIPasswordValidator inputRef={passwordRef} name="inputPassword" required/>
             </div>
-            <UIButton type={"submit"}>Créer sa guilde</UIButton>
+            <button type={"submit"}>Créer sa guilde</button>
             {errMessage && <p>{errMessage}</p>}
             {isLoading && <LoadSpinner />}
         </>

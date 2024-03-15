@@ -58,10 +58,10 @@ const UIPasswordValidator = (props: UIPasswordValidatorProps) => {
         aria-label={"confirmez votre mot de passe"}
         style={{
           ...(password2 ? (isConfirmed === false ? {
-              backgroundColor: "#ff00003e",
+              backgroundColor: "#ff7676",
               borderColor: "#750909"
           } : {
-              backgroundColor: "#7bff003e",
+              backgroundColor: "#4fad4f",
               borderColor: "#2a5205"
           }) : {}),
           ...props.style
