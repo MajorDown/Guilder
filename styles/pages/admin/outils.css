@@ -1,0 +1,91 @@
+#configManager h3 {
+    margin-top: 50px;
+}
+
+#configManager {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#configOptionsList {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#configLister {
+    width: 100%;
+}
+
+.configCard {
+    background-color: var(--color-form);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 5px 0;
+    margin: 10px 0;
+}
+
+.configCard p {
+    color: var(--color-dark);
+    font-weight: 800;
+}
+
+.createNewOption {
+    background-color: var(--color-light);
+    border: none;
+    color: var(--color-dark);
+    width: 370px;
+    height: 50px;
+}
+
+.horizontalWrapper {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+.horizontalWrapper label {
+    display: flex;
+    gap: 10px;
+}
+
+.verticalWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#configOptionForm .UIOptionNameInput,
+#configOptionForm .UIOptionCoefInput {
+    background-color: var(--color-global);
+    color: black;
+    border: none;
+    width: 250px;
+    padding: 10px;
+    text-align: center;
+}
+
+.validateNewOption {
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    border: none;
+    font-weight: 800;
+    width: 250px;
+    height: 40px;
+}
+
+.quitNewOption {
+    background-color: var(--color-green);
+    color: var(--color-global);
+    border: none;
+    font-weight: 300;
+    width: 250px;
+    height: 40px;
+}

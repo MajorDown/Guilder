@@ -1,0 +1,10 @@
+#section_guilde p {
+    text-align: center;
+    margin: 10px 0;
+}
+
+@media screen and (min-width: 1650px) {
+    h2 {
+        font-size: 1vw;
+    }
+}

@@ -1,0 +1,90 @@
+#contestationArbitrer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    width: 100%;
+}
+
+.contestationArbCard {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-form);
+    width: 100%;
+}
+
+.contestationArbCard p {
+    text-align: center;
+    color: var(--color-dark);
+    font-weight: 800;
+    padding: 10px;
+}
+
+.contestationResume {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.contestationResume button {
+    padding: 10px;
+}
+
+.contestationResume button img {
+    transition: 0.3s;
+}
+
+button img.extended {
+    transform: rotate(43deg);
+}
+
+.dataModifier {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 5px 0;
+}
+
+.optionsModifier {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.option {
+    background-color: var(--color-global);
+    color: var(--color-dark);
+    font-weight: 800;
+    padding: 5px;
+    width: 150px;
+    margin: 5px;
+}
+
+.option.checked {
+    background-color: var(--color-green);
+    color: var(--color-global);
+}
+
+.adminMessage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 5px 0;
+}
+
+#modifyIntervention {
+    text-align: center;
+    background-color: var(--color-green);
+    color: var(--color-global);
+    margin: 10px;
+    padding: 10px 20px;
+}

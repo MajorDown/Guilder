@@ -21,7 +21,7 @@ const Declaration = () => {
                 <AppNavbar />
             </div>
         </section>
-        <section className={"section_right"} >
+        <section className={"section_right"}>
             <div id="section_declaration" className={"section_content"}>
                 <h2>Déclarez une nouvelle intervention</h2>
                 {checkedMember && !member && <>
