@@ -32,7 +32,7 @@ const Config = () => {
           <h2>Les outils de la Guilde</h2>
           {!hasCheckedAdmin && <LoadSpinner />}
           {hasCheckedAdmin && admin && <>
-            <p>Gérez ici les options disponibles lorsqu'un membre déclare une intervention</p>
+            <p>Gérez ici les outils disponibles lorsqu'un membre déclare une intervention</p>
             <ConfigManager configFor={admin}/>
           </>}
           {hasCheckedAdmin && !admin && <>

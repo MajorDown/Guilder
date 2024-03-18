@@ -55,6 +55,10 @@
     padding: 20px;
 }
 
+.section_right .section_content {
+    min-height: 75vh;
+}
+
 .pseudoTitle {
     font-size: var(--size-title);
     text-transform: uppercase;

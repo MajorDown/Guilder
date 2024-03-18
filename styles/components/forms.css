@@ -12,27 +12,29 @@ form.bg-grey {
     max-width: 640px;
 }
 
-form.bg-dark {
-    background-color: var(--color-dark);
-    max-width: 710px;
-}
-
-div.wrapper-vertical {
+.wrapper-vertical {
+    width: 45%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 5px;
 }
 
-div.wrapper-horizontal {
+.wrapper-vertical input {
+    width: 90%;
+}
+
+.wrapper-horizontal {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 10px 0px;
 }
 
-div.wrapper-horizontal input,
-div.wrapper-horizontal select {
-    padding: 5px;
+.wrapper-horizontal input,
+.wrapper-horizontal select {
+    padding: 5%;
 }
 
 input,
@@ -48,26 +50,26 @@ button {
     cursor: pointer;
     font-weight: 600;
     border: none;
-    background-color: var(--color-global);
+    background-color: white;
     color: black;
 }
 
-form.bg-dark button.validation {
+button.light {
     background-color: var(--color-light);
     color: var(--color-dark);
 }
 
-form.bg-dark button.annulation {
-    background-color: var(--color-green);
-    color: var(--color-light);
-}
-
-form.bg-grey button.validation {
+button.dark {
     background-color: var(--color-dark);
     color: var(--color-global);
 }
 
-form.bg-grey button.annulation {
-    background-color: var(--color-light);
+button.white {
+    background-color: var(--color-global);
     color: var(--color-dark);
+}
+
+button.green {
+    background-color: var(--color-green);
+    color: var(--color-global);
 }

@@ -6,6 +6,8 @@ import { AdminProvider } from '@/contexts/adminContext';
 import { MemberProvider } from '@/contexts/memberContext';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { Montserrat } from 'next/font/google';
+const montserrat = Montserrat({weight: "400", subsets: ["latin"], display: 'swap', variable: "--font-Montserrat"});
 import SectionsBackground from '@/components/SectionsBackground';
 const inter = Inter({weight: "400", subsets: ["latin"], display: 'swap', variable: "--font-Inter"});
 
