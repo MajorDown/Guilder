@@ -35,11 +35,11 @@ const MembersManager = (props: MembersManagerProps) => {
         <div id="membersManager">
             {membersList[0] && <MembersLister members={membersList} />}
             {wantNewMember ?
-            <>
-                <MemberSignupForm admin={props.admin} onSignup={() => setHasNewMember(true)}/>
-                <button id={"quitBtn"} onClick={() => setWantNewMember(false)}>Annuler</button>
-            </> :
-            <button id={"createMemberBtn"} onClick={() => setWantNewMember(true)}>Inscrire un nouveau membre</button>
+                <MemberSignupForm 
+                    admin={props.admin} 
+                    onAbort={() => setWantNewMember(false)}
+                    onSignup={() => setHasNewMember(true)}
+                /> : <button className={"light"} onClick={() => setWantNewMember(true)}>Inscrire un nouveau membre</button>
             }
         </div>
     )

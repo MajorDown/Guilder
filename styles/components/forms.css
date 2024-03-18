@@ -43,6 +43,7 @@ option,
 textarea {
     background-color: var(--color-global);
     color: var(--color-dark);
+    box-shadow: none;
 }
 
 button {
@@ -72,4 +73,8 @@ button.white {
 button.green {
     background-color: var(--color-green);
     color: var(--color-global);
+}
+
+.wrapper-horizontal button {
+    width: 45%;
 }

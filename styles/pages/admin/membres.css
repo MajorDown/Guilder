@@ -92,39 +92,7 @@
     padding: 0;
 }
 
-#createMemberBtn {
-    background-color: var(--color-light);
-    color: var(--color-dark);
-    font-weight: 800;
-    border: none;
-    text-align: center;
-    height: 40px;
-    width: 45%;
-    margin-bottom: 10px;
-}
-
-#membersManager form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-#membersManager form input {
-    min-width: 300px;
-}
-
-#toKnow {
-    text-align: center;
-    margin: 20px 0;
-}
-
-#quitBtn {
-    background-color: var(--color-green);
-    color: var(--color-global);
-    font-weight: 800;
-    border: none;
-    text-align: center;
-    height: 40px;
-    width: 45%;
+#membersSignupForm {
+    width: 80%;
+    min-width: 400px;
 }

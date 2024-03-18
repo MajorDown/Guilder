@@ -11,6 +11,7 @@ import UIButton from './UI/UIButton';
 export type MemberSignupFormProps = {
     admin: ConnectedAdmin;
     onSignup: () => void;
+    onAbort: (bool: boolean) => void;
 }
 
 /**
@@ -53,37 +54,39 @@ const MemberSignupForm = (props: MemberSignupFormProps ) => {
     }
 
   return (
-    <form onSubmit={(event) => handleSignup(event)}>
+    <form id={"membersSignupForm"} onSubmit={(event) => handleSignup(event)}>
         {hasSignup ? <>
           <p>L'inscription du nouveau membre a réussi ! il recevra un email de confirmation à l'adresse que vous avez renseignée.</p>
-          <UIButton onClick={() => setHasSignup(false)}>Créer un autre membre</UIButton>
+          <button className={"light"} onClick={() => setHasSignup(false)}>Créer un autre membre</button>
         </> : <>
-          <div className={"horizontalWrapper"}>
-            <div className={"verticalWrapper"}>
+          <div className={"wrapper-horizontal"}>
+            <div className={"wrapper-vertical"}>
               <label htmlFor="inputFirstName">Son prénom :</label>
               <UIFirstnameInput inputRef={firstnameRef} name="inputFirstName" required/>
             </div>
-            <div className={"verticalWrapper"}>
+            <div className={"wrapper-vertical"}>
               <label htmlFor="inputLastName">Son nom de famille :</label>
               <UILastnameInput inputRef={lastnameRef} name="inputLastName" required/>
             </div>
           </div>
-          <div className={"horizontalWrapper"}>
-            <div className={"verticalWrapper"}>
+          <div className={"wrapper-horizontal"}>
+            <div className={"wrapper-vertical"}>
               <label htmlFor="inputMail">Son Email :</label>
               <UIEmailInput inputRef={mailRef} name="inputMail" required/>
             </div>
-            <div className={"verticalWrapper"}>
+            <div className={"wrapper-vertical"}>
               <label htmlFor="inputPhone">Son numéro de tel :</label>
               <UIPhoneInput inputRef={phoneRef} name="inputPhone" required/>
             </div>
           </div>
           <p id={"toKnow"}>A savoir : un email sera envoyé à l'adresse que vous aurez renseigné. Il contiendra les informations du membre, 
             dont un mot de passe généré aléatoirement, qu'il pourra personnaliser dès sa première connexion.</p>
-          <UIButton id={"createMemberBtn"} type="submit">Inscrire le nouveau membre</UIButton>
+          <div className={"wrapper-horizontal"}>
+            <button className={"light"} type="submit">Créer le membre</button>
+            <button className={"green "} onClick={() => props.onAbort(false)}>Annuler</button>
+          </div>
           {errMessage && <p>{errMessage}</p>}
-        </>
-        }
+        </>}
         {isLoading && <LoadSpinner />}
     </form>
   )
