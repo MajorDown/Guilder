@@ -83,7 +83,7 @@ const MemberSignupForm = (props: MemberSignupFormProps ) => {
             dont un mot de passe généré aléatoirement, qu'il pourra personnaliser dès sa première connexion.</p>
           <div className={"wrapper-horizontal"}>
             <button className={"light"} type="submit">Créer le membre</button>
-            <button className={"green "} onClick={() => props.onAbort(false)}>Annuler</button>
+            <button className={"green"} onClick={() => props.onAbort(false)}>Annuler</button>
           </div>
           {errMessage && <p>{errMessage}</p>}
         </>}

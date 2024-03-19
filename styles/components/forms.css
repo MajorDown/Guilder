@@ -43,7 +43,7 @@ option,
 textarea {
     background-color: var(--color-global);
     color: var(--color-dark);
-    box-shadow: none;
+    border: 0;
 }
 
 button {

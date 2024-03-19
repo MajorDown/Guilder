@@ -31,6 +31,7 @@
 
 .contestationResume button {
     padding: 10px;
+    background-color: var(--color-form);
 }
 
 .contestationResume button img {
