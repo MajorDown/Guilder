@@ -43,10 +43,23 @@ button img.extended {
 }
 
 #interventionModifier {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
     margin-top: 20px;
-    width: 550px;
-    max-height: 600px;
-    overflow-y: auto;
+    width: 100%;
+    height: 550px;
+}
+
+#interventionModifier .wrapper-horizontal .wrapper-vertical {
+    justify-content: center;
+    align-items: center;
+}
+
+#workerInput,
+#payerInput {
+    width: 90%
 }
 
 .hoursModifier {
@@ -92,7 +105,7 @@ button img.extended {
     gap: 5px;
 }
 
-.option.checked {
+.checked {
     background-color: var(--color-green);
     color: var(--color-global);
 }
@@ -111,4 +124,8 @@ button img.extended {
 
 .dateModifier input {
     max-width: 150px;
+}
+
+#modifyIntervention {
+    margin-top: 20px;
 }

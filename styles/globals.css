@@ -93,6 +93,26 @@ li {
     list-style: none;
 }
 
+.scrollable {
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.scrollable::-webkit-scrollbar {
+    width: 12px;
+}
+
+.scrollable::-webkit-scrollbar-track {
+    background: var(--color-dark);
+    border: solid 1px var(--color-light);
+    border-radius: 6px;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+    background-color: var(--color-light);
+    border-radius: 6px;
+}
+
 
 @import url('animations.css');
 @import url('./components/UI/UINavLink.css');

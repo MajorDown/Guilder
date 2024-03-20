@@ -40,9 +40,9 @@ const Options = () => {
         {(admin || member) && (<>
             <p>Que souhaitez-vous faire ?</p>
             <div className={"tabsLister"}>
-              {member && <button onClick={() => setSelectedTab("contestation")}>Consulter mes contestations</button>}
-              {admin && <button onClick={() => setSelectedTab("addNewAdmin")}>Ajouter un nouvel admin</button>}
-              <button onClick={() => setSelectedTab("password")}>Modifier mon mot de passe</button>
+              {member && <button className={selectedTab === "contestation" ? "green" : "light"} onClick={() => setSelectedTab("contestation")}>Consulter mes contestations</button>}
+              {admin && <button className={selectedTab === "addNewAdmin" ? "green" : "light"} onClick={() => setSelectedTab("addNewAdmin")}>Ajouter un nouvel admin</button>}
+              <button className={selectedTab === "password" ? "green" : "light"} onClick={() => setSelectedTab("password")}>Modifier mon mot de passe</button>
             </div>
             {selectedTab === "password" && <PasswordUpdater 
               status={admin ? "admin" : "member"} 

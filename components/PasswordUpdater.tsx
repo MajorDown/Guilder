@@ -57,18 +57,18 @@ const PasswordUpdater = (props: PasswordUpdaterProps) => {
     <div id="passwordUpdater">
         <h3>Modifiez votre mot de passe</h3>
         {!isActualised && <form onSubmit={(event)=> {handleSubmit(event)}}>
-            <div className={"verticalWrapper"}>
+            <div className={"wrapper-vertical"}>
                 <label htmlFor="lastPassword">Renseignez votre actuel mot de passe :</label>
                 <UIPasswordInput name="lastPassword" inputRef={lastPasswordRef} />
             </div>
-            <div className={"verticalWrapper"}>
+            <div className={"wrapper-vertical"}>
                 <label htmlFor="newPassword">
                     <p>Choisissez votre nouveau mot de passe :</p>
                     <p>(10 caractères minimum, avec au moins 1 chiffre, 1 lettre minuscule, 1 lettre majuscule et un caractère spécial (@, $, !, %, *, ?, ou &))</p>
                 </label>
                 <UIPasswordValidator inputRef={newPasswordRef}/>
             </div>
-            <button type="submit">Actualiser votre mot de passe</button>       
+            <button className={"light"} type="submit">Actualiser votre mot de passe</button>       
         </form>}
         {isActualised && <p>Votre mot de passe à bien été actualisé !</p>}
         {!isActualised && errMessage && <p>{errMessage}</p>}

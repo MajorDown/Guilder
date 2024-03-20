@@ -3,21 +3,13 @@
     justify-content: center;
     align-items: center;
     gap: 20px;
-}
-
-.tabsLister button {
-    background-color: var(--color-light);
-    color: var(--color-dark);
-    font-weight: 800;
-    border: none;
-    text-align: center;
-    padding: 10px 20px;
-    margin: 10px 0 20px 0;
+    margin: 20px 0;
 }
 
 /**********OPTIONS:PASSWORD**********/
 
 #passwordUpdater {
+    width: 550px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -31,29 +23,22 @@
     justify-content: center;
     align-items: center;
     gap: 20px;
+    width: 100%
 }
 
-#passwordUpdater .verticalWrapper label p {
-    text-align: center;
+#passwordUpdater input {
+    width: 150px;
 }
 
-#passwordUpdater .verticalWrapper div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+#passwordUpdater form .wrapper-vertical {
     align-items: center;
-    gap: 10px;
+    width: 100%;
 }
 
-#passwordUpdater button {
-    background-color: var(--color-light);
-    color: var(--color-dark);
-    font-weight: 800;
-    border: none;
+#passwordUpdater label {
     text-align: center;
-    padding: 10px 20px;
-    margin: 10px 0 20px 0;
 }
+
 
 /**********OPTIONS:CONTESTATIONS**********/
 

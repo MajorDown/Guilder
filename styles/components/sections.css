@@ -106,6 +106,10 @@
     transition: 0.3s;
 }
 
+#appNavbar a p {
+    margin-top: 10px;
+}
+
 #appNavbar .isactive {
     background-color: var(--color-form);
 }
@@ -118,4 +122,16 @@
 #appNavbar a img {
     width: 100;
     height: 100;
+}
+
+@media screen and (max-width: 1250px) {
+
+    #appNavbar a img {
+        width: 50px;
+        height: 50px;
+    }
+
+    #appNavbar a p {
+        margin-top: 5px;
+    }
 }

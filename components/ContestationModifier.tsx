@@ -117,7 +117,7 @@ const InterventionModifier = (props: interventionModifierProps) => {
             <p>La contestation a bien été statuée !</p>
             <UINavLink label={"Retour à la liste des contestations"} href={"/arbitrage"} icon={"/images/justice.svg"} />
             </> : 
-            <form id={"interventionModifier"} onSubmit={(event) => handleSubmit(event)}>
+            <form id={"interventionModifier"} className={"scrollable"} onSubmit={(event) => handleSubmit(event)}>
             <p>{props.contestation.contester} : "{props.contestation.contesterMessage}"</p>
             <div className={"wrapper-horizontal"}>
                 <div className={"wrapper-vertical workerModifier"}>
