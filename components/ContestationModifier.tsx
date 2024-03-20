@@ -119,31 +119,33 @@ const InterventionModifier = (props: interventionModifierProps) => {
             </> : 
             <form id={"interventionModifier"} onSubmit={(event) => handleSubmit(event)}>
             <p>{props.contestation.contester} : "{props.contestation.contesterMessage}"</p>
-            <div className={"dataModifier workerModifier"}>
-                <label htmlFor="workerInput">Membre Déclarant :</label>
-                <select 
-                    id="workerInput"
-                    value={worker}
-                    onChange={(event) => setWorker(event.target.value as UserName)}
-                >
-                    {guildMembers && guildMembers.map((member) => (
-                        <option value={member.name}>{member.name}</option>
-                    ))}
-                </select>
+            <div className={"wrapper-horizontal"}>
+                <div className={"wrapper-vertical workerModifier"}>
+                    <label htmlFor="workerInput">Membre Déclarant :</label>
+                    <select 
+                        id="workerInput"
+                        value={worker}
+                        onChange={(event) => setWorker(event.target.value as UserName)}
+                    >
+                        {guildMembers && guildMembers.map((member) => (
+                            <option value={member.name}>{member.name}</option>
+                        ))}
+                    </select>
+                </div>
+                <div className={"wrapper-vertical payerModifier"}>
+                    <label htmlFor="payerInput">Membre Payeur :</label>
+                    <select 
+                        id="payerInput"
+                        value={payer}
+                        onChange={(event) => setPayer(event.target.value as UserName)}
+                    >
+                        {guildMembers && guildMembers.map((member) => (
+                            <option value={member.name}>{member.name}</option>
+                        ))}
+                    </select>
+                </div>
             </div>
-            <div className={"dataModifier payerModifier"}>
-                <label htmlFor="payerInput">Membre Payeur :</label>
-                <select 
-                    id="payerInput"
-                    value={payer}
-                    onChange={(event) => setPayer(event.target.value as UserName)}
-                >
-                    {guildMembers && guildMembers.map((member) => (
-                        <option value={member.name}>{member.name}</option>
-                    ))}
-                </select>
-            </div>
-            <div className={"dataModifier hoursModifier"}>
+            <div className={"wrapper-vertical hoursModifier"}>
                 <label htmlFor="hoursInput">Nombre d'heures déclarées :</label>
                 <input 
                     type="number" 
@@ -160,9 +162,9 @@ const InterventionModifier = (props: interventionModifierProps) => {
                     }}
                 />
             </div>
-            <div className={"dataModifier optionsModifier"}>
+            <div className={"wrapper-vertical optionsModifier"}>
                 <label htmlFor="optionsInput">Options déclarées :</label>
-                <div>
+                <div id={"optionsInput"}>
                     {configsList && configsList.config.map((option, index) => (
                         <button
                             type={"button"}
@@ -175,7 +177,7 @@ const InterventionModifier = (props: interventionModifierProps) => {
                     ))}
                 </div>
             </div>
-            <div className={"dataModifier dateModifier"}>
+            <div className={"wrapper-vertical dateModifier"}>
                 <label htmlFor="dateinput">A quelle date a été réalisé l'intervention ?</label>
                 <input 
                     type="date" 
@@ -187,15 +189,18 @@ const InterventionModifier = (props: interventionModifierProps) => {
                     required
                 />
             </div>
-            <div className={"dataModifier descriptionModifier"}>
+            <div className={"descriptionModifier"}>
                 <label htmlFor="descriptionInput">Description de l'intervention :</label>
-                <textarea 
+                <textarea
+                    rows={3}
+                    cols={50}
+                    maxLength={200}
                     id="descriptionInput"
                     value={description}
                     onChange={(event) => setDescription(event.target.value)}
                 />
             </div>
-            <div className={"dataModifier adminConclusion"}>
+            <div className={"wrapper-vertical adminConclusion"}>
                 <label htmlFor="adminConclusionInput">Conclusion de l'admin :</label>
                 <select id="adminConclusionInput"
                     required
@@ -218,7 +223,7 @@ const InterventionModifier = (props: interventionModifierProps) => {
                     onChange={(event) => setAdminMessage(event.target.value)} 
                 />
             </div>
-            <button id={"modifyIntervention"} type={"submit"}>Enregistrer les modifications</button>
+            <button className={"light"} id={"modifyIntervention"} type={"submit"}>Enregistrer les modifications</button>
         </form>}
     </>)
 }
