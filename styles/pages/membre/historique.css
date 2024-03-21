@@ -36,7 +36,6 @@
     width: 100%;
 }
 
-
 .interventionDate {
     width: 15%;
 }
@@ -50,5 +49,6 @@
 }
 
 .interventionCardResume button {
-    width: 10%
+    width: 10%;
+    background-color: var(--color-form);
 }

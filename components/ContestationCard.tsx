@@ -39,7 +39,7 @@ const ContestationCard = (props: ContestationCardProps) => {
         { wantDetails && <>
             <div className={"contestationDetails"}>
                 <div className={"worker"}>
-                    <p>Déclaré par :</p>
+                    <p>Déclaration de :</p>
                     <p>{props.contestation.contestedIntervention.worker}</p>
                 </div>
                 <div className={"payer"}>
@@ -54,7 +54,6 @@ const ContestationCard = (props: ContestationCardProps) => {
             <div className={"contestationDescription"}>
                 <p>Description de l'intervention :</p>
                 <p>{props.contestation.contestedIntervention.description}</p>
-
             </div>
         </>}
     </li>
