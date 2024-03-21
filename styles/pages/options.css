@@ -96,3 +96,41 @@
 .contestationCardResume button {
     width: 5%
 }
+
+/**********OPTIONS:NEW-ADMIN**********/
+
+#newAdminForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 550px;
+    margin: 20px 0;
+}
+
+#newAdminForm p {
+    text-align: center;
+}
+
+#newAdminForm form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+#newAdminForm form .wrapper-vertical {
+    align-items: center;
+    width: 100%;
+}
+
+#newAdminForm form .wrapper-vertical input {
+    width: 200px;
+}
+
+#newAdminForm input {
+    margin: 0;
+}

@@ -57,23 +57,23 @@ const NewAdminForm = (props: NewAdminFormProps) => {
                 il recevra un email de confirmation à l'adresse que vous avez renseignée.
             </p>
             {!adminIsCreated && <form onSubmit={(event) => handleSubmit(event)}>
-                <div className={"verticalWrapper"}>
+                <div className={"wrapper-vertical"}>
                     <label htmlFor="lastname">Son Prénom :</label>
                     <UIFirstnameInput inputRef={firstNameRef} required />
                 </div>
-                <div className={"verticalWrapper"}>
+                <div className={"wrapper-vertical"}>
                     <label htmlFor="firstname">Son nom de famille:</label>
                     <UILastnameInput inputRef={lastNameRef} required />
                 </div>
-                <div className={"verticalWrapper"}>
+                <div className={"wrapper-vertical"}>
                     <label htmlFor="mail">son adresse mail :</label>
                     <UIEmailInput inputRef={mailRef} required />
                 </div>
-                <div className={"verticalWrapper"}>
-                    <label htmlFor="passwordConfirm">Son numéro de téléphone :</label>
-                    <UIPhoneInput inputRef={phoneRef} required />
+                <div className={"wrapper-vertical"}>
+                    <label htmlFor="phoneInput">Son numéro de téléphone :</label>
+                    <UIPhoneInput id={"phoneInput"} inputRef={phoneRef} required />
                 </div>
-                <UIButton type="submit">Créer le nouvel admin</UIButton>
+                <button className={"light"} type="submit">Créer le nouvel admin</button>
             </form>}
             {adminIsCreated && <>
                 <p>L'admin a bien été créé ! Vous souhaitez en ajouter un autre ?</p>
