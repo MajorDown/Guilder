@@ -135,3 +135,50 @@
         margin-top: 5px;
     }
 }
+
+/**********BREAKPOINT:996PX**********/
+
+@media screen and (max-width: 996px) {
+
+    #section_left_background,
+    #section_right_background {
+        display: none;
+    }
+
+    .section_left {
+        width: 100%;
+    }
+
+    .section_right {
+        width: 100%;
+    }
+
+    .section_content {
+        padding: 0px 20px
+    }
+
+    .page_logo,
+    .pseudoTitle {
+        display: none;
+    }
+
+    #pageLogo {
+        width: 30%
+    }
+
+    #pageLogo a {
+        margin-top: 0px;
+    }
+
+    #section_navigation {
+        height: 150px;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+    }
+
+    #appNavbar {
+        width: 60%;
+    }
+
+}

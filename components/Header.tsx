@@ -8,7 +8,7 @@ const Header = () => {
     <header>
       <Link id="appTitle" href={"/"}>
         <Image src="/images/icons/logo-white.svg" alt="logo" width={60} height={92} priority/>
-        <h1>Guilder</h1>
+        <h1>Agriguilder</h1>
       </Link>
       <Welcomer />     
     </header>

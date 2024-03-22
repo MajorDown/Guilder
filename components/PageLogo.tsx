@@ -52,7 +52,7 @@ const PageLogo = (props: PageLogoProps) => {
     
     return (
         <div id={"pageLogo"}>
-            <Image src={logoPath} alt="Logo de la page" width={300} height={150} />
+            <Image className={"page_logo"} src={logoPath} alt="Logo de la page" width={300} height={150} />
             <p className={"pseudoTitle"}>{props.pseudoTitle}</p>
             {actualPathName != "/" && <Link href="/">
                 <Image src="/images/arrow_back.svg" alt="retour à l'accueil" width={40} height={40} />

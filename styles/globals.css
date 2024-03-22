@@ -10,8 +10,10 @@
     --color-ok: #8bc58b;
     --color-error: #cd8383;
     --size-font: 1vw;
+    --size-font-mobile: 2vw;
     --size-font-mini: 0.6vw;
     --size-title: 2vw;
+    --size-title-mobile: 1vw;
     --size-line-height: 24px;
 }
 
@@ -73,7 +75,7 @@ h2 {
 }
 
 h1 {
-    font-size: 20px;
+    font-size: var(--size-title);
 }
 
 h2 {
@@ -113,7 +115,6 @@ li {
     border-radius: 6px;
 }
 
-
 @import url('animations.css');
 @import url('./components/UI/UINavLink.css');
 @import url('./components/UI/UIButton.css');
@@ -133,3 +134,39 @@ li {
 @import url('./pages/membre/historique.css');
 @import url('./pages/options.css');
 @import url('./components/footer.css');
+
+/**********BREAKPOINT:996PX**********/
+
+@media screen and (max-width: 996px) {
+
+    body {
+        background-image: none;
+        background-color: var(--color-dark);
+        flex-direction: column;
+    }
+
+    header {
+        position: relative;
+        height: 100px;
+    }
+
+    main {
+        position: relative;
+        flex-grow: 1;
+        flex-direction: column;
+    }
+
+    footer {
+        position: relative;
+        height: 50px;
+    }
+
+}
+
+/**********BREAKPOINT:768PX**********/
+
+@media screen and (max-width: 768px) {
+    * {
+        font-size: var(--size-font-mobile);
+    }
+}
