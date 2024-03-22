@@ -19,3 +19,12 @@
 .UINavLink:hover p {
     text-decoration: underline;
 }
+
+@media screen and (max-width: 768px) {
+
+    .UINavLink img {
+        width: 30px;
+        height: 30px;
+    }
+
+}

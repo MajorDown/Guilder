@@ -30,4 +30,7 @@
         line-height: 1vw;
     }
 
+    #welcomer {
+        gap: 10px;
+    }
 }
