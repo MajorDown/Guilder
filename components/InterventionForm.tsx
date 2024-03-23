@@ -1,5 +1,6 @@
 'use client'
 import {useState, useEffect, FormEvent} from 'react';
+import Image from 'next/image';
 import { isFormatted, interventionDateFormat } from '@/tools/isFormatted';
 import { GuildConfig, Intervention, InterventionHours, MembersList, UserName } from '@/types'
 import createIntervention from '@/tools/front/createIntervention';
@@ -171,6 +172,7 @@ const InterventionForm = () => {
                         onClick={() => handlechangeCheckedConfigOptions(option.option)}
                         className={checkedConfigOptions.includes(option.option) ? "option checked" : "option"}
                     >
+                        {<Image src={"/images/check.svg"} alt={option.option} width={15} height={15} />}
                         {option.option}
                     </button>
                 ))}

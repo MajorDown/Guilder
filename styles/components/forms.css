@@ -74,7 +74,3 @@ button.green {
     background-color: var(--color-green);
     color: var(--color-global);
 }
-
-.wrapper-horizontal button {
-    width: 45%;
-}

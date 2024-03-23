@@ -89,10 +89,22 @@ button img.extended {
 .option {
     background-color: var(--color-global);
     color: var(--color-dark);
+    font-size: 12px;
     font-weight: 800;
     padding: 5px;
-    width: 150px;
     margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.option img {
+    display: none;
+}
+
+.option.checked img {
+    display: block;
 }
 
 #optionsInput {
@@ -103,6 +115,16 @@ button img.extended {
     justify-content: center;
     align-items: center;
     gap: 5px;
+}
+
+#checkedConfigOptions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+    width: 90%
 }
 
 .checked {
@@ -128,4 +150,10 @@ button img.extended {
 
 #modifyIntervention {
     margin-top: 20px;
+}
+
+@media screen and (max-width: 996px) {
+    .option {
+        font-size: 8px;
+    }
 }
