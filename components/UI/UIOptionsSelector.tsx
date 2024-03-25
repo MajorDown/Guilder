@@ -7,9 +7,15 @@ export type UIOptionsSelectorProps = {
   selectedOptions: (option : string[]) => void;
 }
 
+/**
+ * @function UIOptionsSelector
+ * @description Composant pour sélectionner des options pour une intervention.
+ * @param {UIOptionsSelectorProps} props - Les props du composant.
+ */
 const UIOptionsSelector = (props: UIOptionsSelectorProps) => {
   const [wantOptionsList, setWantOptionsList] = useState<boolean>(false);
   const [selectedOptions, setSelectedOptions] = useState<string[]>(props.initialSelectedOptions || []);
+
   return (
     <div className={"UIOptionsSelector"}>
         <div className={"UIOptionsSelected"}>

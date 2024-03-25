@@ -10,6 +10,7 @@ import { getGuildMembers } from '@/tools/front/getGuildMembers';
 import getGuildConfig from '@/tools/front/getGuildConfig';
 import UIButton from './UI/UIButton';
 import UINavLink from './UI/UINavLink';
+import UIOptionsSelector from './UI/UIOptionsSelector';
 
 /**
  * @function InterventionForm
@@ -162,22 +163,10 @@ const InterventionForm = () => {
                 />
             {hoursError && <p>{hoursError}</p>}
         </div>
-        <div className={"verticalWrapper"}>
-            <p>Sélectionnez ici les options / outils que vous avez eu à utiliser :</p>
-            <div id={"checkedConfigOptions"}>
-                {configsList && configsList.config.map((option, index) => (
-                    <button
-                        type={"button"}
-                        key={index}
-                        onClick={() => handlechangeCheckedConfigOptions(option.option)}
-                        className={checkedConfigOptions.includes(option.option) ? "option checked" : "option"}
-                    >
-                        {<Image src={"/images/check.svg"} alt={option.option} width={15} height={15} />}
-                        {option.option}
-                    </button>
-                ))}
-            </div>
-        </div>
+        {configsList && <UIOptionsSelector 
+                guildOptions={configsList.config}
+                selectedOptions={(list) => setCheckedConfigOptions(list)} 
+        />}
         <div className="verticalWrapper">
             <label htmlFor="dateinput">
                 <p>A quelle date avez-vous réalisé ses heures ?</p>
@@ -224,7 +213,7 @@ const InterventionForm = () => {
     {hasDeclared && <>
         <p>Votre déclaration a bien été enregistrée !</p>
         <UIButton onClick={() => setHasDeclared(false)}>Déclarer une nouvelle Intervention</UIButton>
-        <UINavLink label={"Consulter votre historique"} href={'/historique'} icon={'/images/stats.svg'} />
+        <UINavLink label={"Consulter votre historique"} href={'/historique'} icon={'/images/icons/historique-white-light.svg'} />
     </>}
   </>
   )

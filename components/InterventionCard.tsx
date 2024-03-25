@@ -84,7 +84,7 @@ const InterventionCard = (props: interventionCardProps) => {
                 {props.intervention.options?.map((option, index) => typeof option === 'object' && (<p key={index}>+ {option.option} (x{option.coef})</p>))}
                 {props.intervention.imagesUrls?.map((url, index) => <Image key={index} src={url} alt={"image de l'intervention"} width={200} />)}
             </div>
-            {!isTooLate && <UINavLink label={"Signaler une erreur"} href={`/contestation/create/${encodeURIComponent(JSON.stringify(props.intervention))}`} icon={"/images/error.svg"} />}
+            {!isTooLate && <UINavLink label={"Signaler une erreur"} href={`/contestation/create/${encodeURIComponent(JSON.stringify(props.intervention))}`} icon={"/images/icons/signaler.svg"} />}
         </div>}
     </li>
   )
