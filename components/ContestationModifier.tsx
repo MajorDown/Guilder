@@ -6,6 +6,7 @@ import UIButton from './UI/UIButton';
 import { interventionDateFormat, isFormatted } from '@/tools/isFormatted';
 import updateIntervention from '@/tools/front/updateIntervention';
 import UINavLink from './UI/UINavLink';
+import UIOptionsSelector from './UI/UIOptionsSelector';
 
 export type interventionModifierProps = {
     admin: ConnectedAdmin;
@@ -162,7 +163,12 @@ const InterventionModifier = (props: interventionModifierProps) => {
                     }}
                 />
             </div>
-            <div className={"wrapper-vertical optionsModifier"}>
+            {configsList != undefined && <UIOptionsSelector 
+                guildOptions={configsList.config} 
+                initialSelectedOptions={checkedConfigOptions}
+                selectedOptions={(list) => setCheckedConfigOptions(list)} 
+            />}
+            {/* <div className={"wrapper-vertical optionsModifier"}>
                 <label htmlFor="optionsInput">Options déclarées :</label>
                 <div id={"optionsInput"}>
                     {configsList && configsList.config.map((option, index) => (
@@ -176,7 +182,7 @@ const InterventionModifier = (props: interventionModifierProps) => {
                         </button>
                     ))}
                 </div>
-            </div>
+            </div> */}
             <div className={"wrapper-vertical dateModifier"}>
                 <label htmlFor="dateinput">A quelle date a été réalisé l'intervention ?</label>
                 <input 

@@ -43,7 +43,7 @@ const ContestationArbCard = (props: ContestationCardProps) => {
                         })}
                     <p>Description de l'intervention : {props.contestation.contestedIntervention.description}</p>
                 </div>
-                <UINavLink label={"statuer"} href={`/arbitrage/${encodeURIComponent(JSON.stringify(props.contestation))}`} icon={"/images/icons/modifier.svg"} />
+                <UINavLink label={"statuer"} href={`/arbitrage/${encodeURIComponent(JSON.stringify(props.contestation))}`} icon={"/images/icons/jugement-green.svg"} />
             </div>
         </>}
     </li>

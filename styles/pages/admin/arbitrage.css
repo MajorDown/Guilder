@@ -117,6 +117,47 @@ button img.extended {
     gap: 5px;
 }
 
+.UIOptionsSelector {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.UIOptionsSelected {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wantOptionsListBtn {
+    background-color: transparent;
+    padding: 0;
+}
+
+.wantOptionsListBtn img {
+    transition: 0.3s;
+}
+
+.doNot.wantOptionsListBtn img {
+    transform: rotate(180deg);
+}
+
+.UIOptionsList {
+    display: none;
+}
+
+.UIOptionsList.wanted {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 90%;
+    border: 1px solid var(--color-global);
+}
+
 #checkedConfigOptions {
     display: flex;
     flex-wrap: wrap;
