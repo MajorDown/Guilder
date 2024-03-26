@@ -6,6 +6,7 @@ import MemberModel from "@/tools/api/models/model.member";
 import GuildConfigModel from "@/tools/api/models/model.guildConfig";
 import InterventionModel from "@/tools/api/models/model.intervention";
 import interventionCalculator from "@/tools/interventionCalculator";
+import { Intervention } from "@/types";
 
 export async function PUT(request: Request) {
     const updatedContestation = await request.json();
@@ -48,8 +49,26 @@ export async function PUT(request: Request) {
                 return NextResponse.json({ message: `L'ancien payer ${initialIntervention.payer} n'existe pas.` }, { status: 404 });
             }
             console.log("exPayer", exPayer);
+            // CALCUL DES NOUVEAUX POINTS
+            const guildConfig = await GuildConfigModel.findOne({ name: updatedContestation.guild });
+            if (!guildConfig) {
+                return NextResponse.json({ message: `La guilde ${updatedContestation.guild} n'existe pas.` }, { status: 404 });
+            }
+            const correctedIntervention: Intervention = {
+                declarationDate: updatedContestation.contestedIntervention.declarationDate,
+                interventionDate: updatedContestation.contestedIntervention.interventionDate,
+                worker: updatedContestation.contestedIntervention.worker,
+                payer: updatedContestation.contestedIntervention.payer,
+                hours: updatedContestation.contestedIntervention.hours,
+                options: updatedContestation.contestedIntervention.options.map((option: string) => {
+                    const foundOption = guildConfig.config.find((configOption: {option: string, coef: number}) => configOption.option === option);
+                    return foundOption ? { option: foundOption.option, coef: foundOption.coef } : { option: option, coef: 0 };
+                }),
+                description: updatedContestation.contestedIntervention.description,
+                imagesUrls: updatedContestation.contestedIntervention.imagesUrls
+            }                       
+            const finalPoints = interventionCalculator(correctedIntervention);
             // MISE À JOUR DES POINTS POUR LE NOUVEAU WORKER
-            const finalPoints = interventionCalculator(updatedContestation.contestedIntervention);
             const newWorker = await MemberModel.findOneAndUpdate(
                 { name: updatedContestation.contestedIntervention.worker },
                 { $inc: { counter: finalPoints } },
@@ -70,7 +89,6 @@ export async function PUT(request: Request) {
             }
             console.log("newPayer", newPayer);
             // MISE À JOUR DE L'INTERVENTION
-            const guildConfig = await GuildConfigModel.findOne({ name: updatedContestation.guild });
             const newOptions = updatedContestation.contestedIntervention.options.map(
                 (option: string) => {
                     const foundOption = guildConfig.config.find((configOption: {option: string, coef: number}) => configOption.option === option);

@@ -168,21 +168,6 @@ const InterventionModifier = (props: interventionModifierProps) => {
                 initialSelectedOptions={checkedConfigOptions}
                 selectedOptions={(list) => setCheckedConfigOptions(list)} 
             />}
-            {/* <div className={"wrapper-vertical optionsModifier"}>
-                <label htmlFor="optionsInput">Options déclarées :</label>
-                <div id={"optionsInput"}>
-                    {configsList && configsList.config.map((option, index) => (
-                        <button
-                            type={"button"}
-                            key={index}
-                            onClick={() => handlechangeCheckedConfigOptions(option.option)}
-                            className={checkedConfigOptions.includes(option.option) ? "option checked" : "option"}
-                        >
-                            {option.option}
-                        </button>
-                    ))}
-                </div>
-            </div> */}
             <div className={"wrapper-vertical dateModifier"}>
                 <label htmlFor="dateinput">A quelle date a été réalisé l'intervention ?</label>
                 <input 
