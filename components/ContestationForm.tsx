@@ -51,7 +51,7 @@ const ContestationForm = (props : ContestationFormProps) => {
     
     return (
         <>
-            {!isSending && !hasSent && <form onSubmit={(event) => handleSubmit(event)}>
+            {!isSending && !hasSent && <form id={"contestationForm"} className={"scrollable"} onSubmit={(event) => handleSubmit(event)}>
                 <p>Vous contestez la déclaration suivante :</p>
                 <p>le {props.contestedIntervention.interventionDate},</p>
                 <p><b>{props.contestedIntervention.worker}</b></p>
@@ -83,7 +83,7 @@ const ContestationForm = (props : ContestationFormProps) => {
                     onChange= {(event) => setContesterMessage(event.target.value)}
                     required>
                 </textarea>
-                <UIButton type="submit">Envoyer la contestation</UIButton>
+                <button className={"light"} type="submit">Envoyer la contestation</button>
                 {sendingError && <p>Une erreur est survenue lors de l'envoi de votre déclaration. Veuillez réessayer plus tard.</p>}
                 {isSending && <>
                     <p>Envoi de la contestation en cours...</p>

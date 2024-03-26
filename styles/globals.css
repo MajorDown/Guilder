@@ -129,6 +129,7 @@ li {
 @import url('./pages/admin/outils.css');
 @import url('./pages/admin/membres.css');
 @import url('./pages/admin/arbitrage.css');
+@import url('./pages/membre/contestation.css');
 @import url('./pages/membre/declaration.css');
 @import url('./pages/membre/soldes.css');
 @import url('./pages/membre/historique.css');

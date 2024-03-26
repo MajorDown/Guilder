@@ -1,0 +1,17 @@
+#section_contestation p {
+    text-align: center;
+    padding: 10px;
+}
+
+#contestationForm {
+    height: 550px;
+}
+
+#contestationForm p {
+    text-align: center;
+}
+
+#contesterMessage {
+    width: 90%;
+    min-height: 100px;
+}

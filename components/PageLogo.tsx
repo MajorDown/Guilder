@@ -20,7 +20,11 @@ const PageLogo = (props: PageLogoProps) => {
     useEffect(() => {
         if (actualPathName.includes("/arbitrage")) {
             setLogoPath("/images/icons/arbitrage-white-dark.svg");
-        } else {
+        } 
+        else if (actualPathName.includes("/contestation")) {
+            setLogoPath("/images/icons/signaler.svg");
+        }
+        else {
             switch (actualPathName) {
                 // si le pathname actuel est un pathname pour admin
                 case "/membres":
