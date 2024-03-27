@@ -189,8 +189,20 @@ button img.extended {
     max-width: 150px;
 }
 
-#modifyIntervention {
+#validationMsg {
+    padding: 10px;
+}
+
+#contestationBtns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
     margin-top: 20px;
+}
+
+#errorMsg {
+    color: red;
 }
 
 @media screen and (max-width: 996px) {

@@ -7,6 +7,7 @@ import { interventionDateFormat, isFormatted } from '@/tools/isFormatted';
 import updateIntervention from '@/tools/front/updateIntervention';
 import UINavLink from './UI/UINavLink';
 import UIOptionsSelector from './UI/UIOptionsSelector';
+import deleteIntervention from '@/tools/front/deleteIntervention';
 
 export type interventionModifierProps = {
     admin: ConnectedAdmin;
@@ -33,6 +34,7 @@ const InterventionModifier = (props: interventionModifierProps) => {
     const [description, setDescription] = useState<string>(props.contestation.contestedIntervention.description);
     const [adminConclusion, setAdminConclusion] = useState<"accordé" | "refusé" | "">("");
     const [adminMessage, setAdminMessage] = useState<string>("");
+    const [formErrorMsg, setFormErrorMsg] = useState<string>("");
 
     useEffect(() => {
         //RECUPERATION DE LA LISTE DES MEMBRES DE LA GUILDE
@@ -78,7 +80,12 @@ const InterventionModifier = (props: interventionModifierProps) => {
 
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
-        if (adminConclusion === "") return;
+        if (adminConclusion === "") {
+            setFormErrorMsg("Veuillez statuer sur la contestation ('accordé' ou 'refusé')");
+            return;
+        }
+        const confirmUpdate = window.confirm("Vous êtes sur le point de statuer sur une contestation. Cette action sera irrévocable. Confirmez-vous ?");
+        if (!confirmUpdate) return;
         let updatedContestation : Contestation = {
             contestationDate: props.contestation.contestationDate,
             contester: props.contestation.contester,
@@ -107,16 +114,25 @@ const InterventionModifier = (props: interventionModifierProps) => {
             guild: props.contestation.guild            
         }
         const response = await updateIntervention(props.admin, updatedContestation);
+        if (response === null) setFormErrorMsg("Erreur lors de la modification de l'intervention.");
+        else setHasUpdate(true);
+    }
+
+    const handleDelete = async () => {
+        // REQUËTE DE SUPPRESSION DE L'INTERVENTION
+        const confirmUpdate = window.confirm("Vous êtes sur le point de supprimer une intervention. La contestation sera alors statué comme étant 'accordé'. Cette action sera irrévocable. Confirmez-vous ?");
+        if (!confirmUpdate) return;
+        const response = await deleteIntervention(props.admin, props.contestation);
         if (response) {
-            console.log("Intervention statuée avec succès !");
+            console.log("Intervention supprimée avec succès !");
             setHasUpdate(true);
         }
     }
     
     return (<>
         {(hasUpdate === true) ? <>
-            <p>La contestation a bien été statuée !</p>
-            <UINavLink label={"Retour à la liste des contestations"} href={"/arbitrage"} icon={"/images/justice.svg"} />
+            <p id={"validationMsg"}>La contestation a bien été statuée !</p>
+            <UINavLink label={"Retour à la liste des contestations"} href={"/arbitrage"} icon={"/images/icons/jugement-green.svg"} />
             </> : 
             <form id={"interventionModifier"} className={"scrollable"} onSubmit={(event) => handleSubmit(event)}>
             <p>{props.contestation.contester} : "{props.contestation.contesterMessage}"</p>
@@ -214,7 +230,18 @@ const InterventionModifier = (props: interventionModifierProps) => {
                     onChange={(event) => setAdminMessage(event.target.value)} 
                 />
             </div>
-            <button className={"light"} id={"modifyIntervention"} type={"submit"}>Enregistrer les modifications</button>
+            <div id={"contestationBtns"}>
+                <button className={"light"} id={"modifyIntervention"} type={"submit"}>Enregistrer les modifications</button>
+                <button 
+                    className={"light"} 
+                    id={"deleteIntervention"} 
+                    type={"button"}
+                    onClick={() => handleDelete()}
+                >
+                    Supprimer l'intervention
+                </button>
+            </div>
+            {formErrorMsg && <p id={"errorMsg"}>{formErrorMsg}</p>}
         </form>}
     </>)
 }

@@ -1,15 +1,13 @@
 import '../styles/globals.css'
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import type { Metadata } from 'next';
 import { PropsWithChildren } from 'react';
 import { AdminProvider } from '@/contexts/adminContext';
 import { MemberProvider } from '@/contexts/memberContext';
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import SectionsBackground from '@/components/SectionsBackground';
 import { Montserrat } from 'next/font/google';
 const montserrat = Montserrat({weight: "400", subsets: ["latin"], display: 'swap', variable: "--font-Montserrat"});
-import SectionsBackground from '@/components/SectionsBackground';
-const inter = Inter({weight: "400", subsets: ["latin"], display: 'swap', variable: "--font-Inter"});
 
 export const metadata: Metadata = {
   title: 'Guilder',
@@ -21,7 +19,7 @@ export default function RootLayout(props: PropsWithChildren) {
     <html lang="fr">
       <head>
       </head>
-      <body className={inter.className}>
+      <body className={montserrat.className}>
         <AdminProvider>
           <MemberProvider>
             <Header />
