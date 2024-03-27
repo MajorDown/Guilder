@@ -47,6 +47,10 @@ const PageLogo = (props: PageLogoProps) => {
                 case "/options":
                     setLogoPath("/images/icons/options-white-dark.svg");
                     break;
+                // si le pathname actuel est "/aide"
+                case "/aide":
+                    setLogoPath("/images/icons/options-white-dark.svg");
+                    break;
                 default:
                     setLogoPath("/images/logo.svg");
                     break;
