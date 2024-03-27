@@ -1,7 +1,10 @@
+import Link from "next/link";
+
 const Footer = () => {
   return (
     <footer>
-      <p>Guilder copyright 2024</p>
+      <Link href="/aide">Aide</Link>
+      <p>Agriguilder - copyright 2024</p>
     </footer>
   )
 }
