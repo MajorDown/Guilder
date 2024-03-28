@@ -123,6 +123,7 @@ li {
 @import url('./pages/accueil.css');
 @import url('./pages/connexion.css');
 @import url('./pages/inscription.css');
+@import url('./pages/aide.css');
 @import url('./pages/admin/outils.css');
 @import url('./pages/admin/membres.css');
 @import url('./pages/admin/arbitrage.css');
