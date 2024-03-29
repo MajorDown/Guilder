@@ -79,3 +79,7 @@
 #menu_list a:hover img {
     transform: scale(1.1);
 }
+
+@media screen and (max-width: 768px) {
+    #menu_list a img {}
+}
