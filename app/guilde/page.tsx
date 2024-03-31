@@ -39,7 +39,7 @@ const Guilde = () => {
       <section className={"section_right"} >
         <div id="section_guilde" className={"section_content"}>
             <h2>Les membres de la Guilde</h2>
-            <p>Besoin d'un coup de main ? ou au contraire envie de contribuer ? Voici la liste des membres de votre guilde. N'hésitez pas à les contacter !</p>
+            <p>Besoin d'un coup de main ? ou au contraire envie de contribuer ? Voici la liste des membres de votre guilde, ainsi que leurs soldes. N'hésitez pas à les contacter !</p>
             {!hasCheckedMember && <LoadSpinner />}
             {hasCheckedMember && member && <MembersLister members={membersList}/>}
             {hasCheckedMember && !member && <>

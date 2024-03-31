@@ -81,5 +81,12 @@
 }
 
 @media screen and (max-width: 768px) {
-    #menu_list a img {}
+    #menu_list a img {
+        width: 50px;
+        height: 50px;
+    }
+
+    #menu_list a p {
+        width: 100px;
+    }
 }

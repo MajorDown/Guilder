@@ -163,11 +163,17 @@
     }
 
     #pageLogo {
-        width: 30%
+        width: 25%
     }
 
     #pageLogo a {
         margin-top: 0px;
+    }
+
+    #pageLogo a img {
+        width: 20px;
+        height: 20px;
+
     }
 
     #section_navigation {
@@ -178,7 +184,14 @@
     }
 
     #appNavbar {
-        width: 60%;
+        width: 70%;
     }
 
+}
+
+@media screen and (max-width: 425px) {
+    #appNavbar a img {
+        width: 50;
+        height: 50;
+    }
 }

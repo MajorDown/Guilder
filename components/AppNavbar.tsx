@@ -71,7 +71,7 @@ const AppNavbar = () => {
           showActivation
         />
         <UINavLink 
-          label={"Guilde"} 
+          label={"Soldes"} 
           href={'/guilde'}
           iconWidth={100}
           iconHeight={100} 
