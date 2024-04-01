@@ -32,12 +32,13 @@
     gap: 10px;
 }
 
-#section_inscription button {
-    background-color: var(--color-light);
-    color: var(--color-dark);
-    font-weight: 800;
-    border: none;
-    text-align: center;
-    padding: 10px 20px;
-    margin: 10px 0 20px 0;
+#passwordVerifier {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.UIGuildNameInput {
+    padding: 5%;
 }

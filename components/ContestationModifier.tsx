@@ -241,7 +241,7 @@ const InterventionModifier = (props: interventionModifierProps) => {
                     Supprimer l'intervention
                 </button>
             </div>
-            {formErrorMsg && <p id={"errorMsg"}>{formErrorMsg}</p>}
+            {formErrorMsg && <p className={"formErrorMsg"}>{formErrorMsg}</p>}
         </form>}
     </>)
 }

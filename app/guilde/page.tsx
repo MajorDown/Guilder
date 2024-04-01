@@ -32,7 +32,7 @@ const Guilde = () => {
     return (<>
         <section className={"section_left"}>
             <div id={"section_navigation"} className={"section_content"}>
-                <PageLogo pseudoTitle='Guilde'/>
+                <PageLogo pseudoTitle='Soldes'/>
                 <AppNavbar />
             </div>
       </section>

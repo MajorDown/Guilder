@@ -85,7 +85,7 @@ const MemberSignupForm = (props: MemberSignupFormProps ) => {
             <button className={"light"} type="submit">Créer le membre</button>
             <button className={"green"} onClick={() => props.onAbort(false)}>Annuler</button>
           </div>
-          {errMessage && <p>{errMessage}</p>}
+          {errMessage && <p className={"formErrorMsg"}>{errMessage}</p>}
         </>}
         {isLoading && <LoadSpinner />}
     </form>

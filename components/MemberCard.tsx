@@ -32,7 +32,7 @@ const MemberCard = (props: MemberCardProps) => {
         <p className={"memberPhone"}>{props.member.phone}</p>
       </div>
       {props.adminMode && <div className={"memberOptions"}>
-        <button onClick={() => handleDeleteMember(props.member.mail)}>
+        <button className={"deleteMemberBtn"} onClick={() => handleDeleteMember(props.member.mail)}>
           <Image src={"/images/icons/trash-white.svg"} alt={"Supprimer le membre"} width={24} height={24}/>
           <p>Supprimer</p>
         </button>

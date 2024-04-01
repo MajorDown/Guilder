@@ -95,7 +95,7 @@ const ConfigManager = (props: ConfigManagerProps) => {
                         <button className={"light"} type="submit">Valider l'option</button>
                         <button className={"green"} onClick={() => setWantNewOption(false)}>Annuler</button>
                     </div>
-                    {newOptionError && <p style={{color: "red"}}>{newOptionError}</p>}
+                    {newOptionError && <p className={"formErrorMsg"}>{newOptionError}</p>}
                 </form>}
             </div>
         </div>

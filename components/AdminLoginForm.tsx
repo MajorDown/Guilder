@@ -51,7 +51,7 @@ const AdminLoginForm = () => {
         <p>chargement des données utilisateurs... veuillez patienter</p>
         <LoadSpinner />
       </>}
-      {errMessage && <p>{errMessage}</p>}
+      {errMessage && <p className={"formErrorMsg"}>{errMessage}</p>}
     </form>
   )
 }

@@ -71,7 +71,7 @@ const PasswordUpdater = (props: PasswordUpdaterProps) => {
             <button className={"light"} type="submit">Actualiser votre mot de passe</button>       
         </form>}
         {isActualised && <p>Votre mot de passe à bien été actualisé !</p>}
-        {!isActualised && errMessage && <p>{errMessage}</p>}
+        {!isActualised && errMessage && <p className={"formErrorMsg"}>{errMessage}</p>}
     </div>
   )
 }

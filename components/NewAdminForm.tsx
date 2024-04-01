@@ -79,7 +79,7 @@ const NewAdminForm = (props: NewAdminFormProps) => {
                 <p>L'admin a bien été créé ! Vous souhaitez en ajouter un autre ?</p>
                 <UIButton onClick={() => setAdminIsCreated(false)}>Créer un nouvel admin</UIButton>
             </>}
-            {error && <p>{error}</p>}
+            {error && <p className={"formErrorMsg"}>{error}</p>}
         </div>
     )
 }

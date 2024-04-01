@@ -40,7 +40,7 @@
     justify-content: center;
     align-items: center;
     width: 80%;
-    min-width: 400px;
+    min-width: 450px;
 }
 
 #configOptionsForm form {
@@ -49,5 +49,5 @@
 
 .UIOptionNameInput,
 .UIOptionCoefInput {
-    width: 80%;
+    width: 85%;
 }

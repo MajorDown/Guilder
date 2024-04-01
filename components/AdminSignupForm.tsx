@@ -57,41 +57,41 @@ const AdminSignupForm = () => {
             </p>
             <UINavLink label={"Se connecter"} href={'/connexion'} icon={'/images/icons/admin-white-dark.svg'} />
         </> : <>
-          <div className={"horizontalWrapper"}>
-            <div className={"verticalWrapper"}>
+          <div className={"wrapper-horizontal"}>
+            <div className={"wrapper-vertical"}>
               <label htmlFor="inputFirstName">Votre prénom :</label>
               <UIFirstnameInput inputRef={firstNameRef} name="inputFirstName" required/>              
             </div>
-            <div className={"verticalWrapper"}>
+            <div className={"wrapper-vertical"}>
               <label htmlFor="inputLaststName">Votre nom de famille :</label>
               <UILastnameInput inputRef={lastNameRef} name="inputLastName" required/>              
             </div>
           </div>
-          <div className={"horizontalWrapper"}>
-            <div className={"verticalWrapper"}>
+          <div className={"wrapper-horizontal"}>
+            <div className={"wrapper-vertical"}>
               <label htmlFor="inputMail">Votre Email :</label>
               <UIEmailInput inputRef={mailRef} name="inputMail" required/>
             </div>
-            <div className={"verticalWrapper"}>
+            <div className={"wrapper-vertical"}>
               <label htmlFor="inputPhone">Votre numéro de tel :</label>
               <UIPhoneInput inputRef={phoneRef} name="inputPhone" required/>              
             </div>
           </div>
-            <div className={"verticalWrapper"}>
+            <div className={"wrapper-vertical"}>
               <label htmlFor="inputGuild">
                 <p>Quel nom avez-vous choisis pour votre guilde ?</p>
                 <p>(/!\ Ce nom ne seras plus modifiable. Choisissez bien !)</p>
                 </label>
-              <UIGuildNameInput inputRef={guildRef} name="inputGuild" required/>    
+              <UIGuildNameInput id={"guildNameInput"} inputRef={guildRef} name="inputGuild" required/>    
             </div>
-            <div className={"verticalWrapper"}>
+            <div className={"wrapper-vertical"} id={"passwordVerifier"}>
               <label htmlFor="inputPassword">
                 <p>Votre mot de passe :</p>
                 <p>(10 caractères minimum, avec au moins 1 chiffre, 1 lettre minuscule, 1 lettre majuscule et un caractère spécial (@, $, !, %, *, ?, ou &))</p>
                 </label>
               <UIPasswordValidator inputRef={passwordRef} name="inputPassword" required/>
             </div>
-            <button type={"submit"}>Créer sa guilde</button>
+            <button className={"light"} type={"submit"}>Créer sa guilde</button>
             {errMessage && <p>{errMessage}</p>}
             {isLoading && <LoadSpinner />}
         </>

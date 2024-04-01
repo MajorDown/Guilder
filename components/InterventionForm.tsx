@@ -208,7 +208,7 @@ const InterventionForm = () => {
             </label>
         </div>
         <button id={"declareBtn"} type="submit">Déclarer l'intervention</button>
-        {loadError && <p>{loadError}</p>}
+        {loadError && <p className={"formErrorMsg"}>{loadError}</p>}
     </form>}
     {hasDeclared && <>
         <p>Votre déclaration a bien été enregistrée !</p>

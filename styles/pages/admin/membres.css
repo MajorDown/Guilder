@@ -34,10 +34,13 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    min-width: 490px;
     margin-bottom: 5px;
 }
 
-.memberCard p {
+.memberName,
+.memberMail,
+.memberPhone {
     font-size: var(--size-font-mini);
     padding: 10px 0;
 }
@@ -62,6 +65,10 @@
 .memberCounter {
     width: 20%;
     border-right: 1px solid var(--color-dark);
+    font-size: var(--size-font);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .memberCounter.red {
@@ -88,11 +95,29 @@
     border: none;
 }
 
-.memberCard button p {
-    padding: 0;
+.deleteMemberBtn {
+    padding: 0 5px;
+}
+
+.deleteMemberBtn p {
+    font-size: var(--size-font-mini);
 }
 
 #membersSignupForm {
     width: 80%;
     min-width: 400px;
+}
+
+@media screen and (max-width: 996px) {
+
+    .memberCard {
+        min-width: 80vw;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .memberCard {
+        min-width: 80vw;
+    }
 }
