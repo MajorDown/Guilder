@@ -83,7 +83,7 @@ const Home = () => {
                     </Link>
                     <Link className={"menu_2nd_link"} href={"/guilde"}>
                         <Image src={"/images/icons/guilde-white-light.svg"} alt={"guilde"} width={100} height={100}/>
-                        <p>Guilde</p>
+                        <p>Soldes</p>
                     </Link>
                     <Link className={"menu_3rd_link"} href={"/historique"}>
                         <Image src={"/images/icons/historique-white-light.svg"} alt={"historique"} width={100} height={100}/>

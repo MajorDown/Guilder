@@ -10,14 +10,15 @@ import { Montserrat } from 'next/font/google';
 const montserrat = Montserrat({weight: "400", subsets: ["latin"], display: 'swap', variable: "--font-Montserrat"});
 
 export const metadata: Metadata = {
-  title: 'Guilder',
-  description: "Application de gestion de compteurs d'heures au sein de collectifs dont l'objectif est l'entraide",
+  title: 'Agriguilder',
+  description: "Application de gestion de compteurs d'heures au sein de collectifs dont l'objectif est l'entraide",  
 }
 
 export default function RootLayout(props: PropsWithChildren) {
   return (
     <html lang="fr">
       <head>
+        <link rel="icon" href="/agriguilder.ico" type="image/x-icon" sizes="16x16" />
       </head>
       <body className={montserrat.className}>
         <AdminProvider>

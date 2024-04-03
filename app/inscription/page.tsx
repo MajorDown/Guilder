@@ -5,7 +5,7 @@ import AdminSignupForm from "@/components/AdminSignupForm";
  */
 const Inscription = () => {
     return (
-      <section className="section_left">
+      <section className="section_left" >
         <div id={"section_inscription"}>
           <h2>Vous souhaitez créer votre propre guilde ?</h2>
           <p>Vous êtes au bon endroit !</p>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Member, UserMail } from "@/types";
 import UIButton from "./UI/UIButton";
 import Image from "next/image";
@@ -19,15 +19,24 @@ export type MemberCardProps = {
  * @returns {JSX.Element} Une carte de membre.
  */
 const MemberCard = (props: MemberCardProps) => {
+  const [roundedCounter, setRoundedCounter] = useState<number>(0);
+
   const handleDeleteMember = async (memberName: UserMail) => {
     if (props.adminMode) props.onDelete(memberName);
   }
-
+  {/* il faut arrondir memberCounter à deux décimales */}
+  useEffect(() => {
+    if (props.member.counter) {
+      setRoundedCounter(Math.round(props.member.counter * 100) / 100);
+    }
+  }, [])
+  
+  
   return (
     <li className={"memberCard"}>
       <div className={"memberCardResume"}>
         <p className={"memberName"}>{props.member.name}</p>
-        <p className={props.member.counter < 0 ? "memberCounter red": "memberCounter"}>{props.member.counter} points</p>
+        <p className={props.member.counter < 0 ? "memberCounter red": "memberCounter"}>{roundedCounter} points</p>
         <p className={"memberMail"}>{props.member.mail}</p>
         <p className={"memberPhone"}>{props.member.phone}</p>
       </div>
