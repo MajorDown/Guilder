@@ -12,6 +12,7 @@
 }
 
 #section_inscription form {
+    padding-top: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -19,26 +20,21 @@
     gap: 20px;
 }
 
-.UIGuildNameInput {
-    max-width: 370px;
-    margin: 0 auto;
-}
-
-.UIPasswordValidator {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-
-#passwordVerifier {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+#section_inscription form .wrapper-vertical {
+    width: 500px;
     align-items: center;
 }
 
-.UIGuildNameInput {
-    padding: 5%;
+#section_inscription input {
+    padding: 5px;
+}
+
+#passwordVerifier input {
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    #section_inscription form .wrapper-vertical {
+        width: 90%;
+    }
 }
