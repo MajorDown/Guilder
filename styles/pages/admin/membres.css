@@ -1,3 +1,7 @@
+#section_membres {
+    width: 100%;
+}
+
 #membersManager {
     display: flex;
     flex-direction: column;
@@ -9,9 +13,10 @@
 #membersList {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
+    min-height: 50vh;
     margin-bottom: 50px;
 }
 
@@ -38,10 +43,6 @@
     margin-bottom: 5px;
 }
 
-.memberName {
-    font-size: var(--size-font-mini);
-    padding: 10px 0;
-}
 
 .memberCardResume {
     display: flex;
@@ -60,6 +61,8 @@
 }
 
 .memberName {
+    font-size: var(--size-font-mini);
+    padding: 10px 0;
     width: 40%;
     border-right: 1px solid var(--color-dark);
 }
@@ -85,6 +88,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.memberContact p {
+    padding: 5px 0px;
+}
+
+.memberMail {
+    font-size: 1.2vw;
 }
 
 .memberCard button {
@@ -127,14 +138,13 @@
 
     .memberName,
     .memberCounter,
-    .memberMail,
     .memberPhone {
         font-size: var(--size-font-mobile);
     }
 
     .memberMail,
     .memberPhone {
-        padding: 0px;
+        padding: 5px 0px;
     }
 
 

@@ -61,7 +61,7 @@ const MembersLister = (props: MembersListerProps) => {
     }
 
   return (
-    <div id="membersList">
+    <div id="membersList" className={"scrollable"}>
         <select 
             name="sortMethod" 
             id="sortMethodInput"
