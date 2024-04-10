@@ -168,9 +168,8 @@ button img.extended {
     width: 90%
 }
 
-.checked {
-    background-color: var(--color-green);
-    color: var(--color-global);
+.option.checked {
+    background-color: var(--color-light);
 }
 
 .dateModifier,
