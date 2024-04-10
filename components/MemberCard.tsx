@@ -37,8 +37,10 @@ const MemberCard = (props: MemberCardProps) => {
       <div className={"memberCardResume"}>
         <p className={"memberName"}>{props.member.name}</p>
         <p className={props.member.counter < 0 ? "memberCounter red": "memberCounter"}>{roundedCounter} points</p>
-        <p className={"memberMail"}>{props.member.mail}</p>
-        <p className={"memberPhone"}>{props.member.phone}</p>
+        <div className={"memberContact"}>
+          <p className={"memberPhone"}>{props.member.phone}</p>
+          {props.adminMode && <p className={"memberMail"}>{props.member.mail}</p>}
+        </div>
       </div>
       {props.adminMode && <div className={"memberOptions"}>
         <button className={"deleteMemberBtn"} onClick={() => handleDeleteMember(props.member.mail)}>

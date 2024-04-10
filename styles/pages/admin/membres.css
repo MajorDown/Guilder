@@ -38,9 +38,7 @@
     margin-bottom: 5px;
 }
 
-.memberName,
-.memberMail,
-.memberPhone {
+.memberName {
     font-size: var(--size-font-mini);
     padding: 10px 0;
 }
@@ -52,18 +50,22 @@
 }
 
 .memberCardResume p {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     color: var(--color-dark);
     font-weight: 800;
 }
 
 .memberName {
-    width: 30%;
+    width: 40%;
     border-right: 1px solid var(--color-dark);
 }
 
 .memberCounter {
-    width: 20%;
+    width: 30%;
     border-right: 1px solid var(--color-dark);
     font-size: var(--size-font);
     display: flex;
@@ -75,13 +77,14 @@
     color: rgb(168, 0, 0);
 }
 
-.memberMail {
-    width: 35%;
-    border-right: 1px solid var(--color-dark);
-}
 
-.memberPhone {
-    width: 15%;
+.memberContact {
+    width: 30%;
+    min-width: 110px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .memberCard button {
@@ -113,11 +116,34 @@
     .memberCard {
         min-width: 80vw;
     }
+
+    .deleteMemberBtn p {
+        font-size: var(--size-font-mobile);
+    }
+
+    .memberName,
+    .memberCounter,
+    .memberMail,
+    .memberPhone {
+        font-size: var(--size-font-mobile);
+    }
+
+    .memberMail,
+    .memberPhone {
+        padding: 0px;
+    }
+
+
 }
 
 @media screen and (max-width: 768px) {
 
     .memberCard {
-        min-width: 80vw;
+        min-width: 95vw;
     }
+
+    .memberMail {
+        font-size: 1.3vw;
+    }
+
 }
