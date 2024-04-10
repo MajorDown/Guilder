@@ -111,6 +111,10 @@
     min-width: 400px;
 }
 
+#societyName .wrapper-vertical {
+    margin: 0 auto;
+}
+
 @media screen and (max-width: 996px) {
 
     .memberCard {

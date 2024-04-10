@@ -27,7 +27,6 @@ const MemberSignupForm = (props: MemberSignupFormProps ) => {
     const [hasSignup, setHasSignup] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
-    const lastnameRef= useRef<HTMLInputElement>(null);
     const firstnameRef= useRef<HTMLInputElement>(null);
     const phoneRef= useRef<HTMLInputElement>(null);
     const mailRef= useRef<HTMLInputElement>(null);
@@ -35,8 +34,8 @@ const MemberSignupForm = (props: MemberSignupFormProps ) => {
     const handleSignup = async (event: FormEvent) => {
       event.preventDefault();
       setIsLoading(true);
-      if (firstnameRef.current && lastnameRef.current && mailRef.current && phoneRef.current) {
-        const name: UserName = `${firstnameRef.current.value} ${lastnameRef.current.value}`;
+      if (firstnameRef.current &&  mailRef.current && phoneRef.current) {
+        const name: UserName = firstnameRef.current.value;
         const mail: UserMail = mailRef.current.value;
         const phone : UserPhone = phoneRef.current.value;
         const request = {name, mail, phone, guild: props.admin.guild};
@@ -59,14 +58,10 @@ const MemberSignupForm = (props: MemberSignupFormProps ) => {
           <p>L'inscription du nouveau membre a réussi ! il recevra un email de confirmation à l'adresse que vous avez renseignée.</p>
           <button className={"light"} onClick={() => setHasSignup(false)}>Créer un autre membre</button>
         </> : <>
-          <div className={"wrapper-horizontal"}>
+          <div className={"wrapper-horizontal"} id={"societyName"}>
             <div className={"wrapper-vertical"}>
-              <label htmlFor="inputFirstName">Son prénom :</label>
+              <label htmlFor="inputFirstName">Nom de la Société / raison sociale :</label>
               <UIFirstnameInput inputRef={firstnameRef} name="inputFirstName" required/>
-            </div>
-            <div className={"wrapper-vertical"}>
-              <label htmlFor="inputLastName">Son nom de famille :</label>
-              <UILastnameInput inputRef={lastnameRef} name="inputLastName" required/>
             </div>
           </div>
           <div className={"wrapper-horizontal"}>

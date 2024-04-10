@@ -34,7 +34,7 @@ const AdminSignupForm = () => {
       setIsLoading(true);
       const request = {
         mail: mailRef.current?.value, 
-        name: firstNameRef.current?.value, 
+        name: `${firstNameRef.current?.value} ${lastNameRef.current?.value}`, 
         password: passwordRef.current?.value, 
         phone: phoneRef.current?.value, 
         guild: guildRef.current?.value};
@@ -57,35 +57,43 @@ const AdminSignupForm = () => {
             </p>
             <UINavLink label={"Se connecter"} href={'/connexion'} icon={'/images/icons/admin-white-dark.svg'} />
         </> : <>
-          <div className={"wrapper-vertical"}>
-            <label htmlFor="inputFirstName">Le nom de votre société / raison sociale :</label>
-            <UIFirstnameInput inputRef={firstNameRef} name="inputFirstName" required/>              
+          <div className={"wrapper-horizontal"}>
+            <div className={"wrapper-vertical"}>
+              <label htmlFor="inputFirstName">Votre prénom :</label>
+              <UIFirstnameInput inputRef={firstNameRef} name="inputFirstName" required/>              
+            </div>
+            <div className={"wrapper-vertical"}>
+              <label htmlFor="inputLaststName">Votre nom de famille :</label>
+              <UILastnameInput inputRef={lastNameRef} name="inputLastName" required/>              
+            </div>
           </div>
-          <div className={"wrapper-vertical"}>
-            <label htmlFor="inputMail">Votre Email :</label>
-            <UIEmailInput inputRef={mailRef} name="inputMail" required/>
+          <div className={"wrapper-horizontal"}>
+            <div className={"wrapper-vertical"}>
+              <label htmlFor="inputMail">Votre Email :</label>
+              <UIEmailInput inputRef={mailRef} name="inputMail" required/>
+            </div>
+            <div className={"wrapper-vertical"}>
+              <label htmlFor="inputPhone">Votre numéro de tel :</label>
+              <UIPhoneInput inputRef={phoneRef} name="inputPhone" required/>              
+            </div>
           </div>
-          <div className={"wrapper-vertical"}>
-            <label htmlFor="inputPhone">Votre numéro de tel :</label>
-            <UIPhoneInput inputRef={phoneRef} name="inputPhone" required/>              
-          </div>
-          <div className={"wrapper-vertical"}>
-            <label htmlFor="inputGuild">
-              <p>Quel nom avez-vous choisis pour votre guilde ?</p>
-              <p>(Ce nom ne seras plus modifiable. Choisissez bien !)</p>
-              </label>
-            <UIGuildNameInput id={"guildNameInput"} inputRef={guildRef} name="inputGuild" required/>    
-          </div>
-          <div className={"wrapper-vertical"} id={"passwordVerifier"}>
-            <label htmlFor="inputPassword">
-              <p>Votre mot de passe :</p>
-              <p>(10 caractères minimum, avec au moins 1 chiffre, 1 lettre minuscule, 1 lettre majuscule et un caractère spécial (@, $, !, %, *, ?, ou &))</p>
-              </label>
-            <UIPasswordValidator inputRef={passwordRef} name="inputPassword" required/>
-          </div>
-          <button className={"light"} type={"submit"}>Créer sa guilde</button>
-          {errMessage && <p>{errMessage}</p>}
-          {isLoading && <LoadSpinner />}
+            <div className={"wrapper-vertical"}>
+              <label htmlFor="inputGuild">
+                <p>Quel nom avez-vous choisis pour votre guilde ?</p>
+                <p>(/!\ Ce nom ne seras plus modifiable. Choisissez bien !)</p>
+                </label>
+              <UIGuildNameInput id={"guildNameInput"} inputRef={guildRef} name="inputGuild" required/>    
+            </div>
+            <div className={"wrapper-vertical"} id={"passwordVerifier"}>
+              <label htmlFor="inputPassword">
+                <p>Votre mot de passe :</p>
+                <p>(10 caractères minimum, avec au moins 1 chiffre, 1 lettre minuscule, 1 lettre majuscule et un caractère spécial (@, $, !, %, *, ?, ou &))</p>
+                </label>
+              <UIPasswordValidator inputRef={passwordRef} name="inputPassword" required/>
+            </div>
+            <button className={"light"} type={"submit"}>Créer sa guilde</button>
+            {errMessage && <p>{errMessage}</p>}
+            {isLoading && <LoadSpinner />}
         </>
         }
     </form>
