@@ -19,7 +19,7 @@ const UIOptionsSelector = (props: UIOptionsSelectorProps) => {
   return (
     <div className={"UIOptionsSelector"}>
         <div className={"UIOptionsSelected"}>
-          <label htmlFor="">Choisissez vos options : ({selectedOptions.length} sélectionnée(s))</label>
+          <label htmlFor="">Renseignez les outils utilisés : ({selectedOptions.length} sélectionnée(s))</label>
           <button
             type={"button"}
             className={wantOptionsList ? "wantOptionsListBtn" : "doNot wantOptionsListBtn"}

@@ -71,7 +71,7 @@ const ConfigManager = (props: ConfigManagerProps) => {
     return (
         <div id="configManager">
             <div id="configOptionsList">
-                <h3>Options pour {guildConfig?.name} :</h3>
+                <h3>Outils pour la guilde {guildConfig?.name} :</h3>
                 <ConfigLister config={guildConfig} admin={props.configFor}/>
             </div>
             <div id="configOptionsForm">
