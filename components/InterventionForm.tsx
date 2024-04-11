@@ -12,6 +12,14 @@ import UIButton from './UI/UIButton';
 import UINavLink from './UI/UINavLink';
 import UIOptionsSelector from './UI/UIOptionsSelector';
 
+const interventionHoursList: InterventionHours[] = [0.25, 0.50, 0.75, 1, 1.25, 1.50, 1.75, 2,
+    2.25, 2.50, 2.75, 3, 3.25, 3.50, 3.75, 4, 4.25, 4.50, 4.75, 5, 5.25, 5.50, 5.75, 6, 6.25, 6.50, 6.75, 7, 7.25, 7.50, 7.75, 8,
+    8.25, 8.50, 8.75, 9, 9.25, 9.50, 9.75, 10, 10.25, 10.50, 10.75, 11, 11.25, 11.50, 11.75, 12, 12.25, 12.50, 12.75, 13,
+    13.25, 13.50, 13.75, 14, 14.25, 14.50, 14.75, 15, 15.25, 15.50, 15.75, 16, 16.25, 16.50, 16.75, 17, 17.25, 17.50, 17.75, 18,
+    18.25, 18.50, 18.75, 19, 19.25, 19.50, 19.75, 20, 20.25, 20.50, 20.75, 21, 21.25, 21.50, 21.75, 22, 22.25, 22.50, 22.75, 23,
+    23.25, 23.50, 23.75, 24
+];
+
 /**
  * @function InterventionForm
  * @description Composant pour un formulaire de déclaration d'intervention.
@@ -88,7 +96,7 @@ const InterventionForm = () => {
 
     const handlePoints = (value: InterventionHours) => {
         if (hoursError) setHoursError("");
-        if (value >= 1 && value <= 24) setHours(value);
+        if (value >= 0.25 && value <= 24) setHours(value);
     }
 
     const handlechangeCheckedConfigOptions = (option: string) => {
@@ -109,7 +117,7 @@ const InterventionForm = () => {
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
         if (payer === "") setPayerError("Veuillez choisir un bénéficiaire avant de valider")
-        if (hours < 1 && hours >24) setHoursError("Veuillez renseigner un nombre d'heure effectuées correct avant de valider");
+        if (hours < 0.25 && hours >24) setHoursError("Veuillez renseigner un nombre d'heure effectuées correct avant de valider");
         if (member && !payerError && !hoursError && date) {
             const request: Intervention = {
                 declarationDate: dateGenerator("declaration"),
@@ -152,15 +160,16 @@ const InterventionForm = () => {
         </div>
         <div className="verticalWrapper">
             <label htmlFor="pointsInput">Combien d'heures avez-vous effectué ?</label>
-            <input 
-                type="number" 
+            <select 
                 name="points" 
-                id="pointsInput" 
-                min={0}
-                max={24}
+                id="pointsInput"
                 value={hours} 
-                onChange={(event) => handlePoints(parseInt(event.target.value, 10) as unknown as InterventionHours) }
-                />
+                onChange={(e) => handlePoints(parseFloat(e.target.value) as InterventionHours)}
+            >
+            {interventionHoursList.map((value) => (
+                <option key={value} value={value}>{value} heure(s)</option>
+            ))}
+        </select>
             {hoursError && <p>{hoursError}</p>}
         </div>
         {configsList && <UIOptionsSelector 
