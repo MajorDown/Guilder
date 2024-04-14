@@ -118,7 +118,9 @@ const InterventionForm = () => {
         event.preventDefault();
         if (payer === "") setPayerError("Veuillez choisir un bénéficiaire avant de valider")
         if (hours < 0.25 && hours >24) setHoursError("Veuillez renseigner un nombre d'heure effectuées correct avant de valider");
-        if (member && !payerError && !hoursError && date) {
+        //verification si au moin une option est coché
+        if (checkedConfigOptions.length === 0) setLoadError("Vous devez cocher au moins un outil pour valider une déclaration");
+        if (member && !payerError && !hoursError && checkedConfigOptions.length >= 1 && date) {
             const request: Intervention = {
                 declarationDate: dateGenerator("declaration"),
                 interventionDate: date,
