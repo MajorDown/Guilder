@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Member, UserMail } from "@/types";
-import UIButton from "./UI/UIButton";
 import Image from "next/image";
 
 export type MemberCardProps = {
@@ -19,7 +18,7 @@ export type MemberCardProps = {
  * @returns {JSX.Element} Une carte de membre.
  */
 const MemberCard = (props: MemberCardProps) => {
-  const [roundedCounter, setRoundedCounter] = useState<number>(0);
+  const [roundedCounter, setRoundedCounter] = useState<string>("0.00");
 
   const handleDeleteMember = async (memberName: UserMail) => {
     if (props.adminMode) props.onDelete(memberName);
@@ -27,7 +26,7 @@ const MemberCard = (props: MemberCardProps) => {
   {/* il faut arrondir memberCounter à deux décimales */}
   useEffect(() => {
     if (props.member.counter) {
-      setRoundedCounter(Math.round(props.member.counter * 100) / 100);
+      setRoundedCounter(props.member.counter.toFixed(2));
     }
   }, [])
   
