@@ -3,10 +3,8 @@ import { UserName, ConnectedAdmin, UserMail, UserPhone } from '@/types'
 import createMember from '@/tools/front/createMember';
 import LoadSpinner from './LoadSpinner';
 import UIEmailInput from './UI/UIEmailInput';
-import UIFirstnameInput from './UI/UIFirstnameInput';
-import UILastnameInput from './UI/UILastnameInput';
+import UISocietyNameInput from './UI/UISocietyNameInput';
 import UIPhoneInput from './UI/UIPhoneInput';
-import UIButton from './UI/UIButton';
 
 export type MemberSignupFormProps = {
     admin: ConnectedAdmin;
@@ -61,7 +59,7 @@ const MemberSignupForm = (props: MemberSignupFormProps ) => {
           <div className={"wrapper-horizontal"} id={"societyName"}>
             <div className={"wrapper-vertical"}>
               <label htmlFor="inputFirstName">Nom de la Société / raison sociale :</label>
-              <UIFirstnameInput placeholder={"ex: sas Dupont"} inputRef={firstnameRef} name="inputFirstName" required/>
+              <UISocietyNameInput placeholder={"ex: sas Dupont"} inputRef={firstnameRef} name="inputFirstName" required/>
             </div>
           </div>
           <div className={"wrapper-horizontal"}>

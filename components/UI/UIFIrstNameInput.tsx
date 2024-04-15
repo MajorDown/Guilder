@@ -3,7 +3,7 @@ import UITextInput from './UITextInput';
 
 const firstnameConditions = {
     regex: /^[A-ZÉÈÊËÙÔ][A-Za-zéèêëùô\-]*$/,
-    error: "La première lettre doit être une majuscule. Uniquement des lettres, des espaces et des tirets sont autorisés."
+    error: "La première lettre doit être une majuscule. Uniquement des lettres et des tirets sont autorisés."
 };
 /**
  * Propriétés pour le composant UIFirstnameInput.
