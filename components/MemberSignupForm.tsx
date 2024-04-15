@@ -59,7 +59,7 @@ const MemberSignupForm = (props: MemberSignupFormProps ) => {
           <div className={"wrapper-horizontal"} id={"societyName"}>
             <div className={"wrapper-vertical"}>
               <label htmlFor="inputFirstName">Nom de la Société / raison sociale :</label>
-              <UISocietyNameInput placeholder={"ex: sas Dupont"} inputRef={firstnameRef} name="inputFirstName" required/>
+              <UISocietyNameInput inputRef={firstnameRef} name="inputFirstName" required/>
             </div>
           </div>
           <div className={"wrapper-horizontal"}>

@@ -32,7 +32,7 @@ const MembersManager = (props: MembersManagerProps) => {
     }, [hasNewMember])
     
     return (
-        <div id="membersManager">
+        <div id="membersManager" className={"scrollable"}>
             {membersList[0] && <MembersLister members={membersList} />}
             {wantNewMember ?
                 <MemberSignupForm 

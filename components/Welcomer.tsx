@@ -54,8 +54,8 @@ const Welcomer = () => {
     <div id={"welcomer"}>
       {hasCheckedLog && (<>
         <>
-          {admin && <p id="welcomerLine">Bienvenue {admin.name} !</p>}
-          {!admin && member && <p id="welcomerLine">Bienvenue {member.name} !</p>}
+          {admin && <p id="welcomerLine">Bienvenue {admin.name}</p>}
+          {!admin && member && <p id="welcomerLine">Bienvenue {member.name}</p>}
         </>
         <>
           {!admin && !member && <>

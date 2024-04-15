@@ -13,6 +13,10 @@
     gap: 50px;
 }
 
+#welcomerLine {
+    text-align: right;
+}
+
 @media screen and (max-width: 768px) {
 
     #appTitle {
