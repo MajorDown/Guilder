@@ -37,7 +37,7 @@ const InterventionsLister = (props: InterventionsListerProps) => {
     return (
       <div id="interventionsLister">
         {'counter' in props.user && <p>Le solde actuel de votre compteur est de : <b>{props.user.counter.toFixed(2)} points</b></p>}
-        {interventionsList && interventionsList[0] ? <ul>
+        {interventionsList && interventionsList[0] ? <ul className={"scrollable"}>
           {interventionsList && interventionsList.map((intervention, index) => 
           (<InterventionCard key={index} intervention={intervention} role={"member"} user={props.user}/>))}
         </ul> : 
