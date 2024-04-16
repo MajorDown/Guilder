@@ -1,8 +1,7 @@
 'use client'
 import {useState, useEffect, FormEvent} from 'react';
-import Image from 'next/image';
 import { isFormatted, interventionDateFormat } from '@/tools/isFormatted';
-import { GuildConfig, Intervention, InterventionHours, MembersList, UserName } from '@/types'
+import { GuildConfig, Intervention, MembersList, UserName } from '@/types'
 import createIntervention from '@/tools/front/createIntervention';
 import { useMemberContext } from '@/contexts/memberContext';
 import { dateGenerator } from '@/tools/dateGenerator';
@@ -11,14 +10,6 @@ import getGuildConfig from '@/tools/front/getGuildConfig';
 import UIButton from './UI/UIButton';
 import UINavLink from './UI/UINavLink';
 import UIOptionsSelector from './UI/UIOptionsSelector';
-
-const interventionHoursList: InterventionHours[] = [0.25, 0.50, 0.75, 1, 1.25, 1.50, 1.75, 2,
-    2.25, 2.50, 2.75, 3, 3.25, 3.50, 3.75, 4, 4.25, 4.50, 4.75, 5, 5.25, 5.50, 5.75, 6, 6.25, 6.50, 6.75, 7, 7.25, 7.50, 7.75, 8,
-    8.25, 8.50, 8.75, 9, 9.25, 9.50, 9.75, 10, 10.25, 10.50, 10.75, 11, 11.25, 11.50, 11.75, 12, 12.25, 12.50, 12.75, 13,
-    13.25, 13.50, 13.75, 14, 14.25, 14.50, 14.75, 15, 15.25, 15.50, 15.75, 16, 16.25, 16.50, 16.75, 17, 17.25, 17.50, 17.75, 18,
-    18.25, 18.50, 18.75, 19, 19.25, 19.50, 19.75, 20, 20.25, 20.50, 20.75, 21, 21.25, 21.50, 21.75, 22, 22.25, 22.50, 22.75, 23,
-    23.25, 23.50, 23.75, 24
-];
 
 /**
  * @function InterventionForm
@@ -29,7 +20,7 @@ const InterventionForm = () => {
     const {member, updateMember} = useMemberContext();
     const [payer, setPayer] = useState<UserName | "">("");
     const [payerError, setPayerError] = useState<string>("");
-    const [hours, setHours] = useState<InterventionHours>(1);
+    const [hours, setHours] = useState<number>(1);
     const [hoursError, setHoursError] = useState<string>("");
     const [checkedConfigOptions, setCheckedConfigOptions] = useState<string[]>([]);
     const [date, setDate] = useState<string>("");
@@ -94,9 +85,9 @@ const InterventionForm = () => {
         setPayer(value)
     }
 
-    const handlePoints = (value: InterventionHours) => {
+    const handlePoints = (value: number) => {
         if (hoursError) setHoursError("");
-        if (value >= 0.25 && value <= 24) setHours(value);
+        if (value >= 0 && value <= 24) setHours(value);
     }
 
     const handlechangeCheckedConfigOptions = (option: string) => {
@@ -116,8 +107,9 @@ const InterventionForm = () => {
 
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
-        if (payer === "") setPayerError("Veuillez choisir un bénéficiaire avant de valider")
-        if (hours < 0.25 && hours >24) setHoursError("Veuillez renseigner un nombre d'heure effectuées correct avant de valider");
+        if (payer === "") setPayerError("Veuillez choisir un bénéficiaire avant de valider");
+        if (hours <= 0) setHoursError("Veuillez renseigner un nombre d'heure supérieur à 0");
+        if (hours >24) setHoursError("Veuillez renseigner un nombre d'heure inférieur ou égal à 24");
         //verification si au moin une option est coché
         if (checkedConfigOptions.length === 0) setLoadError("Vous devez cocher au moins un outil pour valider une déclaration");
         if (member && !payerError && !hoursError && checkedConfigOptions.length >= 1 && date) {
@@ -158,21 +150,21 @@ const InterventionForm = () => {
                     )
                 })}
             </select>           
-            {payerError && <p>{payerError}</p>}
+            {payerError && <p className={"formErrorMsg"}>{payerError}</p>}
         </div>
         <div className="verticalWrapper">
             <label htmlFor="pointsInput">Combien d'heures avez-vous effectué ?</label>
-            <select 
+            <input 
+                type="number" 
                 name="points" 
                 id="pointsInput"
-                value={hours} 
-                onChange={(e) => handlePoints(parseFloat(e.target.value) as InterventionHours)}
-            >
-            {interventionHoursList.map((value) => (
-                <option key={value} value={value}>{value} heure(s)</option>
-            ))}
-        </select>
-            {hoursError && <p>{hoursError}</p>}
+                step={0.01}
+                min={0.01}
+                max={24}
+                value={hours}
+                onChange={(e) => handlePoints(parseFloat(e.target.value) as number)}
+             />
+            {hoursError && <p className={"formErrorMsg"}>{hoursError}</p>}
         </div>
         {configsList && <UIOptionsSelector 
                 guildOptions={configsList.config}
