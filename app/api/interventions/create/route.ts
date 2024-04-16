@@ -37,7 +37,7 @@ export async function POST(request: Request) {
         // création de optionsList au format [{option: string, coef: number}] à partir de options et coefsList
         const optionsList = options && options.length > 0 ? options.map((option: string, index: number) => ({option, coef: coefsList[index]})) : [];
         // CALCUL DU TOTAL DES POINTS
-        const totalPoints = optionsList.length > 0 ? coefsList.reduce((acc: number, coef: number) => acc + (hours * coef), hours) : hours;
+        const totalPoints = optionsList.length > 0 ? coefsList.reduce((acc: number, coef: number) => acc + (hours * coef), 0) : 0;
         // REDUIRE LE NOMBRE DE DECIMALES
         const interventionPoints = totalPoints.toFixed(2);        
         // CREATION DE L'INTERVENTION

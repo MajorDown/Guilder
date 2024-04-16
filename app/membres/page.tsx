@@ -28,7 +28,7 @@ const Membres = () => {
         </div>
       </section>
       <section className={"section_right"}>
-        <div id={"section_membres"} className={"section_content scrollable"}>
+        <div id={"section_membres"} className={"section_content"}>
           <h2>Les membres de la Guilde</h2>
           {!hasCheckedAdmin && <LoadSpinner />}
           {hasCheckedAdmin && admin && <>

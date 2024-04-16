@@ -41,7 +41,7 @@ const InterventionCard = (props: interventionCardProps) => {
         const declarationDate = `déclaré le ${declarationDateParts[2]}-${declarationDateParts[1]}-${declarationDateParts[0].substring(2)} à ${declarationDateParts[3]}:${declarationDateParts[4]}`;
         setDeclarationDateDisplay(declarationDate);
         // CALCUL DE CREDITDISPLAY
-        let totalCredits:number = props.intervention.hours; // Démarre avec le nombre d'heures
+        let totalCredits:number = 0; // Démarre avec le nombre d'heures
         props.intervention.options.forEach((option) => {
             if (typeof option === 'object') totalCredits += (props.intervention.hours * option.coef) as number; // Ajoute les crédits supplémentaires basés sur chaque coef d'option
         });

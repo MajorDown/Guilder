@@ -137,7 +137,7 @@ const InterventionForm = () => {
                 updateMember({...member, counter: response});
             }
             else {
-                setLoadError("une erreur est survenue lors de la déclaration. Veuillez réessayer plus tard.")
+                setLoadError("une erreur est survenue lors de la déclaration.")
             }
         }
     }

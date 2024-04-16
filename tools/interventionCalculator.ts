@@ -8,7 +8,7 @@ import { Intervention } from "@/types";
  */
 const interventionCalculator = (intervention: Intervention): number => {
     const {hours, options} = intervention;
-    let total = hours;
+    let total = 0;
     options.forEach((option) => {
         if (typeof option === 'object') {
             total += (hours * option.coef) as number;

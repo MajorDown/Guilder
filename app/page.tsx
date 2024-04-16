@@ -42,7 +42,7 @@ const Home = () => {
         <section className={"section_left"} >
             <div id={"section_accueil"} className={"section_content"}>
                 <Image className={"page_logo"} src={"/images/icons/logo-colors.svg"} alt={"logo"} width={120} height={184} priority/>
-                <h2>{line === 0 ? "Bienvenue sur Guilder !" : "Le concept est simple"}</h2>
+                <h2>{line === 0 ? "Bienvenue sur Agriguilder !" : "Le concept est simple"}</h2>
                 <div id={"accueil_concept"}>
                     <p id={"lineDisplayer"}>
                         {conceptLines[line]}
