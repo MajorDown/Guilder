@@ -1,4 +1,5 @@
 'use client'
+import Link from 'next/link';
 import {FormEvent, useState, useRef} from 'react';
 import connectAdmin from '@/tools/front/connectAdmin';
 import { useRouter } from 'next/navigation'; 
@@ -47,6 +48,7 @@ const AdminLoginForm = () => {
       <UIEmailInput aria-label={"mail"} inputRef={mailRef} name="inputMail" required/>
       <UIPasswordInput aria-label={"password"} inputRef={passwordRef} name="inputPassword" required/>
       <UIButton type="submit">Se Connecter en tant qu'admin</UIButton>
+      <Link href="/lostPassword">Mot de passe oublié ?</Link>      
       {isLoadIng && <>
         <p>chargement des données utilisateurs... veuillez patienter</p>
         <LoadSpinner />

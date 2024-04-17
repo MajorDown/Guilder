@@ -7,6 +7,7 @@ import UIEmailInput from './UI/UIEmailInput';
 import UIPasswordInput from './UI/UIPasswordInput';
 import UIButton from './UI/UIButton';
 import LoadSpinner from './LoadSpinner';
+import Link from 'next/link';
 
 /**
  * Composant pour un formulaire de connexion d'utilisateur.
@@ -47,6 +48,7 @@ const UserLoginForm = () => {
       <UIEmailInput aria-label={"mail"} inputRef={mailRef} name="inputMail" required/>
       <UIPasswordInput aria-label={"password"} inputRef={passwordRef} name="inputPassword" required/>
       <UIButton type="submit">Se connecter en tant que membre</UIButton>
+      <Link href="/lostPassword">Mot de passe oublié ?</Link>
       {isLoadIng && <>
         <p>chargement des données utilisateurs... veuillez patienter</p>
         <LoadSpinner />
