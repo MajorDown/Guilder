@@ -137,7 +137,7 @@ const InterventionForm = () => {
   return (<>
     {!hasDeclared && <form id="interventionForm" onSubmit={(event) => handleSubmit(event)}>
         <div className="verticalWrapper" >
-            <label htmlFor="payerInput">Pour quel membre de la guilde avez-vous oeuvré ?</label>
+            <label htmlFor="payerInput">Pour quel membre de la guilde êtes-vous intervenu ?</label>
             <select 
                 id="payerInput" 
                 value={payer} 
@@ -153,7 +153,7 @@ const InterventionForm = () => {
             {payerError && <p className={"formErrorMsg"}>{payerError}</p>}
         </div>
         <div className="verticalWrapper">
-            <label htmlFor="pointsInput">Combien d'heures avez-vous effectué ?</label>
+            <label htmlFor="pointsInput">Combien d'heures ont été effectuées ?</label>
             <input 
                 type="number" 
                 name="points" 
@@ -172,8 +172,8 @@ const InterventionForm = () => {
         />}
         <div className="verticalWrapper">
             <label htmlFor="dateinput">
-                <p>A quelle date avez-vous réalisé ses heures ?</p>
-                <p>(Vous ne pouvez pas déclarer une opération datant de plus d'une semaine)</p>
+                <p>A quelle date avez-vous réalisé cette intervention ?</p>
+                <p>(Vous ne pouvez pas déclarer une intervention datant de plus d'une semaine)</p>
             </label>
             <input 
                 type="date" 

@@ -1,6 +1,6 @@
 import getGuildConfig from '@/tools/front/getGuildConfig';
 import { getGuildMembers } from '@/tools/front/getGuildMembers';
-import { ConnectedAdmin, Contestation, GuildConfig, InterventionHours, MembersList, UserName } from '@/types';
+import { ConnectedAdmin, Contestation, GuildConfig, MembersList, UserName } from '@/types';
 import { FormEvent, useEffect, useState } from 'react';
 import UIButton from './UI/UIButton';
 import { interventionDateFormat, isFormatted } from '@/tools/isFormatted';
@@ -29,7 +29,7 @@ const InterventionModifier = (props: interventionModifierProps) => {
     const [interventionDate, setInterventionDate] = useState<string>(props.contestation.contestedIntervention.interventionDate);
     const [worker, setWorker] = useState<UserName>(props.contestation.contestedIntervention.worker);
     const [payer, setPayer] = useState<UserName>(props.contestation.contestedIntervention.payer);
-    const [hours, setHours] = useState<InterventionHours>(props.contestation.contestedIntervention.hours);
+    const [hours, setHours] = useState<number>(props.contestation.contestedIntervention.hours);
     const [checkedConfigOptions, setCheckedConfigOptions] = useState<string[]>([]);
     const [description, setDescription] = useState<string>(props.contestation.contestedIntervention.description);
     const [adminConclusion, setAdminConclusion] = useState<"accordé" | "refusé" | "">("");
@@ -80,6 +80,7 @@ const InterventionModifier = (props: interventionModifierProps) => {
 
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
+        if (hours < 0.1 || hours > 24) setFormErrorMsg("Le nombre d'heures doit être compris entre 0.1 et 24.");
         if (adminConclusion === "") {
             setFormErrorMsg("Veuillez statuer sur la contestation ('accordé' ou 'refusé')");
             return;
@@ -167,13 +168,14 @@ const InterventionModifier = (props: interventionModifierProps) => {
                 <input 
                     type="number" 
                     id="hoursInput"
-                    min={1}
+                    step={0.1}
+                    min={0.1}
                     max={24}
                     value={hours}
                     onChange={(event) => {
                         const newHoursValue = parseInt(event.target.value, 10);
-                        if (newHoursValue >= 1 && newHoursValue <= 24) {
-                            const newHours: InterventionHours = newHoursValue as InterventionHours;
+                        if (newHoursValue >= 0.1 && newHoursValue <= 24) {
+                            const newHours = newHoursValue as number;
                             setHours(newHours);
                         }
                     }}
