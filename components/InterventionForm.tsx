@@ -127,6 +127,7 @@ const InterventionForm = () => {
             if (response) {
                 setHasDeclared(true);
                 updateMember({...member, counter: response});
+                localStorage.setItem(process.env.NEXT_PUBLIC_LOCALSTORAGE_MEMBERCONTEXT_KEY as string, JSON.stringify({...member, counter: response}));
             }
             else {
                 setLoadError("une erreur est survenue lors de la déclaration.")
@@ -160,7 +161,6 @@ const InterventionForm = () => {
                 id="pointsInput"
                 step={0.01}
                 min={0.01}
-                max={24}
                 value={hours}
                 onChange={(e) => handlePoints(parseFloat(e.target.value) as number)}
              />

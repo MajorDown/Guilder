@@ -12,6 +12,7 @@ const Historic = () => {
 
   useEffect(() => {
       setCheckedMember(true);
+      if (member) console.log("member:", member);
   }, [member])
 
   return (<>

@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer>
       <Link href="/aide">Aide</Link>
-      <p>- Agriguilder - version 1.2.1 - copyright 2024</p>
+      <p>- Agriguilder - version 1.3 - copyright 2024</p>
     </footer>
   )
 }

@@ -3,7 +3,6 @@ import Link from 'next/link';
 import Welcomer from './Welcomer';
 
 const Header = () => {
-
   return (
     <header>
       <Link id="appTitle" href={"/"}>
