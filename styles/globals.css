@@ -116,6 +116,7 @@ li {
 @import url('./components/UI/UINavLink.css');
 @import url('./components/UI/UIButton.css');
 @import url('./components/UI/UILink.css');
+@import url('./components/UI/UIHoursInput.css');
 @import url('./components/header.css');
 @import url('./components/sections.css');
 @import url('./components/forms.css');

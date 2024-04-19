@@ -10,6 +10,7 @@ import getGuildConfig from '@/tools/front/getGuildConfig';
 import UIButton from './UI/UIButton';
 import UINavLink from './UI/UINavLink';
 import UIOptionsSelector from './UI/UIOptionsSelector';
+import UIHoursInput from './UI/UIHoursInput';
 
 /**
  * @function InterventionForm
@@ -87,7 +88,7 @@ const InterventionForm = () => {
 
     const handlePoints = (value: number) => {
         if (hoursError) setHoursError("");
-        if (value >= 0 && value <= 24) setHours(value);
+        if (value) setHours(value);
     }
 
     const handlechangeCheckedConfigOptions = (option: string) => {
@@ -155,15 +156,7 @@ const InterventionForm = () => {
         </div>
         <div className="verticalWrapper">
             <label htmlFor="pointsInput">Combien d'heures ont été effectuées ?</label>
-            <input 
-                type="number" 
-                name="points" 
-                id="pointsInput"
-                step={0.01}
-                min={0.01}
-                value={hours}
-                onChange={(e) => handlePoints(parseFloat(e.target.value) as number)}
-             />
+            <UIHoursInput onChangeValue={(value) => setHours(value)}/>
             {hoursError && <p className={"formErrorMsg"}>{hoursError}</p>}
         </div>
         {configsList && <UIOptionsSelector 
