@@ -77,7 +77,7 @@ const MembersLister = (props: MembersListerProps) => {
             <p>Il n'y a pas encore de membres au sein de la guilde</p> : 
             <ul>
                 {sortedMembers.map((member, index) => (
-                    <MemberCard key={index} member={member} onDelete={(memberMail) => handleDeleteMember(memberMail)} adminMode={admin ? true : false}/>
+                    <MemberCard key={member.name} member={member} onDelete={(memberMail) => handleDeleteMember(memberMail)} adminMode={admin ? true : false}/>
                 ))}
             </ul>
         }
