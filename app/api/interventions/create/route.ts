@@ -27,22 +27,13 @@ export async function POST(request: Request) {
         //DEBUT DE SESSION
         session.startTransaction();
         // CALCUL DES POINTS
-        const memberGuild = request.headers.get('X-user-Guild');        
-        const guildConfig = await GuildConfigModel.findOne({guild: memberGuild});
+        const memberGuild = request.headers.get('X-user-Guild');     
+        const guildConfig = await GuildConfigModel.findOne({name: memberGuild});
         console.log("api/intervention/create ~> guildConfig trouvé :", guildConfig);
         // EXTRACTION DES COEFFICIENTS POUR LES OPTIONS
         let coefsList = options && options.length > 0 ? options.map((optionName: string) => {
-            console.log("Traitement de l'option :", optionName);            
-            const optionConfig = guildConfig.config.find((option: {option: string, coef: number, enabled: boolean}) => {
-                const isOptionMatch = option.option === optionName;
-                const isOptionEnabled = option.enabled;
-                console.log(`Recherche dans la configuration: Option correspondante: ${option.option}, Reçu: ${optionName}, Correspondance: ${isOptionMatch}, Activée: ${isOptionEnabled}`);
-                return isOptionMatch && isOptionEnabled;
-            });
-            console.log("Configuration trouvée pour l'option :", optionConfig);
-            const coefValue = optionConfig ? optionConfig.coef : 0;
-            console.log(`Coefficient pour l'option '${optionName}':`, coefValue);
-            return coefValue;
+            const optionConfig = guildConfig.config.find((option: {option: string, coef: number, enabled: boolean}) => option.option === optionName && option.enabled);
+            return optionConfig ? optionConfig.coef : 0;
         }) : [];
         console.log("api/intervention/create ~> coefsList trouvé :", coefsList);
         // création de optionsList au format [{option: string, coef: number}] à partir de options et coefsList
