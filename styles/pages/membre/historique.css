@@ -4,8 +4,16 @@
 }
 
 #interventionsLister {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin-top: 20px;
     width: 100%;
+}
+
+#interventionsLister select {
+    margin: 10px auto;
 }
 
 #interventionsLister ul {
