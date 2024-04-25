@@ -121,6 +121,7 @@ li {
 @import url('./components/sections.css');
 @import url('./components/forms.css');
 @import url('./components/main.css');
+@import url('./pages/god.css');
 @import url('./pages/accueil.css');
 @import url('./pages/connexion.css');
 @import url('./pages/inscription.css');
