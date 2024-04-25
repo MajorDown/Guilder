@@ -7,6 +7,7 @@ import { AdminProvider } from '@/contexts/adminContext';
 import { MemberProvider } from '@/contexts/memberContext';
 import SectionsBackground from '@/components/SectionsBackground';
 import { Montserrat } from 'next/font/google';
+import { GodProvider } from '@/contexts/godContext';
 const montserrat = Montserrat({weight: "400", subsets: ["latin"], display: 'swap', variable: "--font-Montserrat"});
 
 export const metadata: Metadata = {
@@ -21,16 +22,18 @@ export default function RootLayout(props: PropsWithChildren) {
         <link rel="icon" href="/agriguilder.ico" type="image/x-icon" sizes="16x16" />
       </head>
       <body className={montserrat.className}>
-        <AdminProvider>
-          <MemberProvider>
-            <Header />
-            <main>
-              <SectionsBackground />
-              {props.children}
-            </main>
-            <Footer />
-          </MemberProvider>
-        </AdminProvider>
+        <GodProvider>
+          <AdminProvider>
+            <MemberProvider>
+              <Header />
+              <main>
+                <SectionsBackground />
+                {props.children}
+              </main>
+              <Footer />
+            </MemberProvider>
+          </AdminProvider>
+        </GodProvider>
       </body>
     </html>
   )
