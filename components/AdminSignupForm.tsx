@@ -1,14 +1,11 @@
 'use client'
-import {useEffect, useState, FormEvent, useRef} from 'react'
-import { UserMail, UserName, UserPhone, UserPassword, Guild } from '@/types'
+import {useState, FormEvent, useRef} from 'react'
 import createAdmin from '@/tools/front/createAdmin';
 import LoadSpinner from './LoadSpinner';
-import UINavLink from './UI/UINavLink';
 import UIEmailInput from './UI/UIEmailInput';
 import UIFirstnameInput from './UI/UIFirstnameInput';
 import UILastnameInput from './UI/UILastnameInput';
 import UIPhoneInput from './UI/UIPhoneInput';
-import UIButton from './UI/UIButton';
 import UIGuildNameInput from './UI/UIGuildNameInput';
 import UIPasswordValidator from './UI/UIPasswordValidator';
 
@@ -45,48 +42,42 @@ const AdminSignupForm = () => {
       }
       if (response instanceof Error) {
         setIsLoading(false);
-        setErrMessage('Un problême à eu lieu lors de la création de votre guilde. Veuillez réessayer plus tard.')
+        setErrMessage('Un problême à eu lieu lors de la création de la guilde. Veuillez réessayer plus tard.')
       };
   }  
 
   return (
-    <form onSubmit={(event) => handleSignup(event)}>
+    <form id={"adminSignupForm"} onSubmit={(event) => handleSignup(event)}>
         {hasSignup ? <>
-            <p>Votre inscription a réussi. Bienvenue ! vous pouvez maintenant 
-                vous connecter et gérer votre guilde :
-            </p>
-            <UINavLink label={"Se connecter"} href={'/connexion'} icon={'/images/icons/admin-white-dark.svg'} />
+            <p>L'inscription a réussi.</p>
         </> : <>
           <div className={"wrapper-horizontal"}>
             <div className={"wrapper-vertical"}>
-              <label htmlFor="inputFirstName">Votre prénom :</label>
+              <label htmlFor="inputFirstName">prénom de l'admin :</label>
               <UIFirstnameInput inputRef={firstNameRef} name="inputFirstName" required/>              
             </div>
             <div className={"wrapper-vertical"}>
-              <label htmlFor="inputLaststName">Votre nom de famille :</label>
+              <label htmlFor="inputLaststName">nom de l'admin :</label>
               <UILastnameInput inputRef={lastNameRef} name="inputLastName" required/>              
             </div>
           </div>
           <div className={"wrapper-horizontal"}>
             <div className={"wrapper-vertical"}>
-              <label htmlFor="inputMail">Votre Email :</label>
+              <label htmlFor="inputMail">Email de l'admin :</label>
               <UIEmailInput inputRef={mailRef} name="inputMail" required/>
             </div>
             <div className={"wrapper-vertical"}>
-              <label htmlFor="inputPhone">Votre numéro de tel :</label>
+              <label htmlFor="inputPhone">Numéro de tel de l'admin :</label>
               <UIPhoneInput inputRef={phoneRef} name="inputPhone" required/>              
             </div>
           </div>
             <div className={"wrapper-vertical"}>
-              <label htmlFor="inputGuild">
-                <p>Quel nom avez-vous choisis pour votre guilde ?</p>
-                <p>(/!\ Ce nom ne seras plus modifiable. Choisissez bien !)</p>
-                </label>
+              <label htmlFor="inputGuild">Quel sera le nom de la Guilde ?</label>
               <UIGuildNameInput id={"guildNameInput"} inputRef={guildRef} name="inputGuild" required/>    
             </div>
             <div className={"wrapper-vertical"} id={"passwordVerifier"}>
               <label htmlFor="inputPassword">
-                <p>Votre mot de passe :</p>
+                <p>son mot de passe :</p>
                 <p>(10 caractères minimum, avec au moins 1 chiffre, 1 lettre minuscule, 1 lettre majuscule et un caractère spécial (@, $, !, %, *, ?, ou &))</p>
                 </label>
               <UIPasswordValidator inputRef={passwordRef} name="inputPassword" required/>
