@@ -85,13 +85,15 @@ export type MemberInterventions = Intervention[];
 
 // TYPES POUR GUILDS
 
+export type Tool = {
+    option: string,
+    coef: number,
+    enabled: boolean
+}
+
 export type GuildConfig = {
     name: Guild,
-    config: {
-        option: string,
-        coef: number,
-        enabled: boolean
-    }[]
+    config: Tool[]
 }
 
 export type Contestation = {

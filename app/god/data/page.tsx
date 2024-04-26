@@ -1,7 +1,7 @@
 'use client'
 import {useEffect, useState} from 'react';
 import LoadSpinner from '@/components/LoadSpinner';
-import { Admin, Contestation, GuildConfig, Intervention, Member } from '@/types';
+import { Admin, Contestation, GuildConfig, Intervention, Member, Tool } from '@/types';
 
 type DataTab = "admins" | "members" | "tools" | "interventions" | "contestations";
 type GuildData = {
@@ -86,6 +86,7 @@ const GodData = () => {
             </div>
             {guildsNameErr && <p>{guildsNameErr}</p>}
             {selectedGuildName != "" && <>
+                {!guildData && <LoadSpinner />}
                 {guildData && <div id={"guildDataSelector"}>
                     <h3>Données de la guilde {selectedGuildName}</h3>
                     <div>
@@ -119,6 +120,45 @@ const GodData = () => {
                         >
                             Contestations
                         </button>                        
+                    </div>
+                    <div id={"guildDataList"}>
+                        {selectedTab === "admins" && guildData.admins.map((admin) => (
+                            <div className={"dataCard"} key={admin.name}>
+                                <p className={"dataName"}>{admin.name}</p>
+                                <p className={"dataMail"}>{admin.mail}</p>
+                                <p className={"dataPhone"}>{admin.phone}</p>
+                            </div>
+                        ))}
+                        {selectedTab === "members" && guildData.members.map((member) => (
+                            <div className={"dataCard"} key={member.name}>
+                                <p className={"dataName"}>{member.name}</p>
+                                <p className={"dataCounter"}>{member.counter.toFixed(2)} pts</p>
+                                <p className={"dataMail"}>{member.mail}</p>
+                                <p className={"dataPhone"}>{member.phone}</p>
+                            </div>
+                        ))}
+                        {selectedTab === "tools" && guildData.tools.map((tool) => (
+                            <div className={"dataCard"} key={tool.option}>
+                                <p className={"dataName"}>{tool.option}</p>
+                                <p className={"dataCoef"}>{tool.coef}</p>
+                                <p className={"dataEnabled"}>{tool.enabled? "activé" : "désactivé"}</p>
+                            </div>
+                        ))}
+                        {selectedTab === "interventions" && guildData.interventions.map((intervention) => (
+                            <div className={"dataCard"} key={intervention.declarationDate}>
+                                <p className={"dataDeclarationDate"}>{intervention.declarationDate}</p>
+                                <p className={"dataInterventionDate"}>{intervention.interventionDate}</p>
+                                <p className={"dataResume"}>{intervention.worker} pour {intervention.payer}</p>
+                                <p className={"dataHours"}>{intervention.hours}H</p>
+                                <p className={"dataOptions"}>
+                                    {intervention.options.map((o) => {
+                                        const option = o as { option: string, coef: number };
+                                        return <p>({option.option})</p>;
+                                    })}
+                                </p>
+                                <p className={"dataDescription"}>{intervention.description}</p>
+                            </div>
+                        ))}
                     </div>
                 </div>}
                 {guildDataErr && <p>{guildDataErr}</p>}
