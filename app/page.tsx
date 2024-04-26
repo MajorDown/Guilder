@@ -61,10 +61,10 @@ const Home = () => {
                     </div>}
                 </div>
                 {userIsChecked && !userIsConnected && <div id={"accueil_navigation"}>
-                    <UILink color={"green"} href={"/inscription"}>
+                    {/* <UILink color={"green"} href={"/inscription"}>
                         <Image src={"/images/icons/guilde-white-dark.svg"} alt={"creer sa guilde"} width={30} height={30}/>
                         <p>Créer sa guilde</p>
-                    </UILink>
+                    </UILink> */}
                     <UILink color={"dark"} href={"/connexion"}>
                         <Image src={"/images/icons/membre-white-dark.svg"} alt={"se connecter"} width={30} height={30}/>
                         <p>Se Connecter</p>
