@@ -69,7 +69,7 @@ const GodData = () => {
     }, [selectedGuildName]);
     
     return (
-        <section id={"godData"} className={"godSection"}>
+        <section id={"godData"} className={"godSection scrollable"}>
             <h2>Données de l'application</h2>
             <div id={"guildNameSelector"}>
                 <label htmlFor="guildsName">choix de la guilde à gérer :</label>
@@ -157,6 +157,13 @@ const GodData = () => {
                                     })}
                                 </p>
                                 <p className={"dataDescription"}>{intervention.description}</p>
+                            </div>
+                        ))}
+                        {selectedTab === "contestations" && guildData.contestations.map((contestation) => (
+                            <div className={"dataCard"} key={contestation.contestationDate}>
+                                <p className={"dataDeclarationDate"}>{contestation.contestationDate}</p>
+                                <p className={"dataContester"}>par {contestation.contester} :</p>
+                                <p className={"dataMessage"}>{contestation.contesterMessage}</p>
                             </div>
                         ))}
                     </div>

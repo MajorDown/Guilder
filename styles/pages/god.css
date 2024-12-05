@@ -84,25 +84,21 @@
 .dataDeclarationDate {
     min-width: 260px;
     text-align: start;
-    background-color: saddlebrown;
 }
 
 .dataInterventionDate {
     min-width: 150px;
     text-align: start;
-    background-color: firebrick;
 }
 
 .dataResume {
-    width: 550px;
+    width: 500px;
     text-align: center;
-    background-color: darkblue;
 }
 
 .dataHours {
     width: 75px;
     text-align: center;
-    background-color: darkgreen;
 }
 
 .dataOptions {
@@ -118,4 +114,14 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.dataContester {
+    width: 300px;
+    text-align: center;
+}
+
+.dataMessage {
+    width: 400px;
+    text-align: end;
 }
