@@ -23,7 +23,7 @@ const Home = () => {
     }, [admin, member]);
 
     const conceptLines = [
-        "Guilder est une application web qui permet de favoriser et gérer l'entraide au sein de votre collectif.",
+        "AgriGuilder est une application web qui permet de favoriser et gérer l'entraide au sein de votre collectif.",
         "En tant que membre de votre guilde, vous pouvez déclarer une intervention que vous aurez réalisée pour un autre membre.",
         "En déclarant une intervention, votre compteur de points augmente en fonction de la nature de l'intervention, ainsi que le nombre d'heures effectuées.",
         "Le membre qui aura bénéficié de votre intervention, quand à lui, verra son compteur de points diminuer de la même valeur.",

@@ -56,7 +56,7 @@ const GodData = () => {
             .catch((err) => setGuildsNameErr("erreur lors du chargement des noms de guildes"));
     }, []);
 
-    //DES QUE LE NOM DE LA GUILDE EST SELECTIONNE, RECHERCHE DES DONNEES DE LA GUILDE
+    // DES QUE LE NOM DE LA GUILDE EST SELECTIONNE, RECHERCHE DES DONNEES DE LA GUILDE
     useEffect(() => {
         if (selectedGuildName != "") {
             getGuildData(selectedGuildName)
@@ -120,6 +120,23 @@ const GodData = () => {
                         >
                             Contestations
                         </button>                        
+                    </div>
+                    <div>
+                        {selectedTab === "admins" && <p>nombre d'admins : {
+                            guildData.admins.length > 0 ? guildData.admins.length : "aucun"
+                        }</p>}
+                        {selectedTab === "members" && <p>nombre de membres : {
+                            guildData.members.length > 0 ? guildData.members.length : "aucun"
+                        }</p>}
+                        {selectedTab === "tools" && <p>nombre d'outils : {
+                            guildData.tools.length > 0 ? guildData.tools.length : "aucun"
+                        }</p>}
+                        {selectedTab === "interventions" && <p>nombre d'interventions : {
+                            guildData.interventions.length > 0 ? guildData.interventions.length : "aucune"
+                        }</p>}
+                        {selectedTab === "contestations" && <p>nombre de contestations : {
+                            guildData.contestations.length > 0 ? guildData.contestations.length : "aucune"
+                        }</p>}
                     </div>
                     <div id={"guildDataList"}>
                         {selectedTab === "admins" && guildData.admins.map((admin) => (

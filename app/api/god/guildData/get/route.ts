@@ -23,9 +23,11 @@ export async function GET(request: Request) {
     // RECUPERATION DES ADMINS
     let adminsList: Admin[] = await AdminModel.find({guild: guildName});
     if (!adminsList) adminsList = [];
+    adminsList.sort((a, b) => {return a.name.localeCompare(b.name)})
     // RECUPERATION DES MEMBRES
     let membersList: Member[] = await MemberModel.find({guild: guildName});
     if (!membersList) membersList = [];
+    membersList.sort((a, b) => {return a.name.localeCompare(b.name)});
     // RECUPERATION DES CONFIGS
     let tools: GuildConfig["config"];
     let guildConfig: GuildConfig | null = await GuildConfigModel.findOne({name: guildName});
@@ -37,6 +39,10 @@ export async function GET(request: Request) {
       let interventions = await InterventionModel.find({worker: member.name});
       if (interventions) interventionsList = [...interventionsList, ...interventions];
     }
+    // TRIER LES INTERVENTIONS PAR DATE, PLUS EXACTEMENT PAR declarationDate qui est de type string
+    interventionsList.sort((a, b) => {
+      return b.declarationDate.localeCompare(a.declarationDate);      
+    });
     // RECUPERATION DES CONTESTATIONS EFFECTUEES PAR CHAQUE MEMBRE
     let contestationsList: Contestation[] = [];
     for (let member of membersList) {
