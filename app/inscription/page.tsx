@@ -7,7 +7,7 @@ const Inscription = () => {
     return (
       <section className="section_left" >
         <div id={"section_inscription"}>
-          <h2>Vous souhaitez créer votre propre guilde ?</h2>
+          <h2>Vous souhaitez créer une nouvelle guilde ?</h2>
           <p>Vous êtes au bon endroit !</p>
           <p>Veuillez remplir le formulaire ci-dessous</p>
           <AdminSignupForm />  
