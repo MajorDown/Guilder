@@ -65,6 +65,7 @@ const GodSaveAllData = () => {
 
     return (
         <section id={"saveAllData"} className={"godSection"}>
+            <div className="wrapper-vertical">
             <h2>Session de récupération des données de l'application</h2>
             <button 
                 className={"light"}
@@ -80,6 +81,7 @@ const GodSaveAllData = () => {
                 Créer un backup et le recevoir par mail
             </button>
             {backupReport != '' && <p>{backupReport}</p>}
+            </div>
         </section>
     );
 }

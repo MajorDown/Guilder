@@ -2,7 +2,7 @@ const MentionsLegales = () => {
     return (
         <>
             <section className="section_right">
-                <div id="section_mentions_legales" className="section_content">
+                <div id="section_mentions_legales" className="section_content scrollable">
                     <h2>1. Conditions Générales d'Utilisation (CGU)</h2>
                     <div>
                         <h3>Préambule</h3>
