@@ -31,7 +31,7 @@ async function sendBackup(backup: Backup ) {
     // CREATION DES OPTIONS DU MAIL
     const mailOptions = {
         from: '"Agriguilder - Application de collaboration" <guilder.app@gmx.fr>',
-        to: process.env.BACKUP_MAIL,
+        to: process.env.BACKUP_EMAIL,
         subject: 'Backup de l\'application Agriguilder',
         html: /*html*/`
             <p>Voici le backup</p>
@@ -50,7 +50,7 @@ async function sendBackup(backup: Backup ) {
         console.log('sendBackup ~> Email envoyé avec succès');
         return true;
     } catch (error: any) {
-        console.error('sendBackup ~> Erreur lors de l\'envoi de l\'email');
+        console.error('sendBackup ~> Erreur lors de l\'envoi de l\'email:', error);
         return false;
     }
 }

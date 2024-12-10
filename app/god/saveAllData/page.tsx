@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 const GodSaveAllData = () => {
     const [downloadProgressReport, setDownloadProgressReport] = useState<string>("");
+    const [backupReport, setBackupReport] = useState<string>("");
 
     useEffect(() => {
         if (sessionStorage.getItem(process.env.NEXT_PUBLIC_SESSIONSTORAGE_GODCONTEXT_KEY as string) !== "true") {
@@ -21,7 +22,6 @@ const GodSaveAllData = () => {
                     "X-IsGodConnected": "true"
                 }
             });
-
             if (response.ok) {
                 setDownloadProgressReport("création du fichier JSON en cours...");
                 // Sauvegarder les données dans un fichier JSON et le télécharger
@@ -49,6 +49,20 @@ const GodSaveAllData = () => {
         }
     };
 
+    const handleCreateBackup = async () => {
+        const response = await fetch("/api/god/createBackup", {
+            method: "GET",
+            headers: {
+                "X-IsGodConnected": "true"
+            }
+        });
+        if (response.ok) {
+            setBackupReport("Backup créé et envoyé par mail");
+        } else {
+            setBackupReport("Erreur lors de la création du backup");
+        }
+    }
+
     return (
         <section id={"saveAllData"} className={"godSection"}>
             <h2>Session de récupération des données de l'application</h2>
@@ -59,6 +73,13 @@ const GodSaveAllData = () => {
                 Télécharger l'ensemble des données
             </button>
             {downloadProgressReport != '' && <p>{downloadProgressReport}</p>}
+            <button
+                className={"light"}
+                onClick={() => handleCreateBackup()}
+            >
+                Créer un backup et le recevoir par mail
+            </button>
+            {backupReport != '' && <p>{backupReport}</p>}
         </section>
     );
 }

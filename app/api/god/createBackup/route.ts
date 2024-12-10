@@ -6,6 +6,7 @@ import GuildConfigModel from "@/tools/api/models/model.guildConfig";
 import InterventionModel from "@/tools/api/models/model.intervention";
 import ContestationModel from "@/tools/api/models/model.contestation";
 import { Admin, Member, Intervention, Contestation, GuildConfig } from "@/types";
+import sendBackup from "@/tools/api/nodemailer/sendBackup";
 
 export async function GET(request: Request) {
   console.log(`api/god/createBackup ~> Requète de récupération des noms de chaque guilde`);
@@ -42,6 +43,12 @@ export async function GET(request: Request) {
         guildsConfig: guildsConfig,
         interventions: interventionsList,
         contestations: contestationsList
+    }
+    // ENVOYER LES DONNEES PAR MAIL 
+    const backupSended = await sendBackup(allData);
+    if (!backupSended) {
+      console.log(`api/god/createBackup ~> Erreur lors de l'envoi du backup par mail`);
+      return NextResponse.json("Echec de l'envoi du backup par mail", { status: 500 });
     }
     return NextResponse.json({ status: 201 });
   }
