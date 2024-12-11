@@ -1,12 +1,7 @@
 import { NextResponse } from "next/server";
 import databaseConnecter from "@/tools/api/databaseConnecter";
-import AdminModel from "@/tools/api/models/model.admin";
-import MemberModel from "@/tools/api/models/model.member";
-import GuildConfigModel from "@/tools/api/models/model.guildConfig";
-import InterventionModel from "@/tools/api/models/model.intervention";
-import ContestationModel from "@/tools/api/models/model.contestation";
-import { Admin, Member, Intervention, Contestation, GuildConfig } from "@/types";
 import clearAllCollections from "@/tools/api/mongooseRequests/clearAllCollections";
+import recoverAllCollections from "@/tools/api/mongooseRequests/recoverAllCollections";
 
 export async function POST(request: Request) {
   console.log(`api/god/uploadBackup ~> Requète de restockage des données de chaque guilde`);
@@ -31,18 +26,13 @@ export async function POST(request: Request) {
         console.log(`api/god/uploadBackup ~> Echec de suppression des data en vue de les remplacer`);
         return NextResponse.json("Echec de suppression des data en vue de les remplacer", { status: 500 });
     }
-    // SAUVEGARDER LES NOUVELLES DONNES
-    const newAdmins = await AdminModel.insertMany(data.admins);
-    if (!newAdmins) throw new Error("Echec de restockage des admins");
-    const newMembers = await MemberModel.insertMany(data.members);
-    if (!newMembers) throw new Error("Echec de restockage des membres");
-    const newGuildsConfig = await GuildConfigModel.insertMany(data.guildsConfig);
-    if (!newGuildsConfig) throw new Error("Echec de restockage des configs");
-    const newInterventions = await InterventionModel.insertMany(data.interventions);
-    if (!newInterventions) throw new Error("Echec de restockage des interventions");
-    const newContestations = await ContestationModel.insertMany(data.contestations);
-    if (!newContestations) throw new Error("Echec de restockage des contestations");
-    // RETOURNER UNE REPONSE SI TOUT EST OK
+    // SAUVEGARDER LES NOUVELLES DONNEES
+    const recoverCollections = await recoverAllCollections(data);
+    if (!recoverCollections) {
+        console.log(`api/god/uploadBackup ~> Echec de restockage des data`);
+        return NextResponse.json("Echec de restockage des data", { status: 500 });
+    }
+    // RETOURNER UN MESSAGE DE SUCCES
     return NextResponse.json({ status: 200 });
   }
   catch (error) {
