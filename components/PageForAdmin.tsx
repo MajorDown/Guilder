@@ -1,12 +1,12 @@
 import { ReactNode, useEffect, useState } from "react";
-import { useMemberContext } from '@/contexts/memberContext';
+import { useAdminContext } from '@/contexts/adminContext';
 import SectionLeft from "./SectionLeft"
 import SectionRight from "./SectionRight"
 import UINavLink from "./UI/UINavLink";
 import LoadSpinner from "./LoadSpinner";
 
 
-type PageForMemberProps = {
+type PageForAdminProps = {
     children?: ReactNode;
     title: string;
     pseudoTitle: string;
@@ -14,29 +14,29 @@ type PageForMemberProps = {
 }
 
 /**
- * @description PageForMember component
+ * @description PageForAdmin component
  * @param {string} props.title
  * @param {string} props.id
  * @param {ReactNode} props.children
  * @returns {JSX.Element}
  */
-const PageForMember = (props: PageForMemberProps) => {
-    const { member } = useMemberContext();
-    const [memberIsChecked, setMemberIsChecked] = useState(false);
+const PageForMember = (props: PageForAdminProps) => {
+    const { admin } = useAdminContext();
+    const [adminIsChecked, setAdminIsChecked] = useState(false);
 
     useEffect(() => {
-        setMemberIsChecked(true);
-    }, [member])
+        setAdminIsChecked(true);
+    }, [admin])
 
     return (<>
         <SectionLeft pseudoTitle={props.pseudoTitle}/>
         <SectionRight title={props.title} id={props.id}>
-            {!memberIsChecked && <LoadSpinner message={"chargement de la page..."}/>}
-            {memberIsChecked && !member && (<>
-                <p>Vous devez être connecté en tant que membre pour accéder à cette page !</p>
+            {!adminIsChecked && <LoadSpinner message={"chargement de la page..."}/>}
+            {adminIsChecked && !admin && (<>
+                <p>Vous devez être connecté en tant qu'admin pour accéder à cette page !</p>
                 <UINavLink label={"Se Connecter"} href={'/connexion'} icon={'/images/icons/membre-white-light.svg'} />
             </>)}
-            {memberIsChecked && member && props.children}
+            {adminIsChecked && admin && props.children}
         </SectionRight>
     </>)
 }
