@@ -5,7 +5,6 @@ import { useMemberContext } from "@/contexts/memberContext";
 import { useAdminContext } from "@/contexts/adminContext";
 import UINavLink from '@/components/UI/UINavLink';
 import ContestationLister from '@/components/ContestationLister';
-import UIButton from '@/components/UI/UIButton';
 import NewAdminForm from '@/components/NewAdminForm';
 import PageLogo from '@/components/PageLogo';
 import AppNavbar from '@/components/AppNavbar';
