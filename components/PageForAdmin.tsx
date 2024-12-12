@@ -20,7 +20,7 @@ type PageForAdminProps = {
  * @param {ReactNode} props.children
  * @returns {JSX.Element}
  */
-const PageForMember = (props: PageForAdminProps) => {
+const PageForAdmin = (props: PageForAdminProps) => {
     const { admin } = useAdminContext();
     const [adminIsChecked, setAdminIsChecked] = useState(false);
 
@@ -41,4 +41,4 @@ const PageForMember = (props: PageForAdminProps) => {
     </>)
 }
 
-export default PageForMember;
+export default PageForAdmin;
