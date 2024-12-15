@@ -46,7 +46,7 @@ export async function GET(request: Request) {
     // RECUPERATION DES CONTESTATIONS EFFECTUEES PAR CHAQUE MEMBRE
     let contestationsList: Contestation[] = [];
     for (let member of membersList) {
-      let contestations = await ContestationModel.find({member: member.name});
+      let contestations = await ContestationModel.find({contester: member.name});
       if (contestations) contestationsList = [...contestationsList, ...contestations];
     }
     const guildData = {
