@@ -16,12 +16,19 @@ export async function PUT(request: Request) {
             console.log(`api/guildConfig/update ~> la guilde ${newguildConfig.name} n'existe pas dans la db`);
             return NextResponse.json("Non autorisé", { status: 401 });      
         }
-        // AUTHENTIFICATION
-        const adminToCheck = await AdminModel.findOne({guild: newguildConfig.name});
+        // VERIFICATION DU MAIL
+        const mailToCheck = request.headers.get('X-Auth-Email');
+        const adminToCheck = await AdminModel.findOne({mail: mailToCheck});
         if (!adminToCheck) {
-          console.log(`api/guildConfig/update ~> l'admin de la guilde ${newguildConfig.name} est introuvable dans la db`);
+          console.log(`api/guildConfig/update ~> aucun admin n'existe avec l'adresse email ${mailToCheck}`);
           return NextResponse.json("Non autorisé", { status: 401 });      
         }
+        // VERIFICATION QUE L'ADMIN EST BIEN ADMIN DE LA GUILDE A MODIFIER
+        if (!adminToCheck.guild === newguildConfig.name) {
+          console.log(`api/guildConfig/update ~> ${adminToCheck.name} n'est pas admin de la guilde ${newguildConfig.name}`);
+          return NextResponse.json("Non autorisé", { status: 401 });
+        }
+        // VERIFICATION DU TOKEN
         const authHeader = request.headers.get('Authorization');
         const token = authHeader && authHeader.split(' ')[1];
         const isAuthentified = token ? await tokenChecker("admin", token, adminToCheck.mail) : false;

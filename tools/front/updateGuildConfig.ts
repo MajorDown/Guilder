@@ -13,7 +13,8 @@ const updateGuildConfig = async (admin: ConnectedAdmin, objectTofetch: GuildConf
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          'Authorization': `Bearer ${admin.token}`
+          'Authorization': `Bearer ${admin.token}`,
+          'X-Auth-Email': `${admin.mail}`
         },
         body: JSON.stringify(objectTofetch),
       });  

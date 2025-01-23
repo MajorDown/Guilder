@@ -16,12 +16,14 @@ export async function POST(request: Request) {
     );
     try {
         await databaseConnecter();
-        // AUTHENTIFICATION DE L'ADMIN
-        const adminToCheck = await AdminModel.findOne({guild: guild});
+        // VERIFICATION DU MAIL DE L'ADMIN
+        const mailToCheck = request.headers.get('X-Auth-Email');
+        const adminToCheck = await AdminModel.findOne({mail: mailToCheck});
         if (!adminToCheck) {
-            console.log(`api/member/signup ~> l'admin de la guilde ${guild} est introuvable dans la db`);
-            return NextResponse.json("Non autorisé", { status: 401 });      
+            console.log(`api/member/signup ~> aucun admin n'existe avec l'adresse mail ${mail}`);
+            return NextResponse.json("Adresse mail incorrect", { status: 400 });
         }
+        // AUTHENTIFICATION DE L'ADMIN
         const authHeader = request.headers.get('Authorization');
         const token = authHeader && authHeader.split(' ')[1];
         const isAuthentified = token ? await tokenChecker("admin", token, adminToCheck.mail) : false;

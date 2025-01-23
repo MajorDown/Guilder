@@ -13,6 +13,7 @@ const createMember = async (objectTofetch: NewMemberInfos, admin: ConnectedAdmin
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${admin.token}`,
+        'X-Auth-Email': admin.mail,
       },
       body: JSON.stringify(objectTofetch),
     });
