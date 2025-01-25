@@ -1,9 +1,22 @@
-import { NextResponse } from "next/server";
 import { tokenChecker } from "@/tools/api/tokenManager";
 import AdminModel from "@/tools/api/models/model.admin";
 import MemberModel from "./models/model.member";
+import { Admin, Member } from "@/types";
 import GuildConfigModel from "./models/model.guildConfig";
 import { UserStatus } from "@/types";
+
+type FalseAuthResponse = {
+    authorized: false;
+    error: string;
+};
+
+type TrueAuthResponse<T = unknown> = {
+    authorized: true;
+    checkedUser: T;
+};
+
+type AuthResponse<T = unknown> = FalseAuthResponse | TrueAuthResponse<T>;
+
 
 type AuthentifierProps = {
     model: UserStatus,
@@ -12,60 +25,59 @@ type AuthentifierProps = {
     guildToCheck?: string
 }
 
-const authentifier = async (props: AuthentifierProps) => {
-    // SI LE USERSTATUS EST ADMIN
-    if (props.model === 'admin') {
-        // SI LE MAIL N'EXISTE PAS DANS LA DB
-        const adminToCheck = await AdminModel.findOne({mail: props.userMail})
-        if (!adminToCheck) {
-            console.log(`api/authentifier ~> aucun admin n'existe avec l'adresse email ${props.userMail}`);
-            return NextResponse.json("Non autorisé", { status: 401 });      
-        }
-        // VERIFICATION DU TOKEN
-        const isAuthentified = props.token ? await tokenChecker("admin", props.token, adminToCheck.mail) : false;
-        if (!isAuthentified) {
-            console.log(`api/authentifier ~> ${adminToCheck.name} a échoué son authentification`);
-            return NextResponse.json("Non autorisé", { status: 401 });
-        }
-        // SI PROPS.GUILDTOCHECK EST RENSEIGNE
-        if (props.guildToCheck && adminToCheck.guild !== "") {
-            const searchedGuild = await GuildConfigModel.findOne({name: props.guildToCheck});
-            if (!searchedGuild) {
-                console.log(`api/authentifier ~> la guilde ${props.guildToCheck} n'existe pas dans la db`);
-                return NextResponse.json("Non autorisé", { status: 401 });
+/*
+* @name authentifier
+* @description Vérifie si un utilisateur est authentifié
+* @param {AuthentifierProps} props - Les propriétés de l'authentification
+* @returns {Promise<AuthResponse<Admin | Member>>} - Une réponse d'authentification
+**/
+const authentifier = async (props: AuthentifierProps): Promise<AuthResponse<Admin | Member>> => {
+    try {
+        if (props.model === 'admin') {
+            const adminToCheck = await AdminModel.findOne({ mail: props.userMail });
+            if (!adminToCheck) {
+                return { authorized: false, error: "admin introuvable" };
             }
-            if (adminToCheck.guild !== props.guildToCheck) {
-                console.log(`api/authentifier ~> ${adminToCheck.name} n'est pas admin de la guilde ${props.guildToCheck}`);
-                return NextResponse.json("Non autorisé", { status: 401 });
+
+            const isAuthentified = props.token ? await tokenChecker("admin", props.token, adminToCheck.mail) : false;
+            if (!isAuthentified) {
+                return { authorized: false, error: "token invalide" };
             }
+
+            if (props.guildToCheck && adminToCheck.guild) {
+                const searchedGuild = await GuildConfigModel.findOne({ name: props.guildToCheck });
+                if (!searchedGuild || adminToCheck.guild !== props.guildToCheck) {
+                    return { authorized: false, error: "admin inconnu de la guilde" };
+                }
+            }
+
+            return { authorized: true, checkedUser: adminToCheck };
+        } else if (props.model === 'member') {
+            const memberToCheck = await MemberModel.findOne({ mail: props.userMail });
+            if (!memberToCheck) {
+                return { authorized: false, error: "Membre introuvable" };
+            }
+
+            const isAuthentified = props.token ? await tokenChecker("member", props.token, memberToCheck.mail) : false;
+            if (!isAuthentified) {
+                return { authorized: false, error: "token invalide" };
+            }
+
+            if (props.guildToCheck && memberToCheck.guild) {
+                const searchedGuild = await GuildConfigModel.findOne({ name: props.guildToCheck });
+                if (!searchedGuild || memberToCheck.guild !== props.guildToCheck) {
+                    return { authorized: false, error: "membre inconnu de la guilde" };
+                }
+            }
+
+            return { authorized: true, checkedUser: memberToCheck };
         }
+
+        return { authorized: false, error: "modèle invalide" };
+    } catch (error) {
+        return { authorized: false, error: "erreur interne" };
     }
-    else if (props.model === 'member') {
-        // SI LE MAIL N'EXISTE PAS DANS LA DB
-        const memberToCheck = await MemberModel.findOne({mail: props.userMail})
-        if (!memberToCheck) {
-            console.log(`api/authentifier ~> aucun membre n'existe avec l'adresse email ${props.userMail}`);
-            return NextResponse.json("Non autorisé", { status: 401 });      
-        }
-        // VERIFICATION DU TOKEN
-        const isAuthentified = props.token ? await tokenChecker("member", props.token, memberToCheck.mail) : false;
-        if (!isAuthentified) {
-            console.log(`api/authentifier ~> ${memberToCheck.name} a échoué son authentification`);
-            return NextResponse.json("Non autorisé", { status: 401 });
-        }
-        // SI PROPS.GUILDTOCHECK EST RENSEIGNE
-        if (props.guildToCheck && memberToCheck.guild !== "") {
-            const searchedGuild = await GuildConfigModel.findOne({name: props.guildToCheck});
-            if (!searchedGuild) {
-                console.log(`api/authentifier ~> la guilde ${props.guildToCheck} n'existe pas dans la db`);
-                return NextResponse.json("Non autorisé", { status: 401 });
-            }
-            if (memberToCheck.guild !== props.guildToCheck) {
-                console.log(`api/authentifier ~> ${memberToCheck.name} n'est pas membre de la guilde ${props.guildToCheck}`);
-                return NextResponse.json("Non autorisé", { status: 401 });
-            }
-        }
-    }
-}
+};
+
 
 export default authentifier;
