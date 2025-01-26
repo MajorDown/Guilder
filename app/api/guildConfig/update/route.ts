@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
 import databaseConnecter from "@/tools/api/databaseConnecter";
-import { tokenChecker } from "@/tools/api/tokenManager";
-import AdminModel from "@/tools/api/models/model.admin";
 import GuildConfigModel from "@/tools/api/models/model.guildConfig";
+import authentifier from "@/tools/api/authentifier";
 
 export async function PUT(request: Request) {
     const newguildConfig = await request.json();
@@ -10,36 +9,30 @@ export async function PUT(request: Request) {
     try {
         // CONNEXION A LA DB
         await databaseConnecter();
-        // VERIFICATION DE L'EXISTENCE DE LA GUILDE
-        let guildConfigToUpdate = await GuildConfigModel.findOne({name: newguildConfig.name});
-        if (!guildConfigToUpdate) {
-            console.log(`api/guildConfig/update ~> la guilde ${newguildConfig.name} n'existe pas dans la db`);
-            return NextResponse.json("Non autorisé", { status: 401 });      
+        // VERIFICATION DE LA PRESENCE DE DONNEES
+        const adminMail = request.headers.get('X-Auth-Email');
+        const token = request.headers.get('Authorization');
+        const guildName = newguildConfig.name;
+        if (!newguildConfig || !adminMail || !token || !guildName) {
+            console.log(`api/guildConfig/update ~> données manquantes`);
+            return NextResponse.json("Données manquantes", { status: 400 });
         }
-        // VERIFICATION DU MAIL
-        const mailToCheck = request.headers.get('X-Auth-Email');
-        const adminToCheck = await AdminModel.findOne({mail: mailToCheck});
-        if (!adminToCheck) {
-          console.log(`api/guildConfig/update ~> aucun admin n'existe avec l'adresse email ${mailToCheck}`);
-          return NextResponse.json("Non autorisé", { status: 401 });      
+        // VERIFICATION DE L'AUTHENTIFICATION
+        const authResponse = await authentifier({
+            model: 'admin', 
+            userMail: adminMail, 
+            token: token, 
+            guildToCheck: newguildConfig.name}
+        );
+        if (!authResponse.authorized) {
+            console.log(`api/guildConfig/update ~> ${authResponse.error}`);
+            return NextResponse.json(authResponse.error, { status: 401 });
         }
-        // VERIFICATION QUE L'ADMIN EST BIEN ADMIN DE LA GUILDE A MODIFIER
-        if (!adminToCheck.guild === newguildConfig.name) {
-          console.log(`api/guildConfig/update ~> ${adminToCheck.name} n'est pas admin de la guilde ${newguildConfig.name}`);
-          return NextResponse.json("Non autorisé", { status: 401 });
-        }
-        // VERIFICATION DU TOKEN
-        const authHeader = request.headers.get('Authorization');
-        const token = authHeader && authHeader.split(' ')[1];
-        const isAuthentified = token ? await tokenChecker("admin", token, adminToCheck.mail) : false;
-        if (!isAuthentified) {
-          console.log(`api/guildConfig/update ~> ${adminToCheck.name} a échoué son authentification`);
-          return NextResponse.json("Non autorisé", { status: 401 });
-        }
+        // RECHERCHE DU GUILDCONFIG A MODIFIER
+        const guildConfigToUpdate = await GuildConfigModel.findOne({ name: authResponse.checkedUser.guild });
         // MODIFICATION DU GUILDCONFIG
         guildConfigToUpdate.name = newguildConfig.name;
         guildConfigToUpdate.config = newguildConfig.config;
-        console.log(guildConfigToUpdate);
         guildConfigToUpdate.save();
         return NextResponse.json(guildConfigToUpdate, { status: 200 });
     }

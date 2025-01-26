@@ -5,17 +5,17 @@ import { Admin, Member } from "@/types";
 import GuildConfigModel from "./models/model.guildConfig";
 import { UserStatus } from "@/types";
 
-type FalseAuthResponse = {
+export type FalseAuthResponse = {
     authorized: false;
     error: string;
 };
 
-type TrueAuthResponse<T = unknown> = {
+export type TrueAuthResponse<U = Admin | Member> = {
     authorized: true;
-    checkedUser: T;
+    checkedUser: U;
 };
 
-type AuthResponse<T = unknown> = FalseAuthResponse | TrueAuthResponse<T>;
+type AuthResponse<U = Admin | Member> = FalseAuthResponse | TrueAuthResponse<U>;
 
 
 type AuthentifierProps = {
