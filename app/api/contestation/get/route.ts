@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import databaseConnecter from "@/tools/api/databaseConnecter";
-import { tokenChecker } from "@/tools/api/tokenManager";
 import ContestationModel from "@/tools/api/models/model.contestation";
+import authentifier from "@/tools/api/authentifier";
 
 export async function GET(request: Request) {
     const url = new URL(request.url);
@@ -10,14 +10,23 @@ export async function GET(request: Request) {
     // CONNEXION A LA DB
     await databaseConnecter();
     try {
-        // AUTHENTIFICATION
+        // VERIFICATION DE LA PRESENCE DE DONNEES
         const memberMail = request.headers.get('X-user-Mail');
         const authHeader = request.headers.get('Authorization');
         const token = authHeader && authHeader.split(' ')[1];
-        const isAuthentified = memberMail && token ? await tokenChecker("member", token, memberMail) : false;
-        if (!isAuthentified) {
-            console.log(`api/contestation/get ~> ${memberMail} a échoué son authentification`);
-            return NextResponse.json("Non autorisé", { status: 401 });
+        if (!memberName || !memberMail || !token) {
+            console.log(`api/contestation/get ~> données manquantes`);
+            return NextResponse.json("Données manquantes", { status: 400 });
+        }
+        // VERIFICATION DE L'AUTHENTIFICATION
+        const authResponse = await authentifier({
+            model: 'member', 
+            userMail: memberMail, 
+            token: token}
+        );
+        if (!authResponse.authorized) {
+            console.log(`api/contestation/get ~> ${authResponse.error}`);
+            return NextResponse.json(authResponse.error, { status: 401 });
         }
         // RECUPERATION DES CONTESTATIONS
         // il faut récupérer les contestations ou le membre est le contester, mais aussi celle qu'il a déclaré lui-même, SANS FAIRE DE DOUBLONS (il peut être à la fois le contester et le déclarateur)

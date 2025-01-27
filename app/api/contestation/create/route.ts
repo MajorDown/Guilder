@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import databaseConnecter from "@/tools/api/databaseConnecter";
-import { tokenChecker } from "@/tools/api/tokenManager";
 import ContestationModel from "@/tools/api/models/model.contestation";
+import authentifier from "@/tools/api/authentifier";
 
 export async function POST(request: Request) {
     const contestation = await request.json();
@@ -10,15 +10,23 @@ export async function POST(request: Request) {
     await databaseConnecter();
     // CREATION DE LA SESSION
     try {
-        // AUTHENTIFICATION
+        // VERIFICATION DE LA PRESENCE DE DONNEES
         const contesterMail = request.headers.get('X-user-Email');
-        const authHeader = request.headers.get('Authorization');
-        const token = authHeader && authHeader.split(' ')[1];
-        const isAuthentified = contesterMail && token ? await tokenChecker("member", token, contesterMail) : false;
-        if (!isAuthentified) {
-          console.log(`api/contestation/create ~> ${contesterMail} a échoué son authentification`);
-          return NextResponse.json("Non autorisé", { status: 401 });
-        }      
+        const token = request.headers.get('Authorization')?.split(' ')[1];
+        if (!contestation || !contesterMail || !token) {
+          console.log(`api/contestation/create ~> données manquantes`);
+          return NextResponse.json("Données manquantes", { status: 400 });
+        }
+        // VERIFICATION DE L'AUTHENTIFICATION
+        const authResponse = await authentifier({
+            model: 'member', 
+            userMail: contesterMail, 
+            token: token}
+        );
+        if (!authResponse.authorized) {
+            console.log(`api/contestation/create ~> ${authResponse.error}`);
+            return NextResponse.json(authResponse.error, { status: 401 });
+        }    
         // CREATION DE LA CONTESTATION
         const newContestation = new ContestationModel(contestation);
         await newContestation.save();
