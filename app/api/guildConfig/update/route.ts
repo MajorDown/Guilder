@@ -11,7 +11,7 @@ export async function PUT(request: Request) {
         await databaseConnecter();
         // VERIFICATION DE LA PRESENCE DE DONNEES
         const adminMail = request.headers.get('X-Auth-Email');
-        const token = request.headers.get('Authorization');
+        const token = request.headers.get('Authorization')?.split(' ')[1];
         const guildName = newguildConfig.name;
         if (!newguildConfig || !adminMail || !token || !guildName) {
             console.log(`api/guildConfig/update ~> données manquantes`);
