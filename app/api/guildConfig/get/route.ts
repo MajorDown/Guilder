@@ -1,46 +1,42 @@
 import { NextResponse } from "next/server";
 import databaseConnecter from "@/tools/api/databaseConnecter";
-import { tokenChecker } from "@/tools/api/tokenManager";
-import AdminModel from "@/tools/api/models/model.admin";
-import MemberModel from "@/tools/api/models/model.member";
 import GuildConfigModel from "@/tools/api/models/model.guildConfig";
 import { UserStatus } from "@/types";
+import authentifier from "@/tools/api/authentifier";
 
 export async function GET(request: Request) {
   console.log(`api/guildConfig/get ~> Requète de récupération de guildConfig`);
   try {
-    const url = new URL(request.url);
-    const guildName = url.searchParams.get("guildName");
-    if (!guildName) {
-      console.log(`api/guildConfig/get ~> Nom de guilde manquant dans la requète`);
-      return NextResponse.json("Nom de guilde manquant", { status: 400 });
-    }
     // CONNEXION A LA DB
     await databaseConnecter();
+    // VERIFICATION DE LA PRESENCE DES DONNEES DANS LA REQUETE
+    const url = new URL(request.url);
+    const guildName = url.searchParams.get("guildName");
+    const userMail = request.headers.get('X-user-Email');
+    const role = request.headers.get('X-role') as UserStatus;
+    const token = request.headers.get('Authorization')?.split(' ')[1];
+    if (!guildName || !userMail || !role || !token) {
+        console.log(`api/guildConfig/get ~> données manquantes`);
+        return NextResponse.json("Données manquantes", { status: 400 });
+    }
+    // VERIFICATION DE l'AUTHENTIFICATION
+    const authResponse = await authentifier({
+      model: role,
+      token: token,
+      userMail: userMail,
+      guildToCheck: guildName
+    });  
+    if (!authResponse.authorized) {
+      console.log(`api/guildConfig/get ~> ${authResponse.error}`);
+      return NextResponse.json(authResponse.error, { status: 401 });
+    }
     // VERIFICATION DE L'EXISTENCE DE LA GUILDE
-    const guildConfigToGet = await GuildConfigModel.findOne({name: guildName});
+    const guildConfigToGet = await GuildConfigModel.findOne({guild: guildName}).lean();
     if (!guildConfigToGet) {
-        console.log(`api/guildConfig/get ~> la guilde ${guildName} n'existe pas dans la db`);
-        return NextResponse.json("Non autorisé", { status: 401 });      
+      console.log(`api/guildConfig/get ~> guilde ${guildName} introuvable`);
+      return NextResponse.json("Guilde introuvable", { status: 404 });
     }
-    // AUTHENTIFICATION
-    const role = request.headers.get('X-user-Role') as UserStatus;
-    const userMail = request.headers.get('X-user-Mail');
-    let userToCheck;
-    if (role === "admin") userToCheck = await AdminModel.findOne({mail: userMail});
-    else userToCheck = await MemberModel.findOne({mail: userMail});
-    if (!userToCheck) {
-      console.log(`api/guildConfig/get ~> ${userMail} est introuvable dans la guilde ${guildName}`);
-      return NextResponse.json("Non autorisé", { status: 401 });      
-    }
-    const authHeader = request.headers.get('Authorization');
-    const token = authHeader && authHeader.split(' ')[1];
-    const isAuthentified = token ? await tokenChecker(role, token, userToCheck.mail) : false;
-    if (!isAuthentified) {
-      console.log(`api/guildConfig/get ~> l'utilisateur ${userMail} a échoué son authentification`);
-      return NextResponse.json("Non autorisé", { status: 401 });
-    }    
-    // RECUPERATION DES DONNNES
+    // RENVOI DE LA GUILDE CONFIG
     return NextResponse.json(guildConfigToGet, { status: 200 });
   }
   catch (error) {
