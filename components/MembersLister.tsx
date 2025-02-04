@@ -18,6 +18,7 @@ const MembersLister = (props: MembersListerProps) => {
     const [isEmpty, setIsEmpty] = useState<boolean>(false);
     const [sortMethod, setSortMethod] = useState<string>("counter+");
     const [sortedMembers, setSortedMembers] = useState<MembersList>([]);
+    const [zeroFilter, setZeroFilter] = useState<boolean>(false);
 
     useEffect(() => {
         let sortedMembers;
@@ -73,10 +74,22 @@ const MembersLister = (props: MembersListerProps) => {
             <option value="name+">Par ordre alphabétique (de A à Z)</option>
             <option value="name-">Par ordre alphabétique (de Z à A)</option>
         </select>
+        <div id={"zeroFilter"}>
+            <input 
+                type="checkbox" 
+                id="zeroFilterInput" 
+                name="zeroFilter" 
+                checked={zeroFilter}
+                onChange={(event) => setZeroFilter(event.target.checked)}
+            />
+            <label htmlFor="zeroFilter">Masquer les membres dont le compteur est à 0</label>
+        </div>
         {isEmpty ? 
             <p>Il n'y a pas encore de membres au sein de la guilde</p> : 
             <ul>
-                {sortedMembers.map((member, index) => (
+                {zeroFilter ? sortedMembers.filter((member) => member.counter !== 0).map((member, index) => (
+                    <MemberCard key={member.name} member={member} onDelete={(memberMail) => handleDeleteMember(memberMail)} adminMode={admin ? true : false}/>
+                )) : sortedMembers.map((member, index) => (
                     <MemberCard key={member.name} member={member} onDelete={(memberMail) => handleDeleteMember(memberMail)} adminMode={admin ? true : false}/>
                 ))}
             </ul>
