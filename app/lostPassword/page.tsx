@@ -41,7 +41,7 @@ const LostPassword = () => {
                         id="type"
                         ref={typeRef} 
                         required>
-                        <option value="membre">membre</option>
+                        <option value="member">membre</option>
                         <option value="admin">admin</option>
                     </select>
                     <label htmlFor="mail">Votre adresse mail :</label>

@@ -11,7 +11,7 @@ import { Member } from "@/types";
 async function sendMailToNewMember(member: Member, newPassword: string) {
     // CREATION DU TRANSPORTEUR NODEMAILER
     const transporter = Nodemailer.createTransport({
-        host: 'mail.gmx.com',
+        host: "smtp.gmail.com",
         port: 587,
         secure: false,
         auth: {

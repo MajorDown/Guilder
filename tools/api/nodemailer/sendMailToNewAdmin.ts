@@ -11,7 +11,7 @@ import { Admin } from "@/types";
 async function sendMailToNewAdmin(admin: Admin, newPassword: string) {
     // CREATION DU TRANSPORTEUR NODEMAILER
     const transporter = Nodemailer.createTransport({
-        host: 'mail.gmx.com',
+        host: "smtp.gmail.com",
         port: 587,
         secure: false,
         auth: {
