@@ -5,6 +5,7 @@ import UIButton from './UI/UIButton';
 import getGuildConfig from '@/tools/front/getGuildConfig';
 import ConfigLister from './ConfigLister';
 import ConfigOptionsForm from './ConfigOptionsForm';
+import ConfigUpdateForm from './ConfigUpdateForm';
 
 export type ConfigManagerProps = {
     configFor: ConnectedAdmin;
@@ -18,7 +19,9 @@ export type ConfigManagerProps = {
 const ConfigManager = ({ configFor }: ConfigManagerProps) => {
     // STATES
     const [guildConfig, setGuildConfig] = useState<GuildConfig | undefined>(undefined);
-    const [showForm, setShowForm] = useState<boolean>(false);
+    const [showCreateForm, setShowCreateForm] = useState<boolean>(false);
+    const [showUpdateForm, setShowUpdateForm] = useState<boolean>(false);
+    const [optionToUpdate, setOptionToUpdate] = useState<string>("");
 
     useEffect(() => {
         const fetchConfig = async () => {
@@ -28,20 +31,34 @@ const ConfigManager = ({ configFor }: ConfigManagerProps) => {
         fetchConfig();
     }, [configFor]);
 
+    useEffect(() => {
+        if (optionToUpdate) setShowUpdateForm(true);
+        console.log( "optionTo Update", optionToUpdate);
+    }, [optionToUpdate]);
+
     return (
         <div id="configManager">
             <div id="configOptionsList" className="scrollable">
                 <h3>Outils pour la guilde {guildConfig?.name} :</h3>
-                <ConfigLister config={guildConfig} admin={configFor} />
+                <ConfigLister config={guildConfig} admin={configFor} wantEdit={(optionName) => setOptionToUpdate(optionName)}/>
             </div>
             <div id="configOptionsForm">
-                {!showForm && <UIButton className="light" onClick={() => setShowForm(true)}>Ajouter une nouvelle option</UIButton>}
-                {showForm && guildConfig && (
+                {!showCreateForm && <UIButton className="light" onClick={() => setShowCreateForm(true)}>Ajouter une nouvelle option</UIButton>}
+                {showCreateForm && guildConfig && (
                     <ConfigOptionsForm 
                         configFor={configFor} 
                         guildConfig={guildConfig} 
                         setGuildConfig={setGuildConfig} 
-                        closeForm={() => setShowForm(false)} 
+                        closeForm={() => setShowCreateForm(false)} 
+                    />
+                )}
+                {showUpdateForm && guildConfig && (
+                    <ConfigUpdateForm 
+                        configFor={configFor} 
+                        guildConfig={guildConfig} 
+                        setGuildConfig={setGuildConfig} 
+                        optionToUpdate={guildConfig.config.find((option) => option.option === optionToUpdate) as any} 
+                        closeForm={() => setShowUpdateForm(false)}
                     />
                 )}
             </div>

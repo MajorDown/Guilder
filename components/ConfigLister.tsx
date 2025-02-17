@@ -5,7 +5,8 @@ import { useState } from "react";
 
 export type ConfigListerProps = {
     config: GuildConfig | undefined;
-    admin: ConnectedAdmin
+    admin: ConnectedAdmin;
+    wantEdit: (optionName: string) => void;   
 }
 
 /**
@@ -65,6 +66,7 @@ const ConfigLister = (props: ConfigListerProps) => {
                 key={index} 
                 option={option}
                 onChangeEnabled={(value) => handleChangeEnabled(value, option.option)}
+                onEdit={(optionName) => props.wantEdit(optionName)}
                 onDelete={(optionName) => handleDeleteOption(optionName)}
                 />
         ))}
