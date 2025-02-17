@@ -12,7 +12,7 @@ const getGuildConfig = async (user: ConnectedAdmin | ConnectedMember): Promise<R
       method: "GET",
       headers: {
         'Authorization': `Bearer ${user.token}`,
-        'X-user-Mail': user.mail,
+        'X-user-EMail': user.mail,
         'X-user-Role': user.hasOwnProperty('counter') ? 'member' : 'admin'},
     });  
     if (!response.ok) {

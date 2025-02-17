@@ -13,7 +13,7 @@ export async function GET(request: Request) {
     const url = new URL(request.url);
     const guildName = url.searchParams.get("guildName");
     const userMail = request.headers.get('X-user-Email');
-    const role = request.headers.get('X-role') as UserStatus;
+    const role = request.headers.get('X-user-Role') as UserStatus;
     const token = request.headers.get('Authorization')?.split(' ')[1];
     if (!guildName || !userMail || !role || !token) {
         console.log(`api/guildConfig/get ~> données manquantes`);
@@ -31,7 +31,7 @@ export async function GET(request: Request) {
       return NextResponse.json(authResponse.error, { status: 401 });
     }
     // VERIFICATION DE L'EXISTENCE DE LA GUILDE
-    const guildConfigToGet = await GuildConfigModel.findOne({guild: guildName}).lean();
+    const guildConfigToGet = await GuildConfigModel.findOne({name: guildName}).lean();
     if (!guildConfigToGet) {
       console.log(`api/guildConfig/get ~> guilde ${guildName} introuvable`);
       return NextResponse.json("Guilde introuvable", { status: 404 });
