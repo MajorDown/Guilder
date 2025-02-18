@@ -5,8 +5,7 @@ import { useState } from "react";
 
 export type ConfigListerProps = {
     config: GuildConfig | undefined;
-    admin: ConnectedAdmin;
-    wantEdit: (optionName: string) => void;   
+    admin: ConnectedAdmin;  
 }
 
 /**
@@ -35,7 +34,29 @@ const ConfigLister = (props: ConfigListerProps) => {
     else {
       setUpdateError("un problême est survenu lors de l'actualisation des options'. Veuillez réessayer plus tard.");
       setTimeout(() => setUpdateError(""), 5000);
-  }}
+    }
+  }
+
+  const handleUpdateOption = async (actualOptionName: string, newOptionData: {name: string, coef: number}) => {
+    let newConfig = props.config;
+    newConfig?.config.map((option) => {
+      if (option.option === actualOptionName) {
+        option.option = newOptionData.name;
+        option.coef = newOptionData.coef;
+      }
+    })
+    const response = await updateGuildConfig(props.admin, newConfig as GuildConfig);
+    if (response instanceof Response) {
+      const newData = await response.json();
+      if(newData) {
+          setGuildConfig(newData);
+      }
+    }
+    else {
+      setUpdateError("un problême est survenu lors de l'actualisation des options'. Veuillez réessayer plus tard.");
+      setTimeout(() => setUpdateError(""), 5000);
+    }
+  }
 
   const handleDeleteOption = async (optionName: string) => {
     if (!window.confirm("Etes-vous sûr de vouloir supprimer cette option ?")) return;
@@ -66,7 +87,7 @@ const ConfigLister = (props: ConfigListerProps) => {
                 key={index} 
                 option={option}
                 onChangeEnabled={(value) => handleChangeEnabled(value, option.option)}
-                onEdit={(optionName) => props.wantEdit(optionName)}
+                onChangeOptionData={(newOptionData) => handleUpdateOption(option.option, newOptionData)}
                 onDelete={(optionName) => handleDeleteOption(optionName)}
                 />
         ))}
@@ -75,4 +96,4 @@ const ConfigLister = (props: ConfigListerProps) => {
   )
 }
 
-export default ConfigLister;
+export default ConfigLister
