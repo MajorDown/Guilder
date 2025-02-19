@@ -9,7 +9,7 @@ import sendMailToNewMember from "@/tools/api/nodemailer/sendMailToNewMember";
 import { Member } from "@/types";
 
 export async function POST(request: Request) {
-    const { name, mail, phone, guild } = await request.json();
+    const { name, mail, phone, guild, initialCount } = await request.json();
     console.log(
         "api/member/signup ~> Tentative d'inscription via l'adresse mail :",
         mail
@@ -52,9 +52,15 @@ export async function POST(request: Request) {
             phone: phone,
             guild: guild,
             password: cryptedNewPassword,
-            counter: 0            
+            counter: initialCount,           
         }
         const newMember = new MemberModel(newMemberData);
+        // SAUVEGARDE DU NOUVEAU MEMBRE
+        await newMember.save();
+        console.log(
+            "api/member/signup ~> Nouveau membre enregistré :",
+            newMember.name
+        );
         // ENVOI DU MOT DE PASSE PAR MAIL
         console.log(
             "api/member/signup ~> Envoi d'une notification à l'utilisateur via l'adresse :",
@@ -68,12 +74,6 @@ export async function POST(request: Request) {
             );
             return NextResponse.json("Echec de l'envoi du mail", { status: 500 });
         }
-        // SAUVEGARDE DU NOUVEAU MEMBRE
-        await newMember.save();
-        console.log(
-            "api/member/signup ~> Nouveau membre enregistré :",
-            newMember.name
-        );
         // RENVOI DU NOUVEAU MEMBRE
         return NextResponse.json(newMember, { status: 201 });
       } catch (error) {

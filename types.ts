@@ -12,7 +12,8 @@ export type NewMemberInfos = {
     mail: UserMail, 
     name: UserName, 
     phone: UserPhone, 
-    guild: Guild
+    guild: Guild,
+    initialCount: UserCounter
 }
 
 // TYPES POUR LE GOD
