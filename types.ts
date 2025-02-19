@@ -40,6 +40,7 @@ export type Admin = {
     phone: UserPhone,
     guild: Guild,
     password: UserPassword;
+    authPersistence?: boolean;
 }
 
 export type ConnectedAdmin = Omit<Admin, 'password'> & { token: string };

@@ -6,7 +6,8 @@ const AdminSchema = new mongoose.Schema({
   password: { type: String, required: true },
   mail: { type: String, required: true, unique: true },
   guild: { type: String, required: true},
-  phone: { type: String, required: true }
+  phone: { type: String, required: true },
+  authPersistence: { type: Boolean, required: false },
 });
 
 AdminSchema.plugin(uniqueValidator);
