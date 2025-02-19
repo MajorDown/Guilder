@@ -8,6 +8,7 @@ import ContestationLister from '@/components/ContestationLister';
 import NewAdminForm from '@/components/NewAdminForm';
 import PageLogo from '@/components/PageLogo';
 import AppNavbar from '@/components/AppNavbar';
+import AuthPersistenceManager from '@/components/AuthPersistenceManager';
 
 /**
  * @module Parameters
@@ -16,7 +17,7 @@ const Options = () => {
     const {member} = useMemberContext();
     const {admin} = useAdminContext();
     const [checkedLogin, setCheckedLogin] = useState(false);
-    const [selectedTab, setSelectedTab] = useState<"password" | "contestation" | "addNewAdmin" | null>(null);
+    const [selectedTab, setSelectedTab] = useState<"password" | "contestation" | "addNewAdmin" | "authPersistence" | null>(null);
 
     useEffect(() => {
       setCheckedLogin(true);
@@ -39,8 +40,15 @@ const Options = () => {
         {(admin || member) && (<>
             <p>Que souhaitez-vous faire ?</p>
             <div className={"tabsLister"}>
-              {member && <button className={selectedTab === "contestation" ? "green" : "light"} onClick={() => setSelectedTab("contestation")}>Consulter mes contestations</button>}
-              {admin && <button className={selectedTab === "addNewAdmin" ? "green" : "light"} onClick={() => setSelectedTab("addNewAdmin")}>Ajouter un nouvel admin</button>}
+              {member && <button className={selectedTab === "contestation" ? "green" : "light"} onClick={() => setSelectedTab("contestation")}>
+                Consulter mes contestations
+              </button>}
+              {admin && <button className={selectedTab === "addNewAdmin" ? "green" : "light"} onClick={() => setSelectedTab("addNewAdmin")}>
+                Ajouter un nouvel admin
+              </button>}
+              {admin && <button className={selectedTab === "authPersistence" ? "green" : "light"} onClick={() => setSelectedTab("authPersistence")}>
+                Gérer votre authentification
+              </button>}
               <button className={selectedTab === "password" ? "green" : "light"} onClick={() => setSelectedTab("password")}>Modifier mon mot de passe</button>
             </div>
             {selectedTab === "password" && <PasswordUpdater 
@@ -51,7 +59,8 @@ const Options = () => {
               }} 
             />}
             {member && selectedTab === "contestation" && <ContestationLister member={member} />}  
-            {admin && selectedTab === "addNewAdmin" && <NewAdminForm actualAdmin={admin} />}            
+            {admin && selectedTab === "addNewAdmin" && <NewAdminForm actualAdmin={admin} />}
+            {admin && selectedTab === "authPersistence" && <AuthPersistenceManager />}         
         </>)}
       </div>
     </section>

@@ -1,9 +1,12 @@
 .tabsLister {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     gap: 20px;
     margin: 20px 0;
+    border-bottom: var(--color-form) 1px solid;
+    padding-bottom: 10px;
 }
 
 /**********OPTIONS:PASSWORD**********/
@@ -143,4 +146,26 @@
 
 #newAdminForm input {
     margin: 0;
+}
+
+/**********OPTIONS:AUTHPERSISTENCEMANAGER**********/
+
+#authPersistenceManager {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 550px;
+}
+
+#authPersistenceManager .wrapper-horizontal {
+    align-items: flex-start;
+}
+
+#authPersistenceManager button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
