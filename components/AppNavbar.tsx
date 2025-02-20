@@ -50,6 +50,15 @@ const AppNavbar = () => {
           activedIcon={'/images/icons/options-green.svg'} 
           showActivation
         />
+        <UINavLink
+          label={"Règlement"} 
+          href={'/guildRules'}
+          iconWidth={100}
+          iconHeight={100}
+          icon={'/images/icons/rules-white-light.svg'} 
+          activedIcon={'/images/icons/rules-green.svg'} 
+          showActivation 
+        />
       </>)}
       {!admin && member && (<>
         <UINavLink 
@@ -86,7 +95,17 @@ const AppNavbar = () => {
           iconHeight={100}
           icon={'/images/icons/options-white-light.svg'} 
           activedIcon={'/images/icons/options-green.svg'} 
-          showActivation/>
+          showActivation
+        />
+        <UINavLink
+          label={"Règlement"} 
+          href={'/guildRules'}
+          iconWidth={100}
+          iconHeight={100}
+          icon={'/images/icons/rules-white-light.svg'} 
+          activedIcon={'/images/icons/rules-green.svg'} 
+          showActivation 
+        />
       </>)}
     </nav>)
 }

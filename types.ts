@@ -93,9 +93,12 @@ export type Tool = {
     enabled: boolean
 }
 
+export type GuildRules = string[];
+
 export type GuildConfig = {
     name: Guild,
-    config: Tool[]
+    config: Tool[],
+    rules?: GuildRules
 }
 
 export type Contestation = {
