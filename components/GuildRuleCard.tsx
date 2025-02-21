@@ -6,18 +6,24 @@ export type GuildRuleCardProps = {
     key: number;
     rule: string
     onDelete: (index: number) => void;
-    onChange: (index: number, rule: string) => void;
+    onChange: (rule: string) => void;
 }
 
 const GuildRuleCard = (props: GuildRuleCardProps ) => {
     const [actualRule, setActualRule] = useState<string>(props.rule);
+
+    const handleChange = (newRule: string) => {
+        setActualRule(newRule);
+        props.onChange(newRule)
+    }
+
     return (
         <div className={"guildRuleCard"}>
             <textarea
                 cols={50}
                 rows={3}
                 value={actualRule}
-                onChange={(e) => setActualRule(e.target.value)}
+                onChange={(e) => handleChange(e.target.value)}
                 placeholder="nouvelle règle"
             />
             <UIButton style={{minWidth: "50px", marginLeft: "5px"}} onClick={() => props.onDelete(props.key)}>
