@@ -13,18 +13,19 @@ const GuildRulesViewer = (props: GuildRulesViewerProps) => {
         const getRules = async () => {
             const response = await getGuildConfig(props.member) as GuildConfig | Error;
             if (response instanceof Error) {
-                setRules(["Erreur lors de la récupération des données de la guilde"]);
+                setRules([]);
             }
-            else setRules(response.rules || ["Aucun règlement n'a été défini pour cette guilde"])
+            else setRules(response.rules || [])
         }
         getRules();
     }, [props.member]);
 
     return (
         <div id={"guildRulesViewer"}>
-            <ul>
+            {rules.length === 0 && <p>Aucune règle n'a pour le moment été rédigée</p>}
+            {rules.length > 0 && <ul>
                 {rules && rules.map((rule, index) => <li key={index}>{rule}</li>)}
-            </ul>
+            </ul>}
         </div>
     )
 }

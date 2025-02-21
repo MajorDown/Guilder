@@ -6,6 +6,7 @@ import PageLogo from '@/components/PageLogo';
 import AppNavbar from '@/components/AppNavbar';
 import UINavLink from '@/components/UI/UINavLink';
 import GuildRulesViewer from '@/components/GuildRulesViewer';
+import GuildRulesManager from '@/components/GuildRulesManager';
 
 /**
  * @module Parameters
@@ -34,6 +35,7 @@ const GuildRules = () => {
                 <UINavLink label={"Se Connecter"} href={'/connexion'} icon={'/images/icons/membre-white-dark.svg'} />
             </>}
             {member && <GuildRulesViewer member={member} />}
+            {admin && <GuildRulesManager admin={admin} />}
         </div>
     </section>
   </>)

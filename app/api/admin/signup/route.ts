@@ -48,7 +48,8 @@ export async function POST(request: Request) {
     // CREATION DE LA CONFIGURATION DE LA GUILDE
     const newGuildConfig = new GuildConfigModel({
         name: guild,
-        config: []
+        config: [],
+        rules: []
       });
     // SAUVEGARDE DE LA CONFIGURATION DE LA GUILDE
     await newGuildConfig.save();
