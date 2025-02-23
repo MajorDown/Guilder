@@ -85,6 +85,7 @@ const Home = () => {
                         <Image src={"/images/icons/historique-white-light.svg"} alt={"historique"} width={100} height={100}/>
                         <p>Historique</p>
                     </Link>
+
                     </>}
                     {admin && <>
                     <Link className={"menu_1st_link"} href={"/config"}>
@@ -103,7 +104,11 @@ const Home = () => {
                     <Link className={"menu_4st_link"} href={"/options"}>
                         <Image src={"/images/icons/options-white-light.svg"} alt={"options"} width={150} height={100}/>
                         <p>Options</p>
-                    </Link>                                  
+                    </Link>
+                    <Link className={"menu_5nd_link"} href={"/guildRules"}>
+                        <Image src={"/images/icons/rules-white-light.svg"} alt={"règlement"} width={100} height={100}/>
+                        <p>Règlement</p>
+                    </Link>                                
                 </div>
             </div>           
         </section>}

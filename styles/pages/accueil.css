@@ -41,11 +41,20 @@
 }
 
 #menu_list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    /* display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr; */
+    display: flex;
+    /*3 liens en haut, 2 liens en bas, automatiquement centré à l'horizontal*/
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     gap: 50px;
 }
+
+
+
 
 #menu_list a {
     display: flex;
