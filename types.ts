@@ -101,6 +101,11 @@ export type GuildConfig = {
     rules?: GuildRules
 }
 
+export type GuildConfigContext = {
+    guildConfig: GuildConfig | null,
+    updateGuildConfig: (guildConfig: GuildConfig | null) => void
+}
+
 export type Contestation = {
     contestationDate: string // format YYYY-MM-DD-HH-MM-SS-MMM
     contester: UserName,
