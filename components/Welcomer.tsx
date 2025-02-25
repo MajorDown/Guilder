@@ -2,8 +2,10 @@
 import { useState, useEffect } from 'react';
 import { useAdminContext } from '@/contexts/adminContext';
 import { useMemberContext } from '@/contexts/memberContext';
+import { useguildConfigContext } from '@/contexts/guildConfigContext';
 import UINavLink from './UI/UINavLink';
-import { ConnectedAdmin, ConnectedMember } from '@/types';
+import { ConnectedAdmin, ConnectedMember, GuildConfig } from '@/types';
+import getGuildConfig from '@/tools/front/getGuildConfig';
 
 /**
  * @function Welcomer
@@ -13,6 +15,7 @@ import { ConnectedAdmin, ConnectedMember } from '@/types';
 const Welcomer = () => {
   const { admin, updateAdmin } = useAdminContext();
   const { member, updateMember } = useMemberContext();
+  const { guildConfig, updateGuildConfig } = useguildConfigContext();
 
   const [hasCheckedLog, setHasCheckedLog] = useState<boolean>(false);
 
@@ -31,7 +34,6 @@ const Welcomer = () => {
           updateAdmin(null);
         }
       }
-
       if (!member) {
         const memberStorageKey = process.env.NEXT_PUBLIC_LOCALSTORAGE_MEMBERCONTEXT_KEY as string;
         const memberData = localStorage.getItem(memberStorageKey);
@@ -47,8 +49,27 @@ const Welcomer = () => {
     setHasCheckedLog(true);
   }, [admin, member]);
 
+  // Initialisation de la configuration de la guilde
+  const initGuildConfig = async () => {
+    if (admin != null || member != null) {
+      const connectedUser = admin ? admin : member ? member : null;
+      if (connectedUser) {
+        const response = await getGuildConfig(connectedUser) as GuildConfig;
+        if (response instanceof Error) {
+          console.error("Error getting guildConfig:", response);
+        } 
+        else updateGuildConfig(response);
+    }
+  }}
+
+  useEffect(() => {
+    initGuildConfig();
+    console.log("guildConfig:", guildConfig);
+  }, [admin, member])
+
   const disconnectAdmin = () => {
     updateAdmin(null);
+    updateGuildConfig(null);
     const storageKey = process.env.NEXT_PUBLIC_LOCALSTORAGE_ADMINCONTEXT_KEY as string;
     
     // Suppression des données dans les deux stockages
@@ -58,38 +79,27 @@ const Welcomer = () => {
 
   const disconnectMember = () => {
     updateMember(null);
+    updateGuildConfig(null);
     const memberStorageKey = process.env.NEXT_PUBLIC_LOCALSTORAGE_MEMBERCONTEXT_KEY as string;
-    localStorage.removeItem(memberStorageKey);
-  };
-
-  const storeAdmin = (adminData: ConnectedAdmin) => {
-    const storageKey = process.env.NEXT_PUBLIC_LOCALSTORAGE_ADMINCONTEXT_KEY as string;
-
-    if (adminData.authPersistence) {
-      localStorage.setItem(storageKey, JSON.stringify(adminData));
-    } else {
-      sessionStorage.setItem(storageKey, JSON.stringify(adminData));
-    }
+    localStorage.removeItem(memberStorageKey); 
   };
 
   return (
     <div id={"welcomer"}>
-      {hasCheckedLog && (
-        <>
-          {admin && <p id="welcomerLine">Bienvenue {admin.name}</p>}
-          {!admin && member && <p id="welcomerLine">Bienvenue {member.name}</p>}
+      {hasCheckedLog && (<>
+        {admin && <p id="welcomerLine">Bienvenue {admin.name}</p>}
+        {!admin && member && <p id="welcomerLine">Bienvenue {member.name}</p>}
 
-          {!admin && !member && (
-            <UINavLink href={"/connexion"} label={"Se connecter"} icon={'/images/icons/membre-white-dark.svg'} />
-          )}
-          {admin && (
-            <UINavLink href={"/"} label={"Se déconnecter"} icon={'/images/icons/connexion.svg'} onClick={disconnectAdmin} />
-          )}
-          {!admin && member && (
-            <UINavLink href={"/"} label={"Se déconnecter"} icon={'/images/icons/connexion.svg'} onClick={disconnectMember} />
-          )}
-        </>
-      )}
+        {!admin && !member && (
+          <UINavLink href={"/connexion"} label={"Se connecter"} icon={'/images/icons/membre-white-dark.svg'} />
+        )}
+        {admin && (
+          <UINavLink href={"/"} label={"Se déconnecter"} icon={'/images/icons/connexion.svg'} onClick={disconnectAdmin} />
+        )}
+        {!admin && member && (
+          <UINavLink href={"/"} label={"Se déconnecter"} icon={'/images/icons/connexion.svg'} onClick={disconnectMember} />
+        )}
+      </>)}
     </div>
   );
 };

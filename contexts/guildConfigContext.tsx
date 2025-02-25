@@ -31,7 +31,7 @@ export function useguildConfigContext(): GuildConfigContext {
  * @param {PropsWithChildren} props Les props du composant, y compris les enfants à rendre.
  * @returns {JSX.Element} Un composant Provider qui englobe les enfants avec le contexte de l'guildConfig.
  */
-export const guildConfigProvider = (props: PropsWithChildren): JSX.Element => {
+export const GuildConfigProvider = (props: PropsWithChildren): JSX.Element => {
   const [guildConfig, updateGuildConfig] = useState<GuildConfig | null>(null);
 
   return (

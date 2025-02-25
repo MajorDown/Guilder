@@ -8,6 +8,7 @@ import { MemberProvider } from '@/contexts/memberContext';
 import SectionsBackground from '@/components/SectionsBackground';
 import { Montserrat } from 'next/font/google';
 import { GodProvider } from '@/contexts/godContext';
+import { GuildConfigProvider } from '@/contexts/guildConfigContext';
 const montserrat = Montserrat({weight: "400", subsets: ["latin"], display: 'swap', variable: "--font-Montserrat"});
 
 export const metadata: Metadata = {
@@ -25,12 +26,14 @@ export default function RootLayout(props: PropsWithChildren) {
         <GodProvider>
           <AdminProvider>
             <MemberProvider>
-              <Header />
-              <main>
-                <SectionsBackground />
-                {props.children}
-              </main>
-              <Footer />
+              <GuildConfigProvider>
+                <Header />
+                <main>
+                  <SectionsBackground />
+                  {props.children}
+                </main>
+                <Footer />
+              </GuildConfigProvider>
             </MemberProvider>
           </AdminProvider>
         </GodProvider>
