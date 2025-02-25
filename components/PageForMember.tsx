@@ -34,7 +34,7 @@ const PageForMember = (props: PageForMemberProps) => {
             {!memberIsChecked && <LoadSpinner message={"chargement de la page..."}/>}
             {memberIsChecked && !member && (<>
                 <p>Vous devez être connecté en tant que membre pour accéder à cette page !</p>
-                <UINavLink label={"Se Connecter"} href={'/connexion'} icon={'/images/icons/membre-white-light.svg'} />
+                <UINavLink label={"Se Connecter"} href={'/connexion'} icon={'/images/icons/membre-white-dark.svg'} />
             </>)}
             {memberIsChecked && member && props.children}
         </SectionRight>

@@ -49,7 +49,8 @@ const Welcomer = () => {
     setHasCheckedLog(true);
   }, [admin, member]);
 
-  // Initialisation de la configuration de la guilde
+  useEffect(() => {
+      // Initialisation de la configuration de la guilde
   const initGuildConfig = async () => {
     if (admin != null || member != null) {
       const connectedUser = admin ? admin : member ? member : null;
@@ -61,10 +62,7 @@ const Welcomer = () => {
         else updateGuildConfig(response);
     }
   }}
-
-  useEffect(() => {
     initGuildConfig();
-    console.log("guildConfig:", guildConfig);
   }, [admin, member])
 
   const disconnectAdmin = () => {

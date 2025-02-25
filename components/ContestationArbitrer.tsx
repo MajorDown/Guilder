@@ -22,7 +22,6 @@ const ContestationArbitrer = (props : ContestationArbitrerProps) => {
     useEffect(() => {   
         const getContestations = async () => {
             const contestations = await getGuildContestations(props.admin);
-            console.log(contestations);
             if (contestations) setGuildContestations(contestations);
             else setGuildContestations(null);
         }

@@ -25,7 +25,6 @@ const InterventionsLister = (props: InterventionsListerProps) => {
           const getInterventions = async () => {
             const response = await getMemberInterventions(props.user);
             if (Array.isArray(response)) {
-              console.log(response);
               const sortedInterventions = [...response].sort((a, b) => {
                 return new Date(b.interventionDate).getTime() - new Date(a.interventionDate).getTime();
               });

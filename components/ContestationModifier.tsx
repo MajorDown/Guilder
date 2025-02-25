@@ -1,8 +1,7 @@
-import getGuildConfig from '@/tools/front/getGuildConfig';
+import { useguildConfigContext } from '@/contexts/guildConfigContext';
 import { getGuildMembers } from '@/tools/front/getGuildMembers';
 import { ConnectedAdmin, Contestation, GuildConfig, MembersList, UserName } from '@/types';
 import { FormEvent, useEffect, useState } from 'react';
-import UIButton from './UI/UIButton';
 import { interventionDateFormat, isFormatted } from '@/tools/isFormatted';
 import updateIntervention from '@/tools/front/updateIntervention';
 import UINavLink from './UI/UINavLink';
@@ -23,6 +22,7 @@ export type interventionModifierProps = {
  * @returns {JSX.Element} Un formulaire pour modifier une intervention contestée.
  */
 const InterventionModifier = (props: interventionModifierProps) => {
+    const {guildConfig} = useguildConfigContext();
     const [guildMembers, setGuildMembers] = useState<MembersList | null>();
     const [configsList, setConfigsList] = useState<GuildConfig | null>();
     const [hasUpdate, setHasUpdate] = useState<boolean>(false);
@@ -47,17 +47,12 @@ const InterventionModifier = (props: interventionModifierProps) => {
             else setGuildMembers(null);
         }
         getMembers();
-        // RECUPERATION DE LA CONFIGURATION DE LA GUILDE
-        const getConfig = async () => {
-            if (!props.admin) return;
-            const response = await getGuildConfig(props.admin) as GuildConfig;
-            if (response) {
-                const filteredConfig = response.config.filter(option => option.enabled);
-                let sortedList = filteredConfig.sort((a, b) => a.option.localeCompare(b.option));
-                setConfigsList({...response, config: sortedList});
-            }
-        };
-        getConfig();
+        if (guildConfig) {
+
+            const filteredConfig = guildConfig.config.filter(option => option.enabled);
+            let sortedList = filteredConfig.sort((a, b) => a.option.localeCompare(b.option));
+            setConfigsList({...guildConfig, config: sortedList});
+        }
         // RECUPERATION DU TABLEAU D'OPTIONS DE L'INTERVENTION AU FORMAT STRING[]
         let optionsArray: string[] = [];
         props.contestation.contestedIntervention.options.forEach((option) => {
@@ -65,7 +60,7 @@ const InterventionModifier = (props: interventionModifierProps) => {
             else optionsArray.push(option);
         });
         setCheckedConfigOptions(optionsArray);
-    }, [])
+    }, [guildConfig])
 
     const handlechangeCheckedConfigOptions = (option: string) => {
         switch (checkedConfigOptions.includes(option)) {
@@ -249,3 +244,7 @@ const InterventionModifier = (props: interventionModifierProps) => {
 }
 
 export default InterventionModifier;
+
+function useGuildConfigContext() {
+    throw new Error('Function not implemented.');
+}
