@@ -4,6 +4,7 @@ import { isFormatted, interventionDateFormat } from '@/tools/isFormatted';
 import { GuildConfig, Intervention, MembersList, UserName } from '@/types'
 import createIntervention from '@/tools/front/createIntervention';
 import { useMemberContext } from '@/contexts/memberContext';
+import { useguildConfigContext } from '@/contexts/guildConfigContext';
 import { dateGenerator } from '@/tools/dateGenerator';
 import { getGuildMembers } from '@/tools/front/getGuildMembers';
 import getGuildConfig from '@/tools/front/getGuildConfig';
@@ -18,6 +19,7 @@ import UIHoursInput from './UI/UIHoursInput';
  * @returns {JSX.Element} Un formulaire de déclaration d'intervention.
  */
 const InterventionForm = () => {
+    const {guildConfig} = useguildConfigContext();
     const {member, updateMember} = useMemberContext();
     const [payer, setPayer] = useState<UserName | "">("");
     const [payerError, setPayerError] = useState<string>("");
@@ -45,17 +47,12 @@ const InterventionForm = () => {
             }
         }
         getMembers();
-        const getConfig = async () => {
-            if (!member) return;
-            const response = await getGuildConfig(member) as GuildConfig;
-            if (response) {
-                const filteredConfig = response.config.filter(option => option.enabled);
-                let sortedList = filteredConfig.sort((a, b) => a.option.localeCompare(b.option));
-                setConfigsList({...response, config: sortedList});
-            }
-        };
-        getConfig();
-    }, [member]);
+        if (guildConfig) {
+            const filteredConfig = guildConfig.config.filter(option => option.enabled);
+            let sortedList = filteredConfig.sort((a, b) => a.option.localeCompare(b.option));
+            setConfigsList({...guildConfig, config: sortedList});
+        }
+    }, [member, guildConfig]);
 
     useEffect(() => {
         const today = new Date();

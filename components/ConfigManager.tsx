@@ -1,49 +1,40 @@
 'use client';
-import { useState, useEffect } from 'react';
-import { ConnectedAdmin, GuildConfig } from '@/types';
+import { useState} from 'react';
 import UIButton from './UI/UIButton';
-import getGuildConfig from '@/tools/front/getGuildConfig';
 import ConfigLister from './ConfigLister';
 import ConfigOptionsForm from './ConfigOptionsForm';
-
-export type ConfigManagerProps = {
-    configFor: ConnectedAdmin;
-};
+import { useguildConfigContext } from '@/contexts/guildConfigContext';
+import { useAdminContext } from '@/contexts/adminContext';
 
 /**
  * @module ConfigManager
  * 
  * Permet de gérer la config de la guilde.
  */
-const ConfigManager = ({ configFor }: ConfigManagerProps) => {
+const ConfigManager = () => {
+    const {admin} = useAdminContext();
+    const { guildConfig, updateGuildConfig } = useguildConfigContext();
     // STATES
-    const [guildConfig, setGuildConfig] = useState<GuildConfig | undefined>(undefined);
     const [showCreateForm, setShowCreateForm] = useState<boolean>(false);
-
-    useEffect(() => {
-        const fetchConfig = async () => {
-            const response = await getGuildConfig(configFor) as GuildConfig;
-            setGuildConfig(response || undefined);
-        };
-        fetchConfig();
-    }, [configFor]);
 
     return (
         <div id="configManager">
             <div id="configOptionsList" className="scrollable">
                 <h3>Outils pour la guilde {guildConfig?.name} :</h3>
-                <ConfigLister config={guildConfig} admin={configFor} />
+                {admin && guildConfig && <ConfigLister 
+                    config={guildConfig} 
+                    admin={admin} 
+                    onChangeConfig={(newConfig) => updateGuildConfig(newConfig)}
+                />}
             </div>
             <div id="configOptionsForm">
                 {!showCreateForm && <UIButton className="light" onClick={() => setShowCreateForm(true)}>Ajouter une nouvelle option</UIButton>}
-                {showCreateForm && guildConfig && (
-                    <ConfigOptionsForm 
-                        configFor={configFor} 
-                        guildConfig={guildConfig} 
-                        setGuildConfig={setGuildConfig} 
-                        closeForm={() => setShowCreateForm(false)} 
-                    />
-                )}
+                {admin && guildConfig && showCreateForm && (<ConfigOptionsForm 
+                    configFor={admin} 
+                    guildConfig={guildConfig} 
+                    setGuildConfig={updateGuildConfig} 
+                    closeForm={() => setShowCreateForm(false)} 
+                />)}
             </div>
         </div>
     );

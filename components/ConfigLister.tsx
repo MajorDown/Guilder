@@ -5,7 +5,8 @@ import { useState } from "react";
 
 export type ConfigListerProps = {
     config: GuildConfig | undefined;
-    admin: ConnectedAdmin;  
+    admin: ConnectedAdmin;
+    onChangeConfig: (newConfig: GuildConfig) => void;
 }
 
 /**
@@ -29,6 +30,7 @@ const ConfigLister = (props: ConfigListerProps) => {
       const newData = await response.json();
       if(newData) {
           setGuildConfig(newData);
+          props.onChangeConfig(newData);
       }
     }
     else {
@@ -50,6 +52,7 @@ const ConfigLister = (props: ConfigListerProps) => {
       const newData = await response.json();
       if(newData) {
           setGuildConfig(newData);
+          props.onChangeConfig(newData);
       }
     }
     else {
@@ -72,6 +75,7 @@ const ConfigLister = (props: ConfigListerProps) => {
       const newData = await response.json();
       if(newData) {
           setGuildConfig(newData);
+          props.onChangeConfig(newData);
       }
     }
     else {

@@ -1,16 +1,17 @@
-import getGuildConfig from "@/tools/front/getGuildConfig";
-import { ConnectedAdmin, GuildConfig, GuildRules } from "@/types";
+import { ConnectedAdmin, GuildRules } from "@/types";
 import { useState, useEffect } from "react";
 import GuildRuleCard from "./GuildRuleCard";
 import updateGuildRules from "@/tools/front/updateGuildRules";
 
 type GuildRulesManagerProps = {
     admin: ConnectedAdmin;
+    rules: GuildRules | [];
+    onUpdate: (rules: GuildRules) => void;
 }
 
 const GuildRulesManager = (props: GuildRulesManagerProps) => {
-    const [initialRules, setInitialRules] = useState<GuildRules>([]);
-    const [rules, setRules] = useState<GuildRules>([]);
+    const [initialRules, setInitialRules] = useState<GuildRules>(props.rules);
+    const [rules, setRules] = useState<GuildRules>(props.rules);
     const [rulesChanged, setRulesChanged] = useState<boolean>(false);
     const [error, setError] = useState<string>("");
 
@@ -18,21 +19,6 @@ const GuildRulesManager = (props: GuildRulesManagerProps) => {
         if (JSON.stringify(initialRules) === JSON.stringify(rules)) setRulesChanged(false);
         else setRulesChanged(true);
     }, [initialRules, rules]);
-
-    useEffect(() => {
-        const getRules = async () => {
-            const response = await getGuildConfig(props.admin) as GuildConfig | Error;
-            if (response instanceof Error) {
-                setRules([]);
-                setInitialRules([]);
-            }
-            else {
-                setRules(response.rules || []);
-                setInitialRules(response.rules || []);
-            }
-        }
-        getRules();
-    }, [props.admin]);
 
     const handleChangeRule = (index: number, newRule: string) => {
         const newRules = [...rules];

@@ -13,7 +13,7 @@ const Config = () => {
 
     return (<PageForAdmin title={'Les outils de la guilde'} pseudoTitle={'Outils'} id={'section_config'}>
         <p>Gérez ici les outils disponibles lorsqu'un membre déclare une intervention</p>
-        {admin && <ConfigManager configFor={admin}/>}
+        {admin && <ConfigManager />}
     </PageForAdmin>
     )
   }

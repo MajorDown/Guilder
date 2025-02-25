@@ -71,8 +71,6 @@ const Welcomer = () => {
     updateAdmin(null);
     updateGuildConfig(null);
     const storageKey = process.env.NEXT_PUBLIC_LOCALSTORAGE_ADMINCONTEXT_KEY as string;
-    
-    // Suppression des données dans les deux stockages
     localStorage.removeItem(storageKey);
     sessionStorage.removeItem(storageKey);
   };

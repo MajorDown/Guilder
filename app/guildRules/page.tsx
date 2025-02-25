@@ -2,6 +2,7 @@
 import {useState, useEffect} from 'react';
 import { useMemberContext } from "@/contexts/memberContext";
 import { useAdminContext } from "@/contexts/adminContext";
+import { useguildConfigContext } from '@/contexts/guildConfigContext';
 import PageLogo from '@/components/PageLogo';
 import AppNavbar from '@/components/AppNavbar';
 import UINavLink from '@/components/UI/UINavLink';
@@ -14,6 +15,7 @@ import GuildRulesManager from '@/components/GuildRulesManager';
 const GuildRules = () => {
     const {member} = useMemberContext();
     const {admin} = useAdminContext();
+    const {guildConfig, updateGuildConfig} = useguildConfigContext();
     const [checkedLogin, setCheckedLogin] = useState(false);
 
     useEffect(() => {
@@ -34,8 +36,14 @@ const GuildRules = () => {
                 <p>Vous devez être connecté pour accéder à cette page !</p>
                 <UINavLink label={"Se Connecter"} href={'/connexion'} icon={'/images/icons/membre-white-dark.svg'} />
             </>}
-            {member && <GuildRulesViewer member={member} />}
-            {admin && <GuildRulesManager admin={admin} />}
+            {member && guildConfig && guildConfig.rules && <GuildRulesViewer
+              rules={guildConfig.rules} 
+            />}
+            {admin && guildConfig && guildConfig.rules && <GuildRulesManager 
+              admin={admin} 
+              rules={guildConfig.rules}
+              onUpdate={(newRules) => updateGuildConfig({...guildConfig, rules: newRules})}
+            />}
         </div>
     </section>
   </>)
