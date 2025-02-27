@@ -23,8 +23,12 @@
 @media screen and (max-width: 768px) {
 
     .UINavLink img {
-        width: 30px;
-        height: 30px;
+        width: 20px;
+        height: 20px;
+    }
+
+    .UINavLink p {
+        font-size: 10px;
     }
 
 }

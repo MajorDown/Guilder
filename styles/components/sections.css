@@ -195,4 +195,17 @@
         width: 50;
         height: 50;
     }
+
+    #section_navigation {
+        flex-direction: column;
+    }
+
+    .section_right {
+        width: 100%
+    }
+
+    .section_right .section_content {
+        width: 95%
+    }
+
 }
