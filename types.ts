@@ -129,4 +129,41 @@ export const isFormatted = (toValidate: string, regex: RegExp): boolean => {
 
 export const interventionDateFormat: RegExp = /^\d{4}-\d{2}-\d{2}$/;
 
+// TYPES POUR LES FACTURATIONS
+
+export type Package = {
+    id: 1 | 2 | 3 | 4;
+    rules: {
+        min: number,
+        max: number
+    },
+    price: number
+}
+
+export type Adress = {
+    line1: string,
+    line2?: string,
+    zipCode: number,
+    city: string,
+    country: string
+}
+
+export type Client = {
+    name: string,
+    adress: Adress,
+    deleguate: Admin
+}
+
+export type Facture = {
+    id: string;
+    date: string,
+    client: Client,
+    package: Package
+    period: 'annual' | 'monthly',
+    firstMonth: "01" | "02" | "03" | "04" | "05" | "06" | "07" | "08" | "09" | "10" | "11" | "12",
+    reduction: {
+        type: 'percentage' | 'amount',
+        value: number
+    }
+}
 
