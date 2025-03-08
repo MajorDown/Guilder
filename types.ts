@@ -143,7 +143,7 @@ export type Package = {
 export type Adress = {
     line1: string,
     line2?: string,
-    zipCode: number,
+    code: number,
     city: string,
     country: string
 }
@@ -158,11 +158,11 @@ export type Facture = {
     id: string;
     date: string,
     client: Client,
-    package: Package
+    package: Package,
     period: 'annual' | 'monthly',
     firstMonth: "01" | "02" | "03" | "04" | "05" | "06" | "07" | "08" | "09" | "10" | "11" | "12",
-    reduction: {
-        type: 'percentage' | 'amount',
+    reduction?: {
+        unit: 'percentage' | 'amount',
         value: number
     }
 }
