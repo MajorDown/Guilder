@@ -12,8 +12,20 @@ const GuildConfigSchema = new mongoose.Schema({
   ],
   rules: {
     type: [{ type: String }],
-    required: false, // le tableau lui-même est facultatif
-  }
+    required: false, 
+  },
+  adress: {
+    type: {
+      line1: { type: String, required: true },
+      line2: { type: String, required: false},
+      code: { type: Number, required: true },
+      city: { type: String, required: true },
+      country: { type: String, required: true }
+    }, 
+    required: false
+  },
+  phone: { type: String, required: false },
+  mail: { type: String, required: false },
 });
 
 GuildConfigSchema.plugin(uniqueValidator);

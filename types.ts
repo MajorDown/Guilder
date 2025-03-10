@@ -95,10 +95,21 @@ export type Tool = {
 
 export type GuildRules = string[];
 
+export type Adress = {
+    line1: string,
+    line2?: string,
+    code: number,
+    city: string,
+    country: string
+}
+
 export type GuildConfig = {
     name: Guild,
     config: Tool[],
-    rules?: GuildRules
+    rules?: GuildRules,
+    adress?: Adress,
+    phone?: UserPhone,
+    mail?: UserMail,
 }
 
 export type GuildConfigContext = {
@@ -129,6 +140,8 @@ export const isFormatted = (toValidate: string, regex: RegExp): boolean => {
 
 export const interventionDateFormat: RegExp = /^\d{4}-\d{2}-\d{2}$/;
 
+export const factureIdFormat: RegExp = /^\d{4}-\d{2}-\d{2}-\d{2}-\d{2}-\d{2}-\d{3}$/;
+
 // TYPES POUR LES FACTURATIONS
 
 export type Package = {
@@ -140,24 +153,9 @@ export type Package = {
     price: number
 }
 
-export type Adress = {
-    line1: string,
-    line2?: string,
-    code: number,
-    city: string,
-    country: string
-}
-
-export type Client = {
-    name: string,
-    adress: Adress,
-    deleguate: Admin
-}
-
 export type Facture = {
     id: string;
-    date: string,
-    client: Client,
+    client: Omit<GuildConfig, 'rules' | 'config'>,
     package: Package,
     period: 'annual' | 'monthly',
     firstMonth: "01" | "02" | "03" | "04" | "05" | "06" | "07" | "08" | "09" | "10" | "11" | "12",
@@ -167,3 +165,15 @@ export type Facture = {
     }
 }
 
+// TYPES POUR LES REQUETES
+
+export type Claim = {
+    id: string // format YYYY-MM-DD-HH-MM-SS-MMM
+    claimer: UserName,
+    claimerRole: 'admin' | 'member',
+    guild: string,
+    message: string,
+    category: 'intervention' | 'contestation' | 'outils' | 'facture' | 'autre',
+    status: 'en attente' | 'traitée';
+    contactMethod: 'mail' | 'phone'
+}

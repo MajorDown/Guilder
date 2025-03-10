@@ -1,8 +1,21 @@
 import { Package } from "./types";
 
+
+export const labels = {
+    society: "Agriguilder",
+    adress: {
+        line1: "1 rue de la paix",
+        line2: "",
+        code: "75000",
+        city: "Paris",
+        country: "France"
+    },
+    siret: "123456789"
+}
+
 export const TVA: number = 0.2;
 
-export const Packages: Package[] = [
+export const packages: Package[] = [
     {
         id: 1,
         rules: {

@@ -3,20 +3,17 @@ import uniqueValidator from "mongoose-unique-validator";
 
 const FactureSchema = new mongoose.Schema({
     id: { type: String, required: true, unique: true },
-    date: { type: String, required: true },
     client: {
         name: { type: String, required: true },
         adress: {
             line1: { type: String, required: true },
-            line2: { type: String },
+            line2: { type: String, required: false },
             code: { type: Number, required: true },
             city: { type: String, required: true },
             country: { type: String, required: true }
         },
-        deleguate: {
-            name: { type: String, required: true },
-            email: { type: String, required: true }
-        }
+        phone: { type: String, required: true },
+        mail: { type: String, required: true }
     },
     package: {
         id: { type: Number, required: true },
