@@ -1,23 +1,124 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet} from '@react-pdf/renderer';
 
 const pdfStyle = StyleSheet.create({
     page: {
         flex: 1,
         backgroundColor: 'white',
         padding: 10,
-    },
-    title: {},
-    labels: {
-        display : 'flex',
+        position: 'relative',
+        display: 'flex',
         flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+    },
+    titleContainer: {
+        position: 'absolute',
+        top: 30,
+        right: 30,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+    },
+    title: {
+        fontSize: 20,
+        textAlign: 'center',
+    },
+    labelsContainer: {
+        position: 'absolute',
+        top: 30,
+        left: 20,
+        display : 'flex',
+        flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         marginBottom: 10,
+        gap: 10,
+        borderColor: 'black',
+        borderWidth: 1,
+        borderStyle: 'solid',
+        borderRadius: 5,
+        padding: 10
+
+    },
+    labels: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
     },
     labelsText: {
-        fontSize: 20,
+        fontSize: 15,
         textAlign: 'center',
-        marginBottom: 10,
+    },
+    clientContainer: {
+        position: 'absolute',
+        top: 150,
+        right: 20,
+        minWidth: 250,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
+        padding: 10,
+        borderColor: 'black',
+        borderWidth: 1,
+        borderStyle: 'solid',
+        borderRadius: 5,
+    },
+    clientLine: {
+        fontSize: 15,
+        textAlign: 'left',
+    },
+    tableContainer: {
+        position: 'absolute',
+        top: 200,
+        left: 20,
+        marginTop: 20,
+        paddingHorizontal: 10,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
+    },
+    tableHeader: {
+        flexDirection: "row",
+        borderBottom: 1,
+        backgroundColor: "#f0f0f0",
+        padding: 5,
+    },
+    tableHeaderCell: {
+        flex: 1,
+        fontSize: 10,
+        fontWeight: "bold",
+        textAlign: "center",
+    },
+    tableRow: {
+        flexDirection: "row",
+        borderBottom: 1,
+        paddingVertical: 5,
+    },
+    tableCell: {
+        flex: 1,
+        fontSize: 10,
+        textAlign: "center",
+    },
+    tableFooter: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        paddingVertical: 5,
+        marginTop: 5,
+        borderTop: 1,
+        fontSize: 10,
+        fontWeight: "bold",
+    },
+    footerLabel: {
+        flex: 1,
+        textAlign: "right",
+    },
+    footerValue: {
+        flex: 1,
+        textAlign: "right",
     },
 });
 

@@ -4,10 +4,10 @@ import { Package } from "./types";
 export const labels = {
     society: "Agriguilder",
     adress: {
-        line1: "1 rue de la paix",
-        line2: "",
-        code: "75000",
-        city: "Paris",
+        line1: "SARL Gabillaud",
+        line2: "la Riollière",
+        code: "85140",
+        city: "Saint-Martin-des-Noyers",
         country: "France"
     },
     siret: "123456789"
