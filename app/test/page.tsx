@@ -27,8 +27,8 @@ const factureData: Facture = {
     package: {
         id: 3,
         rules: {
-            min: 10,
-            max: 20
+            min: 51,
+            max: 100
         },
         price: 100
     },

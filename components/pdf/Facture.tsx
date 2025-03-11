@@ -75,23 +75,23 @@ const FacturePDF = (props: Props): JSX.Element => {
                 <View style={pdfStyle.tableContainer}>
                     {/* En-tête du tableau */}
                     <View style={pdfStyle.tableHeader}>
-                        <Text style={pdfStyle.tableDescription}>Description</Text>
-                        <Text style={pdfStyle.tableQuantity}>Quantité</Text>
-                        <Text style={pdfStyle.tablePrice}>Prix unitaire (HT)</Text>
-                        <Text style={pdfStyle.tableTotal}>Total (HT)</Text>
+                        <Text style={[pdfStyle.tableDescription, pdfStyle.tableCell]}>Description</Text>
+                        <Text style={[pdfStyle.tableQuantity, pdfStyle.tableCell]}>Quantité</Text>
+                        <Text style={[pdfStyle.tablePrice, pdfStyle.tableCell]}>Prix unitaire (HT)</Text>
+                        <Text style={[pdfStyle.tableTotal, pdfStyle.tableCell]}>Total (HT)</Text>
                     </View>
 
                     {/* Lignes du tableau */}
-                    {/* <View style={pdfStyle.tableRow}>
-                        <Text style={pdfStyle.tableCell}>{props.factureData.package.id}</Text>
-                        <Text style={pdfStyle.tableCell}>1</Text>
-                        <Text style={pdfStyle.tableCell}>
-                            {props.factureData.package.price} €
+                    <View style={pdfStyle.tableRow}>
+                        <Text style={[pdfStyle.tableDescription, pdfStyle.tableCell]}>
+                            {'Forfait '}{props.factureData.package.id}{' : de '} 
+                            {props.factureData.package.rules.min} à {props.factureData.package.rules.max}
+                            {'users'}
                         </Text>
-                        <Text style={pdfStyle.tableCell}>
-                            {totalHT} €
-                        </Text>
-                    </View> */}
+                        <Text style={[pdfStyle.tableQuantity, pdfStyle.tableCell]}>1</Text>
+                        <Text style={[pdfStyle.tablePrice, pdfStyle.tableCell]}>{props.factureData.package.price}</Text>
+                        <Text style={[pdfStyle.tableTotal, pdfStyle.tableCell]}>{totalHT}</Text>
+                    </View>
 
                     {/* Total HT */}
                     {/* <View style={pdfStyle.tableFooter}>

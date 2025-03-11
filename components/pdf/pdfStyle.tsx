@@ -72,10 +72,9 @@ const pdfStyle = StyleSheet.create({
     },
     tableContainer: {
         position: 'absolute',
-        top: 200,
+        top: 270,
         left: 20,
-        marginTop: 20,
-        paddingHorizontal: 10,
+        width: '90%',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-start',
@@ -83,42 +82,46 @@ const pdfStyle = StyleSheet.create({
     },
     tableHeader: {
         flexDirection: "row",
-        borderBottom: 1,
         backgroundColor: "#f0f0f0",
-        padding: 5,
-    },
-    tableHeaderCell: {
-        flex: 1,
-        fontSize: 10,
-        fontWeight: "bold",
-        textAlign: "center",
+        width: '100%',
     },
     tableRow: {
         flexDirection: "row",
-        borderBottom: 1,
-        paddingVertical: 5,
+        width: '100%',
     },
     tableCell: {
-        flex: 1,
+        padding: 5
+    },
+    tableDescription: {
+        width: '55%',
         fontSize: 10,
-        textAlign: "center",
+        borderStyle: "solid",
+        borderWidth: 1,
+        borderColor: "black",
     },
-    tableFooter: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        paddingVertical: 5,
-        marginTop: 5,
-        borderTop: 1,
+    tableQuantity: {
+        width: '10%',
         fontSize: 10,
-        fontWeight: "bold",
+        textAlign: 'center',
+        borderStyle: "solid",
+        borderWidth: 1,
+        borderColor: "black",
     },
-    footerLabel: {
-        flex: 1,
-        textAlign: "right",
+    tablePrice: {
+        width: '20%',
+        fontSize: 10,
+        textAlign: 'center',
+        borderStyle: "solid",
+        borderWidth: 1,
+        borderColor: "black",
     },
-    footerValue: {
-        flex: 1,
-        textAlign: "right",
+    tableTotal: {
+        width: '15%',
+        fontSize: 10,
+        textAlign: 'center',
+        borderStyle: "solid",
+        borderWidth: 1,
+        borderColor: "black",
     },
 });
 
