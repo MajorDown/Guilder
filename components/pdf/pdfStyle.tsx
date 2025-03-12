@@ -24,6 +24,13 @@ const pdfStyle = StyleSheet.create({
         fontSize: 20,
         textAlign: 'center',
     },
+    subTitle: {
+        position: 'absolute',
+        top : 250,
+        left: 20,
+        fontSize: 15,
+        textAlign: 'center',
+    },
     labelsContainer: {
         position: 'absolute',
         top: 30,
@@ -90,39 +97,39 @@ const pdfStyle = StyleSheet.create({
         width: '100%',
     },
     tableCell: {
-        padding: 5
+        padding: 5,
+        fontSize: 10,
+        borderStyle: "solid",
+        borderWidth: 1,
+        borderColor: "black",
     },
     tableDescription: {
         width: '55%',
-        fontSize: 10,
-        borderStyle: "solid",
-        borderWidth: 1,
-        borderColor: "black",
     },
     tableQuantity: {
         width: '10%',
-        fontSize: 10,
-        textAlign: 'center',
-        borderStyle: "solid",
-        borderWidth: 1,
-        borderColor: "black",
     },
     tablePrice: {
         width: '20%',
-        fontSize: 10,
-        textAlign: 'center',
-        borderStyle: "solid",
-        borderWidth: 1,
-        borderColor: "black",
     },
     tableTotal: {
         width: '15%',
-        fontSize: 10,
-        textAlign: 'center',
-        borderStyle: "solid",
-        borderWidth: 1,
-        borderColor: "black",
     },
+    tableFooter: {
+        flexDirection: "row",
+        width: '100%',
+        justifyContent: 'flex-end',
+    },
+    footerLabel: {
+        fontSize: 10,
+        padding: 5,
+    },
+    footerValue: {
+        width: '15%',
+    },
+    tableFinalTotal: {
+        fontWeight: 'bold',
+    }
 });
 
 export default pdfStyle;

@@ -12,6 +12,14 @@ const FacturePDF = (props: Props): JSX.Element => {
 
     const totalHT = 1 * factureData.package.price;
 
+    const actualYear = new Date().getFullYear();
+    const formattedFirstMonth = factureData.firstMonth.toString().padStart(2, "0");
+    const endMonth = factureData.firstMonth === 12 ? 1 : factureData.firstMonth + 1;
+    const endYear = factureData.period === "annual" ? actualYear + 1 : (factureData.firstMonth === 12 ? actualYear + 1 : actualYear);
+    const formattedEndMonth = endMonth.toString().padStart(2, "0");   
+    const facturationPeriod: string = 
+        `(période : ${formattedFirstMonth}/${actualYear} > ${formattedEndMonth}/${endYear})`;
+
     return (
         <Document>
             <Page size="A4" style={pdfStyle.page}>
@@ -71,6 +79,8 @@ const FacturePDF = (props: Props): JSX.Element => {
                     )}
                 </View>
 
+                <Text style={pdfStyle.subTitle}>Facture du {formattedFirstMonth}/{actualYear}</Text>
+
                 {/* TABLEAU DE FACTURE */}
                 <View style={pdfStyle.tableContainer}>
                     {/* En-tête du tableau */}
@@ -84,35 +94,35 @@ const FacturePDF = (props: Props): JSX.Element => {
                     {/* Lignes du tableau */}
                     <View style={pdfStyle.tableRow}>
                         <Text style={[pdfStyle.tableDescription, pdfStyle.tableCell]}>
-                            {'Forfait '}{props.factureData.package.id}{' : de '} 
+                            {`Forfait 'Guild' : `} 
                             {props.factureData.package.rules.min} à {props.factureData.package.rules.max}
-                            {'users'}
+                            {' users '}{facturationPeriod}
                         </Text>
                         <Text style={[pdfStyle.tableQuantity, pdfStyle.tableCell]}>1</Text>
-                        <Text style={[pdfStyle.tablePrice, pdfStyle.tableCell]}>{props.factureData.package.price}</Text>
-                        <Text style={[pdfStyle.tableTotal, pdfStyle.tableCell]}>{totalHT}</Text>
+                        <Text style={[pdfStyle.tablePrice, pdfStyle.tableCell]}>{props.factureData.package.price.toFixed(2)}€</Text>
+                        <Text style={[pdfStyle.tableTotal, pdfStyle.tableCell]}>{totalHT.toFixed(2)}€</Text>
                     </View>
 
                     {/* Total HT */}
-                    {/* <View style={pdfStyle.tableFooter}>
-                        <Text style={pdfStyle.footerLabel}>Total HT:</Text>
-                        <Text style={pdfStyle.footerValue}>{totalHT.toFixed(2)} €</Text>
-                    </View> */}
+                    <View style={pdfStyle.tableFooter}>
+                        <Text style={[pdfStyle.footerLabel]}>Total HT:</Text>
+                        <Text style={[pdfStyle.footerValue, pdfStyle.tableCell]}>{totalHT.toFixed(2)}€</Text>
+                    </View>
 
                     {/* TVA et Total TTC */}
-                    {/* <View style={pdfStyle.tableFooter}>
+                    <View style={pdfStyle.tableFooter}>
                         <Text style={pdfStyle.footerLabel}>TVA ({TVA * 100} %):</Text>
-                        <Text style={pdfStyle.footerValue}>
-                            {(totalHT * TVA).toFixed(2)} €
+                        <Text style={[pdfStyle.footerValue, pdfStyle.tableCell]}>
+                            {(totalHT * TVA).toFixed(2)}€
                         </Text>
                     </View>
 
                     <View style={pdfStyle.tableFooter}>
-                        <Text style={pdfStyle.footerLabel}>Total TTC:</Text>
-                        <Text style={pdfStyle.footerValue}>
-                            {(totalHT * (1 + TVA)).toFixed(2)} €
+                        <Text style={[pdfStyle.footerLabel, pdfStyle.tableFinalTotal]}>Total TTC:</Text>
+                        <Text style={[pdfStyle.footerValue, pdfStyle.tableCell, pdfStyle.tableFinalTotal]}>
+                            {(totalHT * (1 + TVA)).toFixed(2)}€
                         </Text>
-                    </View> */}
+                    </View>
                 </View>
             </Page>
         </Document>

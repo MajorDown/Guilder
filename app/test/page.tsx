@@ -30,10 +30,10 @@ const factureData: Facture = {
             min: 51,
             max: 100
         },
-        price: 100
+        price: 55
     },
     period: 'annual',
-    firstMonth: '07'
+    firstMonth: 7
 };
 
 const Test = () => {

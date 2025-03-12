@@ -24,7 +24,7 @@ const FactureSchema = new mongoose.Schema({
         price: { type: Number, required: true }
     },
     period: { type: String, required: true },
-    firstMonth: { type: String, required: true },
+    firstMonth: { type: Number, required: true },
     reduction: {
         type: {
             unit: { type: String },
