@@ -1,6 +1,6 @@
 import { Page, Text, View, Document, Image } from "@react-pdf/renderer";
 import pdfStyle from "./pdfStyle";
-import { labels, TVA } from "@/constants";
+import { labels, RIB, TVA } from "@/constants";
 import { Facture } from "@/types";
 
 type Props = {
@@ -49,9 +49,7 @@ const FacturePDF = (props: Props): JSX.Element => {
 
                 {/* INFOS CLIENT */}
                 <View style={pdfStyle.clientContainer}>
-                    <Text style={pdfStyle.clientLine}>
-                        Client: {factureData.client.name}
-                    </Text>
+                    <Text style={pdfStyle.clientLine}>{factureData.client.name}</Text>
                     {factureData.client.adress && (
                         <>
                             <Text style={pdfStyle.clientLine}>
@@ -122,6 +120,18 @@ const FacturePDF = (props: Props): JSX.Element => {
                         <Text style={[pdfStyle.footerValue, pdfStyle.tableCell, pdfStyle.tableFinalTotal]}>
                             {(totalHT * (1 + TVA)).toFixed(2)}€
                         </Text>
+                    </View>
+                </View>
+
+                {/* FOOTER */}
+                <View style={pdfStyle.footer}>
+                    <View style={pdfStyle.footerCols}>
+                        <Text style={pdfStyle.footerText}>SIRET : {labels.siret}</Text>
+                        <Text style={pdfStyle.footerText}>contact: {labels.mail}</Text>
+                    </View>
+                    <View style={pdfStyle.footerCols}>
+                        <Text style={pdfStyle.footerText}>IBAN : {RIB.IBAN}</Text>
+                        <Text style={pdfStyle.footerText}>BIC : {RIB.BIC}</Text>
                     </View>
                 </View>
             </Page>

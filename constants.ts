@@ -1,6 +1,7 @@
 import { Package } from "./types";
 
 
+
 export const labels = {
     society: "Agriguilder",
     adress: {
@@ -10,7 +11,14 @@ export const labels = {
         city: "Saint-Martin-des-Noyers",
         country: "France"
     },
-    siret: "123456789"
+    siret: "123456789",
+    mail: "app.agriguilder@gmail.com",
+    tel : "01 12 23 34 45"
+}
+
+export const RIB = {
+    IBAN: "FR76 1234 5678 9012 3456 7890 123",
+    BIC: "ABCDEFGHIJK"
 }
 
 export const TVA: number = 0.2;

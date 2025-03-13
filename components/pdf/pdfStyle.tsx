@@ -13,8 +13,8 @@ const pdfStyle = StyleSheet.create({
     },
     titleContainer: {
         position: 'absolute',
-        top: 30,
-        right: 30,
+        top: 50,
+        right: 50,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-start',
@@ -26,7 +26,7 @@ const pdfStyle = StyleSheet.create({
     },
     subTitle: {
         position: 'absolute',
-        top : 250,
+        top : 270,
         left: 20,
         fontSize: 15,
         textAlign: 'center',
@@ -79,7 +79,7 @@ const pdfStyle = StyleSheet.create({
     },
     tableContainer: {
         position: 'absolute',
-        top: 270,
+        top: 300,
         left: 20,
         width: '90%',
         display: 'flex',
@@ -129,7 +129,28 @@ const pdfStyle = StyleSheet.create({
     },
     tableFinalTotal: {
         fontWeight: 'bold',
-    }
+    },
+    footer: {
+        position: 'absolute',
+        bottom: 30,
+        left: 20,
+        width: '90%',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 10,
+        gap: 50
+    },
+    footerCols: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+    },
+    footerText: {
+        fontSize: 10,
+    },
 });
 
 export default pdfStyle;
