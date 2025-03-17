@@ -33,7 +33,9 @@ const factureData: Facture = {
         price: 55
     },
     period: 'annual',
-    firstMonth: 7
+    firstMonth: 7,
+    sentToClient: true,
+    status: 'paid'
 };
 
 const Test = () => {

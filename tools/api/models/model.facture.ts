@@ -32,7 +32,9 @@ const FactureSchema = new mongoose.Schema({
         },
         required: false,
         default: undefined 
-    }
+    },
+    sentToClient: { type: Boolean, required: true, default: false },
+    status: { type: String, required: true, default: "pending" }
 });
 
 FactureSchema.plugin(uniqueValidator);

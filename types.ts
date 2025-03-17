@@ -110,6 +110,9 @@ export type GuildConfig = {
     adress?: Adress,
     phone?: UserPhone,
     mail?: UserMail,
+    currentPackageId?: Package['id'],
+    currentperiod?: FacturationPeriod,
+    currentPeriodStart?: MonthNumber,
 }
 
 export type GuildConfigContext = {
@@ -144,8 +147,10 @@ export const factureIdFormat: RegExp = /^\d{4}-\d{2}-\d{2}-\d{2}-\d{2}-\d{2}-\d{
 
 // TYPES POUR LES FACTURATIONS
 
+export type MonthNumber = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
 export type Package = {
-    id: 1 | 2 | 3 | 4;
+    id: 0 | 1 | 2 | 3 | 4;
     rules: {
         min: number,
         max: number
@@ -153,16 +158,20 @@ export type Package = {
     price: number
 }
 
+export type FacturationPeriod = 'annual' | 'monthly';
+
 export type Facture = {
     id: string;
     client: Omit<GuildConfig, 'rules' | 'config'>,
     package: Package,
-    period: 'annual' | 'monthly',
+    period: FacturationPeriod,
     firstMonth: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12,
     reduction?: {
         unit: 'percentage' | 'amount',
         value: number
-    }
+    },
+    sentToClient: boolean,
+    status: 'pending' | 'paid' | 'cancelled'
 }
 
 // TYPES POUR LES REQUETES
