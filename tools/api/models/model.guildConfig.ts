@@ -26,6 +26,9 @@ const GuildConfigSchema = new mongoose.Schema({
   },
   phone: { type: String, required: false },
   mail: { type: String, required: false },
+  currentPackageId: { type: Number, required: true },
+  currentPeriod: { type: String, required: true },
+  currentPeriodStart: {type: Number, required: true }
 });
 
 GuildConfigSchema.plugin(uniqueValidator);

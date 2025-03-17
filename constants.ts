@@ -21,16 +21,24 @@ export const RIB = {
     BIC: "ABCDEFGHIJK"
 }
 
-export const TVA: number = 0.2;
+export const TVA: number = 0;
 
 export const packages: Package[] = [
+    {
+        id: 0,
+        rules: {
+            min: 0,
+            max: 0
+        },
+        price: 0
+    },
     {
         id: 1,
         rules: {
             min: 1,
             max: 20
         },
-        price: 40
+        price: 90
     },
     {
         id: 2,
@@ -38,7 +46,7 @@ export const packages: Package[] = [
             min: 21,
             max: 50
         },
-        price: 45
+        price: 95
     },
     {
         id: 3,
@@ -46,7 +54,7 @@ export const packages: Package[] = [
             min: 51,
             max: 100
         },
-        price: 50
+        price: 100
     },
     {
         id: 4,
@@ -54,6 +62,6 @@ export const packages: Package[] = [
             min: 101,
             max: 1000
         },
-        price: 55
+        price: 105
     }
 ]

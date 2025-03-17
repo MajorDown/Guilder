@@ -110,9 +110,9 @@ export type GuildConfig = {
     adress?: Adress,
     phone?: UserPhone,
     mail?: UserMail,
-    currentPackageId?: Package['id'],
-    currentperiod?: FacturationPeriod,
-    currentPeriodStart?: MonthNumber,
+    currentPackageId: Package['id'],
+    currentPeriod: FacturationPeriod,
+    currentPeriodStart: MonthNumber,
 }
 
 export type GuildConfigContext = {
@@ -163,9 +163,6 @@ export type FacturationPeriod = 'annual' | 'monthly';
 export type Facture = {
     id: string;
     client: Omit<GuildConfig, 'rules' | 'config'>,
-    package: Package,
-    period: FacturationPeriod,
-    firstMonth: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12,
     reduction?: {
         unit: 'percentage' | 'amount',
         value: number

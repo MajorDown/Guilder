@@ -22,18 +22,11 @@ const factureData: Facture = {
             code: 75001,
         },
         phone: '01 23 45 67 89',
-        mail: 'contact@test.fr'
+        mail: 'contact@test.fr',
+        currentPackageId: 1,
+        currentPeriod: 'annual',
+        currentPeriodStart: 3,
     },
-    package: {
-        id: 3,
-        rules: {
-            min: 51,
-            max: 100
-        },
-        price: 55
-    },
-    period: 'annual',
-    firstMonth: 7,
     sentToClient: true,
     status: 'paid'
 };
