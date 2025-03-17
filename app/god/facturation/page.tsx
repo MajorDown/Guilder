@@ -4,7 +4,7 @@ import { Facture } from '@/types';
 
 const GodFacturationPage = () => {
     const [guildsFacturations, setGuildsFacturations] = useState<Facture[]>([]);
-    const [FaturationsErr, setFacturationsErr] = useState<string>("");
+    const [FacturationsErr, setFacturationsErr] = useState<string>("");
 
     const getGuildsFacturations = async () => {
         const response = await fetch("/api/god/facturation/getAll", {
@@ -26,12 +26,27 @@ const GodFacturationPage = () => {
         }
         else getGuildsFacturations()
             .then((data) => setGuildsFacturations(data))
-            .catch((err) => setFacturationsErr("erreur lors du chargement des noms de guildes"));
+            .catch((err) => setFacturationsErr("erreur lors du chargement des factures"));
     }, []);
 
     return (
         <section id={"godFacturation"} className={"godSection scrollable"}>
             <h2>Facturation</h2>
+            <div>
+                <ul>
+                    {guildsFacturations.map((facturation, index) => {
+                        return (
+                            <li key={index}>
+                                <p>{facturation.client.name}</p>
+                                <p>{facturation.id}</p>
+                                <p>{facturation.sentToClient ? "Envoyée" : "Non envoyée"}</p>
+                                <p>{facturation.status}</p>
+                            </li>
+                        )
+                    })}
+                </ul>
+                {FacturationsErr && <p>{FacturationsErr}</p>}
+            </div>
         </section>
     )  
 }
