@@ -147,7 +147,9 @@ export const factureIdFormat: RegExp = /^\d{4}-\d{2}-\d{2}-\d{2}-\d{2}-\d{2}-\d{
 
 // TYPES POUR LES FACTURATIONS
 
-export type MonthNumber = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+export const MonthNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const;
+
+export type MonthNumber = typeof MonthNumbers[number];
 
 export type Package = {
     id: 0 | 1 | 2 | 3 | 4;
@@ -160,6 +162,16 @@ export type Package = {
 
 export type FacturationPeriod = 'annual' | 'monthly';
 
+export type FacturationStatus = 'pending' | 'paid' | 'cancelled';
+
+export const StatusIcons = {
+    'pending': '⏳',
+    'paid': '✅',
+    'cancelled': '❌',
+    'sentToClient': '🚀',
+    '!sentToClient': '📝'
+}
+
 export type Facture = {
     id: string;
     client: Omit<GuildConfig, 'rules' | 'config'>,
@@ -168,7 +180,7 @@ export type Facture = {
         value: number
     },
     sentToClient: boolean,
-    status: 'pending' | 'paid' | 'cancelled'
+    status: FacturationStatus,
 }
 
 // TYPES POUR LES REQUETES

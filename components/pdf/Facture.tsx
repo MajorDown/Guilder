@@ -1,35 +1,38 @@
 import { Page, Text, View, Document, Image } from "@react-pdf/renderer";
 import pdfStyle from "./pdfStyle";
 import { labels, RIB, TVA, packages } from "@/constants";
-import { Facture } from "@/types";
+import { Facture, MonthNumber, FacturationPeriod } from "@/types";
 
 type Props = {
     factureData: Facture;
 };
 
+const formatPeriod = (currentPeriod: FacturationPeriod, currentPeriodStart: MonthNumber, year: number): string => {
+    const formattedStartMonth = currentPeriodStart.toString().padStart(2, '0');
+  
+    if (currentPeriod === 'monthly') {
+        return `(période : ${formattedStartMonth}/${year})`;
+    }
+
+    // Calcul du mois et année de fin
+    const endMonth = currentPeriodStart === 1 ? 12 : currentPeriodStart - 1;
+    const endYear = currentPeriodStart === 1 ? year : year + 1;
+    const formattedEndMonth = endMonth.toString().padStart(2, '0');
+
+    return `(période : ${formattedStartMonth}/${year} > ${formattedEndMonth}/${endYear})`;
+};
+
 const FacturePDF = (props: Props): JSX.Element => {
     const { factureData } = props;
+    const currentPackage = packages[factureData.client.currentPackageId];
 
-    const currentPackage = packages[factureData.client.currentPackageId]
-
-    const quantity = (): number => {
-        if (factureData.client.currentPeriod === "annual") return 12;
-        else return 1;
-    }
+    const quantity = (): number => factureData.client.currentPeriod === "annual" ? 12 : 1;
 
     const totalHT = quantity() * currentPackage.price;
-
     const actualYear = new Date().getFullYear();
-    const formattedFirstMonth = factureData.client.currentPeriodStart.toString().padStart(2, "0");
-    const endMonth = factureData.client.currentPeriodStart === 12 ? 1 : factureData.client.currentPeriodStart;
-    const endYear = factureData.client.currentPeriod === "annual" ? actualYear + 1 : (factureData.client.currentPeriodStart === 12 ? actualYear + 1 : actualYear);
-    const formattedEndMonth = endMonth.toString().padStart(2, "0");
 
-    const facturationPeriod = (): string => {
-        if (factureData.client.currentPeriod === "annual") return `(période : ${formattedFirstMonth}/${actualYear} > ${formattedEndMonth}/${endYear})`;
-        else return `(période : ${formattedFirstMonth}/${actualYear})`;
-    }
-
+    // Récupération de la période formatée
+    const facturationPeriod = formatPeriod(factureData.client.currentPeriod, factureData.client.currentPeriodStart, actualYear);
 
     return (
         <Document>
@@ -41,19 +44,12 @@ const FacturePDF = (props: Props): JSX.Element => {
                 </View>
 
                 <View style={pdfStyle.labelsContainer}>
-                    <Image
-                        src="/images/icons/logo-facture.jpg"
-                        style={{ width: 50, height: 75 }}
-                    />
+                    <Image src="/images/icons/logo-facture.jpg" style={{ width: 50, height: 75 }} />
                     <View style={pdfStyle.labels}>
                         <Text style={pdfStyle.labelsText}>{labels.society}</Text>
                         <Text style={pdfStyle.labelsText}>{labels.adress.line1}</Text>
-                        {labels.adress.line2 && (
-                            <Text style={pdfStyle.labelsText}>{labels.adress.line2}</Text>
-                        )}
-                        <Text style={pdfStyle.labelsText}>
-                            {labels.adress.code} {labels.adress.city}
-                        </Text>
+                        {labels.adress.line2 && <Text style={pdfStyle.labelsText}>{labels.adress.line2}</Text>}
+                        <Text style={pdfStyle.labelsText}>{labels.adress.code} {labels.adress.city}</Text>
                         <Text style={pdfStyle.labelsText}>SIRET: {labels.siret}</Text>
                     </View>
                 </View>
@@ -63,32 +59,16 @@ const FacturePDF = (props: Props): JSX.Element => {
                     <Text style={pdfStyle.clientLine}>{factureData.client.name}</Text>
                     {factureData.client.adress && (
                         <>
-                            <Text style={pdfStyle.clientLine}>
-                                {factureData.client.adress.line1}
-                            </Text>
-                            {factureData.client.adress.line2 && (
-                                <Text style={pdfStyle.clientLine}>
-                                    {factureData.client.adress.line2}
-                                </Text>
-                            )}
-                            <Text style={pdfStyle.clientLine}>
-                                {factureData.client.adress.code} {factureData.client.adress.city}
-                            </Text>
-                            {factureData.client.phone && (
-                                <Text style={pdfStyle.clientLine}>
-                                    tel: {factureData.client.phone}
-                                </Text>
-                            )}
-                            {factureData.client.mail && (
-                                <Text style={pdfStyle.clientLine}>
-                                    mail: {factureData.client.mail}
-                                </Text>
-                            )}
+                            <Text style={pdfStyle.clientLine}>{factureData.client.adress.line1}</Text>
+                            {factureData.client.adress.line2 && <Text style={pdfStyle.clientLine}>{factureData.client.adress.line2}</Text>}
+                            <Text style={pdfStyle.clientLine}>{factureData.client.adress.code} {factureData.client.adress.city}</Text>
+                            {factureData.client.phone && <Text style={pdfStyle.clientLine}>tel: {factureData.client.phone}</Text>}
+                            {factureData.client.mail && <Text style={pdfStyle.clientLine}>mail: {factureData.client.mail}</Text>}
                         </>
                     )}
                 </View>
 
-                <Text style={pdfStyle.subTitle}>Facture du {formattedFirstMonth}/{actualYear}</Text>
+                <Text style={pdfStyle.subTitle}>Facture du 01/{factureData.client.currentPeriodStart.toString().padStart(2, "0")}/{actualYear}</Text>
 
                 {/* TABLEAU DE FACTURE */}
                 <View style={pdfStyle.tableContainer}>
@@ -103,9 +83,11 @@ const FacturePDF = (props: Props): JSX.Element => {
                     {/* Lignes du tableau */}
                     <View style={pdfStyle.tableRow}>
                         <Text style={[pdfStyle.tableDescription, pdfStyle.tableCell]}>
-                            {`Forfait 'Guild' : `} 
+                            {`Forfait : `}
+                            {factureData.client.currentPeriod === "annual" && "12 mois, "}
+                            {factureData.client.currentPeriod === "monthly" && "1 mois, "}
                             {currentPackage.rules.min} à {currentPackage.rules.max}
-                            {' users '}{facturationPeriod()}
+                            {' users '}{facturationPeriod}
                         </Text>
                         <Text style={[pdfStyle.tableQuantity, pdfStyle.tableCell]}>{quantity()}</Text>
                         <Text style={[pdfStyle.tablePrice, pdfStyle.tableCell]}>{currentPackage.price.toFixed(2)}€</Text>
@@ -120,10 +102,12 @@ const FacturePDF = (props: Props): JSX.Element => {
 
                     {/* TVA et Total TTC */}
                     <View style={pdfStyle.tableFooter}>
-                        <Text style={pdfStyle.footerLabel}>TVA ({TVA * 100} %):</Text>
-                        <Text style={[pdfStyle.footerValue, pdfStyle.tableCell]}>
-                            {(totalHT * TVA).toFixed(2)}€
+                        <Text style={pdfStyle.footerLabel}>
+                            {`TVA ${TVA * 100}% `}
+                            {TVA === 0 && "(non applicable, article 293 B du CGI)"}
+                            {" : "}
                         </Text>
+                        <Text style={[pdfStyle.footerValue, pdfStyle.tableCell]}>{(totalHT * TVA).toFixed(2)}€</Text>
                     </View>
 
                     <View style={pdfStyle.tableFooter}>

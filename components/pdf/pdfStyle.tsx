@@ -104,13 +104,13 @@ const pdfStyle = StyleSheet.create({
         borderColor: "black",
     },
     tableDescription: {
-        width: '55%',
+        width: '60%',
     },
     tableQuantity: {
         width: '10%',
     },
     tablePrice: {
-        width: '20%',
+        width: '15%',
     },
     tableTotal: {
         width: '15%',
