@@ -162,12 +162,11 @@ export type Package = {
 
 export type FacturationPeriod = 'annual' | 'monthly';
 
-export type FacturationStatus = 'pending' | 'paid' | 'cancelled';
+export type FacturationStatus = 'pending' | 'paid';
 
 export const StatusIcons = {
     'pending': '⏳',
     'paid': '✅',
-    'cancelled': '❌',
     'sentToClient': '🚀',
     '!sentToClient': '📝'
 }

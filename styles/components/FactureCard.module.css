@@ -12,11 +12,11 @@
 .factureCard button {
     background-color: transparent;
     display: flex;
-    width: 10px;
     justify-content: center;
     align-items: center;
     border: solid 1px var(--color-global);
     border-radius: 5px;
+    color: var(--color-global);
 }
 
 .factureCard :nth-child(1) {
@@ -25,14 +25,31 @@
 
 .factureCard :nth-child(2) {
     width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .factureCard :nth-child(3) {
-    width: 125px;
+    width: 100px;
     text-align: center;
 }
 
 .factureCard :nth-child(4) {
     width: 100px;
+    text-align: center;
+}
+
+.factureCard :nth-child(5) {
+    width: 100px;
+}
+
+.factureCard :nth-child(6) {
+    width: 100px;
+    text-align: center;
+}
+
+.factureCard :nth-child(7) {
+    width: 75px;
     text-align: center;
 }

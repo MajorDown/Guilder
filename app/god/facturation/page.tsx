@@ -5,6 +5,7 @@ import FactureCard from '@/components/god/factureCard';
 import PageForGod from '@/components/god/PageForGod';
 import getAllFactures from '@/tools/front/getAllFactures';
 import FactureLister from '@/components/god/FactureLister';
+import FactureManager from '@/components/god/FactureManager';
 
 const GodFacturationPage = () => {
     const [guildsFacturations, setGuildsFacturations] = useState<Facture[]>([]);
@@ -24,7 +25,7 @@ const GodFacturationPage = () => {
     return (
         <PageForGod title={"Facturation"} id={"sectionFacturation"}>
             <>
-                <FactureLister factures={guildsFacturations} />
+                <FactureManager Factures={guildsFacturations} />
                 {FacturationsErr && <p>{FacturationsErr}</p>}
             </>
         </PageForGod>
