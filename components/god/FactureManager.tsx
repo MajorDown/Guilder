@@ -2,6 +2,7 @@ import { Facture } from "@/types";
 import { useState, useMemo } from "react";
 import style from '@/styles/components/FactureManager.module.css';
 import FactureFilterBtn from "@/components/god/FactureFilterBtn";
+import FactureLister from "./FactureLister";
 
 type FilterType = "byGuild" | "byMonth";
 
@@ -46,13 +47,32 @@ const FactureManager = ({ Factures }: FactureManagerProps): JSX.Element => {
             });
     }, [Factures]);
 
+    // Fonction pour filtrer les factures en fonction du filtre sélectionné
+    const handleFilterSelection = (filterValue: string) => {
+        const filtered = filterType === "byGuild"
+            ? Factures.filter(facture => facture.client.name === filterValue)
+            : Factures.filter(facture => {
+                const year = facture.id.substring(0, 4);
+                const month = facture.id.substring(4, 6);
+                return `${month}/${year}` === filterValue;
+            });
+
+        setFilteredFactures(filtered);
+        setDisplayFilteredFactures(filtered.length > 0); // S'affiche seulement s'il y a des factures filtrées
+    };
+
+    const handleChangeFilterType = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setFilterType(e.target.value as FilterType);
+        setDisplayFilteredFactures(false);
+    }
+
     return (
         <div className={style.factureManager}>
             <div className={style.filterSelector}>
                 <p>Filtrer les factures :</p>
                 <select
                     value={filterType}
-                    onChange={(e) => setFilterType(e.target.value as FilterType)}
+                    onChange={(e) => handleChangeFilterType(e)}
                 >
                     <option value="byGuild">Par guilde</option>
                     <option value="byMonth">Par mois</option>
@@ -62,15 +82,29 @@ const FactureManager = ({ Factures }: FactureManagerProps): JSX.Element => {
             <div className={style.filterList}>
                 {filterType === "byGuild" &&
                     uniqueGuilds.map(({ name, status }) => (
-                        <FactureFilterBtn key={name} value={name} status={status} />
+                        <FactureFilterBtn
+                            key={name}
+                            value={name}
+                            status={status}
+                            onClick={() => handleFilterSelection(name)} // Filtrage lors du clic
+                        />
                     ))
                 }
                 {filterType === "byMonth" &&
                     uniqueMonths.map(({ monthYear, status }) => (
-                        <FactureFilterBtn key={monthYear} value={monthYear} status={status} />
+                        <FactureFilterBtn
+                            key={monthYear}
+                            value={monthYear}
+                            status={status}
+                            onClick={() => handleFilterSelection(monthYear)} // Filtrage lors du clic
+                        />
                     ))
                 }
             </div>
+
+            {displayFilteredFactures && (
+                <FactureLister factures={filteredFactures} />
+            )}
         </div>
     );
 };
