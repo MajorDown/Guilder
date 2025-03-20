@@ -3,6 +3,7 @@ import { useState, useMemo } from "react";
 import style from '@/styles/components/FactureManager.module.css';
 import FactureFilterBtn from "@/components/god/FactureFilterBtn";
 import FactureLister from "./FactureLister";
+import Image from "next/image";
 
 type FilterType = "byGuild" | "byMonth";
 
@@ -69,6 +70,9 @@ const FactureManager = ({ Factures }: FactureManagerProps): JSX.Element => {
     return (
         <div className={style.factureManager}>
             <div className={style.filterSelector}>
+                {displayFilteredFactures && <button className={style.returnBtn} onClick={() => setDisplayFilteredFactures(false)}>
+                    <Image src="/images/arrow_back.svg" alt="Retour" width={24} height={24} />
+                </button>}
                 <p>Filtrer les factures :</p>
                 <select
                     value={filterType}
@@ -79,7 +83,7 @@ const FactureManager = ({ Factures }: FactureManagerProps): JSX.Element => {
                 </select>
             </div>
 
-            <div className={style.filterList}>
+            {!displayFilteredFactures && <div className={style.filterList}>
                 {filterType === "byGuild" &&
                     uniqueGuilds.map(({ name, status }) => (
                         <FactureFilterBtn
@@ -100,7 +104,7 @@ const FactureManager = ({ Factures }: FactureManagerProps): JSX.Element => {
                         />
                     ))
                 }
-            </div>
+            </div>}
 
             {displayFilteredFactures && (
                 <FactureLister factures={filteredFactures} />

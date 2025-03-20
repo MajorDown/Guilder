@@ -24,3 +24,13 @@
     flex-wrap: wrap;
     gap: 20px;
 }
+
+.returnBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: solid 1px var(--color-global);
+    border-radius: 5px;
+    width: 30px;
+}
