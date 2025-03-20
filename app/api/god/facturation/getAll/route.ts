@@ -15,7 +15,6 @@ export async function GET(request: Request) {
     }
     let facturationsList = await FactureModel.find();
     if (!facturationsList) facturationsList = [];
-    console.log(`api/god/facturation/getAll ~> facturationsList :`, facturationsList);
     return NextResponse.json(facturationsList, { status: 200 });
   }
   catch (error) {

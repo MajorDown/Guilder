@@ -2,6 +2,7 @@
 import {useEffect, useState} from 'react';
 import LoadSpinner from '@/components/LoadSpinner';
 import { Admin, Contestation, GuildConfig, Intervention, Member, Tool } from '@/types';
+import PageForGod from '@/components/god/PageForGod';
 
 type DataTab = "admins" | "members" | "tools" | "interventions" | "contestations";
 type GuildData = {
@@ -69,8 +70,8 @@ const GodData = () => {
     }, [selectedGuildName]);
     
     return (
-        <section id={"godData"} className={"godSection scrollable"}>
-            <h2>Données de l'application</h2>
+        <PageForGod title={"Données de l'application"} id={"godData"}>
+            <>
             <div id={"guildNameSelector"}>
                 <label htmlFor="guildsName">choix de la guilde à gérer :</label>
                 <select 
@@ -186,8 +187,9 @@ const GodData = () => {
                     </div>
                 </div>}
                 {guildDataErr && <p>{guildDataErr}</p>}
-            </>}            
-        </section>
+            </>}        
+            </>    
+        </PageForGod>
     )
 }
 

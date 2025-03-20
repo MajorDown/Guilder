@@ -62,6 +62,7 @@ const FactureManager = ({ Factures }: FactureManagerProps): JSX.Element => {
         setDisplayFilteredFactures(filtered.length > 0); // S'affiche seulement s'il y a des factures filtrées
     };
 
+    // Fonction pour changer le type de filtre
     const handleChangeFilterType = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setFilterType(e.target.value as FilterType);
         setDisplayFilteredFactures(false);
