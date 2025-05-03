@@ -16,8 +16,8 @@ const FactureCard = (props: FactureCardProps): JSX.Element => {
     const factureMonth = props.facture.id.slice(4, 6);
     const factureYear = props.facture.id.slice(2, 4);
 
-    const handleSent = () => {
-        // envoyer la facture au client
+    const handleSent = async () => {
+        const sendFactureByMail = await fetch(`/api/sendFactureByMail/${props.facture.id}`);
     }
 
     const handleSetIsPaid = () => {
