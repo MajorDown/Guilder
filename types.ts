@@ -70,6 +70,8 @@ export type MemberContext = {
 
 export type MembersList = Omit<Member, 'password'>[];
 
+export type ConnectedUser = ConnectedAdmin | ConnectedMember;
+
 // TYPES POUR INTERVENTIONS
 
 export type Intervention = {
