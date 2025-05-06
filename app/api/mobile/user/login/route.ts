@@ -15,7 +15,8 @@ type logUserProps = {
 }
 
 export async function OPTIONS(request: NextRequest) {
-    return applyCorsForMobiles(request, null, 204)
+    console.log('⚡ [OPTIONS] api/mobile/user/login');
+    return applyCorsForMobiles(request, null, 200)
 }
 
 export async function POST(request: NextRequest) {
