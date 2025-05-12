@@ -1,22 +1,52 @@
 import { useRef, useState } from "react"
+import { useAdminContext } from "@/contexts/adminContext";
 import UIPasswordInput from "@/components/UI/UIPasswordInput"
 import UISelectInput from "./UI/UISelectInput";
+import resetGuildsCounts from "@/tools/front/reinitGuildCounts";
+import LoadSpinner from "./LoadSpinner";
 
 
 const ReinitCountsForm = ():JSX.Element => {
+    const {admin} = useAdminContext();
+
     const passwordRef = useRef<HTMLInputElement>(null);
     const historyRef = useRef<HTMLSelectElement>(null);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const [errMessage, setErrMessage] = useState<string>("");
     const [isActualised, setIsActualised] = useState<boolean>(false);
 
-    const handleSubmit = async (event: React.FormEvent) => {
-        event.preventDefault();
-        const request = {
-            lastPassword: passwordRef.current?.value,
-            history: historyRef.current?.value
+    const handleSubmit = async () => {
+        setIsLoading(true);
+        if (!admin) {
+            setErrMessage("Vous devez être connecté pour effectuer cette action.");
+            return;
         }
-        // Call the API to reinitialize counts
-        // Handle response and set isActualised or errMessage accordingly
+        const password = passwordRef.current?.value;       
+        if (!password) {
+            setErrMessage("Veuillez renseigner votre mot de passe.");
+            return;
+        }       
+        const history = historyRef.current?.value;
+        if (history !== "keep" && history !== "delete") {
+            setErrMessage("Veuillez choisir une option pour l'historique des interventions.");
+            return;
+        }
+        try {
+            const response = await resetGuildsCounts({
+                admin: admin,
+                reAskedPassword: password,
+                wantToResetInterventions: history === "delete"
+            });
+            setIsActualised(true);
+            setErrMessage("");
+            //rechargement de la page
+            setTimeout(() => {
+                window.location.reload();
+            }, 5000);
+        } catch (error) {
+            setErrMessage("Une erreur est survenue lors de la réinitialisation des compteurs : " + error);
+        }
+        setIsLoading(false);
     }
 
     return <div id={"reinitCountsForm"}>
@@ -42,6 +72,10 @@ const ReinitCountsForm = ():JSX.Element => {
             <label htmlFor="lastPassword">Renseignez votre mot de passe :</label>
             <UIPasswordInput name="lastPassword" inputRef={passwordRef} />
         </div>
+        <button className={"green"} onClick={() => {handleSubmit()}}>Réinitialiser les compteurs</button>
+        {errMessage && <p className={"error"}>{errMessage}</p>}
+        {isLoading && <LoadSpinner message={"Réinitialisation en cours..."} />}
+        {isActualised && <LoadSpinner message={"La réinitialisation a réussie ! Veuilez patienter..."} />}
     </div>
 }
 
