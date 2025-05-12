@@ -169,3 +169,36 @@
     align-items: center;
     gap: 10px;
 }
+
+/**********OPTIONS:REINITCOUNTS**********/
+
+#reinitCountsForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 550px;
+}
+
+#reinitCountsForm p {
+    text-align: center;
+}
+
+#reinitCountsForm form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+#reinitCountsForm .wrapper-vertical {
+    align-items: center;
+    width: 80%;
+}
+
+#reinitCountsForm .wrapper-vertical input {
+    max-width: 200px;
+}

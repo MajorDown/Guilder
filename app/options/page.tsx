@@ -9,6 +9,7 @@ import NewAdminForm from '@/components/NewAdminForm';
 import PageLogo from '@/components/PageLogo';
 import AppNavbar from '@/components/AppNavbar';
 import AuthPersistenceManager from '@/components/AuthPersistenceManager';
+import ReinitCountsForm from '@/components/ReinitCountsForm';
 
 /**
  * @module Parameters
@@ -17,7 +18,7 @@ const Options = () => {
     const {member} = useMemberContext();
     const {admin} = useAdminContext();
     const [checkedLogin, setCheckedLogin] = useState(false);
-    const [selectedTab, setSelectedTab] = useState<"password" | "contestation" | "addNewAdmin" | "authPersistence" | null>(null);
+    const [selectedTab, setSelectedTab] = useState<"password" | "contestation" | "addNewAdmin" | "authPersistence" | "reinitCounts" | null>(null);
 
     useEffect(() => {
       setCheckedLogin(true);
@@ -50,6 +51,9 @@ const Options = () => {
                 Gérer votre authentification
               </button>}
               <button className={selectedTab === "password" ? "green" : "light"} onClick={() => setSelectedTab("password")}>Modifier mon mot de passe</button>
+              {admin && <button className={selectedTab === "reinitCounts" ? "green" : "light"} onClick={() => setSelectedTab("reinitCounts")}>
+                Réinitialiser les compteurs
+              </button>}
             </div>
             {selectedTab === "password" && <PasswordUpdater 
               status={admin ? "admin" : "member"} 
@@ -60,7 +64,8 @@ const Options = () => {
             />}
             {member && selectedTab === "contestation" && <ContestationLister member={member} />}  
             {admin && selectedTab === "addNewAdmin" && <NewAdminForm actualAdmin={admin} />}
-            {admin && selectedTab === "authPersistence" && <AuthPersistenceManager />}         
+            {admin && selectedTab === "authPersistence" && <AuthPersistenceManager />}  
+            {admin && selectedTab === "reinitCounts" && <ReinitCountsForm />} 
         </>)}
       </div>
     </section>

@@ -30,7 +30,7 @@ const UISelectInput = (props: UISelectInputProps) => {
     return (
         <select 
             id={props.id}
-            className={`UIPasswordInput ${props.className}`}
+            className={`UISelectInput ${props.className}`}
             name={props.name || "password"}
             aria-label={props.ariaLabel}
             ref={props.inputRef}
@@ -43,7 +43,8 @@ const UISelectInput = (props: UISelectInputProps) => {
             style={{
                 ...(value ? ({
                     backgroundColor: "#7bff003e",
-                    borderColor: "#2a5205"
+                    borderColor: "#2a5205",
+                    color: "white",
                 }) : {}),
                 ...props.style
             }}
