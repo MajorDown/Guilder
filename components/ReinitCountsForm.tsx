@@ -38,13 +38,15 @@ const ReinitCountsForm = ():JSX.Element => {
                 wantToResetInterventions: history === "delete"
             });
             setIsActualised(true);
+            setIsLoading(false);
             setErrMessage("");
             //rechargement de la page
             setTimeout(() => {
                 window.location.reload();
             }, 5000);
+            return;
         } catch (error) {
-            setErrMessage("Une erreur est survenue lors de la réinitialisation des compteurs : " + error);
+            setErrMessage('error :' + error);
         }
         setIsLoading(false);
     }

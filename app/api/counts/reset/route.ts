@@ -32,14 +32,20 @@ export async function POST(request: NextRequest) {
             guildToCheck: guildToReset,}
         );
         if (!authResponse.authorized) {
-            console.log(`api/guildConfig/update ~> ${authResponse.error}`);
+            console.log(`api/counts/reset ~> ${authResponse.error}`);
             return NextResponse.json(authResponse.error, { status: 401 });
         }
         // VERIFICATION DU MOT DE PASSE REDEMANDE COTE FRONT
         const adminToCheck = await authResponse.checkedUser;
-        const isPasswordValid = await passwordChecker(reAskedPassword, adminToCheck.password);
+        if (!adminToCheck) {
+            console.error("api/counts/reset : erreur lors de la vérification de l'admin avant le password redemandé");
+            return NextResponse.json("Erreur lors de la vérification de l'admin", { status: 401 });
+        }
+        console.log("api/counts/reset : admin à vérifier", adminToCheck);
+        console.log("api/counts/reset : password redemandé", reAskedPassword);
+        const isPasswordValid = passwordChecker(reAskedPassword, adminToCheck.password);
         if (!isPasswordValid) {
-            console.log("api/admin/login ~> Erreur de password");
+            console.log("api/counts/reset ~> Erreur sur le password redemandé");
             return NextResponse.json("password incorrect", { status: 400 });
         }
         // RECHERCHE DES MEMBRES DE LA GUILDE
@@ -51,13 +57,7 @@ export async function POST(request: NextRequest) {
         // REINITIALISATION DES COMPTEURS
         let resetCount = 0;
         for (const member of guildMembers) {
-            member.counts = {
-                interventions: resetInterventions ? 0 : member.counts.interventions,
-                messages: 0,
-                reactions: 0,
-                votes: 0,
-                votesReactions: 0,
-            };
+            member.counter = 0;
             await member.save();
             resetCount++;
         }

@@ -7,7 +7,6 @@ import { useMemberContext } from '@/contexts/memberContext';
 import { useguildConfigContext } from '@/contexts/guildConfigContext';
 import { dateGenerator } from '@/tools/dateGenerator';
 import { getGuildMembers } from '@/tools/front/getGuildMembers';
-import getGuildConfig from '@/tools/front/getGuildConfig';
 import UIButton from './UI/UIButton';
 import UINavLink from './UI/UINavLink';
 import UIOptionsSelector from './UI/UIOptionsSelector';
@@ -83,22 +82,6 @@ const InterventionForm = () => {
         setPayer(value)
     }
 
-    const handlePoints = (value: number) => {
-        if (hoursError) setHoursError("");
-        if (value) setHours(value);
-    }
-
-    const handlechangeCheckedConfigOptions = (option: string) => {
-        switch (checkedConfigOptions.includes(option)) {
-            case true:
-                setCheckedConfigOptions(checkedConfigOptions.filter((checkedOption) => checkedOption !== option));
-                break;
-            case false:
-                setCheckedConfigOptions([...checkedConfigOptions, option]);
-                break;
-        }
-    }
-
     const handleDate = (value: string) => {
         if (isFormatted(value, interventionDateFormat)) setDate(value);
     }
@@ -126,6 +109,12 @@ const InterventionForm = () => {
                 setHasDeclared(true);
                 updateMember({...member, counter: response});
                 localStorage.setItem(process.env.NEXT_PUBLIC_LOCALSTORAGE_MEMBERCONTEXT_KEY as string, JSON.stringify({...member, counter: response}));
+                setPayer("");
+                setHours(1);
+                setCheckedConfigOptions([]);
+                setDate("");
+                setDescription("");
+                setConfirm(false);
             }
             else {
                 setLoadError("une erreur est survenue lors de la déclaration.")
