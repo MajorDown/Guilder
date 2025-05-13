@@ -56,6 +56,11 @@
     padding: 20px;
 }
 
+.section_content p {
+    max-width: 80%;
+    text-align: center;
+}
+
 .section_right .section_content {
     min-height: 75vh;
 }
@@ -91,6 +96,19 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
+}
+
+#AppNavBarForMobile {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    background-color: none;
+}
+
+#AppNavBarForMobile button {
+    background-color: transparent;
+    border: none;
+    color: var(--color-dark);
 }
 
 #appNavbar {
@@ -164,20 +182,11 @@
     }
 
     #pageLogo {
-        width: 25%
-    }
-
-    #pageLogo a {
-        margin-top: 0px;
-    }
-
-    #pageLogo a img {
-        width: 20px;
-        height: 20px;
-
+        display: none;
     }
 
     #section_navigation {
+        margin-top: 20px;
         height: 150px;
         justify-content: space-between;
         align-items: center;
@@ -185,27 +194,15 @@
     }
 
     #appNavbar {
-        width: 70%;
+        width: 90%;
     }
 
 }
 
-@media screen and (max-width: 425px) {
-    #appNavbar a img {
-        width: 50;
-        height: 50;
-    }
+@media screen and (max-width: 768px) {
 
     #section_navigation {
-        flex-direction: column;
+        margin-top: 0px;
+        height: 100px;
     }
-
-    .section_right {
-        width: 100%
-    }
-
-    .section_right .section_content {
-        width: 95%
-    }
-
 }

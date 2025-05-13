@@ -18,6 +18,10 @@
 
 #configLister {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .configCard {
@@ -25,7 +29,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 90%;
     padding: 5px 0;
     margin: 10px 0;
 }
