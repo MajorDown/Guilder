@@ -7,7 +7,7 @@ const Footer = () => {
     <footer>
       <Link href="/mentions_legales">Mentions légales</Link>
       <Link href="/aide">Aide</Link>
-      <p>~ Agriguilder ~ version 1.5 - copyright {year}</p>
+      <p>~ Agriguilder ~ version 1.6 - copyright {year}</p>
     </footer>
   )
 }
