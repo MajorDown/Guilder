@@ -1,16 +1,14 @@
 import { useRef } from "react";
-import { useManagerContext } from "@/contexts/managerContext";
-import loginManager from "@/tools/front/manager/loginManager";
+import createManager from "@/tools/front/manager/createManager";
 import UIEmailInput from "@/components/UI/UIEmailInput";
 import UIPasswordInput from "@/components/UI/UIPasswordInput";
 import style from "@/styles/components/manager/ManagerForm.module.css";
 
 /**
- * @description Formulaire de connexion du manager
- * @returns {JSX.Element} - Le formulaire de connexion du manager
+ * @description Formulaire de création de manager
+ * @returns {JSX.Element}
  */
-const LoginManagerForm = (): JSX.Element => {
-    const { updateManager } = useManagerContext();
+const CreateManagerForm = (): JSX.Element => {
 
     const mailInputRef = useRef<HTMLInputElement>(null);
     const passwordInputRef = useRef<HTMLInputElement>(null);
@@ -24,15 +22,17 @@ const LoginManagerForm = (): JSX.Element => {
             return;
         }
         try {
-            const response = await loginManager({ mail, password });
-            updateManager(response);
+            const response = await createManager({ mail, password });
+            mailInputRef.current!.value = '';
+            passwordInputRef.current!.value = '';
+            alert("Manager créé avec succès avec l'id " + response);
         } catch (error) {
             alert(("Erreur lors de la connexion : " + error));
         }
-};
+    };
 
     return (<form 
-        id={'loginManagerForm'} 
+        id={'createManagerForm'} 
         onSubmit={(event) => handleSubmit(event)}
         className={style.form}>
         <div className={style.inputContainer}>
@@ -53,8 +53,8 @@ const LoginManagerForm = (): JSX.Element => {
                 required
             />
         </div>
-        <button type={'submit'} className={'light'}>connection</button>
+        <button type={'submit'} className={'light'}>créer</button>
     </form>)
 }
 
-export default LoginManagerForm;
+export default CreateManagerForm;

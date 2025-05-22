@@ -7,14 +7,16 @@ type CreateManagerInput = {
 }
 
 /**
- * @description Creates a manager in the database
- * @param {CreateManagerInput} input - The input to create the manager
- * @returns {Promise<string>} - The id of the created manager
+ * @description Créé un manager dans la db
+ * @param {string} input.mail
+ * @param {string} input.password
+ * @returns {Promise<string>} - l'id du manager créé
  */
 const createManager = async (input: CreateManagerInput):Promise<string> => {
+    const hashedPassword = await passwordCrypter(input.password);
     const creation = await ManagerModel.create({
         mail: input.mail,
-        password: passwordCrypter(input.password),
+        password: hashedPassword,
     });
     if (!creation) throw new Error('erreur lors de la création du manager');
     return creation._id.toString();
