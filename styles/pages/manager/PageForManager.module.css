@@ -1,0 +1,11 @@
+.pageForManager {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--color-smokey-bg);
+    width: 90%;
+    min-height: 500px;
+    margin: 20px 10px;
+    padding: 20px;
+}

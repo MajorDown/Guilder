@@ -16,20 +16,17 @@ export type NewMemberInfos = {
     initialCount: UserCounter
 }
 
-// TYPES POUR LE GOD
-
-export type God = {
-    name: UserName,
+// TYPES POUR LE MANAGER
+export type Manager = {
     mail: UserMail,
-    phone: UserPhone,
     password: UserPassword;
 }
 
-export type ConnectedGod = Omit<God, 'password'> & { token: string };
+export type ConnectedManager = Omit<Manager, 'password'> & { token: string };
 
-export type GodContext = {
-    god: ConnectedGod | null,
-    updateGod: (god: ConnectedGod | null) => void,
+export type ManagerContext = {
+    manager: ConnectedManager | null,
+    updateManager: (manager: ConnectedManager | null) => void,
 }
 
 // TYPES POUR ADMIN

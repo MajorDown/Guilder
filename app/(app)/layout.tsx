@@ -7,7 +7,7 @@ import { AdminProvider } from '@/contexts/adminContext';
 import { MemberProvider } from '@/contexts/memberContext';
 import SectionsBackground from '@/components/SectionsBackground';
 import { Montserrat } from 'next/font/google';
-import { GodProvider } from '@/contexts/godContext';
+import { ManagerProvider } from '@/contexts/managerContext';
 import { GuildConfigProvider } from '@/contexts/guildConfigContext';
 const montserrat = Montserrat({weight: "400", subsets: ["latin"], display: 'swap', variable: "--font-Montserrat"});
 
@@ -23,7 +23,7 @@ export default function RootLayout(props: PropsWithChildren) {
         <link rel="icon" href="/agriguilder.ico" type="image/x-icon" sizes="16x16" />
       </head>
       <body className={montserrat.className}>
-        <GodProvider>
+        <ManagerProvider>
           <AdminProvider>
             <MemberProvider>
               <GuildConfigProvider>
@@ -36,7 +36,7 @@ export default function RootLayout(props: PropsWithChildren) {
               </GuildConfigProvider>
             </MemberProvider>
           </AdminProvider>
-        </GodProvider>
+        </ManagerProvider>
       </body>
     </html>
   )
