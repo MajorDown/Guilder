@@ -1,3 +1,4 @@
+'use client'
 import { useManagerContext } from "@/contexts/managerContext";
 import LoginManagerForm from "./LoginManagerForm";
 import style from '@/styles/pages/manager/PageForManager.module.css'
@@ -17,28 +18,32 @@ const PageForManager = (props: Props): JSX.Element => {
     const pathName = usePathname();
 
     return (<section id={props.id} className={style.pageForManager}>
-        <h2>{props.title}</h2>
+        <div className={style.sectionHeader}>
+            {manager && <>
+                <nav>
+                    <UILink 
+                        href={"/gestion/factures"} 
+                        color={pathName === "/gestion/factures" ? "light" : "dark"}
+                    >
+                        <p>Suivi des Factures</p>
+                    </UILink>
+                    <UILink 
+                        href={"/gestion/guildes"} 
+                        color={pathName === "/gestion/guildes" ? "light" : "dark"}
+                    >
+                        <p>Suivi des Guildes</p>
+                    </UILink>
+                    <UILink 
+                        href={"/gestion/claims"} 
+                        color={pathName === "/gestion/claims" ? "light" : "dark"}
+                    >
+                        <p>Suivi des réclamations</p>
+                    </UILink>
+                </nav>
+                <h2>{props.title}</h2>
+            </>}
+        </div>
         {manager ? <>
-            <nav >
-                <UILink 
-                    href={"/gestion/factures"} 
-                    color={pathName === "/gestion/factures" ? "light" : "dark"}
-                >
-                    Suivi des Factures
-                </UILink>
-                <UILink 
-                    href={"/gestion/guildes"} 
-                    color={pathName === "/gestion/guildes" ? "light" : "dark"}
-                >
-                    Suivi des Factures
-                </UILink>
-                <UILink 
-                    href={"/gestion/create"} 
-                    color={pathName === "/gestion/create" ? "light" : "dark"}
-                >
-                    Suivi des Factures
-                </UILink>
-            </nav>
             {props.children}
         </> : <>
             <p>Vous devez vous connecter en tant que manager pour accéder à cette page</p>
