@@ -11,3 +11,11 @@
     border-radius: 10px;
     gap: 10px
 }
+
+.pageForManager nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
