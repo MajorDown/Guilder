@@ -22,10 +22,10 @@ const PageForManager = (props: Props): JSX.Element => {
             {manager && <>
                 <nav>
                     <UILink 
-                        href={"/gestion/factures"} 
-                        color={pathName === "/gestion/factures" ? "light" : "dark"}
+                        href={"/gestion/contrats"} 
+                        color={pathName === "/gestion/contrats" ? "light" : "dark"}
                     >
-                        <p>Suivi des Factures</p>
+                        <p>Suivi des Contrats</p>
                     </UILink>
                     <UILink 
                         href={"/gestion/guildes"} 

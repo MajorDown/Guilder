@@ -17,6 +17,32 @@ export const tokenMaker = (mail: UserMail): string => {
 };
 
 /**
+ * Vérifie l'authenticité d'un token JWT et s'assure que l'adresse e-mail
+ * associée au token correspond à l'adresse e-mail fournie en paramètre.
+ *
+ * @param {string} token - Le token JWT à vérifier.
+ * @param {UserMail} mail - L'adresse e-mail à comparer avec celle du token.
+ * @returns {boolean} `true` si le token est valide et correspond à l'adresse e-mail, sinon `false`.
+ */
+export const tokenVerifier = (token: string, mail: string): boolean => {
+  try {
+    if (!token) {
+      throw new Error("tokenVerifier ~> manager non authentifié !");
+    }
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+    const decodedMail = decodedToken.mail;
+    if (decodedMail !== mail) {
+      throw new Error("tokenVerifier ~> le mail rentré est différent du mail du token");
+    }
+    console.log("tokenVerifier ~> utilisateur authentifié");
+    return true;
+  } catch (error) {
+    console.log("tokenVerifier ~> ", error);
+    return false;
+  }
+}
+
+/**
  * Vérifie l'authenticité d'un token JWT et, si une adresse mail est renseigné en paramètre,
  * s'assure qu'il correspondent au même utilisateur
  *

@@ -14,7 +14,7 @@ type LoginManagerInput = {
  * @param {string} input.password
  * @returns {Promise<ConnectedManager>} - le manager connecté
  */
-const loginManager = async (input: LoginManagerInput):Promise<ConnectedManager> => {
+const loginManager = async (input: LoginManagerInput): Promise<ConnectedManager> => {
     const managerTologin = await ManagerModel.findOne({ mail: input.mail });
     if (!managerTologin) throw new Error("Manager introuvable");
     const isPasswordValid = passwordChecker(input.password, managerTologin.password);
