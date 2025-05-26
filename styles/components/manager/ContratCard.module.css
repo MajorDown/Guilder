@@ -1,0 +1,30 @@
+.contratCard {
+    width: 80vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid var(--color-global);
+}
+
+.name {
+    font-weight: 900;
+    width: 30%;
+}
+
+.package {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 35%;
+}
+
+.monthStart {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    width: 35%;
+}

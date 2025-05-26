@@ -29,7 +29,6 @@ export const tokenVerifier = (mail: string, token: string): boolean => {
     if (!token) {
       throw new Error("tokenVerifier ~> manager non authentifié !");
     }
-    console.log("🔐 Token reçu :", token);
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
     const decodedMail = decodedToken.mail;
     if (decodedMail !== mail) {

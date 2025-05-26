@@ -4,6 +4,7 @@ import PageForManager from "@/components/manager/PageForManager"
 import { ConnectedManager, GuildConfig } from "@/types";
 import { useManagerContext } from "@/contexts/managerContext";
 import getAllGuildConfigs from "@/tools/front/guildConfig/getAllGuildConfigs";
+import ContratCard from "@/components/manager/ContratCard";
 
 const ManageContrats = (): JSX.Element => {
     const { manager } = useManagerContext();
@@ -28,13 +29,7 @@ const ManageContrats = (): JSX.Element => {
                 {listOfGuildConfigs.length > 0 ? (
                     <ul>
                         {listOfGuildConfigs.map((guildConfig, index) => (
-                            <li key={index}>
-                                <h3>{guildConfig.name}</h3>
-                                <p>Mail: {guildConfig.mail}</p>
-                                <p>Phone: {guildConfig.phone}</p>
-                                <p>Current Package ID: {guildConfig.currentPackageId}</p>
-                                <p>Current Period: {guildConfig.currentPeriod}</p>
-                            </li>
+                            <ContratCard key={index} guild={guildConfig} />
                         ))}
                     </ul>
                 ) : (
