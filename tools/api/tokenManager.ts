@@ -24,11 +24,12 @@ export const tokenMaker = (mail: UserMail): string => {
  * @param {UserMail} mail - L'adresse e-mail à comparer avec celle du token.
  * @returns {boolean} `true` si le token est valide et correspond à l'adresse e-mail, sinon `false`.
  */
-export const tokenVerifier = (token: string, mail: string): boolean => {
+export const tokenVerifier = (mail: string, token: string): boolean => {
   try {
     if (!token) {
       throw new Error("tokenVerifier ~> manager non authentifié !");
     }
+    console.log("🔐 Token reçu :", token);
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
     const decodedMail = decodedToken.mail;
     if (decodedMail !== mail) {
