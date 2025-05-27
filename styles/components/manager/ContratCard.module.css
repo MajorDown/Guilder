@@ -38,10 +38,6 @@ r .monthStart {
 }
 
 .progressContainer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
     height: 6px;
     background: var(--color-global);
     border-radius: 3px;

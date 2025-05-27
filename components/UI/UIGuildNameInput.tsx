@@ -12,7 +12,7 @@ const firstnameConditions = {
  * @property {RefObject<HTMLInputElement>} [inputRef] - Référence de l'objet input pour accès direct.
  */
 export type UIGuildNameInputProps = {
-    inputRef: RefObject<HTMLInputElement>
+    inputRef?: RefObject<HTMLInputElement>
 } & InputHTMLAttributes<HTMLInputElement>;
 
 /**
