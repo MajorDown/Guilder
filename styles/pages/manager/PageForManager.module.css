@@ -29,6 +29,15 @@
     gap: 10px;
 }
 
+.pageForManager ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    list-style-type: none;
+}
+
 @media screen and (max-width: 996px) {
     .pageForManager {
         margin-top: 0

@@ -68,19 +68,26 @@ const ContratCard = (props: Props): JSX.Element => {
     const percent = getProgressPercent(props.guild.currentPeriodStart, props.guild.currentPeriod);
 
     return (<article className={style.contratCard}>
-        <p className={style.name}>{props.guild.name}</p>
-        <p className={style.package}>
-            package {props.guild.currentPackageId} ({packages[props.guild.currentPackageId].price}€)
-            de {packages[props.guild.currentPackageId].rules.min} à {packages[props.guild.currentPackageId].rules.max} membres
-        </p>
-        <p className={style.monthStart}>
-            début de contrat : {formatPeriodStart(props.guild.currentPeriodStart)}
-        </p>
-        <p className={style.duration}>
-            durée du contrat : {props.guild.currentPeriod === 'annual' ? '12 mois' : '1 mois'}
-        </p>
-        <div className={style.progressContainer}>
-            <div className={style.progressBar} style={{ width: `${percent}%` }} />
+        <div className={style.infosLine}>
+            <p className={style.name}>{props.guild.name}</p>
+            <p className={style.package}>
+                package {props.guild.currentPackageId} ({packages[props.guild.currentPackageId].price}€)
+                de {packages[props.guild.currentPackageId].rules.min} à {packages[props.guild.currentPackageId].rules.max} membres
+            </p>
+            <p className={style.monthStart}>
+                début de contrat : {formatPeriodStart(props.guild.currentPeriodStart)}
+            </p>
+            <p className={style.duration}>
+                durée du contrat : {props.guild.currentPeriod === 'annual' ? '12 mois' : '1 mois'}
+            </p>
+            <div className={style.progressContainer}>
+                <div className={style.progressBar} style={{ width: `${percent}%` }} />
+            </div>
+        </div>
+        <div className={style.contactLine}>
+            <p className={style.adress}>{`~ adresse : ${props.guild.adress?.line1} ${props.guild.adress?.line2 ? props.guild.adress?.line2 : ''} - ${props.guild.adress?.code} ${props.guild.adress?.city}`}</p>
+            <p className={style.tel}>{'  ~  tel : '}{props.guild.phone}</p>
+            <p className={style.mail}>{'  ~  mail : '}{props.guild.mail}</p>
         </div>
     </article>)
 }
