@@ -35,33 +35,33 @@ export const packages: Package[] = [
     {
         id: 1,
         rules: {
-            min: 1,
-            max: 20
+            min: 4,
+            max: 10
         },
-        price: 90
+        price: 35
     },
     {
         id: 2,
         rules: {
-            min: 21,
-            max: 50
+            min:11,
+            max: 20
         },
-        price: 95
+        price: 45
     },
     {
         id: 3,
         rules: {
-            min: 51,
-            max: 100
+            min: 21,
+            max: 50
         },
-        price: 100
+        price: 55
     },
     {
         id: 4,
         rules: {
-            min: 101,
+            min: 51,
             max: 1000
         },
-        price: 105
+        price: 65
     }
 ]

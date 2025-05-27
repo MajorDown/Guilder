@@ -37,15 +37,51 @@ const formatPeriodStart = (currentPeriodStart: number): string => {
     return `${month}/${year}`;
 };
 
+/**
+ * @description Calcule le pourcentage de progression d'un contrat
+ * @param startMonth 
+ * @param duration 
+ * @returns 
+ */
+const getProgressPercent = (startMonth: number, duration: 'monthly' | 'annual'): number => {
+    const now = new Date();
+    const currentYear = now.getFullYear();
+    const currentMonth = now.getMonth() + 1;
+
+    // Estime l'année de départ (même logique que formatPeriodStart)
+    const startYear = (currentMonth <= startMonth) ? currentYear - 1 : currentYear;
+
+    // Crée la date de début
+    const startDate = new Date(startYear, startMonth - 1, 1); // JS : mois 0-based
+    const endDate = new Date(startDate);
+    endDate.setMonth(endDate.getMonth() + (duration === 'annual' ? 12 : 1));
+
+    // Calcule la progression en %
+    const totalTime = endDate.getTime() - startDate.getTime();
+    const elapsed = now.getTime() - startDate.getTime();
+
+    const percent = Math.max(0, Math.min(1, elapsed / totalTime)) * 100;
+    return Math.round(percent);
+};
+
 const ContratCard = (props: Props): JSX.Element => {
+    const percent = getProgressPercent(props.guild.currentPeriodStart, props.guild.currentPeriod);
+
     return (<article className={style.contratCard}>
         <p className={style.name}>{props.guild.name}</p>
         <p className={style.package}>
-            package {props.guild.currentPackageId} : {packages[props.guild.currentPackageId].price}€/12 mois
+            package {props.guild.currentPackageId} ({packages[props.guild.currentPackageId].price}€)
+            de {packages[props.guild.currentPackageId].rules.min} à {packages[props.guild.currentPackageId].rules.max} membres
         </p>
         <p className={style.monthStart}>
             début de contrat : {formatPeriodStart(props.guild.currentPeriodStart)}
         </p>
+        <p className={style.duration}>
+            durée du contrat : {props.guild.currentPeriod === 'annual' ? '12 mois' : '1 mois'}
+        </p>
+        <div className={style.progressContainer}>
+            <div className={style.progressBar} style={{ width: `${percent}%` }} />
+        </div>
     </article>)
 }
 
