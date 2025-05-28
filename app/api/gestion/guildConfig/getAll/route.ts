@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import databaseConnecter from "@/tools/api/databaseConnecter";
-import { GuildConfig } from "@/types";
 import { tokenVerifier } from "@/tools/api/tokenManager";
 import getAllGuildConfig from "@/tools/api/mongooseRequests/guild/getAllGuildConfig";
 
