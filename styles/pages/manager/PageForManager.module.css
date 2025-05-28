@@ -10,7 +10,23 @@
     margin-top: 150px;
     padding: 20px;
     border-radius: 10px;
-    gap: 10px
+    gap: 10px;
+    overflow-y: auto;
+}
+
+.pageForManager::-webkit-scrollbar {
+    width: 12px;
+}
+
+.pageForManager::-webkit-scrollbar-track {
+    background: var(--color-dark);
+    border: solid 1px var(--color-light);
+    border-radius: 6px;
+}
+
+.pageForManager::-webkit-scrollbar-thumb {
+    background-color: var(--color-light);
+    border-radius: 6px;
 }
 
 .sectionHeader {

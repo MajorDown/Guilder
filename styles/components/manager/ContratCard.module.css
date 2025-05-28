@@ -82,3 +82,22 @@
     background-color: var(--color-light);
     transition: width 0.3s ease;
 }
+
+@media screen and (max-width: 768px) {
+    .infosLine {
+        flex-wrap: wrap;
+    }
+
+    .name {
+        width: 100%;
+        text-align: center;
+    }
+
+    .contratCard p {
+        font-size: 0.8rem;
+    }
+
+    .progressContainer {
+        display: none;
+    }
+}

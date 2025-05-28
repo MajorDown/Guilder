@@ -1,3 +1,4 @@
+'use client'
 import { GuildConfig } from "@/types";
 import { packages }from "@/constants";
 import style from "@/styles/components/manager/contratCard.module.css";
