@@ -1,5 +1,10 @@
 import { InputHTMLAttributes, RefObject, useState } from "react";
 
+export type UISelectOptionsList = {
+    name: string;
+    value: any;
+}[]
+
 /**
  * Propriétés du composant UISelectInput.
  * @typedef {Object} UISelectInputProps
@@ -9,10 +14,7 @@ import { InputHTMLAttributes, RefObject, useState } from "react";
  * @property {React.InputHTMLAttributes<HTMLInputElement>} - Attributs HTML standards pour l'input.
  */
 export type UISelectInputProps = {
-    options: {
-        name: string,
-        value: any
-    }[];
+    options: UISelectOptionsList;
     ariaLabel?: string;
     inputRef?: RefObject<HTMLSelectElement>;
     onChangeInputValue?: (value: string) => void;
@@ -27,6 +29,13 @@ export type UISelectInputProps = {
 const UISelectInput = (props: UISelectInputProps) => {
     const [value, setValue] = useState<string>('');
 
+    const handleChangeValue = (newValue: string) => {
+        setValue(newValue);
+        if (props.onChangeInputValue) {
+            props.onChangeInputValue(newValue);
+        }
+    }
+
     return (
         <select 
             id={props.id}
@@ -35,7 +44,7 @@ const UISelectInput = (props: UISelectInputProps) => {
             aria-label={props.ariaLabel}
             ref={props.inputRef}
             value={value} 
-            onChange={(event) => setValue(event.target.value)}
+            onChange={(event) => handleChangeValue(event.target.value)}
             disabled={props.disabled}
             required={props.required}
             autoComplete={props.autoComplete}

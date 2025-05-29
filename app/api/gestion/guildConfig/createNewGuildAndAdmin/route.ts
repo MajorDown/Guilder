@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import databaseConnecter from "@/tools/api/databaseConnecter";
 import createNewGuildAndAdmin from "@/tools/api/mongooseRequests/guild/createGuildAndAdmin";
 import { tokenVerifier } from "@/tools/api/tokenManager";
-import sendMailToNewAdmin from "@/tools/api/nodemailer/sendMailToNewAdmin";
 
 export async function POST(request: Request) {
   console.log(`api/gestion/guildConfig/createNewGuildAndAdmin ~> Requête de création de guilde + admin`);
