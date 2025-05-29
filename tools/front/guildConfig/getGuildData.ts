@@ -1,8 +1,16 @@
-import { ConnectedManager } from "@/types";
+import { Admin, ConnectedManager, Contestation, GuildConfig, Intervention, Member } from "@/types";
 
 type GetGuildDataInput = {
     manager: ConnectedManager;
     guildName: string;
+}
+
+export type GuildDataOutput = {
+    admins: Admin[];
+    members: Member[];
+    interventions: Intervention[];
+    contestations: Contestation[];
+    guildConfig: GuildConfig;
 }
 
 /**
@@ -10,7 +18,7 @@ type GetGuildDataInput = {
  * @param manager - Le manager connecté
  * @returns 
  */
-const getGuildData = async (input:GetGuildDataInput): Promise<string[]> => {
+const getGuildData = async (input:GetGuildDataInput): Promise<GuildDataOutput> => {
     const response = await fetch(`/api/gestion/guildData/${input.guildName}`, {
         method: 'GET',
         headers: {
@@ -25,7 +33,7 @@ const getGuildData = async (input:GetGuildDataInput): Promise<string[]> => {
     const data = await response.json();
     // si le tableau n'est pas vide, il faut trier par ordre alphabétique
     if (data.length > 0) data.sort((a: string, b: string) => a.localeCompare(b));
-    return data as string[];
+    return data as GuildDataOutput;
 }
 
 export default getGuildData;
