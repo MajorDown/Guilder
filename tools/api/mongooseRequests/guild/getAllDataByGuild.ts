@@ -2,10 +2,14 @@ import GuildConfigModel from '@/tools/api/models/model.guildConfig';
 import AdminModel from '@/tools/api/models/model.admin';
 import MemberMoel from '@/tools/api/models/model.member';
 import InterventionModel from '../../models/model.intervention';
-import ContestationMOdel from '@/tools/api/models/model.contestation';
+import ContestationModel from '@/tools/api/models/model.contestation';
 
 export type Props = {
     guildName: string;
+}
+
+export type GuildData = {
+
 }
 
 /**
@@ -15,26 +19,28 @@ export type Props = {
  */
 const getAllDataByGuild = async (props: Props) => {
     const { guildName } = props;
-    const guildConfig = await GuildConfigModel.findOne({ guildName }).lean();
+
+    const guildConfig = await GuildConfigModel.findOne({ name: guildName }).lean();
     if (!guildConfig) {
         throw new Error(`Guild with name ${guildName} not found`);
-    };
-    const admins = await AdminModel.find({ guildName }).lean();
-    if (!admins) {
-        throw new Error(`No admins found for guild ${guildName}`);
     }
-    const members = await MemberMoel.find({ guildName }).lean();
-    if (!members) {
-        throw new Error(`No members found for guild ${guildName}`);
-    }
-    const interventions = await InterventionModel.find({ guildName }).lean();
-    if (!interventions) {
-        throw new Error(`No interventions found for guild ${guildName}`);
-    }
-    const contestations = await ContestationMOdel.find({ guildName }).lean();
-    if (!contestations) {
-        throw new Error(`No contestations found for guild ${guildName}`);
-    }
+
+    const admins = await AdminModel.find({ guild: guildName }).lean();
+    const members = await MemberMoel.find({ guild: guildName }).lean();
+
+    const memberNames = members.map(m => m.name);
+
+    const interventions = await InterventionModel.find({
+        $or: [
+            { worker: { $in: memberNames } },
+            { payer: { $in: memberNames } }
+        ]
+    }).lean();
+
+    const contestations = await ContestationModel.find({
+        guild: guildName
+    }).lean();
+
     return {
         guildConfig,
         admins,
@@ -43,5 +49,6 @@ const getAllDataByGuild = async (props: Props) => {
         contestations
     };
 }
+
 
 export default getAllDataByGuild;
