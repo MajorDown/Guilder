@@ -1,0 +1,38 @@
+.LinkButton {
+    height: 75px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 0 25px;
+    border: none;
+    border-radius: 50px;
+    font-size: 20px;
+}
+
+.dark {
+    background-color: var(--color-dark);
+}
+
+.dark p {
+    background-color: var(--color-dark);
+    color: var(--color-global)
+}
+
+.dark img {
+    background-color: var(--color-dark);
+}
+
+.light {
+    background-color: var(--color-light);
+}
+
+.light p {
+    background-color: var(--color-light);
+    color: var(--color-dark);
+}
+
+.light img {
+    background-color: var(--color-light);
+}

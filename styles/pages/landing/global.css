@@ -1,0 +1,22 @@
+:root {
+    --color-global: #ffffff;
+    --color-dark: #3B564D;
+    --color-light: #BAC7B5;
+    --color-green: #748678;
+    --color-form: #D3D4CC;
+    --color-grey: #D3D4CC;
+}
+
+* {
+    color: var(--color-dark);
+    background-color: var(--color-global);
+}
+
+header {
+    background-color: var(--color-global);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
