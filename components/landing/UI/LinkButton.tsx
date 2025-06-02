@@ -5,11 +5,10 @@ import Link from 'next/link';
 type LinkButtonProps = {
     color?: 'dark' | 'light' | 'white';
     text: string;
-
 }
 
 const LinkButton = (props: LinkButtonProps): JSX.Element => {
-    return (
+    return (<div className={Style.container}>
         <Link className={`${Style.LinkButton} ${Style[props.color ?? 'dark']}`} href="/">
             <p>{props.text}</p>
             <Image
@@ -19,6 +18,7 @@ const LinkButton = (props: LinkButtonProps): JSX.Element => {
                 height={24}
             />
         </Link>
+    </div>
     );
 }
 

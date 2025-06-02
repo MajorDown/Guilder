@@ -20,3 +20,7 @@
     color: var(--color-global);
     width: 30vW;
 }
+
+#TitleSection a {
+    width: 150px
+}
