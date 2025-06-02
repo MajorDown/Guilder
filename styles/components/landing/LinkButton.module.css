@@ -1,5 +1,5 @@
 .LinkButton {
-    height: 75px;
+    height: 70px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -9,6 +9,31 @@
     border: none;
     border-radius: 50px;
     font-size: 20px;
+    text-decoration: none;
+}
+
+.LinkButton:hover {
+    cursor: pointer;
+}
+
+.LinkButton p {
+    position: relative;
+    transition: color 0.2s;
+}
+
+.LinkButton p::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background-color: currentColor;
+    transition: width 0.2s;
+}
+
+.LinkButton:hover p::after {
+    width: 100%;
 }
 
 .dark {
@@ -35,4 +60,17 @@
 
 .light img {
     background-color: var(--color-light);
+}
+
+.white {
+    background-color: var(--color-global);
+}
+
+.white p {
+    background-color: var(--color-global);
+    color: var(--color-dark);
+}
+
+.white img {
+    background-color: var(--color-global);
 }

@@ -48,8 +48,8 @@ const PageForManager = (props: Props): JSX.Element => {
         </> : <>
             <p>Vous devez vous connecter en tant que manager pour accéder à cette page</p>
             <LoginManagerForm />
-            <p>S'il n'existe pas encore de manager, remplissez le formulaire ci-desous</p>
-            <CreateManagerForm />
+            {/* <p>S'il n'existe pas encore de manager, remplissez le formulaire ci-desous</p>
+            <CreateManagerForm /> */}
         </>}
     </section>
     )

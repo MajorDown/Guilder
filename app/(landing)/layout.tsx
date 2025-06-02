@@ -1,5 +1,8 @@
 import Header from '@/components/landing/sections/Header'
 import '@/styles/pages/landing/global.css'
+import { Montserrat } from 'next/font/google';
+const montserrat = Montserrat({weight: "400", subsets: ["latin"], display: 'swap', variable: "--font-Montserrat"});
+
 
 export const metadata = {
   title: 'Agriguilder',
@@ -13,9 +16,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr">
-      <body>
+      <body className={montserrat.className}>
         <Header />
-        {children}
+        <main>
+          {children}
+        </main>
       </body>
     </html>
   )

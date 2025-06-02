@@ -20,7 +20,7 @@ export default function RootLayout(props: PropsWithChildren) {
   return (
     <html lang="fr">
       <head>
-        <link rel="icon" href="/agriguilder.ico" type="image/x-icon" sizes="16x16" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16" />
       </head>
       <body className={montserrat.className}>
         <ManagerProvider>
