@@ -10,7 +10,9 @@ const Header = ():JSX.Element => {
             width={50}
             height={75}
         />
-        <LinkButton color={'dark'} text={"Découvrir l'outil"} />
+        <div>
+            <LinkButton color={'dark'} text={"Découvrir l'outil"} />
+        </div>
     </header>)
 }
 

@@ -20,6 +20,7 @@
 .LinkButton p {
     position: relative;
     transition: color 0.2s;
+    font-weight: 600;
 }
 
 .LinkButton p::after {
@@ -74,4 +75,15 @@
 
 .white img {
     background-color: var(--color-global);
+}
+
+@media screen and (max-width: 768px) {
+    .LinkButton {
+        height: 40px;
+
+    }
+
+    .LinkButton p {
+        font-size: 14px;
+    }
 }
