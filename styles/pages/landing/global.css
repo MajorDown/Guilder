@@ -5,7 +5,6 @@
     --color-green: #748678;
     --color-form: #D3D4CC;
     --color-grey: #D3D4CC;
-
 }
 
 * {
@@ -14,6 +13,9 @@
     font-family: var(--font-Montserrat);
     font-weight: 600;
     letter-spacing: 0px;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 header {
@@ -22,7 +24,7 @@ header {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 20px 50px 20px 50px;
     position: absolute;
     top: 0;
     left: 0;
@@ -35,11 +37,12 @@ header {
 }
 
 main {
-    margin-top: 145px;
+    padding: 120px 0px 0px 0px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100vw;
 }
 
 @media screen and (max-width: 768px) {

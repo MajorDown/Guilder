@@ -8,7 +8,7 @@ type LinkButtonProps = {
 }
 
 const LinkButton = (props: LinkButtonProps): JSX.Element => {
-    return (<div className={Style.container}>
+    return (
         <Link className={`${Style.LinkButton} ${Style[props.color ?? 'dark']}`} href="/">
             <p>{props.text}</p>
             <Image
@@ -18,7 +18,6 @@ const LinkButton = (props: LinkButtonProps): JSX.Element => {
                 height={24}
             />
         </Link>
-    </div>
     );
 }
 

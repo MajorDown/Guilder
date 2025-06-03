@@ -1,10 +1,6 @@
-.container {
-    display: flex;
-    width: fit-content;
-}
-
 .LinkButton {
-    height: 70px;
+    height: 60px;
+    min-width: fit-content;
     display: flex;
     flex-direction: row;
     justify-content: center;
