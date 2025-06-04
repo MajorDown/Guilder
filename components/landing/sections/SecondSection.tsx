@@ -5,20 +5,23 @@ import Style from "@/styles/components/landing/SecondSection.module.css";
 
 const SecondSection = ():JSX.Element => {
     return (
-        <WhiteSection
-            left={<>
-                <SectionTitle title={"Second Section"} />
-            </>}
-            right={<>
+        <WhiteSection>
+            <div className={Style.leftPart}>
+                <SectionTitle title={"A propos"} />
+                <p className={Style.description}>
+                    Une <span>solution</span> numérique & <span>innovente</span>.
+                </p>
+            </div>
+            <div className={Style.rightPart}>
                 <Image
                     id={Style.mockupMobile}
                     src={"/images/landing/desktop/mockup_mobile.webp"}
                     alt={"mockup mobile"}
-                    width={2580/2}
-                    height={1964/2}
+                    width={2580}
+                    height={1964}
                 />
-            </>}
-        />
+            </div>
+        </WhiteSection>
     )
 }
 

@@ -1,19 +1,13 @@
-import { ReactNode } from 'react';
+import { ReactNode, PropsWithChildren} from 'react';
 import Style from '@/styles/components/landing/WhiteSection.module.css';
-
-type WhiteSectionProps = {
-    left: ReactNode;
-    right: ReactNode;
-};
 
 /**
  * @returns une section blanche avec deux parties
  */
-const WhiteSection = ({ left, right }: WhiteSectionProps): JSX.Element => {
+const WhiteSection = (props: PropsWithChildren): JSX.Element => {
     return (
         <section className={Style.WhiteSection}>
-            <div className={Style.leftPart}>{left}</div>
-            <div className={Style.rightPart}>{right}</div>
+            {props.children}
         </section>
     );
 };

@@ -1,4 +1,31 @@
+.leftPart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 60vw;
+    padding-left: 100px;
+}
+
+.rightPart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
 #mockupMobile {
-    width: 100%;
+    width: 40vw;
     height: auto;
+}
+
+.description {
+    padding: 50px 0px 50px 0px;
+    font-size: 50px;
+    font-weight: 600;
+}
+
+.description span {
+    font-weight: 600;
+    color: var(--color-light)
 }
