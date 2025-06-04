@@ -1,22 +1,25 @@
+import Image from "next/image";
+import SectionTitle from "../UI/SectionTitle";
 import WhiteSection from "./WhiteSection";
+import Style from "@/styles/components/landing/SecondSection.module.css";
 
 const SecondSection = ():JSX.Element => {
     return (
         <WhiteSection
-            left={
-                <>
-                    <h2>Une plateforme de gestion de projet</h2>
-                    <p>
-                        Notre plateforme vous permet de gérer vos projets de manière efficace et collaborative.
-                        Suivez l'avancement, assignez des tâches et collaborez avec votre équipe en temps réel.
-                    </p>
-                </>
-            }
-            right={
-                <img src="/images/landing/second-section.png" alt="Gestion de projet" />
-            }
+            left={<>
+                <SectionTitle title={"Second Section"} />
+            </>}
+            right={<>
+                <Image
+                    id={Style.mockupMobile}
+                    src={"/images/landing/desktop/mockup_mobile.webp"}
+                    alt={"mockup mobile"}
+                    width={2580/2}
+                    height={1964/2}
+                />
+            </>}
         />
     )
 }
 
-export default SecondSection
+export default SecondSection;

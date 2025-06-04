@@ -47,11 +47,6 @@ main {
     width: 100vw;
 }
 
-h2 {
-    font-size: 12px;
-    color: var(--color-light);
-}
-
 
 @media screen and (max-width: 768px) {
     header {
