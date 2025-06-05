@@ -11,6 +11,9 @@ const SecondSection = ():JSX.Element => {
                 <p className={Style.description}>
                     Une <span>solution</span> numérique & <span>innovente</span>.
                 </p>
+                <p className={Style.subText}>
+                    Une application numérique qui permet aux <span>agriculteurs</span> de gérer <span>facilement</span> et efficacement leurs échanges de travail et de matériels
+                </p>
             </div>
             <div className={Style.rightPart}>
                 <Image

@@ -3,20 +3,31 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    width: 60vw;
-    padding-left: 100px;
+    width: 50vw;
+    height: 100%;
+    background-color: bisque;
 }
 
 .rightPart {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: flex-end;
+    height: 100%;
+    background-color: darkkhaki;
 }
 
 #mockupMobile {
     width: 40vw;
     height: auto;
+}
+
+.subText {
+    font-size: 24px;
+}
+
+.subText span {
+    font-weight: 600;
 }
 
 .description {
