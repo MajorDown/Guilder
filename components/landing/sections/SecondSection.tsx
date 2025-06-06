@@ -1,7 +1,8 @@
 import Image from "next/image";
 import SectionTitle from "../UI/SectionTitle";
 import WhiteSection from "./WhiteSection";
-import Style from "@/styles/components/landing/SecondSection.module.css";
+import Style from "@/styles/components/landing/WhiteSection.module.css";
+import LinkButton from "../UI/LinkButton";
 
 const SecondSection = ():JSX.Element => {
     return (
@@ -14,6 +15,7 @@ const SecondSection = ():JSX.Element => {
                 <p className={Style.subText}>
                     Une application numérique qui permet aux <span>agriculteurs</span> de gérer <span>facilement</span> et efficacement leurs échanges de travail et de matériels
                 </p>
+                <LinkButton text={"Créer un compte"} color={"light"} />
             </div>
             <div className={Style.rightPart}>
                 <Image

@@ -8,12 +8,14 @@
     align-items: center;
     text-align: center;
     border-radius: 50px;
-    background-color: var(--color-dark);
+    background-image: url('/images/landing/desktop/title_background.webp');
+    background-size: cover;
 }
 
 #TitleSection h1 {
     color: var(--color-global);
     font-size: 96px;
+    font-weight: 600;
     letter-spacing: -3px;
     margin: 100px 0px 50px 0px;
 }

@@ -2,7 +2,59 @@
     position: relative;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     margin-top: 50px;
+    width: 100%;
+    height: fit-content;
 }
+
+.leftPart {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-left: 8vw;
+    width: 60vw;
+    height: 100%;
+    z-index: 2;
+}
+
+.rightPart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    height: fit-content;
+    z-index: 1;
+    overflow: hidden;
+}
+
+#mockupMobile {
+    position: relative;
+    right: -150px;
+    width: 65vw;
+    height: auto;
+}
+
+.subText {
+    font-size: 1.5vw;
+    padding: 50px 0px
+}
+
+.subText span {
+    font-weight: 600;
+}
+
+.description {
+    padding: 50px 0px 0px 0px;
+    font-size: 3vw;
+    font-weight: 600;
+}
+
+.description span {
+    font-weight: 600;
+    color: var(--color-green)
+}
+
+@media screen and (max-width: 768px) {}
