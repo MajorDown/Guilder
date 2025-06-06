@@ -14,7 +14,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    padding-left: 8vw;
+    padding-left: var(--pad-section);
     width: 60vw;
     height: 100%;
     z-index: 2;
@@ -48,7 +48,7 @@
 
 .description {
     padding: 50px 0px 0px 0px;
-    font-size: 3vw;
+    font-size: var(--size-bigTxt);
     font-weight: 600;
 }
 

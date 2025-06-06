@@ -2,9 +2,11 @@
     --color-global: #ffffff;
     --color-dark: #3B564D;
     --color-light: #E4FFD6;
-    --color-green: #A7CC92;
+    --color-green: #99bc85;
     --color-form: #D3D4CC;
     --color-grey: #D3D4CC;
+    --pad-section: 8vw;
+    --size-bigTxt: 3vw;
 }
 
 * {
@@ -25,7 +27,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px 50px 20px 50px;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
