@@ -1,12 +1,15 @@
 .GreenSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
     position: relative;
     width: 100%;
-    padding: 100px 0px;
-    height: fit-content;
+    padding: 100px 0px 220px 0px;
     background-color: var(--color-light);
     overflow: hidden;
-    height: 1500px;
     z-index: 0;
+    margin-bottom: 30px;
 }
 
 #ThirdSection {}
@@ -42,22 +45,20 @@
 .GreenSection::after {
     content: "";
     position: absolute;
-    width: 230vw;
-    height: 230vw;
-    left: -65.5vw;
+    width: 300vw;
+    height: 300vw;
+    left: -100vw;
     background-color: var(--color-global);
     border-radius: 50%;
     z-index: 1;
 }
 
 .GreenSection::before {
-    top: -205vw;
-    transform: rotate(180deg);
-    /* effet inversé pour le haut */
+    top: -280vw;
 }
 
 .GreenSection::after {
-    bottom: -198vw;
+    bottom: -290vw;
 }
 
 .sectionContainer {
@@ -65,8 +66,11 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
+    gap: 1.86vw;
     margin-top: 100px;
-    gap:
+    width: 85vw;
+    z-index: 2;
 }
 
 .sectionContainer div {
@@ -74,61 +78,141 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-start;
-    background-size: contain;
-    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 5%;
+}
+
+.sectionContainer div h3 {
+    font-size: var(--size-bigTxt);
+    font-weight: 600;
+    color: var(--color-global);
+    margin-bottom: 20px;
+    width: 75%;
+}
+
+.sectionContainer div h3 span {
+    color: var(--color-light);
+}
+
+.sectionContainer div p {
+    color: var(--color-global);
+    width: 60%;
 }
 
 #first {
-    width: 40vw;
-    height: 38.5vw;
+    width: 41.57vw;
+    height: 40.16vw;
     background-image: url('/images/landing/desktop/why_1.webp');
 }
 
 #second {
-    width: 40vw;
-    height: 38.5vw;
+    width: 41.57vw;
+    height: 40.16vw;
     background-image: url('/images/landing/desktop/why_2.webp');
 }
 
 #third {
-    width: 80vw;
-    height: 30vw;
+    width: 100%;
+    height: 27.76vw;
     background-image: url('/images/landing/desktop/why_3.webp');
 }
 
-@media screen and (max-width: 996px) {
-
+@media screen and (max-width: 1350px) {
     .GreenSection::before {
-        top: -200vw;
+        top: -275vw;
+    }
+}
+
+@media screen and (max-width: 996px) {
+    .GreenSection::before {
+        top: -270vw;
     }
 
     .GreenSection::after {
-        bottom: -200vw;
+        bottom: -285vw;
     }
+
 }
 
 @media screen and (max-width: 768px) {
-
     .GreenSection::before {
-        top: -195vw;
-        left: -67.5vw;
+        top: -265vw;
     }
 
     .GreenSection::after {
-        bottom: -200vw;
-        left: -67.5vw;
+        bottom: -275vw;
+    }
+
+    .sectionContainer {
+        width: 100vw;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        justify-content: flex-start;
+        scroll-snap-type: none !important;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        /* Firefox */
+        -ms-overflow-style: none;
+        padding: 0 15vw;
+        /* scroll-padding-left: 15vw; */
+    }
+
+    .sectionContainer::-webkit-scrollbar {
+        display: none;
+        /* Chrome/Safari */
+    }
+
+    .sectionContainer div {
+        flex: 0 0 auto;
+        scroll-snap-align: unset;
+    }
+
+    #first {
+        width: 70vw;
+        height: 67.96vw;
+        background-image: url('/images/landing/mobile/why_1.webp');
+    }
+
+    #second {
+        width: 70vw;
+        height: 67.96vw;
+        background-image: url('/images/landing/mobile/why_2.webp');
+    }
+
+    #third {
+        width: 70vw;
+        height: 67.96vw;
+        background-image: url('/images/landing/mobile/why_3.webp');
+    }
+
+    .sectionContainer div h3 {
+        font-size: var(--size-bigTxt-mobile);
+    }
+
+    .sectionContainer div p {
+        font-size: 3vw;
     }
 }
 
-@media screen and (max-width: 575px) {
-
+@media screen and (max-width: 576px) {
     .GreenSection::before {
-        top: -190vw;
-        left: -69vw;
+        top: -260vw;
     }
 
     .GreenSection::after {
-        bottom: -200vw;
-        left: -69vw;
+        bottom: -265vw;
     }
+}
+
+@media screen and (max-width: 480px) {
+
+    .GreenSection::before {
+        top: -250vw;
+    }
+
+    .GreenSection::after {
+        bottom: -265vw;
+    }
+
 }

@@ -14,8 +14,12 @@
 }
 
 @media screen and (max-width: 768px) {
+    .SectionTitle {
+        gap: 10px;
+    }
+
     .SectionTitle h2 {
-        font-size: 10px;
+        font-size: 2.5vw;
     }
 
     .SectionTitle img {

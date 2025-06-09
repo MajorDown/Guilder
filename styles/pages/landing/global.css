@@ -7,6 +7,7 @@
     --color-grey: #D3D4CC;
     --pad-section: 8vw;
     --size-bigTxt: 3vw;
+    --size-bigTxt-mobile: 5vw;
 }
 
 * {
@@ -63,7 +64,7 @@ main {
     }
 
     main {
-        padding: 10px;
+        padding: 10px 0px 0px 0px;
         top: -80px
     }
 

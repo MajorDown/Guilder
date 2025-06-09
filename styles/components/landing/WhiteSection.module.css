@@ -57,4 +57,38 @@
     color: var(--color-green)
 }
 
-@media screen and (max-width: 768px) {}
+@media screen and (max-width: 768px) {
+    .WhiteSection {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 50px;
+        width: 100%;
+        height: fit-content;
+    }
+
+    .leftPart {
+        width: 80%;
+        padding: 0 15%;
+        align-items: center;
+    }
+
+    .subText {
+        font-size: 3vw;
+        text-align: center;
+        padding: 30px 0px 30px 0px;
+    }
+
+    .description {
+        font-size: var(--size-bigTxt-mobile);
+        text-align: center;
+        padding: 30px 0px 0px 0px;
+    }
+
+    #mockupMobile {
+        right: 0px;
+        padding-top: 10px;
+    }
+}

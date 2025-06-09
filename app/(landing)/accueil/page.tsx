@@ -7,8 +7,7 @@ const Accueil = (): JSX.Element => {
         <TitleSection />
         <SecondSection />
         <ThirdSection />
-    </>
-    )
+    </>)
 }
 
 export default Accueil;
