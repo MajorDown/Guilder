@@ -12,6 +12,10 @@
     margin-bottom: 30px;
 }
 
+.GreenSection * {
+    z-index: 2;
+}
+
 #ThirdSection {}
 
 #titleWrapper {
@@ -117,9 +121,56 @@
     background-image: url('/images/landing/desktop/why_3.webp');
 }
 
+/*********FiFthSection*********/
+#FifthSection {}
+
+#quoteImage {
+    position: absolute;
+    top: 18vw;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#commentsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 75vw;
+    height: 45vw;
+    gap: 5vw
+}
+
+#commentsContainer div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px
+}
+
+#firstComment,
+#thirdComment {
+    transform: translateY(15vw);
+}
+
+#secondComment {
+    transform: translateY(8vw);
+}
+
+#commentsContainer div p {
+    text-align: center;
+    font-size: 1.5vw;
+    font-weight: 600;
+}
+
 @media screen and (max-width: 1350px) {
     .GreenSection::before {
         top: -275vw;
+    }
+
+    #quoteImage {
+        top: 22vw;
     }
 }
 
@@ -130,6 +181,23 @@
 
     .GreenSection::after {
         bottom: -285vw;
+    }
+
+    #commentsContainer {
+        height: 55vw
+    }
+
+    #quoteImage {
+        top: 27vw;
+    }
+
+    #firstComment,
+    #thirdComment {
+        transform: translateY(20vw);
+    }
+
+    #secondComment {
+        transform: translateY(12vw);
     }
 
 }
@@ -146,9 +214,9 @@
     .sectionContainer {
         width: 100vw;
         flex-wrap: nowrap;
+        justify-content: flex-start;
         overflow-x: auto;
         overflow-y: hidden;
-        justify-content: flex-start;
         scroll-snap-type: none !important;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
@@ -191,7 +259,43 @@
     }
 
     .sectionContainer div p {
-        font-size: 3t vw;
+        font-size: 3vw;
+    }
+
+    #commentsContainer {
+        height: 110vw;
+        width: 100vw;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: none !important;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        /* Firefox */
+        -ms-overflow-style: none;
+        padding: 0 15vw;
+        /* scroll-padding-left: 15vw; */
+    }
+
+    #commentsContainer div {
+        transform: translateY(20vw);
+        scroll-snap-align: unset;
+    }
+
+    #commentsContainer div img {
+        width: 200px;
+        height: 200px;
+    }
+
+    #commentsContainer div p {
+        font-size: 3vw;
+    }
+
+    #quoteImage {
+        width: 60px;
+        height: 36.6px;
+        top: 32vw;
     }
 }
 
@@ -203,6 +307,10 @@
     .GreenSection::after {
         bottom: -275vw;
     }
+
+    #quoteImage {
+        top: 35vw;
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -213,6 +321,10 @@
 
     .GreenSection::after {
         bottom: -265vw;
+    }
+
+    #quoteImage {
+        top: 45vw;
     }
 
 }
