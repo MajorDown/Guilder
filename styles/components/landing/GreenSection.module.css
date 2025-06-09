@@ -191,7 +191,7 @@
     }
 
     .sectionContainer div p {
-        font-size: 3vw;
+        font-size: 3t vw;
     }
 }
 
@@ -201,7 +201,7 @@
     }
 
     .GreenSection::after {
-        bottom: -265vw;
+        bottom: -275vw;
     }
 }
 

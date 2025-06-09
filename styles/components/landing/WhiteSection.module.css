@@ -30,6 +30,62 @@
     overflow: hidden;
 }
 
+#FourthSection a {
+    position: relative;
+}
+
+#FourthSection a {
+    position: absolute;
+    bottom: -2vw;
+    left: var(--pad-section);
+}
+
+#contactUsImage {
+    width: 38vw;
+    height: 41.62vw;
+    background-image: url('/images/landing/desktop/optimise.webp');
+    background-size: cover;
+}
+
+#FourthSection .rightPart {
+    padding-left: 5vw;
+    align-items: flex-start;
+}
+
+#FourthSection ol {
+    margin-top: 50px;
+    list-style: none;
+    counter-reset: custom-counter;
+    padding-left: 0;
+}
+
+#FourthSection ol li {
+    position: relative;
+    counter-increment: custom-counter;
+    padding-left: 40px;
+    position: relative;
+    margin-bottom: 30px;
+    width: 80%;
+}
+
+#FourthSection ol li::before {
+    content: counter(custom-counter);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2rem;
+    height: 2rem;
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5vw;
+    font-weight: bold;
+}
+
 #mockupMobile {
     position: relative;
     right: -150px;
@@ -90,5 +146,37 @@
     #mockupMobile {
         right: 0px;
         padding-top: 10px;
+    }
+
+    #FourthSection {
+        margin-top: -70px;
+        flex-direction: column-reverse;
+    }
+
+    #FourthSection .rightPart {
+        align-items: center;
+    }
+
+    #FourthSection ol li {
+        text-align: center;
+        padding-bottom: 20px;
+    }
+
+    #FourthSection ol li::before {
+        position: absolute;
+        left: 53%;
+        top: -20px;
+        font-size: var(--size-bigTxt-mobile)-3;
+    }
+
+    #contactUsImage {
+        background-image: url('/images/landing/mobile/optimise.webp');
+        height: 14.88vw;
+    }
+
+    #FourthSection a {
+        position: relative;
+        bottom: 6vw;
+        left: 0;
     }
 }

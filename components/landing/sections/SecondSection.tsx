@@ -6,7 +6,7 @@ import LinkButton from "../UI/LinkButton";
 
 const SecondSection = ():JSX.Element => {
     return (
-        <WhiteSection>
+        <WhiteSection id={Style.SecondSection}>
             <div className={Style.leftPart}>
                 <SectionTitle title={"A propos"} />
                 <p className={Style.description}>

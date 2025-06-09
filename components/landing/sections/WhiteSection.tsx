@@ -1,12 +1,16 @@
 import { ReactNode, PropsWithChildren} from 'react';
 import Style from '@/styles/components/landing/WhiteSection.module.css';
 
+type WhiteSectionprops = PropsWithChildren<{
+    id?: string;
+}>;
+
 /**
  * @returns une section blanche avec deux parties
  */
-const WhiteSection = (props: PropsWithChildren): JSX.Element => {
+const WhiteSection = (props: WhiteSectionprops): JSX.Element => {
     return (
-        <section className={Style.WhiteSection}>
+        <section id={props.id? props.id : ''} className={Style.WhiteSection}>
             {props.children}
         </section>
     );
