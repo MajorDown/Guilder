@@ -96,6 +96,7 @@
 
 .sectionContainer div h3 span {
     color: var(--color-light);
+    font-weight: 600;
 }
 
 .sectionContainer div p {

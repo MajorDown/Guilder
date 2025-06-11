@@ -8,13 +8,7 @@
     text-align: center;
     font-size: var(--size-bigTxt);
     font-weight: 600;
-}
-
-.description {
-    text-align: center;
-    font-size: var(--size-bigTxt);
-    font-weight: 400;
-    color: var(--color-dark);
+    width: 60%;
 }
 
 #resume span {

@@ -113,6 +113,75 @@
     color: var(--color-green)
 }
 
+#SeventhSection {
+    margin-top: 150px;
+    flex-direction: column;
+}
+
+.testimonialContainer {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5vw;
+}
+
+#LinkToVideo {
+    width: 55vw;
+    height: 39.09vw;
+    background-image: url('/images/landing/desktop/linkToVideo.png');
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+}
+
+#testimonial {
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px
+}
+
+#testimonial p {
+    width: 100%;
+    text-align: start;
+    font-size: 1.2vw;
+    margin-top: 20px
+}
+
+#testimonial p span {
+    font-weight: 800;
+}
+
+#LinkToVideo img {
+    transition: 0.2s;
+}
+
+#LinkToVideo:hover img {
+    transform: scale(1.4);
+}
+
+@media screen and (max-width: 996px) {
+    .testimonialContainer {
+        flex-direction: column;
+    }
+
+    #testimonial {
+        width: 60vw;
+    }
+
+    #testimonial p {
+        font-size: 2.5vw;
+        text-align: center;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .WhiteSection {
         position: relative;
@@ -178,5 +247,11 @@
         position: relative;
         bottom: 6vw;
         left: 0;
+    }
+
+    #LinkToVideo {
+        width: 80vw;
+        height: 57.36vw;
+        background-image: url('/images/landing/mobile/linkToVideo.png');
     }
 }
