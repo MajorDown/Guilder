@@ -1,0 +1,177 @@
+#section_membres {
+    width: 100%;
+    height: 50vh;
+    overflow-y: auto;
+}
+
+#membersManager {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#membersList {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 50vh;
+    margin-bottom: 50px;
+}
+
+#membersList ul {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#membersList select,
+#membersList select option {
+    color: var(--color-dark);
+    font-weight: 600;
+    margin: 20px;
+    text-align: center;
+}
+
+.memberCard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    min-width: 490px;
+    margin-bottom: 5px;
+}
+
+
+.memberCardResume {
+    display: flex;
+    background-color: var(--color-form);
+    width: 88%;
+}
+
+.memberCardResume p {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--color-dark);
+    font-weight: 800;
+}
+
+.memberName {
+    font-size: var(--size-font-mini);
+    padding: 10px 0;
+    width: 35%;
+    border-right: 1px solid var(--color-dark);
+}
+
+.memberCounter {
+    width: 30%;
+    border-right: 1px solid var(--color-dark);
+    font-size: var(--size-font);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.memberCounter.red {
+    color: rgb(168, 0, 0);
+}
+
+
+.memberContact {
+    width: 35%;
+    min-width: 110px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.memberContact p {
+    padding: 5px 0px;
+}
+
+.memberMail {
+    font-size: var(--size-font-mini);
+}
+
+.memberCard button {
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background-color: transparent;
+    border: none;
+}
+
+.deleteMemberBtn {
+    padding: 0 5px;
+}
+
+.deleteMemberBtn p {
+    font-size: var(--size-font-mini);
+}
+
+#membersSignupForm {
+    width: 80%;
+    min-width: 400px;
+}
+
+#societyName .wrapper-vertical {
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 996px) {
+
+    .memberCard {
+        min-width: 80vw;
+    }
+
+    .deleteMemberBtn p {
+        font-size: var(--size-font-mobile);
+    }
+
+    .memberName,
+    .memberCounter,
+    .memberPhone {
+        font-size: var(--size-font-mobile);
+    }
+
+    .memberMail,
+    .memberPhone {
+        padding: 5px 0px;
+    }
+
+    .memberMail {
+        font-size: 1.2vw;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+
+    .memberCardResume {
+        width: 85%
+    }
+
+    .memberCard {
+        min-width: 95vw;
+        justify-content: flex-start;
+    }
+
+    .memberMail {
+        font-size: 1.4vw;
+    }
+
+    .memberCard button p {
+        display: none;
+    }
+
+}

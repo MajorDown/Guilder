@@ -1,0 +1,40 @@
+#appTitle {
+    padding-left: 5vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#welcomer {
+    padding-right: 5vw;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+#welcomerLine {
+    text-align: right;
+}
+
+@media screen and (max-width: 768px) {
+
+    #appTitle {
+        gap: 10px;
+        height: 100%;
+    }
+
+    #appTitle img {
+        width: 30px;
+        height: 46px
+    }
+
+    h1 {
+        font-size: var(--size-title-mobile);
+        line-height: 1vw;
+    }
+
+    #welcomer {
+        gap: 10px;
+    }
+}

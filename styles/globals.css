@@ -1,0 +1,177 @@
+/*GLOBALS*/
+
+:root {
+    --color-global: #ffffff;
+    --color-dark: #3B564D;
+    --color-light: #BAC7B5;
+    --color-green: #748678;
+    --color-form: #D3D4CC;
+    --color-grey: #D3D4CC;
+    --color-smokey-bg: rgba(7, 12, 18, 0.734);
+    --color-ok: #8bc58b;
+    --color-error: #cd8383;
+    --size-font: 1vw;
+    --size-font-mobile: 3vw;
+    --size-font-mini: 0.7vw;
+    --size-title: 2vw;
+    --size-title-mobile: 1vw;
+    --size-line-height: 24px;
+}
+
+* {
+    font-size: var(--size-font);
+    color: var(--color-global);
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    background-image: url(/images/backgrounds/background-accueil.jpg);
+    background-size: cover;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-top: 2vw;
+}
+
+main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    display: flex;
+    justify-content: flex-end;
+}
+
+h1,
+h2 {
+    text-transform: uppercase;
+    text-align: center;
+}
+
+h1 {
+    font-size: var(--size-title);
+}
+
+h2 {
+    font-size: var(--size-title);
+    margin: 20px 0px 20px 0px;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+.scrollable {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.scrollable::-webkit-scrollbar {
+    width: 12px;
+}
+
+.scrollable::-webkit-scrollbar-track {
+    background: var(--color-dark);
+    border: solid 1px var(--color-light);
+    border-radius: 6px;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+    background-color: var(--color-light);
+    border-radius: 6px;
+}
+
+@import url('animations.css');
+@import url('./components/UI/UINavLink.css');
+@import url('./components/UI/UIButton.css');
+@import url('./components/UI/UILink.css');
+@import url('./components/UI/UIHoursInput.css');
+@import url('./components/header.css');
+@import url('./components/sections.css');
+@import url('./components/forms.css');
+@import url('./components/main.css');
+@import url('./pages/god.css');
+@import url('./pages/accueil.css');
+@import url('./pages/connexion.css');
+@import url('./pages/inscription.css');
+@import url('./pages/lostPassword.css');
+@import url('./pages/guildRules.css');
+@import url('./pages/aide.css');
+@import url('./pages/mentions-legales.css');
+@import url('./pages/admin/outils.css');
+@import url('./pages/admin/membres.css');
+@import url('./pages/admin/arbitrage.css');
+@import url('./pages/membre/contestation.css');
+@import url('./pages/membre/declaration.css');
+@import url('./pages/membre/soldes.css');
+@import url('./pages/membre/historique.css');
+@import url('./pages/options.css');
+@import url('./components/footer.css');
+
+/**********BREAKPOINT:996PX**********/
+
+@media screen and (max-width: 996px) {
+
+    body {
+        background-image: none;
+        background-color: var(--color-dark);
+        flex-direction: column;
+    }
+
+    header {
+        position: relative;
+        height: 100px;
+    }
+
+    main {
+        position: relative;
+        flex-grow: 1;
+        flex-direction: column;
+    }
+
+    footer {
+        position: relative;
+        height: 50px;
+    }
+
+}
+
+/**********BREAKPOINT:768PX**********/
+
+@media screen and (max-width: 768px) {
+    * {
+        font-size: var(--size-font-mobile);
+    }
+}

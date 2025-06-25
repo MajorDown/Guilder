@@ -1,0 +1,45 @@
+.UILink {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 2px;
+    text-decoration: none;
+    padding: 15px 40px;
+    gap: 10px;
+}
+
+.UILink:hover p {
+    text-decoration: underline;
+}
+
+.UILink.white {
+    background-color: var(--color-global);
+}
+
+.UILink.light {
+    background-color: var(--color-light);
+}
+
+.UILink.white p,
+.UILink.light p {
+    color: var(--color-dark);
+}
+
+.UILink.green {
+    background-color: var(--color-green);
+}
+
+.UILink.dark {
+    background-color: var(--color-dark);
+}
+
+.UILink p {
+    text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+    .UILink {
+        padding: 10px 10px;
+        gap: 5px;
+    }
+}

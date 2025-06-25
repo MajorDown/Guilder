@@ -1,0 +1,58 @@
+#configManager {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60vh;
+}
+
+#configOptionsList {
+    padding: 50px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#configLister {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.configCard {
+    background-color: var(--color-form);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    padding: 5px 0;
+    margin: 10px 0;
+}
+
+.configCard p {
+    color: var(--color-dark);
+    font-weight: 800;
+}
+
+#configOptionsForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    min-width: 450px;
+}
+
+#configOptionsForm form {
+    width: 100%;
+}
+
+.UIOptionNameInput,
+.UIOptionCoefInput {
+    width: 85%;
+}

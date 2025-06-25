@@ -1,0 +1,65 @@
+#section_historique p {
+    text-align: center;
+    margin: 10px 0;
+}
+
+#interventionsLister {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
+}
+
+#interventionsLister select {
+    margin: 10px auto;
+}
+
+#interventionsLister ul {
+    width: 100%;
+    height: 50vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.interventionCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-form);
+    width: 100%;
+    margin: 10px 0;
+}
+
+.interventionCard p {
+    font-size: var(--size-font-mini);
+    color: var(--color-dark);
+    font-weight: 800;
+}
+
+.interventionCardResume {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.interventionDate {
+    width: 15%;
+}
+
+.interventionLog {
+    width: 50%;
+}
+
+.interventionCredit {
+    width: 25%;
+}
+
+.interventionCardResume button {
+    width: 10%;
+    background-color: var(--color-form);
+}

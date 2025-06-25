@@ -1,0 +1,208 @@
+#section_right_background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    width: 50%;
+    height: 100%;
+    background-color: var(--color-dark);
+    animation: comeToRight 1s;
+}
+
+#section_left_background.isAdmin {
+    background-image: url(/images/backgrounds/background-admin.jpg);
+    background-size: cover;
+}
+
+#section_left_background.isMember {
+    background-image: url(/images/backgrounds/background-membre.jpg);
+    background-size: cover;
+}
+
+#section_left_background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 50%;
+    height: 100%;
+    animation: comeToLeft 1s;
+}
+
+.section_left {
+    width: 50%;
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 1s;
+}
+
+.section_right {
+    width: 50%;
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    transition: 1s;
+}
+
+.section_content {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+}
+
+.section_content p {
+    max-width: 80%;
+    text-align: center;
+}
+
+.section_right .section_content {
+    min-height: 75vh;
+}
+
+.pseudoTitle {
+    font-size: var(--size-title);
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: 20px 0px;
+}
+
+/**********NAVIGATION**********/
+
+#pageLogo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#pageLogo a {
+    margin: 100px 0 30px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#section_navigation {
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#AppNavBarForMobile {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    background-color: none;
+}
+
+#AppNavBarForMobile button {
+    background-color: transparent;
+    border: none;
+    color: var(--color-dark);
+}
+
+#appNavbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+}
+
+#appNavbar a {
+    background-color: var(--color-dark);
+    width: 25%;
+    aspect-ratio: 1/1;
+    transition: 0.3s;
+}
+
+#appNavbar a p {
+    margin-top: 10px;
+}
+
+#appNavbar .isactive {
+    background-color: var(--color-form);
+}
+
+#appNavbar .isactive p {
+    color: var(--color-dark);
+    font-weight: 700;
+}
+
+#appNavbar a img {
+    width: 100;
+    height: 100;
+}
+
+@media screen and (max-width: 1250px) {
+
+    #appNavbar a img {
+        width: 50px;
+        height: 50px;
+    }
+
+    #appNavbar a p {
+        margin-top: 5px;
+    }
+}
+
+/**********BREAKPOINT:996PX**********/
+
+@media screen and (max-width: 996px) {
+
+    #section_left_background,
+    #section_right_background {
+        display: none;
+    }
+
+    .section_left {
+        width: 100%;
+    }
+
+    .section_right {
+        width: 100%;
+    }
+
+    .section_content {
+        padding: 0px 20px
+    }
+
+    .page_logo,
+    .pseudoTitle {
+        display: none;
+    }
+
+    #pageLogo {
+        display: none;
+    }
+
+    #section_navigation {
+        margin-top: 20px;
+        height: 150px;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+    }
+
+    #appNavbar {
+        width: 90%;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+
+    #section_navigation {
+        margin-top: 0px;
+        height: 100px;
+    }
+}

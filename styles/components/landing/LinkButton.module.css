@@ -1,0 +1,89 @@
+.LinkButton {
+    height: 60px;
+    min-width: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 0 25px;
+    border: none;
+    border-radius: 50px;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.LinkButton:hover {
+    cursor: pointer;
+}
+
+.LinkButton p {
+    position: relative;
+    transition: color 0.2s;
+    font-weight: 600;
+}
+
+.LinkButton p::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background-color: currentColor;
+    transition: width 0.2s;
+}
+
+.LinkButton:hover p::after {
+    width: 100%;
+}
+
+.dark {
+    background-color: var(--color-dark);
+}
+
+.dark p {
+    background-color: var(--color-dark);
+    color: var(--color-global)
+}
+
+.dark img {
+    background-color: var(--color-dark);
+}
+
+.light {
+    background-color: var(--color-light);
+}
+
+.light p {
+    background-color: var(--color-light);
+    color: var(--color-dark);
+}
+
+.light img {
+    background-color: var(--color-light);
+}
+
+.white {
+    background-color: var(--color-global);
+}
+
+.white p {
+    background-color: var(--color-global);
+    color: var(--color-dark);
+}
+
+.white img {
+    background-color: var(--color-global);
+}
+
+@media screen and (max-width: 768px) {
+    .LinkButton {
+        height: 40px;
+
+    }
+
+    .LinkButton p {
+        font-size: 14px;
+    }
+}

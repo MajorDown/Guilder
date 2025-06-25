@@ -1,0 +1,127 @@
+.godSection {
+    width: 95%;
+    height: 70vh;
+    background-color: rgba(0, 0, 0, 0.568);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
+    margin-top: 110px;
+    padding: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#guildNameSelector {
+    display: flex;
+    gap: 5px;
+}
+
+#adminSignupForm input {
+    padding: 5px;
+}
+
+#guildDataSelector {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+#guildDataList {
+    margin-top: 10px;
+}
+
+.dataCard {
+    width: 80vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    margin: 5px 0px;
+    padding: 5px 0px;
+}
+
+.dataCard p {
+    margin: 5px;
+}
+
+.dataName {
+    width: 300px;
+    text-align: start;
+}
+
+.dataCounter {
+    width: 100px;
+    text-align: center;
+}
+
+.dataMail {
+    width: 350px;
+    text-align: center;
+}
+
+.dataPhone {
+    width: 150px;
+    text-align: end;
+}
+
+.dataCoef {
+    width: 100px;
+    text-align: center;
+}
+
+.dataEnabled {
+    width: 100px;
+    text-align: end;
+}
+
+.dataDeclarationDate {
+    min-width: 260px;
+    text-align: start;
+}
+
+.dataInterventionDate {
+    min-width: 150px;
+    text-align: start;
+}
+
+.dataResume {
+    width: 500px;
+    text-align: center;
+}
+
+.dataHours {
+    width: 75px;
+    text-align: center;
+}
+
+.dataOptions {
+    width: 200px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.dataDescription {
+    width: 150px;
+    text-align: end;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dataContester {
+    width: 300px;
+    text-align: center;
+}
+
+.dataMessage {
+    width: 400px;
+    text-align: end;
+}

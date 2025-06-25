@@ -1,0 +1,211 @@
+#contestationArbitrer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    width: 100%;
+}
+
+.contestationArbCard {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-form);
+    width: 100%;
+}
+
+.contestationArbCard p {
+    text-align: center;
+    color: var(--color-dark);
+    font-weight: 800;
+    padding: 10px;
+}
+
+.contestationResume {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.contestationResume button {
+    padding: 10px;
+    background-color: var(--color-form);
+}
+
+.contestationResume button img {
+    transition: 0.3s;
+}
+
+button img.extended {
+    transform: rotate(43deg);
+}
+
+#interventionModifier {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
+    height: 550px;
+}
+
+#interventionModifier .wrapper-horizontal .wrapper-vertical {
+    justify-content: center;
+    align-items: center;
+}
+
+#workerInput,
+#payerInput {
+    width: 90%
+}
+
+.hoursModifier {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    width: 90%
+}
+
+#hoursInput {
+    width: 50px;
+}
+
+.optionsModifier {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    width: 90%
+}
+
+.option {
+    background-color: var(--color-global);
+    color: var(--color-dark);
+    font-size: 12px;
+    font-weight: 800;
+    padding: 5px;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.option img {
+    display: none;
+}
+
+.option.checked img {
+    display: block;
+}
+
+#optionsInput {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.UIOptionsSelector {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.UIOptionsSelected {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wantOptionsListBtn {
+    background-color: transparent;
+    padding: 0;
+}
+
+.wantOptionsListBtn img {
+    transition: 0.3s;
+}
+
+.doNot.wantOptionsListBtn img {
+    transform: rotate(180deg);
+}
+
+.UIOptionsList {
+    display: none;
+}
+
+.UIOptionsList.wanted {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 90%;
+    border: 1px solid var(--color-global);
+}
+
+#checkedConfigOptions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+    width: 90%
+}
+
+.option.checked {
+    background-color: var(--color-light);
+}
+
+.dateModifier,
+.descriptionModifier,
+.adminConclusion,
+.adminMessage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 90%;
+}
+
+.dateModifier input {
+    max-width: 150px;
+}
+
+#validationMsg {
+    padding: 10px;
+}
+
+#contestationBtns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+#errorMsg {
+    color: red;
+}
+
+@media screen and (max-width: 996px) {
+    .option {
+        font-size: 8px;
+    }
+}

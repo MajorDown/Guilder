@@ -1,0 +1,29 @@
+#section_declaration .verticalWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 0;
+}
+
+#section_declaration .verticalWrapper label p {
+    text-align: center;
+}
+
+#infosConfirmation {
+    max-width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+#declareBtn {
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    font-weight: 800;
+    border: none;
+    text-align: center;
+    padding: 10px 20px;
+    margin: 10px 0 20px 0;
+}

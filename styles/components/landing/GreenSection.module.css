@@ -1,0 +1,331 @@
+.GreenSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    padding: 100px 0px 220px 0px;
+    background-color: var(--color-light);
+    overflow: hidden;
+    z-index: 0;
+    margin-bottom: 30px;
+}
+
+.GreenSection * {
+    z-index: 2;
+}
+
+#ThirdSection {}
+
+#titleWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    z-index: 2;
+}
+
+#titleWrapper * {
+    z-index: 2;
+}
+
+#subTitle {
+    font-size: var(--size-bigTxt);
+    font-weight: 600;
+    width: 25vw;
+    text-align: center;
+}
+
+#subTitle span {
+
+    font-weight: 600;
+    color: var(--color-green);
+
+}
+
+.GreenSection::before,
+.GreenSection::after {
+    content: "";
+    position: absolute;
+    width: 300vw;
+    height: 300vw;
+    left: -100vw;
+    background-color: var(--color-global);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.GreenSection::before {
+    top: -280vw;
+}
+
+.GreenSection::after {
+    bottom: -290vw;
+}
+
+.sectionContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1.86vw;
+    margin-top: 100px;
+    width: 85vw;
+    z-index: 2;
+}
+
+.sectionContainer div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    background-size: cover;
+    padding: 5%;
+}
+
+.sectionContainer div h3 {
+    font-size: var(--size-bigTxt);
+    font-weight: 600;
+    color: var(--color-global);
+    margin-bottom: 20px;
+    width: 75%;
+}
+
+.sectionContainer div h3 span {
+    color: var(--color-light);
+    font-weight: 600;
+}
+
+.sectionContainer div p {
+    color: var(--color-global);
+    width: 60%;
+}
+
+#first {
+    width: 41.57vw;
+    height: 40.16vw;
+    background-image: url('/images/landing/desktop/why_1.webp');
+}
+
+#second {
+    width: 41.57vw;
+    height: 40.16vw;
+    background-image: url('/images/landing/desktop/why_2.webp');
+}
+
+#third {
+    width: 100%;
+    height: 27.76vw;
+    background-image: url('/images/landing/desktop/why_3.webp');
+}
+
+/*********FiFthSection*********/
+#FifthSection {}
+
+#quoteImage {
+    position: absolute;
+    top: 18vw;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#commentsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 75vw;
+    height: 45vw;
+    gap: 5vw
+}
+
+#commentsContainer div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px
+}
+
+#firstComment,
+#thirdComment {
+    transform: translateY(15vw);
+}
+
+#secondComment {
+    transform: translateY(8vw);
+}
+
+#commentsContainer div p {
+    text-align: center;
+    font-size: 1.5vw;
+    font-weight: 600;
+}
+
+@media screen and (max-width: 1350px) {
+    .GreenSection::before {
+        top: -275vw;
+    }
+
+    #quoteImage {
+        top: 22vw;
+    }
+}
+
+@media screen and (max-width: 996px) {
+    .GreenSection::before {
+        top: -270vw;
+    }
+
+    .GreenSection::after {
+        bottom: -285vw;
+    }
+
+    #commentsContainer {
+        height: 55vw
+    }
+
+    #quoteImage {
+        top: 27vw;
+    }
+
+    #firstComment,
+    #thirdComment {
+        transform: translateY(20vw);
+    }
+
+    #secondComment {
+        transform: translateY(12vw);
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    .GreenSection::before {
+        top: -265vw;
+    }
+
+    .GreenSection::after {
+        bottom: -275vw;
+    }
+
+    .sectionContainer {
+        width: 100vw;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: none !important;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        /* Firefox */
+        -ms-overflow-style: none;
+        padding: 0 15vw;
+        /* scroll-padding-left: 15vw; */
+    }
+
+    .sectionContainer::-webkit-scrollbar {
+        display: none;
+        /* Chrome/Safari */
+    }
+
+    .sectionContainer div {
+        flex: 0 0 auto;
+        scroll-snap-align: unset;
+    }
+
+    #first {
+        width: 70vw;
+        height: 67.96vw;
+        background-image: url('/images/landing/mobile/why_1.webp');
+    }
+
+    #second {
+        width: 70vw;
+        height: 67.96vw;
+        background-image: url('/images/landing/mobile/why_2.webp');
+    }
+
+    #third {
+        width: 70vw;
+        height: 67.96vw;
+        background-image: url('/images/landing/mobile/why_3.webp');
+    }
+
+    .sectionContainer div h3 {
+        font-size: var(--size-bigTxt-mobile);
+    }
+
+    .sectionContainer div p {
+        font-size: 3vw;
+    }
+
+    #commentsContainer {
+        height: 110vw;
+        width: 100vw;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: none !important;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        /* Firefox */
+        -ms-overflow-style: none;
+        padding: 0 15vw;
+        /* scroll-padding-left: 15vw; */
+    }
+
+    #commentsContainer div {
+        transform: translateY(20vw);
+        scroll-snap-align: unset;
+    }
+
+    #commentsContainer div img {
+        width: 200px;
+        height: 200px;
+    }
+
+    #commentsContainer div p {
+        font-size: 3vw;
+    }
+
+    #quoteImage {
+        width: 60px;
+        height: 36.6px;
+        top: 32vw;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .GreenSection::before {
+        top: -260vw;
+    }
+
+    .GreenSection::after {
+        bottom: -275vw;
+    }
+
+    #quoteImage {
+        top: 35vw;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    .GreenSection::before {
+        top: -250vw;
+    }
+
+    .GreenSection::after {
+        bottom: -265vw;
+    }
+
+    #quoteImage {
+        top: 45vw;
+    }
+
+}

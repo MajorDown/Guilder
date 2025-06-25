@@ -1,0 +1,257 @@
+.WhiteSection {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    width: 100%;
+    height: fit-content;
+}
+
+.leftPart {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-left: var(--pad-section);
+    width: 60vw;
+    height: 100%;
+    z-index: 2;
+}
+
+.rightPart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    height: fit-content;
+    z-index: 1;
+    overflow: hidden;
+}
+
+#FourthSection a {
+    position: relative;
+}
+
+#FourthSection a {
+    position: absolute;
+    bottom: -2vw;
+    left: var(--pad-section);
+}
+
+#contactUsImage {
+    width: 38vw;
+    height: 41.62vw;
+    background-image: url('/images/landing/desktop/optimise.webp');
+    background-size: cover;
+}
+
+#FourthSection .rightPart {
+    padding-left: 5vw;
+    align-items: flex-start;
+}
+
+#FourthSection ol {
+    margin-top: 50px;
+    list-style: none;
+    counter-reset: custom-counter;
+    padding-left: 0;
+}
+
+#FourthSection ol li {
+    position: relative;
+    counter-increment: custom-counter;
+    padding-left: 40px;
+    position: relative;
+    margin-bottom: 30px;
+    width: 80%;
+}
+
+#FourthSection ol li::before {
+    content: counter(custom-counter);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2rem;
+    height: 2rem;
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5vw;
+    font-weight: bold;
+}
+
+#mockupMobile {
+    position: relative;
+    right: -150px;
+    width: 65vw;
+    height: auto;
+}
+
+.subText {
+    font-size: 1.5vw;
+    padding: 50px 0px
+}
+
+.subText span {
+    font-weight: 600;
+}
+
+.description {
+    padding: 50px 0px 0px 0px;
+    font-size: var(--size-bigTxt);
+    font-weight: 600;
+}
+
+.description span {
+    font-weight: 600;
+    color: var(--color-green)
+}
+
+#SeventhSection {
+    margin-top: 150px;
+    flex-direction: column;
+}
+
+.testimonialContainer {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5vw;
+}
+
+#LinkToVideo {
+    width: 55vw;
+    height: 39.09vw;
+    background-image: url('/images/landing/desktop/linkToVideo.png');
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+}
+
+#testimonial {
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px
+}
+
+#testimonial p {
+    width: 100%;
+    text-align: start;
+    font-size: 1.2vw;
+    margin-top: 20px
+}
+
+#testimonial p span {
+    font-weight: 800;
+}
+
+#LinkToVideo img {
+    transition: 0.2s;
+}
+
+#LinkToVideo:hover img {
+    transform: scale(1.4);
+}
+
+@media screen and (max-width: 996px) {
+    .testimonialContainer {
+        flex-direction: column;
+    }
+
+    #testimonial {
+        width: 60vw;
+    }
+
+    #testimonial p {
+        font-size: 2.5vw;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .WhiteSection {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 50px;
+        width: 100%;
+        height: fit-content;
+    }
+
+    .leftPart {
+        width: 80%;
+        padding: 0 15%;
+        align-items: center;
+    }
+
+    .subText {
+        font-size: 3vw;
+        text-align: center;
+        padding: 30px 0px 30px 0px;
+    }
+
+    .description {
+        font-size: var(--size-bigTxt-mobile);
+        text-align: center;
+        padding: 30px 0px 0px 0px;
+    }
+
+    #mockupMobile {
+        right: 0px;
+        padding-top: 10px;
+    }
+
+    #FourthSection {
+        margin-top: -70px;
+        flex-direction: column-reverse;
+    }
+
+    #FourthSection .rightPart {
+        align-items: center;
+    }
+
+    #FourthSection ol li {
+        text-align: center;
+        padding-bottom: 20px;
+    }
+
+    #FourthSection ol li::before {
+        position: absolute;
+        left: 53%;
+        top: -20px;
+        font-size: var(--size-bigTxt-mobile)-3;
+    }
+
+    #contactUsImage {
+        background-image: url('/images/landing/mobile/optimise.webp');
+        height: 14.88vw;
+    }
+
+    #FourthSection a {
+        position: relative;
+        bottom: 6vw;
+        left: 0;
+    }
+
+    #LinkToVideo {
+        width: 80vw;
+        height: 57.36vw;
+        background-image: url('/images/landing/mobile/linkToVideo.png');
+    }
+}

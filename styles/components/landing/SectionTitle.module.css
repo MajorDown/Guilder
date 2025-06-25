@@ -1,0 +1,29 @@
+.SectionTitle {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 20px;
+}
+
+.SectionTitle h2 {
+    font-size: 1.5vw;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--color-green);
+}
+
+@media screen and (max-width: 768px) {
+    .SectionTitle {
+        gap: 10px;
+    }
+
+    .SectionTitle h2 {
+        font-size: 2.5vw;
+    }
+
+    .SectionTitle img {
+        width: 30px;
+        height: 17px;
+    }
+}

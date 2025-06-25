@@ -1,0 +1,103 @@
+.contratCard {
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid var(--color-global);
+    gap: 10px;
+}
+
+.infosLine {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.contactLine {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 10px;
+}
+
+.adress {
+    width: 40%
+}
+
+.tel {
+    width: 20%;
+}
+
+.mail {
+    width: 40%;
+}
+
+
+.name {
+    font-weight: 900;
+    width: 10%;
+}
+
+.package {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 25%;
+}
+
+.monthStart {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    width: 30%;
+}
+
+.duration {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 20%
+}
+
+.progressContainer {
+    height: 6px;
+    background: var(--color-global);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 8px;
+    width: 15%
+}
+
+.progressBar {
+    height: 100%;
+    background-color: var(--color-light);
+    transition: width 0.3s ease;
+}
+
+@media screen and (max-width: 768px) {
+    .infosLine {
+        flex-wrap: wrap;
+    }
+
+    .name {
+        width: 100%;
+        text-align: center;
+    }
+
+    .contratCard p {
+        font-size: 0.8rem;
+    }
+
+    .progressContainer {
+        display: none;
+    }
+}

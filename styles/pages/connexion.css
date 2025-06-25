@@ -1,0 +1,89 @@
+#section_connexion {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#loginFormSelector {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+#selector_buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-top: 20px;
+}
+
+.loginForm_button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+}
+
+.loginForm_button:hover {
+    background-color: rgba(255, 255, 255, 0.442);
+}
+
+.loginForm_button p {
+    width: 150px;
+    text-align: center;
+    font-weight: 800;
+    padding: 10px;
+    background-color: var(--color-light);
+    color: var(--color-dark);
+}
+
+#goBack {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 100px;
+}
+
+#loginFormSelector form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+}
+
+#formDescription {
+    max-width: 450px;
+    text-align: center;
+}
+
+#loginFormSelector form .UIEmailInput,
+#loginFormSelector form .UIPasswordInput {
+    background-color: var(--color-global);
+    border: none;
+    width: 370px;
+    height: 50px;
+    text-align: center;
+}
+
+#loginFormSelector .UIButton {
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    width: 370px;
+    height: 50px;
+    margin-top: 50px;
+}

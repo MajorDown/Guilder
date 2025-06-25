@@ -1,0 +1,23 @@
+#SixthSection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#resume {
+    text-align: center;
+    font-size: var(--size-bigTxt);
+    font-weight: 600;
+    width: 60%;
+}
+
+#resume span {
+    font-weight: 600;
+    color: var(--color-green);
+}
+
+@media screen and (max-width: 768px) {
+    .description {
+        font-size: var(--size-bigTxt-mobile);
+    }
+}

@@ -1,0 +1,10 @@
+.factureFilterBtn {
+    background-color: transparent;
+    display: flex;
+    padding: 5px;
+    justify-content: center;
+    align-items: center;
+    border: solid 1px var(--color-global);
+    border-radius: 5px;
+    color: var(--color-global);
+}

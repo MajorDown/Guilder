@@ -1,0 +1,204 @@
+.tabsLister {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 20px 0;
+    border-bottom: var(--color-form) 1px solid;
+    padding-bottom: 10px;
+}
+
+/**********OPTIONS:PASSWORD**********/
+
+#passwordUpdater {
+    width: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+#passwordUpdater form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%
+}
+
+#passwordUpdater input {
+    width: 200px;
+    padding: 5px;
+}
+
+#passwordUpdater form .wrapper-vertical {
+    align-items: center;
+    width: 100%;
+}
+
+#passwordUpdater label {
+    text-align: center;
+}
+
+.UIPasswordValidator {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+/**********OPTIONS:CONTESTATIONS**********/
+
+#contestationLister {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#contestationLister ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%
+}
+
+
+.contestationCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-form);
+    width: 100%;
+    margin: 5px;
+}
+
+.contestationCard p {
+    text-align: center;
+    color: var(--color-dark);
+    font-weight: 800;
+}
+
+.contestationCardResume {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.contestationDate {
+    width: 30%;
+}
+
+.contester {
+    width: 35%;
+}
+
+.status {
+    width: 20%;
+}
+
+.contestationCardResume button {
+    width: 5%
+}
+
+/**********OPTIONS:NEW-ADMIN**********/
+
+#newAdminForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 550px;
+    margin: 20px 0;
+}
+
+#newAdminForm p {
+    text-align: center;
+}
+
+#newAdminForm form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+#newAdminForm form .wrapper-vertical {
+    align-items: center;
+    width: 100%;
+}
+
+#newAdminForm form .wrapper-vertical input {
+    width: 200px;
+}
+
+#newAdminForm input {
+    margin: 0;
+}
+
+/**********OPTIONS:AUTHPERSISTENCEMANAGER**********/
+
+#authPersistenceManager {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 550px;
+}
+
+#authPersistenceManager .wrapper-horizontal {
+    align-items: flex-start;
+}
+
+#authPersistenceManager button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+/**********OPTIONS:REINITCOUNTS**********/
+
+#reinitCountsForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 550px;
+}
+
+#reinitCountsForm p {
+    text-align: center;
+}
+
+#reinitCountsForm form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+#reinitCountsForm .wrapper-vertical {
+    align-items: center;
+    width: 80%;
+}
+
+#reinitCountsForm .wrapper-vertical input {
+    max-width: 200px;
+}
