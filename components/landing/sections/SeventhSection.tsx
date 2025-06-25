@@ -25,10 +25,8 @@ const SeventhSection = (): JSX.Element => {
       </div>
 
       <Modal isOpen={showVideo} onClose={() => setShowVideo(false)}>
-        <video width="100%" height="auto" controls autoPlay>
-          <source src={'/videos/landing_presentation.mp4'} type="video/mp4" />
-          Votre navigateur ne supporte pas la lecture de vidéos HTML5.
-        </video>
+        {/** importation d'une vidéo youtube */}
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/wHa3MFw5hPs?si=bgkEysEMwzELYKaX" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
       </Modal>
     </WhiteSection>
   );

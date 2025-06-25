@@ -13,26 +13,24 @@
 
 .modal {
     position: relative;
-    background: white;
-    padding: 2vw;
-    max-width: 70vw;
+    max-width: 90vw;
     max-height: 90vh;
     overflow: auto;
 }
 
 .close {
     position: absolute;
-    top: 1vw;
+    top: 0.5vw;
     right: 1vw;
-    font-size: 2em;
+    font-size: 3em;
     background: none;
     border: none;
     cursor: pointer;
+    color: var(--color-global);
 }
 
-@media (max-width: 768px) {
-    .modal {
-        max-width: 90vw;
-        padding: 4vw;
-    }
+.modal iframe {
+    width: 80vw;
+    height: 40vw;
+    border: none;
 }
