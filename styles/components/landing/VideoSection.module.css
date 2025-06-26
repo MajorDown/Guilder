@@ -1,0 +1,14 @@
+#VideoSection {
+    margin: 20px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px
+}
+
+#VideoSection iframe {
+    width: 80vw;
+    height: 40vw;
+    border: none;
+}
