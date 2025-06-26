@@ -1,0 +1,30 @@
+#ContactSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+#ContactSection form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 600px;
+}
+
+#ContactSection form div {
+    display: flex;
+    gap: 10px;
+}
+
+#message {
+    flex-direction: column;
+}
+
+#ContactSection form * {
+    font-size: 16px;
+}
