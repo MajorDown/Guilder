@@ -5,8 +5,13 @@ export type ContactEmailData = {
     phone: string;
     message: string;
 }
-//requète coté front pour envoyer un email de contact
-const sendContactEmail = async (data: ContactEmailData) => {
+
+/**
+ * @decription Envoie un e-mail de contact avec les informations fournies.
+ * @param data - les informations du formulaire de contact
+ * @returns une promesse
+ */
+const sendContactEmail = async (data: ContactEmailData): Promise<Response> => {
     const response = await fetch("/api/contact/contactEmail/send", {
         method: "POST",
         headers: {

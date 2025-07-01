@@ -38,9 +38,12 @@ export type Admin = {
     guild: Guild,
     password: UserPassword;
     authPersistence?: boolean;
+    devices?: string[];
 }
 
-export type ConnectedAdmin = Omit<Admin, 'password'> & { token: string };
+//connectedAdmin est un admin connecté, sans mot de passe, sans devices et avec un token
+
+export type ConnectedAdmin = Omit<Admin, 'password' | 'devices'> & { token: string };
 
 export type AdminContext = {
     admin: ConnectedAdmin | null,
@@ -54,11 +57,12 @@ export type Member = {
     mail: UserMail,
     phone: UserPhone,
     guild: Guild,
-    password: UserPassword;
-    counter: UserCounter
+    password: UserPassword,
+    counter: UserCounter,
+    devices?: string[];
 }
 
-export type ConnectedMember = Omit<Member, 'password'> & { token: string };
+export type ConnectedMember = Omit<Member, 'password' | 'devices'> & { token: string };
 
 export type MemberContext = {
     member: ConnectedMember | null,

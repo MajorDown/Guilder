@@ -8,6 +8,8 @@ const AdminSchema = new mongoose.Schema({
   guild: { type: String, required: true},
   phone: { type: String, required: true },
   authPersistence: { type: Boolean, required: false },
+  // devices, facultatif, sera une liste d'identifiant de devices authentifiés
+  devices: { type: [String], required: false },
 });
 
 AdminSchema.plugin(uniqueValidator);

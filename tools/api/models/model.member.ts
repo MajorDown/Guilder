@@ -8,6 +8,7 @@ const MemberSchema = new mongoose.Schema({
   guild: { type: String, required: true,},
   phone: { type: String, required: true },
   counter: {type: Number, required: true,},
+    devices: { type: [String], required: false },
 });
 
 MemberSchema.plugin(uniqueValidator);
