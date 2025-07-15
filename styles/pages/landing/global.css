@@ -167,11 +167,14 @@ footer a:hover {
     }
 
     #footerLogo {
+        width: 57.7px;
+        height: 89px;
         position: absolute;
         top: 40px;
     }
 
     footer h3 {
+        font-size: 24px;
         position: absolute;
         top: 170px;
     }
@@ -179,6 +182,7 @@ footer a:hover {
     #socials {
         position: absolute;
         top: 250px;
+        justify-content: center;
     }
 
     #socials p {
@@ -187,11 +191,10 @@ footer a:hover {
     }
 
     #credits {
+        text-align: center;
         position: absolute;
         top: 350px;
     }
-
-
 
     #legals {
         position: absolute;

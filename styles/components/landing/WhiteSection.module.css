@@ -238,9 +238,16 @@
         font-size: var(--size-bigTxt-mobile)-3;
     }
 
+    #FourthSection .leftPart {
+        width: 90%;
+        height: 40vw
+    }
+
     #contactUsImage {
         background-image: url('/images/landing/mobile/optimise.webp');
-        height: 14.88vw;
+        width: 80vw;
+        height: 30vw;
+        background-size: cover
     }
 
     #FourthSection a {
