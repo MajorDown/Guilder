@@ -1,34 +1,109 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🌾 Guilder – Application Web CUMA (Next.js + MongoDB)
 
-## Getting Started
+**Guilder** est une application web de gestion pour les coopératives agricoles (type CUMA). Développée avec **Next.js** et **MongoDB**, elle permet de gérer les membres, outils, interventions, contestations et bilans via une interface moderne et sécurisée. Elle propose aussi des fonctions avancées comme l’envoi d’e-mails et la génération de PDF.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+## 🚀 Fonctionnalités
+
+- 🔐 Authentification sécurisée par JWT
+- 👥 Gestion des membres
+- 🧰 Déclaration d'interventions et gestion d’outils
+- ⚖️ Contestation et arbitrage
+- 📩 Envoi de mails automatiques avec Nodemailer
+- 📄 Génération de PDF avec React-PDF
+- 🧩 API REST intégrée via les routes Next.js (`app/api/...`)
+
+---
+
+## 🧱 Stack technique
+
+- **Framework** : Next.js (App Router)
+- **Langage** : TypeScript
+- **Frontend** : React
+- **Base de données** : MongoDB
+- **ORM** : Mongoose
+- **Authentification** : JWT (`jsonwebtoken`)
+- **Sécurité** : `bcrypt` pour le hash des mots de passe
+- **E-mails** : `nodemailer`
+- **PDF** : `@react-pdf/renderer`
+
+---
+
+## 📁 Structure du projet
+
+```
+Guilder/
+├── app/
+│   ├── (app)/               # Pages privées (admin, guilde, déclaration, etc.)
+│   ├── (landing)/           # Pages publiques (accueil, contact, mentions légales)
+│   ├── api/                 # Endpoints API sécurisés
+├── components/              # Composants UI réutilisables
+├── constants/               # Types, rôles, couleurs
+├── contexts/                # React Context (adminContext)
+├── hooks/                   # Hooks personnalisés
+├── utils/                   # Requêtes et helpers front
+├── public/                  # Fichiers statiques
+└── middleware.ts            # Middleware JWT
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📦 Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Prérequis
 
-## Learn More
+- Node.js ≥ 18
+- MongoDB local ou distant
 
-To learn more about Next.js, take a look at the following resources:
+### Étapes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+git clone https://github.com/MajorDown/Guilder.git
+cd Guilder
+cp .env.example .env        # Ajoute ta URI MongoDB
+npm install
+npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🔐 Authentification
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+L’app utilise des **tokens JWT**, envoyés via les headers HTTP :
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- `Authorization: Bearer <token>`
+- `X-user-Mail: <email>`
+
+Ces informations sont traitées par le middleware pour sécuriser l’accès aux routes et API.
+
+---
+
+## 📧 Envoi d’e-mails
+
+Les mails sont envoyés via **Nodemailer**, notamment pour :
+
+- confirmation d’inscription
+- récupération de mot de passe
+
+---
+
+## 📄 PDF
+
+Des documents PDF (comme des bilans) peuvent être générés côté client via `@react-pdf/renderer`.
+
+---
+
+## 👨‍💻 Auteur
+
+Développé par **Romain Fouillaron**  
+🌍 [romainfouillarondev.fr](https://romainfouillarondev.fr)  
+📧 romain.fouillaron@gmx.fr  
+💼 [LinkedIn](https://www.linkedin.com/in/romain-fouillaron/)  
+🐙 [GitHub](https://github.com/MajorDown)
+
+---
+
+## ⚖️ Licence
+
+Ce projet est sous licence MIT.
