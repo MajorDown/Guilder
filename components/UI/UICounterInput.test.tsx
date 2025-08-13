@@ -11,7 +11,7 @@ describe("UICounterInput", () => {
 
   it("rend un input de type number avec le pas à 0.01", () => {
     render(<UICounterInput {...baseProps} />);
-    const input = screen.getByRole("spinbutton");
+    const input = screen.getByRole("spinbutton", { name: /coefficient/i });
 
     expect(input).toBeInTheDocument();
     expect(input).toHaveAttribute("type", "number");
@@ -24,6 +24,7 @@ describe("UICounterInput", () => {
     render(<UICounterInput {...baseProps} onChangeValue={onChange} />);
 
     const input = screen.getByRole("spinbutton");
+
     fireEvent.change(input, { target: { value: "1.75" } });
 
     expect(input).toHaveValue(1.75);
